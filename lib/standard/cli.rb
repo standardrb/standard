@@ -1,26 +1,27 @@
 require "rubocop"
+require_relative "config"
 
 module Standard
   class Cli
-    SUCCESS_STATUS_CODE=0
-    FAILURE_STATUS_CODE=1
+    SUCCESS_STATUS_CODE = 0
+    FAILURE_STATUS_CODE = 1
 
-    def initialize()
+    def initialize
+      @config = Config.new(ARGV)
     end
 
     def run
-      paths = ["."]
-      rubocop_config_path =  Pathname.new(__dir__).join("../../config/base.yml")
-      runner = RuboCop::Runner.new({
-        :config => rubocop_config_path,
-        :formatters => [["progress", nil]]
-      }, create_config_store(rubocop_config_path))
+      rubocop_config = @config.to_rubocop
+      runner = RuboCop::Runner.new(
+        rubocop_config.options,
+        rubocop_config.config_store
+      )
 
-      passed = runner.run(paths)
+      run_succeeded = runner.run(rubocop_config.paths)
 
       runner.warnings.each { |warning| warn warning }
       print_errors(runner.errors)
-      if passed
+      if run_succeeded
         SUCCESS_STATUS_CODE
       else
         FAILURE_STATUS_CODE
@@ -28,14 +29,6 @@ module Standard
     end
 
     private
-
-    def create_config_store(rubocop_config_path)
-      # Apparently unnecessary:
-      # RuboCop::ConfigLoader.options_config = rubocop_config_path
-      RuboCop::ConfigStore.new.tap { |config_store|
-        config_store.options_config = rubocop_config_path
-      }
-    end
 
     # See: https://github.com/rubocop-hq/rubocop/blob/master/lib/rubocop/cli.rb#L263
     def print_errors(errors)
