@@ -1,3 +1,5 @@
+require "rubocop"
+
 module Standard
   class Cli
     SUCCESS_STATUS_CODE=0
@@ -8,18 +10,16 @@ module Standard
 
     def run
       paths = ["."]
-      rubocop_config_path = "../../config/base.yml"
-      config_store = RuboCop::ConfigStore.new
-      config_store.options_config = rubocop_config_path
-      RuboCop::ConfigLoader.options_config = rubocop_config_path
-      options = {:config => rubocop_config, :formatters => [["progress", nil]]}
+      rubocop_config_path =  Pathname.new(__dir__).join("../../config/base.yml")
+      runner = RuboCop::Runner.new({
+        :config => rubocop_config_path,
+        :formatters => [["progress", nil]]
+      }, create_config_store(rubocop_config_path))
 
-      runner = RuboCop::Runner.new(options, config_store)
       passed = runner.run(paths)
 
       runner.warnings.each { |warning| warn warning }
-      print_errors(errors)
-
+      print_errors(runner.errors)
       if passed
         SUCCESS_STATUS_CODE
       else
@@ -29,6 +29,15 @@ module Standard
 
     private
 
+    def create_config_store(rubocop_config_path)
+      # Apparently unnecessary:
+      # RuboCop::ConfigLoader.options_config = rubocop_config_path
+      RuboCop::ConfigStore.new.tap { |config_store|
+        config_store.options_config = rubocop_config_path
+      }
+    end
+
+    # See: https://github.com/rubocop-hq/rubocop/blob/master/lib/rubocop/cli.rb#L263
     def print_errors(errors)
       return if errors.empty?
 
