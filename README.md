@@ -55,8 +55,8 @@ StandardRB, don't be shocked if things change a bit!]**
 
 ## Usage
 
-ONce you've installed `standard`, you should be able to use the `standard`
-program. The simplest use case would be checking the style of all JavaScript
+Once you've installed `standard`, you should be able to use the `standard`
+program. The simplest use case would be checking the style of all Ruby
 files in the current working directory:
 
 ```bash
