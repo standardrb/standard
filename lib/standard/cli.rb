@@ -29,6 +29,11 @@ module Standard
       else
         runner.warnings.each { |warning| warn warning }
         print_errors(runner.errors)
+        puts <<~CALL_TO_ACTION
+
+          Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
+            https://github.com/testdouble/standard/issues/new
+        CALL_TO_ACTION
         FAILURE_STATUS_CODE
       end
     end
