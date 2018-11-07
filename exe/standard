@@ -2,6 +2,6 @@
 
 $LOAD_PATH.unshift("#{__dir__}/../lib")
 
-require 'standard'
+require "standard"
 
 exit Standard::Cli.new.run

@@ -2,13 +2,12 @@ require "benchmark"
 
 module Standard
   class Timer
-    def time(&blk)
+    def time
       result = false
       time = Benchmark.realtime do
-        result = blk.call
+        result = yield
       end
       [time, result]
     end
   end
 end
-

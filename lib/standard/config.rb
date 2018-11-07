@@ -19,7 +19,7 @@ module Standard
       RuboCopConfig.new(
         @paths,
         wrap_rubocop_options(@rubocop_options),
-        RuboCop::ConfigStore.new.tap(&self.method(:mutate_config_store!))
+        RuboCop::ConfigStore.new.tap(&method(:mutate_config_store!))
       )
     end
 
@@ -53,7 +53,7 @@ module Standard
         :auto_correct => @standard_config[:fix],
         :safe_auto_correct => @standard_config[:fix],
         :formatters => [[@standard_config[:format] || "Standard::Formatter", nil]],
-        :parallel=> @standard_config[:parallel]
+        :parallel => @standard_config[:parallel]
       }.merge(rubocop_options)
     end
 
