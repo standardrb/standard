@@ -3,9 +3,10 @@ require "rubocop"
 module Standard
   class Formatter < RuboCop::Formatter::BaseFormatter
     def file_finished(file, offenses)
-      print_header_once if offenses.size > 0
+      uncorrected_offenses = offenses.reject(&:corrected?)
+      print_header_once if uncorrected_offenses.size > 0
 
-      offenses.each do |o|
+      uncorrected_offenses.each do |o|
         output.printf("  %s:%d:%d: %s\n", file, o.line, o.real_column, o.message.tr("\n", ' '))
       end
     end

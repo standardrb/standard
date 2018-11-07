@@ -9,9 +9,10 @@ module Standard
     RuboCopConfig = Struct.new(:paths, :options, :config_store)
 
     def initialize(argv)
-      @rubocop_options, @paths = RuboCop::Options.new.parse(argv)
+      filtered_argv, fix_flag = parse_argv(argv)
+      @rubocop_options, @paths = RuboCop::Options.new.parse(filtered_argv)
       @standard_yml_path = FileFinder.new.call(".standard.yml", Dir.pwd)
-      @standard_config = init_standard_config(@standard_yml_path)
+      @standard_config = init_standard_config(@standard_yml_path, fix_flag)
     end
 
     def to_rubocop
@@ -24,7 +25,14 @@ module Standard
 
     private
 
-    def init_standard_config(yml_path)
+    # Filtered b/c RuboCop will switch to --only Layout when --fix is set (undocumented behavior)
+    def parse_argv(argv)
+      filtered_argv = argv.dup
+      fix_flag = !!filtered_argv.delete("--fix")
+      [filtered_argv, fix_flag]
+    end
+
+    def init_standard_config(yml_path, fix_flag)
       user_config = if yml_path
         YAML.load_file(Pathname.new(Dir.pwd).join(yml_path))
       else
@@ -32,7 +40,7 @@ module Standard
       end
 
       {
-        :fix => !!user_config["fix"],
+        :fix => fix_flag || !!user_config["fix"],
         :format => user_config["format"],
         :ignore => expand_ignore_config(user_config["ignore"]),
         :parallel => !!user_config["parallel"],
@@ -43,7 +51,7 @@ module Standard
     def wrap_rubocop_options(rubocop_options)
       {
         :auto_correct => @standard_config[:fix],
-        :fix_layout => @standard_config[:fix],
+        :safe_auto_correct => @standard_config[:fix],
         :formatters => [[@standard_config[:format] || "Standard::Formatter", nil]],
         :parallel=> @standard_config[:parallel]
       }.merge(rubocop_options)
