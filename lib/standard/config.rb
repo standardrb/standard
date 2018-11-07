@@ -32,7 +32,8 @@ module Standard
 
       {
         :fix => !!user_config["fix"],
-        :ignore => expand_ignore_config(user_config["ignore"])
+        :ignore => expand_ignore_config(user_config["ignore"]),
+        :parallel => !!user_config["parallel"]
       }
     end
 
@@ -40,8 +41,9 @@ module Standard
       {
         :formatters => [["progress", nil]]
       }.merge(
+        :auto_correct => @standard_config[:fix],
         :fix_layout => @standard_config[:fix],
-        :auto_correct => @standard_config[:fix]
+        :parallel=> @standard_config[:parallel]
       ).merge(rubocop_options)
     end
 
