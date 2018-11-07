@@ -75,7 +75,7 @@ $ bundle exec standard "lib/**/*.rb" test
 ```
 
 **Note:** by default `standard` will look for all `*.rb` files (and some other
-files typically associated with Ruby like `*.gemspec` and `Gemfile)
+files typically associated with Ruby like `*.gemspec` and `Gemfile`)
 
 ## What you might do if you're clever
 
