@@ -32,7 +32,7 @@ flag.
 ## StandardRB — The Rules
 
 - **2 spaces** – for indentation
-- **Double quotes for string literals ** - because pre-committing to whether
+- **Double quotes for string literals** - because pre-committing to whether
   you'll need interpolation in a string slows people down
 - **Hashrockets** - Hashrockets.
 - **Semantic blocks** - `{`/`}` for functional blocks that return a value, and
@@ -50,8 +50,8 @@ can look at StandardRB's current base configuration in
 **[NOTE: until StandardRB hits 1.0.0, we consider this configuration to be a
 non-final work in progress and we encourage you to submit your opinions (and
 reasoned arguments) for the addition, removal, or change to a rule by [opening
-an issue](/issues/new). If you start using StandardRB, don't be shocked if
-things change a bit!]**
+an issue](https://github.com/testdouble/standard/issues/new). If you start using
+StandardRB, don't be shocked if things change a bit!]**
 
 ## Usage
 
@@ -133,7 +133,7 @@ project healthier.
 
 ## Who uses Ruby Standard Style?
 
-(This section will not [look very familiar
+(This section will not [look very
 familiar](https://github.com/standard/standard#who-uses-javascript-standard-style)
 if you've used StandardJS.)
 
@@ -154,8 +154,9 @@ in your readme to let people know that your code is using the standard style.
 ## I disagree with rule X, can you change it?
 
 **[NOTE: until StandardRB hits 1.0.0, the answer is yes! It just requires
-[opening an issue](/issues/new) and convincing
-[@searls](https://twitter.com/searls) (the BDFNow) to make the change.]**
+[opening an issue](https://github.com/testdouble/standard/issues/new) and
+convincing [@searls](https://twitter.com/searls) (the BDFNow) to make the
+change.]**
 
 No. The whole point of `standard` is to save you time by avoiding
 [bikeshedding](https://www.freebsd.org/doc/en/books/faq/misc.html#bikeshed-painting)
