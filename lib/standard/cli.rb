@@ -27,8 +27,9 @@ module Standard
         puts "✨  Done in #{time.round(2)}s."
         SUCCESS_STATUS_CODE
       else
-        runner.warnings.each { |warning| warn warning }
-        print_errors(runner.errors)
+        (runner.warnings + runner.errors).each do |message|
+          warn message
+        end
         puts <<~CALL_TO_ACTION
 
           Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
@@ -36,23 +37,6 @@ module Standard
         CALL_TO_ACTION
         FAILURE_STATUS_CODE
       end
-    end
-
-    private
-
-    # See: https://github.com/rubocop-hq/rubocop/blob/master/lib/rubocop/cli.rb#L263
-    def print_errors(errors)
-      return if errors.empty?
-
-      errors.each { |error| warn error }
-
-      warn <<~WARNING
-        Errors are usually caused by RuboCop bugs.
-        Please, report your problems to RuboCop's issue tracker.
-        #{Gem.loaded_specs['rubocop'].metadata['bug_tracker_uri']}
-        Mention the following information in the issue report:
-        #{RuboCop::Version.version(true)}
-      WARNING
     end
   end
 end
