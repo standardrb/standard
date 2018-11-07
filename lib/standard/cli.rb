@@ -1,5 +1,6 @@
 require "rubocop"
 require_relative "config"
+require_relative "timer"
 
 module Standard
   class Cli
@@ -8,6 +9,7 @@ module Standard
 
     def initialize
       @config = Config.new(ARGV)
+      @timer = Timer.new
     end
 
     def run
@@ -17,13 +19,16 @@ module Standard
         rubocop_config.config_store
       )
 
-      run_succeeded = runner.run(rubocop_config.paths)
+      time, run_succeeded = @timer.time {
+        runner.run(rubocop_config.paths)
+      }
 
-      runner.warnings.each { |warning| warn warning }
-      print_errors(runner.errors)
       if run_succeeded
+        puts "✨  Done in #{time.round(2)}s."
         SUCCESS_STATUS_CODE
       else
+        runner.warnings.each { |warning| warn warning }
+        print_errors(runner.errors)
         FAILURE_STATUS_CODE
       end
     end

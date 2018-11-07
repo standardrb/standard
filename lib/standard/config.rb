@@ -2,6 +2,7 @@ require "rubocop"
 require "pathname"
 require "yaml"
 require_relative "file_finder"
+require_relative "formatter"
 
 module Standard
   class Config
@@ -32,6 +33,7 @@ module Standard
 
       {
         :fix => !!user_config["fix"],
+        :format => user_config["format"],
         :ignore => expand_ignore_config(user_config["ignore"]),
         :parallel => !!user_config["parallel"]
       }
@@ -39,12 +41,11 @@ module Standard
 
     def wrap_rubocop_options(rubocop_options)
       {
-        :formatters => [["progress", nil]]
-      }.merge(
         :auto_correct => @standard_config[:fix],
         :fix_layout => @standard_config[:fix],
+        :formatters => [[@standard_config[:format] || "Standard::Formatter", nil]],
         :parallel=> @standard_config[:parallel]
-      ).merge(rubocop_options)
+      }.merge(rubocop_options)
     end
 
     def mutate_config_store!(config_store)
