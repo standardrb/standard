@@ -5,9 +5,12 @@ module Standard
     def file_finished(file, offenses)
       uncorrected_offenses = offenses.reject(&:corrected?)
       print_header_once unless uncorrected_offenses.empty?
+      working_directory = Pathname.new(Dir.pwd)
 
       uncorrected_offenses.each do |o|
-        output.printf("  %s:%d:%d: %s\n", file, o.line, o.real_column, o.message.tr("\n", " "))
+        absolute_path = Pathname.new(file)
+        relative_path = absolute_path.relative_path_from(working_directory)
+        output.printf("  %s:%d:%d: %s\n", relative_path, o.line, o.real_column, o.message.tr("\n", " "))
       end
     end
 
