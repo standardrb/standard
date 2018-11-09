@@ -1,14 +1,14 @@
 PATH
   remote: .
   specs:
-    standard (0.0.3)
+    standard (0.0.4)
       rubocop (>= 0.60)
 
 GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.0)
-    jaro_winkler (1.5.1-x86_64-darwin-17)
+    jaro_winkler (1.5.1)
     minitest (5.11.3)
     parallel (1.12.1)
     parser (2.5.3.0)
