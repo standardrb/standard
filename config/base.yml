@@ -104,6 +104,9 @@ Style/HashSyntax:
 Style/IfUnlessModifier:
   Enabled: false
 
+Style/MethodDefParentheses:
+  Enabled: false
+
 Style/MultilineBlockChain:
   Enabled: false
 
