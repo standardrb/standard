@@ -74,6 +74,9 @@ Naming/VariableNumber:
 Style/BlockDelimiters:
   EnforcedStyle: semantic
 
+Style/BracesAroundHashParameters:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
