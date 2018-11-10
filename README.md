@@ -249,9 +249,9 @@ for details.
 ## How do I change the output?
 
 StandardRB's built-in formatter is intentionally minimal, printing only unfixed
-failures or (if successful) a "Done" message. If you'd like to use a different
-formatter, you can specify any of RuboCopy's built-in formatters or write your
-own.
+failures or (when successful) printing nothing at all. If you'd like to use a
+different formatter, you can specify any of RuboCopy's built-in formatters or
+write your own.
 
 For example, if you'd like to see colorful progress dots, you can either run
 standard with:
@@ -262,7 +262,6 @@ Inspecting 15 files
 ...............
 
 15 files inspected, no offenses detected
-✨  Done in 0.42s.
 ```
 
 Or, in your project's `.standard.yml` file, specify:
