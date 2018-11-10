@@ -33,11 +33,8 @@ module Standard
     end
 
     def init_standard_config(yml_path, fix_flag)
-      user_config = if yml_path
-        YAML.load_file(Pathname.new(Dir.pwd).join(yml_path))
-      else
-        {}
-      end
+      user_config = YAML.load_file(Pathname.new(Dir.pwd).join(yml_path)) if yml_path
+      user_config ||= {}
 
       {
         :fix => fix_flag || !!user_config["fix"],
