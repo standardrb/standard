@@ -137,7 +137,32 @@ project healthier.
 familiar](https://github.com/standard/standard#who-uses-javascript-standard-style)
 if you've used StandardJS.)
 
-Almost nobody! (Yet!)
+* [Test Double](https://testdouble.com/agency)
+* And that's about it so far!
+
+## What if I also have StandardJS installed?
+
+**[Note: While StandardRB is pre-1.0.0, we are waiting for user feedback before
+deciding whether to mitigate this issue through cleverness or eliminate it by
+changing the bin name. Please comment on [this
+issue](https://github.com/testdouble/standard/issues/3) if you run into a
+real-world problem trying to run either type of Standard.]**
+
+Because StandardRB and StandardJS (and perhaps future packages for other
+languages) both ship with binaries named `standard`, having both installed
+globally and then executing them from your PATH will—at the moment—run whichever
+one is found earlier in the PATH.
+
+Ambiguity is bad, but we're banking on the majority of JS users to run standard
+from a [package script](https://docs.npmjs.com/misc/scripts) and the majority of
+Ruby developers to run standard from a [Bundler
+binstub](https://bundler.io/v1.10/bundle_binstubs.html) or [Rake
+task](https://github.com/testdouble/standard/issues/4).
+
+For every other case, if you're using both standard programs, note that
+StandardRB ships with a `standardrb` bin, and we have a [pull request
+open](https://github.com/standard/standard/pull/1224) to StandardJS to add a
+`standardjs` alias so that either program can be run without any ambiguity.
 
 ## Is there a readme badge?
 
