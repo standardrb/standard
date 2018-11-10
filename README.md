@@ -20,13 +20,13 @@ gem "standard", :group => [:development, :test]
 
 And running `bundle install`.
 
-Run StandardRB from the command line with:
+Run Standard from the command line with:
 
 ```ruby
 $ bundle exec standard
 ```
 
-And if you'd like, StandardRB can autocorrect your code by tacking on a `--fix`
+And if you'd like, Standard can autocorrect your code by tacking on a `--fix`
 flag.
 
 ## StandardRB — The Rules
@@ -35,7 +35,7 @@ flag.
 - **Double quotes for string literals** - because pre-committing to whether
   you'll need interpolation in a string slows people down
 - **Hashrockets** - Ruby 1.9's `:` syntax is newer and terser (and presently,
-  more popular), but they can't be used consistently safely, and StandardRB is
+  more popular), but they can't be used consistently safely, and Standard is
   all about consistency and safety. Hashrockets [are
   good](https://samphippen.com/hash-rockets-are-good-actually/)
 - **Semantic blocks** - `{`/`}` for functional blocks that return a value, and
@@ -47,14 +47,14 @@ flag.
 - **And a good deal more**
 
 If you're familiar with [RuboCop](https://github.com/rubocop-hq/rubocop), you
-can look at StandardRB's current base configuration in
+can look at Standard's current base configuration in
 [config/base.yml](/config/base.yml).
 
 **[NOTE: until StandardRB hits 1.0.0, we consider this configuration to be a
 non-final work in progress and we encourage you to submit your opinions (and
 reasoned arguments) for the addition, removal, or change to a rule by [opening
 an issue](https://github.com/testdouble/standard/issues/new). If you start using
-StandardRB, don't be shocked if things change a bit!]**
+Standard, don't be shocked if things change a bit!]**
 
 ## Usage
 
@@ -84,22 +84,22 @@ files typically associated with Ruby like `*.gemspec` and `Gemfile`)
 
 Standard also ships with Rake tasks. If you're using Rails, these should
 autoload and be available after installing Standard. Otherwise, just require the
-task in your `Rakefile`:
+tasks in your `Rakefile`:
 
 ```ruby
 require "standard/rake"
 ```
 
-Here are the tasks bundled with StandardRB:
+Here are the tasks bundled with Standard:
 
 ```
 $ rake standard     # equivalent to running `standard`
 $ rake standard:fix # equivalent to running `standard --fix`
 ```
 
-You may also pass command line options to the task by embedding them in a
-`STANDARDOPTS` environment variable (similar to how the Minitest Rake task
-accepts CLI options in `TESTOPTS`).
+You may also pass command line options to Standard's Rake tasks by embedding
+them in a `STANDARDOPTS` environment variable (similar to how the Minitest Rake
+task accepts CLI options in `TESTOPTS`).
 
 ```
 # equivalent to `standard --format progress`:
@@ -111,7 +111,7 @@ $ rake standard STANDARDOPTS="lib \"app/**/*\""
 
 ## What you might do if you're clever
 
-If you want or need to configure StandardRB, there are a _handful_ of options
+If you want or need to configure Standard, there are a _handful_ of options
 are available creating a `.standard.yml` file in the root of your project.
 
 Here's an example yaml file with every option set:
@@ -148,7 +148,7 @@ The beauty of Ruby Standard Style is that it's simple. No one wants to
 maintain multiple hundred-line style configuration files for every module/project
 they work on. Enough of this madness!
 
-This module saves you (and others!) time in three ways:
+This gem saves you (and others!) time in three ways:
 
 - **No configuration.** The easiest way to enforce consistent style in your
   project. Just drop it in.
@@ -277,9 +277,9 @@ for details.
 
 ## How do I change the output?
 
-StandardRB's built-in formatter is intentionally minimal, printing only unfixed
+Standard's built-in formatter is intentionally minimal, printing only unfixed
 failures or (when successful) printing nothing at all. If you'd like to use a
-different formatter, you can specify any of RuboCopy's built-in formatters or
+different formatter, you can specify any of RuboCop's built-in formatters or
 write your own.
 
 For example, if you'd like to see colorful progress dots, you can either run
