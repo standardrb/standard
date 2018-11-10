@@ -1,4 +1,3 @@
-require "rubocop"
 require_relative "config"
 
 module Standard
