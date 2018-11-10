@@ -15,7 +15,7 @@ No decisions to make. It just works.
 Install by adding it to your Gemfile:
 
 ```ruby
-gem "standard", :require => false
+gem "standard", :group => [:development, :test]
 ```
 
 And running `bundle install`.
