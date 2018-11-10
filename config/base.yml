@@ -75,7 +75,7 @@ Naming/VariableNumber:
   Enabled: false
 
 Style/BlockDelimiters:
-  EnforcedStyle: semantic
+  Enabled: false
 
 Style/BracesAroundHashParameters:
   Enabled: false

@@ -23,42 +23,40 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-module RuboCop
-  module Cop
-    module Standard
-      class SemanticBlocks < Cop
-        include IgnoredMethods
+module RuboCop::Cop
+  module Standard
+    class SemanticBlocks < RuboCop::Cop::Cop
+      include RuboCop::Cop::IgnoredMethods
 
-        def on_send(node)
-          return unless node.arguments?
-          return if node.parenthesized? || node.operator_method?
+      def on_send(node)
+        return unless node.arguments?
+        return if node.parenthesized? || node.operator_method?
 
-          node.arguments.each do |arg|
-            get_blocks(arg) do |block|
-              # If there are no parentheses around the arguments, then braces
-              # and do-end have different meaning due to how they bind, so we
-              # allow either.
-              ignore_node(block)
-            end
+        node.arguments.each do |arg|
+          get_blocks(arg) do |block|
+            # If there are no parentheses around the arguments, then braces
+            # and do-end have different meaning due to how they bind, so we
+            # allow either.
+            ignore_node(block)
           end
         end
+      end
 
-        def on_block(node)
-          return if ignored_node?(node) || proper_block_style?(node)
+      def on_block(node)
+        return if ignored_node?(node) || proper_block_style?(node)
 
-          add_offense(node, location: :begin)
-        end
+        add_offense(node, location: :begin)
+      end
 
-        def autocorrect(node)
-          return if correction_would_break_code?(node)
+      def autocorrect(node)
+        return if correction_would_break_code?(node)
 
-          if node.single_line?
-            replace_do_end_with_braces(node.loc)
-          elsif node.braces?
-            replace_braces_with_do_end(node.loc)
-          else
-            replace_do_end_with_braces(node.loc)
-          end
+        if node.single_line?
+          replace_do_end_with_braces(node.loc)
+        elsif node.braces?
+          replace_braces_with_do_end(node.loc)
+        else
+          replace_do_end_with_braces(node.loc)
         end
       end
 
@@ -185,5 +183,4 @@ module RuboCop
       end
     end
   end
-end
 end
