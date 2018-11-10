@@ -6,8 +6,8 @@ module Standard
     SUCCESS_STATUS_CODE = 0
     FAILURE_STATUS_CODE = 1
 
-    def initialize
-      @config = Config.new(ARGV)
+    def initialize(argv)
+      @config = Config.new(argv)
     end
 
     def run

@@ -122,6 +122,9 @@ Style/NumericPredicate:
 Style/RescueStandardError:
   EnforcedStyle: implicit
 
+Style/SignalException:
+  Enabled: false
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 

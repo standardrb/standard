@@ -18,9 +18,15 @@ module Standard
 
     def print_header_once
       return if @header_printed_already
+      command = if File.split($PROGRAM_NAME).last == "rake"
+        "rake standard:fix"
+      else
+        "standard --fix"
+      end
+
       output.print <<~HEADER
         standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-        standard: Run `standard --fix` to automatically fix some problems.
+        standard: Run `#{command}` to automatically fix some problems.
       HEADER
       @header_printed_already = true
     end
