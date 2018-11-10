@@ -302,8 +302,3 @@ format: progress
 Refer to RuboCop's [documentation on
 formatters](https://rubocop.readthedocs.io/en/latest/formatters/) for more
 information.
-
-## License
-
-[MIT](LICENSE). Copyright (c) [Test Double, LLC](https://testdouble.com).
-
