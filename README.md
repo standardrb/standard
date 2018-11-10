@@ -125,7 +125,7 @@ ignore:
   - 'db/schema.rb'
   - 'vendor/bundle/**/*'
   - 'test/**/*':
-    - Style/BlockDelimiters
+    - Layout/AlignHash
 ```
 
 ## What you might do if you're REALLY clever
