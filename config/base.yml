@@ -74,6 +74,34 @@ Naming/UncommunicativeMethodParamName:
 Naming/VariableNumber:
   Enabled: false
 
+Standard/SemanticBlocks:
+  ProceduralMethods:
+    - benchmark
+    - bm
+    - bmbm
+    - create
+    - each_with_object
+    - measure
+    - new
+    - realtime
+    - tap
+    - with_object
+  FunctionalMethods:
+    - let
+    - let!
+    - subject
+    - watch
+    - Given
+    - Given!
+    - Invariant
+    - Then
+    - And
+  IgnoredMethods:
+    - lambda
+    - proc
+    - it
+    - When
+
 Style/BlockDelimiters:
   Enabled: false
 
