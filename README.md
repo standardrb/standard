@@ -80,6 +80,35 @@ $ bundle exec standard "lib/**/*.rb" test
 **Note:** by default `standard` will look for all `*.rb` files (and some other
 files typically associated with Ruby like `*.gemspec` and `Gemfile`)
 
+### Using with Rake
+
+Standard also ships with Rake tasks. If you're using Rails, these should
+autoload and be available after installing Standard. Otherwise, just require the
+task in your `Rakefile`:
+
+```ruby
+require "standard/rake"
+```
+
+Here are the tasks bundled with StandardRB:
+
+```
+$ rake standard     # equivalent to running `standard`
+$ rake standard:fix # equivalent to running `standard --fix`
+```
+
+You may also pass command line options to the task by embedding them in a
+`STANDARDOPTS` environment variable (similar to how the Minitest Rake task
+accepts CLI options in `TESTOPTS`).
+
+```
+# equivalent to `standard --format progress`:
+$ rake standard STANDARDOPTS="--format progress"
+
+# equivalent to `standard lib "app/**/*"`, to lint just certain paths:
+$ rake standard STANDARDOPTS="lib \"app/**/*\""
+```
+
 ## What you might do if you're clever
 
 If you want or need to configure StandardRB, there are a _handful_ of options
@@ -160,7 +189,7 @@ Ambiguity is bad, but we're banking on the majority of JS users to run standard
 from a [package script](https://docs.npmjs.com/misc/scripts) and the majority of
 Ruby developers to run standard from a [Bundler
 binstub](https://bundler.io/v1.10/bundle_binstubs.html) or [Rake
-task](https://github.com/testdouble/standard/issues/4).
+task](#using-with-rake).
 
 For every other case, if you're using both standard programs, note that
 StandardRB ships with a `standardrb` bin, and we have a [pull request
