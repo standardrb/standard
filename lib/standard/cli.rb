@@ -24,7 +24,7 @@ module Standard
       }
 
       if run_succeeded
-        puts "✨  Done in #{time.round(2)}s."
+        puts "💚  Done in #{time.round(2)}s."
         SUCCESS_STATUS_CODE
       else
         (runner.warnings + runner.errors).each do |message|
