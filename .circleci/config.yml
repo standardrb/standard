@@ -28,4 +28,4 @@ jobs:
 
       - run:
           name: lint
-          command: ./exe/standard
+          command: bundle exec ./exe/standard
