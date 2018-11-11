@@ -120,6 +120,7 @@ Here's an example yaml file with every option set:
 fix: true
 parallel: true
 format: progress
+ruby_version: 2.3.3
 
 ignore:
   - 'db/schema.rb'
@@ -274,6 +275,26 @@ You can also use special comments to disable all or certain rules within your
 source code. See [RuboCop's
 docs](https://docs.rubocop.org/en/latest/configuration/#disabling-cops-within-source-code)
 for details.
+
+## How do I specify a Ruby version? What is supported?
+
+Because Standard wraps RuboCop, they share the same [runtime
+requirements](https://github.com/rubocop-hq/rubocop#compatibility)—currently,
+that's MRI 2.2 and newer.
+
+Standard will default to telling RuboCop to target the currently runing version
+of Ruby (by inspecting `RUBY_VERSION` at runtime. But if you want to lock it
+down, you can specify `ruby_version` in `.standard.yml`.
+
+```
+ruby_version: 2.3.3
+```
+
+It's a little confusing to consider, but the targeted Ruby version for linting
+may or may not match the version of the runtime (suppose you're on Ruby 2.5.1,
+but your library supports Ruby 2.2.0). In this case, specify `ruby_version` and
+you should be okay. However, note that if you target a _newer_ Ruby version than
+the runtime, RuboCop may behave in surprising or inconsistent ways.
 
 ## How do I change the output?
 
