@@ -50,6 +50,9 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Enabled: false
 
+Metrics/BlockNesting:
+  Enabled: false
+
 Metrics/ClassLength:
   Enabled: false
 
@@ -66,6 +69,12 @@ Metrics/ModuleLength:
   Enabled: false
 
 Metrics/ParameterLists:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Naming/PredicateName:
   Enabled: false
 
 Naming/UncommunicativeMethodParamName:
@@ -101,6 +110,9 @@ Standard/SemanticBlocks:
     - proc
     - it
     - When
+
+Style/AsciiComments:
+  Enabled: false
 
 Style/BlockDelimiters:
   Enabled: false
@@ -144,7 +156,16 @@ Style/MethodDefParentheses:
 Style/MultilineBlockChain:
   Enabled: false
 
+Style/MultilineTernaryOperator:
+  Enabled: false
+
+Style/MultipleComparison:
+  Enabled: false
+
 Style/MutableConstant:
+  Enabled: false
+
+Style/NumericLiterals:
   Enabled: false
 
 Style/NumericPredicate:
@@ -180,3 +201,5 @@ Style/TrailingCommaInHashLiteral:
 Style/WordArray:
   Enabled: false
 
+Style/ZeroLengthPredicate:
+  Enabled: false
