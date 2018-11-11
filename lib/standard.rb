@@ -1,5 +1,7 @@
 require "rubocop"
 
+require "standard/rubocop/ext"
+
 require "standard/version"
 require "standard/cli"
 require "standard/railtie" if defined?(Rails)
