@@ -24,7 +24,7 @@ module Standard
         "standard --fix"
       end
 
-      output.print <<~HEADER
+      output.print <<-HEADER.gsub(/^ {8}/, "")
         standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
         standard: Run `#{command}` to automatically fix some problems.
       HEADER

@@ -24,7 +24,7 @@ module Standard
         (runner.warnings + runner.errors).each do |message|
           warn message
         end
-        puts <<~CALL_TO_ACTION
+        puts <<-CALL_TO_ACTION.gsub(/^ {10}/, "")
 
           Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
             https://github.com/testdouble/standard/issues/new

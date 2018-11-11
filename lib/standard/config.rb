@@ -58,7 +58,9 @@ module Standard
       config_store.options_config = Pathname.new(__dir__).join("../../config/base.yml")
       options_config = config_store.instance_variable_get("@options_config")
 
-      options_config["AllCops"]["TargetRubyVersion"] = @standard_config[:ruby_version]
+      options_config["AllCops"]["TargetRubyVersion"] = floatify_version(
+        minimum_rubocop_supported_version(@standard_config[:ruby_version])
+      )
 
       @standard_config[:ignore].each do |(path, cops)|
         cops.each do |cop|
@@ -80,8 +82,21 @@ module Standard
     end
 
     def ruby_version(version)
-      major, minor = Gem::Version.new(version).segments
+      Gem::Version.new(version)
+    end
+
+    def floatify_version(version)
+      major, minor = version.segments
       "#{major}.#{minor}".to_f # lol
+    end
+
+    def minimum_rubocop_supported_version(desired_version)
+      rubocop_supported_version = Gem::Version.new("2.2")
+      if desired_version < rubocop_supported_version
+        rubocop_supported_version
+      else
+        desired_version
+      end
     end
 
     def arrayify(object)
