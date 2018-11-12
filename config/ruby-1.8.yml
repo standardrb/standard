@@ -1,0 +1,4 @@
+inherit_from: ./ruby-1.9.yml
+
+Style/Lambda:
+  Enabled: false
