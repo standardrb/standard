@@ -194,7 +194,7 @@ Style/NumericPredicate:
   Enabled: false
 
 Style/RegexpLiteral:
-  AllowInnerSlashes: true
+  Enabled: false
 
 Style/RescueStandardError:
   EnforcedStyle: implicit
