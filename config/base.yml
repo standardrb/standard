@@ -1,3 +1,7 @@
+AllCops:
+  # Prevent RuboCop from exploding when it finds an older-than-2.2 .ruby-version
+  TargetRubyVersion: 2.5
+
 Bundler/OrderedGems:
   Enabled: false
 
