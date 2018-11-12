@@ -1,6 +1,9 @@
 Bundler/OrderedGems:
   Enabled: false
 
+Gemspec/OrderedDependencies:
+  Enabled: false
+
 Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
@@ -41,8 +44,8 @@ Layout/SpaceInsideBlockBraces:
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
-Lint/AssignmentInCondition:
-  Enabled: true
+Lint/ScriptPermission:
+  Enabled: false
 
 Metrics/AbcSize:
   Enabled: false
@@ -83,6 +86,12 @@ Naming/UncommunicativeMethodParamName:
 Naming/VariableNumber:
   Enabled: false
 
+Performance/TimesMap:
+  Enabled: false
+
+Security/MarshalLoad:
+  Enabled: false
+
 Standard/SemanticBlocks:
   ProceduralMethods:
     - benchmark
@@ -120,7 +129,13 @@ Style/BlockDelimiters:
 Style/BracesAroundHashParameters:
   Enabled: false
 
+Style/CaseEquality:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CommentAnnotation:
   Enabled: false
 
 Style/Documentation:
@@ -148,6 +163,9 @@ Style/HashSyntax:
   EnforcedStyle: hash_rockets
 
 Style/IfUnlessModifier:
+  Enabled: false
+
+Style/InverseMethods:
   Enabled: false
 
 Style/MethodDefParentheses:
