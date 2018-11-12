@@ -193,6 +193,9 @@ Style/NumericLiterals:
 Style/NumericPredicate:
   Enabled: false
 
+Style/RegexpLiteral:
+  AllowInnerSlashes: true
+
 Style/RescueStandardError:
   EnforcedStyle: implicit
 
