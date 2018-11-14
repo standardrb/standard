@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    standard (0.0.8)
+    standard (0.0.9)
       rubocop (>= 0.60)
 
 GEM
