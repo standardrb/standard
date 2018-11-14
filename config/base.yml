@@ -26,6 +26,7 @@ Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
 Layout/EndAlignment:
+  AutoCorrect: true
   EnforcedStyleAlignWith: variable
 
 Layout/FirstParameterIndentation:
