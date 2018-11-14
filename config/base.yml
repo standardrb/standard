@@ -31,6 +31,9 @@ Layout/EndAlignment:
 Layout/FirstParameterIndentation:
   EnforcedStyle: consistent
 
+Lint/HandleExceptions:
+  Enabled: false
+
 Layout/IndentHash:
   EnforcedStyle: consistent
 
