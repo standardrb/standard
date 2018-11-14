@@ -34,10 +34,8 @@ flag.
 - **2 spaces** – for indentation
 - **Double quotes for string literals** - because pre-committing to whether
   you'll need interpolation in a string slows people down
-- **Hashrockets** - Ruby 1.9's `:` syntax is newer and terser (and presently,
-  more popular), but they can't be used consistently safely, and Standard is
-  all about consistency and safety. Hashrockets [are
-  good](https://samphippen.com/hash-rockets-are-good-actually/)
+- **1.9 hash syntax** - When all the keys in a hash literal are symbols,
+  Standard enforces Ruby 1.9's `{hash: syntax}`
 - **Semantic blocks** - `{`/`}` for functional blocks that return a value, and
   `do`/`end` for procedural blocks that have side effects. More
   [here](http://www.virtuouscode.com/2011/07/26/the-procedurefunction-block-convention-in-ruby/)
