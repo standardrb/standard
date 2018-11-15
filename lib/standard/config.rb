@@ -15,11 +15,12 @@ module Standard
     def call(argv, search_path = Dir.pwd)
       standard_config = @loads_yaml_config.call(search_path)
       settings = @merges_settings.call(argv, standard_config)
-      RuboCopConfig.new(
+      rubocop_config = RuboCopConfig.new(
         settings.paths,
         settings.options,
         @creates_config_store.call(standard_config)
       )
+      [rubocop_config, settings]
     end
   end
 end

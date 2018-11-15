@@ -109,6 +109,20 @@ $ rake standard STANDARDOPTS="--format progress"
 $ rake standard STANDARDOPTS="lib \"app/**/*\""
 ```
 
+## Using with AtomLinter
+
+Standard is compatible with [AtomLinter](https://atomlinter.github.io/)'s
+[linter-rubocop](https://github.com/AtomLinter/linter-rubocop) package. To use
+Standard with linter-rubocop, you need to do two things:
+
+1. Configure linter-rubocop to run `standard` as its **Command**.
+2. Add the flags `--silence-cta --no-display-cop-names` to the end of the
+   **Command**. The first flag will suppress Standard's pre-1.0 CTA message when
+   warnings are detected. The second will prevent RuboCop from showing cop names
+   in offense messages.
+
+Now you can see Standard's warnings in Atom.
+
 ## What you might do if you're clever
 
 If you want or need to configure Standard, there are a _handful_ of options

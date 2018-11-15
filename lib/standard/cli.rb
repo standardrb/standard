@@ -11,7 +11,13 @@ module Standard
     end
 
     def run
-      rubocop_config = @config.call(@argv)
+      rubocop_config, standard_config = @config.call(@argv)
+
+      if standard_config.options[:version]
+        puts Standard::VERSION
+        return SUCCESS_STATUS_CODE
+      end
+
       runner = RuboCop::Runner.new(
         rubocop_config.options,
         rubocop_config.config_store
@@ -25,11 +31,13 @@ module Standard
         (runner.warnings + runner.errors).each do |message|
           warn message
         end
-        puts <<-CALL_TO_ACTION.gsub(/^ {10}/, "")
+        unless standard_config.options[:silence_cta]
+          puts <<-CALL_TO_ACTION.gsub(/^ {10}/, "")
 
-          Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
-            https://github.com/testdouble/standard/issues/new
-        CALL_TO_ACTION
+            Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
+              https://github.com/testdouble/standard/issues/new
+          CALL_TO_ACTION
+        end
         FAILURE_STATUS_CODE
       end
     end

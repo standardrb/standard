@@ -18,16 +18,19 @@ module Standard
     private
 
     def separate_argv(argv)
-      argv.partition { |flag|
-        flag == "--fix"
-      }
+      argv.partition { |flag| %w[--fix --silence-cta --version -v].include?(flag) }
     end
 
     def parse_standard_argv(argv)
       argv.each_with_object({}) { |arg, cli_flags|
-        if arg == "--fix"
+        case arg
+        when "--version", "-v"
+          cli_flags[:version] = true
+        when "--fix"
           cli_flags[:auto_correct] = true
           cli_flags[:safe_auto_correct] = true
+        when "--silence-cta"
+          cli_flags[:silence_cta] = true
         end
       }
     end
