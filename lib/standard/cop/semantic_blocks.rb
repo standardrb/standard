@@ -20,7 +20,7 @@ module RuboCop::Cop
       def on_block(node)
         return if ignored_node?(node) || proper_block_style?(node)
 
-        add_offense(node, :location => :begin)
+        add_offense(node, location: :begin)
       end
 
       def autocorrect(node)

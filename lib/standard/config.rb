@@ -37,20 +37,20 @@ module Standard
       user_config ||= {}
 
       {
-        :fix => fix_flag || !!user_config["fix"],
-        :format => user_config["format"],
-        :ignore => expand_ignore_config(user_config["ignore"]),
-        :parallel => !!user_config["parallel"],
-        :ruby_version => ruby_version(user_config["ruby_version"] || RUBY_VERSION),
+        fix: fix_flag || !!user_config["fix"],
+        format: user_config["format"],
+        ignore: expand_ignore_config(user_config["ignore"]),
+        parallel: !!user_config["parallel"],
+        ruby_version: ruby_version(user_config["ruby_version"] || RUBY_VERSION),
       }
     end
 
     def wrap_rubocop_options(rubocop_options)
       {
-        :auto_correct => @standard_config[:fix],
-        :safe_auto_correct => @standard_config[:fix],
-        :formatters => [[@standard_config[:format] || "Standard::Formatter", nil]],
-        :parallel => @standard_config[:parallel],
+        auto_correct: @standard_config[:fix],
+        safe_auto_correct: @standard_config[:fix],
+        formatters: [[@standard_config[:format] || "Standard::Formatter", nil]],
+        parallel: @standard_config[:parallel],
       }.merge(rubocop_options)
     end
 
