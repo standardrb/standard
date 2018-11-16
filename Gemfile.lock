@@ -8,12 +8,17 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.0)
+    coderay (1.1.2)
     jaro_winkler (1.5.1)
+    method_source (0.9.2)
     minitest (5.11.3)
     parallel (1.12.1)
     parser (2.5.3.0)
       ast (~> 2.4.0)
     powerpack (0.1.2)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     rainbow (3.0.0)
     rake (10.5.0)
     rubocop (0.60.0)
@@ -33,6 +38,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.17)
   minitest (~> 5.0)
+  pry
   rake (~> 10.0)
   standard!
 
