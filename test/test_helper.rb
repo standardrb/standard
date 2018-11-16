@@ -8,4 +8,5 @@ rescue LoadError
 end
 
 class UnitTest < Minitest::Test
+  make_my_diffs_pretty!
 end
