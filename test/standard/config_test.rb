@@ -12,19 +12,19 @@ class Standard::ConfigTest < UnitTest
     config_store.options_config = path("config/base.yml")
   end.for("").to_h.freeze
 
-  def test_no_argv_and_no_standard_dot_yml
-    @subject = Standard::Config.new([], "/")
+  def setup
+    @subject = Standard::Config.new
+  end
 
-    result = @subject.to_rubocop
+  def test_no_argv_and_no_standard_dot_yml
+    result = @subject.call([], "/")
 
     assert_equal DEFAULT_OPTIONS, result.options
     assert_equal DEFAULT_CONFIG, result.config_store.for("").to_h
   end
 
   def test_custom_argv_with_fix_set
-    @subject = Standard::Config.new(["--only", "Standard/SemanticBlocks", "--fix", "--parallel"])
-
-    result = @subject.to_rubocop
+    result = @subject.call(["--only", "Standard/SemanticBlocks", "--fix", "--parallel"])
 
     assert_equal DEFAULT_OPTIONS.merge(
       auto_correct: true,
@@ -35,18 +35,14 @@ class Standard::ConfigTest < UnitTest
   end
 
   def test_blank_standard_yaml
-    @subject = Standard::Config.new([], path("test/fixture/config/z"))
-
-    result = @subject.to_rubocop
+    result = @subject.call([], path("test/fixture/config/z"))
 
     assert_equal DEFAULT_OPTIONS, result.options
     assert_equal DEFAULT_CONFIG, result.config_store.for("").to_h
   end
 
   def test_decked_out_standard_yaml
-    @subject = Standard::Config.new([], path("test/fixture/config/y"))
-
-    result = @subject.to_rubocop
+    result = @subject.call([], path("test/fixture/config/y"))
 
     assert_equal DEFAULT_OPTIONS.merge(
       auto_correct: true,

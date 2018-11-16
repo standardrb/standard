@@ -8,14 +8,14 @@ module Standard
   class Config
     RuboCopConfig = Struct.new(:paths, :options, :config_store)
 
-    def initialize(argv, search_path = Dir.pwd)
+    def initialize
+    end
+
+    def call(argv, search_path = Dir.pwd)
       filtered_argv, fix_flag = parse_argv(argv)
       @rubocop_options, @paths = RuboCop::Options.new.parse(filtered_argv)
       @standard_yml_path = FileFinder.new.call(".standard.yml", search_path)
       @standard_config = init_standard_config(@standard_yml_path, fix_flag)
-    end
-
-    def to_rubocop
       RuboCopConfig.new(
         @paths,
         wrap_rubocop_options(@rubocop_options),

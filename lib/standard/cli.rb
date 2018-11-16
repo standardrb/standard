@@ -6,11 +6,12 @@ module Standard
     FAILURE_STATUS_CODE = 1
 
     def initialize(argv)
-      @config = Config.new(argv)
+      @argv = argv
+      @config = Config.new
     end
 
     def run
-      rubocop_config = @config.to_rubocop
+      rubocop_config = @config.call(@argv)
       runner = RuboCop::Runner.new(
         rubocop_config.options,
         rubocop_config.config_store
