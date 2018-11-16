@@ -2,7 +2,7 @@ require "test_helper"
 
 class Standard::FileFinderTest < UnitTest
   def setup
-    @some_path = Pathname.new(Dir.pwd).join("test/fixture/a/b/c")
+    @some_path = path("test/fixture/a/b/c")
 
     @subject = Standard::FileFinder.new
   end

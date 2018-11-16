@@ -10,7 +10,7 @@ class Standard::FormatterTest < UnitTest
   end
 
   def setup
-    @some_path = Pathname.new(Dir.pwd).join("Gemfile")
+    @some_path = path("Gemfile")
 
     @io = FauxIO.new
     @subject = Standard::Formatter.new(@io)
