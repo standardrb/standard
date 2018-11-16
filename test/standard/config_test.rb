@@ -25,4 +25,18 @@ class Standard::ConfigTest < UnitTest
     assert_equal DEFAULT_OPTIONS, result.options
     assert_equal DEFAULT_CONFIG, result.config_store.for("").to_h
   end
+
+  def test_custom_argv_with_fix_set
+    @subject = Standard::Config.new(["--only", "Standard/SemanticBlocks", "--fix", "--parallel"])
+
+    result = @subject.to_rubocop
+
+    assert_equal DEFAULT_OPTIONS.merge(
+      auto_correct: true,
+      safe_auto_correct: true,
+      parallel: true,
+      only: ["Standard/SemanticBlocks"]
+    ), result.options
+    assert_equal DEFAULT_CONFIG, result.config_store.for("").to_h
+  end
 end
