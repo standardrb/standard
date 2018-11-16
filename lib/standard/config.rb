@@ -33,15 +33,15 @@ module Standard
     end
 
     def init_standard_config(yml_path, fix_flag)
-      user_config = YAML.load_file(Pathname.new(Dir.pwd).join(yml_path)) if yml_path
-      user_config ||= {}
+      standard_yml = YAML.load_file(yml_path) if yml_path
+      standard_yml ||= {}
 
       {
-        fix: fix_flag || !!user_config["fix"],
-        format: user_config["format"],
-        ignore: expand_ignore_config(user_config["ignore"]),
-        parallel: !!user_config["parallel"],
-        ruby_version: ruby_version(user_config["ruby_version"] || RUBY_VERSION),
+        ruby_version: ruby_version(standard_yml["ruby_version"] || RUBY_VERSION),
+        fix: fix_flag || !!standard_yml["fix"],
+        format: standard_yml["format"],
+        parallel: !!standard_yml["parallel"],
+        ignore: expand_ignore_config(standard_yml["ignore"]),
       }
     end
 
@@ -59,7 +59,7 @@ module Standard
       options_config = config_store.instance_variable_get("@options_config")
 
       options_config["AllCops"]["TargetRubyVersion"] = floatify_version(
-        minimum_rubocop_supported_version(@standard_config[:ruby_version])
+        max_rubocop_supported_version(@standard_config[:ruby_version])
       )
 
       @standard_config[:ignore].each do |(path, cops)|
@@ -104,7 +104,7 @@ module Standard
       "#{major}.#{minor}".to_f # lol
     end
 
-    def minimum_rubocop_supported_version(desired_version)
+    def max_rubocop_supported_version(desired_version)
       rubocop_supported_version = Gem::Version.new("2.2")
       if desired_version < rubocop_supported_version
         rubocop_supported_version
