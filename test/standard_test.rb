@@ -1,6 +1,6 @@
 require "test_helper"
 
-class StandardTest < Minitest::Test
+class StandardTest < UnitTest
   def test_loads_stuff
     refute_nil RuboCop
     refute_nil Standard::Cli
