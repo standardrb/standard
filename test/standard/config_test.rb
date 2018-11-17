@@ -10,6 +10,8 @@ class Standard::ConfigTest < UnitTest
 
   DEFAULT_CONFIG = RuboCop::ConfigStore.new.tap do |config_store|
     config_store.options_config = path("config/base.yml")
+    options_config = config_store.instance_variable_get("@options_config")
+    options_config["AllCops"]["TargetRubyVersion"] = RUBY_VERSION.to_f
   end.for("").to_h.freeze
 
   def setup

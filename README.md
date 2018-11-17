@@ -1,5 +1,7 @@
 ## Standard - Ruby style guide, linter, and formatter
 
+[![CircleCI](https://circleci.com/gh/testdouble/standard.svg?style=svg)](https://circleci.com/gh/testdouble/standard)
+
 This gem is a spiritual port of [StandardJS](https://standardjs.com) and aims
 to save you (and others!) time in the same three ways:
 
