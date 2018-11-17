@@ -227,6 +227,9 @@ Style/TrailingCommaInArrayLiteral:
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: consistent_comma
 
+Style/TrailingUnderscoreVariable:
+  Enabled: false
+
 Style/WordArray:
   Enabled: false
 
