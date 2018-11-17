@@ -60,4 +60,15 @@ class Standard::ConfigTest < UnitTest
     end.for("").to_h
     assert_equal expected_config, result.config_store.for("").to_h
   end
+
+  def test_single_line_ignore
+    result = @subject.call([], path("test/fixture/config/x"))
+
+    assert_equal DEFAULT_OPTIONS, result.options
+    assert_equal DEFAULT_CONFIG.merge(
+      "AllCops" => DEFAULT_CONFIG["AllCops"].merge(
+        "Exclude" => DEFAULT_CONFIG["AllCops"]["Exclude"] + [path("test/fixture/config/x/pants/**/*")]
+      )
+    ), result.config_store.for("").to_h
+  end
 end
