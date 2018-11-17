@@ -27,5 +27,9 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       - run:
+          name: test
+          command: bundle exec rake test
+
+      - run:
           name: lint
-          command: bundle exec ./exe/standard --fix
+          command: bundle exec rake standard:fix
