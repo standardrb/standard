@@ -162,7 +162,7 @@ Style/FormatStringToken:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
-  EnforcedStyle: never
+  Enabled: false
 
 Style/GuardClause:
   Enabled: false
