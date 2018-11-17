@@ -176,6 +176,9 @@ Style/IfUnlessModifier:
 Style/InverseMethods:
   Enabled: false
 
+Style/Lambda:
+  Enabled: false
+
 Style/MethodDefParentheses:
   Enabled: false
 
