@@ -115,7 +115,6 @@ Standard/SemanticBlocks:
     - bm
     - bmbm
     - tap
-
     # Enumerable
     - cycle
     - each
@@ -123,7 +122,8 @@ Standard/SemanticBlocks:
     - each_entry
     - each_slice
     - each_with_index
-    - each_with_object
+    # Rails
+    - transaction
   FunctionalMethods:
     - let
     - let!

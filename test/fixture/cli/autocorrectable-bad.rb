@@ -22,6 +22,7 @@ class Something
 
         STUFF.tap { |arr| arr.delete(0) }
 
+        STUFF.each do |e| e.succ end
 
         THINGS.tap { |things|
           if THINGS.kind_of?(Hash)

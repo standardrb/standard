@@ -20,6 +20,8 @@ class Something
 
     STUFF.tap { |arr| arr.delete(0) }
 
+    STUFF.each(&:succ)
+
     THINGS.tap do |things|
       if THINGS.is_a?(Hash)
         42 + 8
