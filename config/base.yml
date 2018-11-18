@@ -213,6 +213,9 @@ Style/NumericLiterals:
 Style/NumericPredicate:
   Enabled: false
 
+Style/ParallelAssignment:
+  Enabled: false
+
 Style/RegexpLiteral:
   Enabled: false
 
