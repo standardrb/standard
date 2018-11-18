@@ -108,13 +108,16 @@ Standard/SemanticBlocks:
     - benchmark
     - bm
     - bmbm
-    - create
-    - each_with_object
-    - measure
-    - new
-    - realtime
     - tap
-    - with_object
+
+    # Enumerable
+    - cycle
+    - each
+    - each_cons
+    - each_entry
+    - each_slice
+    - each_with_index
+    - each_with_object
   FunctionalMethods:
     - let
     - let!
@@ -128,6 +131,7 @@ Standard/SemanticBlocks:
   IgnoredMethods:
     - lambda
     - proc
+    - describe
     - it
     - When
 

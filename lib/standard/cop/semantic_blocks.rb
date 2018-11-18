@@ -106,7 +106,8 @@ module RuboCop::Cop
         elsif node.single_line?
           node.braces?
         elsif node.braces?
-          functional_method?(method_name) || functional_block?(node)
+          !procedural_method?(method_name) &&
+            (functional_method?(method_name) || functional_block?(node))
         else
           procedural_method?(method_name) || !return_value_used?(node)
         end
