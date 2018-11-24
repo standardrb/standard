@@ -12,7 +12,7 @@ to save you (and others!) time in the same three ways:
 * **Catch style issues & programmer errors early.** Save precious code review
   time by eliminating back-and-forth between reviewer & contributor.
 
-No decisions to make. It just works.
+No decisions to make. It just works. Here's a [⚡ lightning talk ⚡](https://www.youtube.com/watch?v=uLyV5hOqGQ8) about it.
 
 Install by adding it to your Gemfile:
 
