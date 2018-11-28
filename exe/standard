@@ -4,4 +4,11 @@ $LOAD_PATH.unshift("#{__dir__}/../lib")
 
 require "standard"
 
+warn <<-WARNING.gsub(/^ {2}/, "")
+  WARNING: Run 'standardrb' instead of 'standard'. We are renaming the gem's binary
+  to avoid naming conflicts with the StandardJS 'standard' bin in the event both are
+  on a user's PATH.
+
+  The 'standard' bin will be removed in the next release of the standard gem
+WARNING
 exit Standard::Cli.new(ARGV).run
