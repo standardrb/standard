@@ -21,7 +21,7 @@ module Standard
       command = if File.split($PROGRAM_NAME).last == "rake"
         "rake standard:fix"
       else
-        "standard --fix"
+        "standardrb --fix"
       end
 
       output.print <<-HEADER.gsub(/^ {8}/, "")

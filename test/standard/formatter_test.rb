@@ -27,7 +27,7 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-      standard: Run `standard --fix` to automatically fix some problems.
+      standard: Run `standardrb --fix` to automatically fix some problems.
         Gemfile:42:13: Neat
     MESSAGE
   end
@@ -38,7 +38,7 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-      standard: Run `standard --fix` to automatically fix some problems.
+      standard: Run `standardrb --fix` to automatically fix some problems.
         Gemfile:42:13: Neat
         Gemfile:43:14: Super
     MESSAGE

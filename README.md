@@ -7,7 +7,7 @@ to save you (and others!) time in the same three ways:
 
 * **No configuration.** The easiest way to enforce consistent style in your
   project. Just drop it in.
-* **Automatically format code.** Just run `standard --fix` and say goodbye to
+* **Automatically format code.** Just run `standardrb --fix` and say goodbye to
   messy or inconsistent code.
 * **Catch style issues & programmer errors early.** Save precious code review
   time by eliminating back-and-forth between reviewer & contributor.
@@ -25,7 +25,7 @@ And running `bundle install`.
 Run Standard from the command line with:
 
 ```ruby
-$ bundle exec standard
+$ bundle exec standardrb
 ```
 
 And if you'd like, Standard can autocorrect your code by tacking on a `--fix`
@@ -58,26 +58,26 @@ Standard, don't be shocked if things change a bit!]**
 
 ## Usage
 
-Once you've installed `standard`, you should be able to use the `standard`
+Once you've installed Standard, you should be able to use the `standardrb`
 program. The simplest use case would be checking the style of all Ruby
 files in the current working directory:
 
 ```bash
-$ bundle exec standard
+$ bundle exec standardrb
 standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-standard: Run `standard --fix` to automatically fix some problems.
+standard: Run `standardrb --fix` to automatically fix some problems.
   /Users/code/cli.rb:31:23: Style/Semicolon: Do not use semicolons to terminate expressions.
 ```
 
 You can optionally pass in a directory (or directories) using the glob pattern. Be
 sure to quote paths containing glob patterns so that they are expanded by
-`standard` instead of your shell:
+`standardrb` instead of your shell:
 
 ```bash
-$ bundle exec standard "lib/**/*.rb" test
+$ bundle exec standardrb "lib/**/*.rb" test
 ```
 
-**Note:** by default `standard` will look for all `*.rb` files (and some other
+**Note:** by default, StandardRB will look for all `*.rb` files (and some other
 files typically associated with Ruby like `*.gemspec` and `Gemfile`)
 
 ### Using with Rake
@@ -93,8 +93,8 @@ require "standard/rake"
 Here are the tasks bundled with Standard:
 
 ```
-$ rake standard     # equivalent to running `standard`
-$ rake standard:fix # equivalent to running `standard --fix`
+$ rake standard     # equivalent to running `standardrb`
+$ rake standard:fix # equivalent to running `standardrb --fix`
 ```
 
 You may also pass command line options to Standard's Rake tasks by embedding
@@ -102,10 +102,10 @@ them in a `STANDARDOPTS` environment variable (similar to how the Minitest Rake
 task accepts CLI options in `TESTOPTS`).
 
 ```
-# equivalent to `standard --format progress`:
+# equivalent to `standardrb --format progress`:
 $ rake standard STANDARDOPTS="--format progress"
 
-# equivalent to `standard lib "app/**/*"`, to lint just certain paths:
+# equivalent to `standardrb lib "app/**/*"`, to lint just certain paths:
 $ rake standard STANDARDOPTS="lib \"app/**/*\""
 ```
 
@@ -153,12 +153,12 @@ This gem saves you (and others!) time in three ways:
 
 - **No configuration.** The easiest way to enforce consistent style in your
   project. Just drop it in.
-- **Automatically format code.** Just run `standard --fix` and say goodbye to
+- **Automatically format code.** Just run `standardrb --fix` and say goodbye to
   messy or inconsistent code.
 - **Catch style issues & programmer errors early.** Save precious code review
   time by eliminating back-and-forth between reviewer & contributor.
 
-Adopting `standard` style means ranking the importance of code clarity and
+Adopting Standard style means ranking the importance of code clarity and
 community conventions higher than personal style. This might not make sense for
 100% of projects and development cultures, however open source can be a hostile
 place for newbies. Setting up clear, automated contributor expectations makes a
@@ -173,35 +173,15 @@ if you've used StandardJS.)
 * [Test Double](https://testdouble.com/agency)
 * And that's about it so far!
 
-## What if I also have StandardJS installed?
-
-**[Note: While StandardRB is pre-1.0.0, we are waiting for user feedback before
-deciding whether to mitigate this issue through cleverness or eliminate it by
-changing the bin name. Please comment on [this
-issue](https://github.com/testdouble/standard/issues/3) if you run into a
-real-world problem trying to run either type of Standard.]**
-
-Because StandardRB and StandardJS (and perhaps future packages for other
-languages) both ship with binaries named `standard`, having both installed
-globally and then executing them from your PATH will—at the moment—run whichever
-one is found earlier in the PATH.
-
-Ambiguity is bad, but we're banking on the majority of JS users to run standard
-from a [package script](https://docs.npmjs.com/misc/scripts) and the majority of
-Ruby developers to run standard from a [Bundler
-binstub](https://bundler.io/v1.10/bundle_binstubs.html) or [Rake
-task](#using-with-rake).
-
-For every other case, if you're using both standard programs, note that
-StandardRB ships with a `standardrb` bin, and we have a [pull request
-open](https://github.com/standard/standard/pull/1224) to StandardJS to add a
-`standardjs` alias so that either program can be run without any ambiguity.
+If your team starts using Standard, [send a pull
+request](https://github.com/testdouble/standard/edit/master/README.md) to let us
+know!
 
 ## Is there a readme badge?
 
-Yes! If you use `standard` in your project, you can include one of these badges
-in your readme to let people know that your code is using the standard style.
-
+Yes! If you use Standard in your project, you can include one of these
+badges in your readme to let people know that your code is using the StandardRB
+style.
 
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
 
@@ -216,29 +196,24 @@ in your readme to let people know that your code is using the standard style.
 convincing [@searls](https://twitter.com/searls) (the BDFNow) to make the
 change.]**
 
-No. The whole point of `standard` is to save you time by avoiding
+No. The whole point of Standard is to save you time by avoiding
 [bikeshedding](https://www.freebsd.org/doc/en/books/faq/misc.html#bikeshed-painting)
 about code style. There are lots of debates online about tabs vs. spaces, etc.
 that will never be resolved. These debates just distract from getting stuff
 done. At the end of the day you have to 'just pick something', and that's the
-whole philosophy of `standard` -- its a bunch of sensible 'just pick something'
+whole philosophy of Standard -- its a bunch of sensible 'just pick something'
 opinions. Hopefully, users see the value in that over defending their own
 opinions.
 
-Pro tip: Just use `standard` and move on. There are actual real problems that
+Pro tip: Just use Standard and move on. There are actual real problems that
 you could spend your time solving! :P
 
 ## Is there an automatic formatter?
 
-Yes! You can use `standard --fix` to fix most issues automatically.
+Yes! You can use `standardrb --fix` to fix most issues automatically.
 
-`standard --fix` is built into `standard` for maximum convenience. Most problems
-are fixable, but some errors (like forgetting to handle errors) must be fixed
-manually.
-
-To save you time, `standard` outputs the message "`Run standard --fix to
-automatically fix some problems`" when it detects problems that can be fixed
-automatically.
+`standardrb --fix` is built into `standardrb` for maximum convenience. Most
+problems are fixable, but some errors must be fixed manually.
 
 ## How do I ignore files?
 
@@ -255,7 +230,7 @@ ignore:
 ## How do I hide a certain warning?
 
 In rare cases, you'll need to break a rule and hide the warning generated by
-`standard`.
+Standard.
 
 Ruby Standard Style uses [RuboCop](https://github.com/rubocop-hq/rubocop)
 under-the-hood and you can hide warnings as you normally would if you used
@@ -316,10 +291,10 @@ different formatter, you can specify any of RuboCop's built-in formatters or
 write your own.
 
 For example, if you'd like to see colorful progress dots, you can either run
-standard with:
+Standard with:
 
 ```
-$ bundle exec standard --format progress
+$ bundle exec standardrb --format progress
 Inspecting 15 files
 ...............
 
