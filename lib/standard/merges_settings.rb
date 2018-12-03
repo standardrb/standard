@@ -10,7 +10,7 @@ module Standard
       rubocop_cli_flags, lint_paths = RuboCop::Options.new.parse(rubocop_argv)
 
       Settings.new(
-        merge(standard_yaml, standard_cli_flags, rubocop_cli_flags),
+        merge(standard_yaml, standard_cli_flags, without_banned(rubocop_cli_flags)),
         lint_paths
       )
     end
@@ -39,6 +39,12 @@ module Standard
         formatters: [[standard_yaml[:format] || "Standard::Formatter", nil]],
         parallel: standard_yaml[:parallel],
       }.merge(standard_cli_flags).merge(rubocop_cli_flags)
+    end
+
+    def without_banned(rubocop_cli_flags)
+      rubocop_cli_flags.tap do |flags|
+        flags.delete(:config)
+      end
     end
   end
 end
