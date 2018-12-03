@@ -1,7 +1,7 @@
 require "rubocop"
 
 module Standard
-  class Runner
+  class RunsRubocop
     def call(config)
       rubocop_runner = RuboCop::Runner.new(
         config.rubocop_options,

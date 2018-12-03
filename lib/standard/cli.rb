@@ -1,5 +1,5 @@
-require_relative "config"
-require_relative "runner"
+require_relative "builds_config"
+require_relative "runs_rubocop"
 
 module Standard
   class Cli
@@ -8,14 +8,14 @@ module Standard
 
     def initialize(argv)
       @argv = argv
-      @config = Config.new
-      @runner = Runner.new
+      @builds_config = BuildsConfig.new
+      @runs_rubocop = RunsRubocop.new
     end
 
     def run
-      config = @config.call(@argv)
+      config = @builds_config.call(@argv)
 
-      success = @runner.call(config)
+      success = @runs_rubocop.call(config)
 
       success ? SUCCESS_STATUS_CODE : FAILURE_STATUS_CODE
     end

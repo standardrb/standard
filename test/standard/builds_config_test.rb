@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Standard::ConfigTest < UnitTest
+class Standard::BuildsConfigTest < UnitTest
   DEFAULT_OPTIONS = {
     auto_correct: false,
     safe_auto_correct: false,
@@ -15,7 +15,7 @@ class Standard::ConfigTest < UnitTest
   end.for("").to_h.freeze
 
   def setup
-    @subject = Standard::Config.new
+    @subject = Standard::BuildsConfig.new
   end
 
   def test_no_argv_and_no_standard_dot_yml
