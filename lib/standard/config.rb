@@ -4,7 +4,7 @@ require_relative "creates_config_store"
 
 module Standard
   class Config
-    RuboCopConfig = Struct.new(:paths, :options, :config_store)
+    StandardConfig = Struct.new(:paths, :rubocop_options, :rubocop_config_store)
 
     def initialize
       @loads_yaml_config = LoadsYamlConfig.new
@@ -15,7 +15,7 @@ module Standard
     def call(argv, search_path = Dir.pwd)
       standard_config = @loads_yaml_config.call(search_path)
       settings = @merges_settings.call(argv, standard_config)
-      RuboCopConfig.new(
+      StandardConfig.new(
         settings.paths,
         settings.options,
         @creates_config_store.call(standard_config)

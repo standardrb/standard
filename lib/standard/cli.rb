@@ -1,4 +1,5 @@
 require_relative "config"
+require_relative "runner"
 
 module Standard
   class Cli
@@ -8,30 +9,15 @@ module Standard
     def initialize(argv)
       @argv = argv
       @config = Config.new
+      @runner = Runner.new
     end
 
     def run
-      rubocop_config = @config.call(@argv)
-      runner = RuboCop::Runner.new(
-        rubocop_config.options,
-        rubocop_config.config_store
-      )
+      config = @config.call(@argv)
 
-      run_succeeded = runner.run(rubocop_config.paths)
+      success = @runner.call(config)
 
-      if run_succeeded
-        SUCCESS_STATUS_CODE
-      else
-        (runner.warnings + runner.errors).each do |message|
-          warn message
-        end
-        puts <<-CALL_TO_ACTION.gsub(/^ {10}/, "")
-
-          Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
-            https://github.com/testdouble/standard/issues/new
-        CALL_TO_ACTION
-        FAILURE_STATUS_CODE
-      end
+      success ? SUCCESS_STATUS_CODE : FAILURE_STATUS_CODE
     end
   end
 end
