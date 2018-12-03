@@ -310,3 +310,11 @@ format: progress
 Refer to RuboCop's [documentation on
 formatters](https://rubocop.readthedocs.io/en/latest/formatters/) for more
 information.
+
+## How do I run standard in my editor?
+
+It can be very handy to know about failures while editing to shorten the
+feedback loop. Some editors support asynchronously running linters.
+
+ * **Vim and ALE**: You can override the built-in rubocop with standard with `let g:ale_ruby_rubocop_executable = 'standardrb'`
+
