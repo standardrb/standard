@@ -17,7 +17,7 @@ No decisions to make. It just works. Here's a [⚡ lightning talk ⚡](https://w
 Install by adding it to your Gemfile:
 
 ```ruby
-gem "standard", :group => [:development, :test]
+gem "standard", group: [:development, :test]
 ```
 
 And running `bundle install`.
