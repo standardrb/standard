@@ -73,4 +73,15 @@ class Standard::ConfigTest < UnitTest
       )
     ), result.config_store.for("").to_h
   end
+
+  def test_19
+    result = @subject.call([], path("test/fixture/config/w"))
+
+    assert_equal DEFAULT_OPTIONS, result.options
+
+    expected_config = RuboCop::ConfigStore.new.tap do |config_store|
+      config_store.options_config = path("config/ruby-1.9.yml")
+    end.for("").to_h
+    assert_equal expected_config, result.config_store.for("").to_h
+  end
 end
