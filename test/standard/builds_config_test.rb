@@ -21,6 +21,7 @@ class Standard::BuildsConfigTest < UnitTest
   def test_no_argv_and_no_standard_dot_yml
     result = @subject.call([], "/")
 
+    assert_equal :rubocop, result.runner
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
     assert_equal DEFAULT_CONFIG, result.rubocop_config_store.for("").to_h
   end

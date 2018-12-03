@@ -2,7 +2,7 @@ require "rubocop"
 
 module Standard
   class MergesSettings
-    Settings = Struct.new(:options, :paths)
+    Settings = Struct.new(:runner, :options, :paths)
 
     def call(argv, standard_yaml)
       standard_argv, rubocop_argv = separate_argv(argv)
@@ -10,6 +10,7 @@ module Standard
       rubocop_cli_flags, lint_paths = RuboCop::Options.new.parse(rubocop_argv)
 
       Settings.new(
+        determine_command(standard_argv),
         merge(standard_yaml, standard_cli_flags, without_banned(rubocop_cli_flags)),
         lint_paths
       )
@@ -19,7 +20,7 @@ module Standard
 
     def separate_argv(argv)
       argv.partition { |flag|
-        flag == "--fix"
+        ["--fix", "--version", "-v", "--help", "-h"].include?(flag)
       }
     end
 
@@ -30,6 +31,16 @@ module Standard
           cli_flags[:safe_auto_correct] = true
         end
       }
+    end
+
+    def determine_command(argv)
+      if (argv & ["--help", "-h"]).any?
+        :help
+      elsif (argv & ["--version", "-v"]).any?
+        :version
+      else
+        :rubocop
+      end
     end
 
     def merge(standard_yaml, standard_cli_flags, rubocop_cli_flags)
