@@ -1033,9 +1033,6 @@ Style/StringLiteralsInInterpolation:
 Style/SymbolLiteral:
   Enabled: true
 
-Style/SymbolProc:
-  Enabled: true
-
 Style/TernaryParentheses:
   Enabled: true
 
