@@ -5,25 +5,22 @@ module Standard
     class Help
       def call(config)
         puts <<-MESSAGE.gsub(/^ {10}/, "")
-          Usage:
-
-            $ standardrb [path1] [path2]
-
-          Standard will lint the current working directory if no paths are provided.
+          Usage: standardrb [--fix] [-vh] [--format <name>] [--] [FILE]...
 
           Options:
 
-            --fix             Automatically fix failures wherever possible
-            --format [name]   Format output with any RuboCop formatter (e.g. "json")
-            --version, -v     Print the version of standard
-            --help, -h        Print this message
+            --fix             Automatically fix failures where possible
+            --format <name>   Format output with any RuboCop formatter (e.g. "json")
+            -v, --version     Print the version of Standard
+            -h, --help        Print this message
+            FILE              Files to lint [default: ./]
 
-          Standard also forwards most CLI options to RuboCop. You can see them by running:
+          Standard also forwards most CLI arguments to RuboCop. To see them, run:
 
             $ rubocop --help
 
-          While Standard has few configuration options, most can be set in a `.standard.yml`
-          file. For full documentation, please visit:
+          While Standard only offers a few configuration options, most can be set in
+          a `.standard.yml` file. For full documentation, please visit:
 
             https://github.com/testdouble/standard
 
@@ -34,6 +31,11 @@ module Standard
                RuboCop version: #{RuboCop::Version.version}
               Standard version: #{Standard::VERSION}
           Standard config file: #{FileFinder.new.call(".standard.yml", Dir.pwd) || "[No file found]"}
+
+          Please report any problems (and include the above information) at the URL below:
+
+            https://github.com/testdouble/standard/issues/new
+
         MESSAGE
       end
     end
