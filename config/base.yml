@@ -967,9 +967,6 @@ Style/PreferredHashMethods:
 Style/Proc:
   Enabled: true
 
-Style/RaiseArgs:
-  Enabled: true
-
 Style/RandomWithOffset:
   Enabled: true
 
