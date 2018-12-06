@@ -782,6 +782,19 @@ Style/ClassMethods:
 Style/ClassVars:
   Enabled: true
 
+# Enable to specify a preference for each_with_* methods.
+# Use ~ (nil) to ignore the default preference for all other methods.
+Style/CollectionMethods:
+  Enabled: true
+  PreferredMethods:
+    collect: ~
+    collect!: ~
+    inject: ~
+    detect: ~
+    find_all: ~
+    each_with_index: 'each.with_index'
+    each_with_object: 'each.with_object'
+
 Style/ColonMethodCall:
   Enabled: true
 

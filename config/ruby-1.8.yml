@@ -1,8 +1,10 @@
 inherit_from: ./ruby-1.9.yml
 
+Style/CollectionMethods:
+  Enabled: false
+
 Style/Lambda:
   Enabled: false
 
 Style/HashSyntax:
   EnforcedStyle: hash_rockets
-
