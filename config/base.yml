@@ -898,9 +898,6 @@ Style/MixinGrouping:
 Style/MixinUsage:
   Enabled: true
 
-Style/ModuleFunction:
-  Enabled: true
-
 Style/MultilineIfModifier:
   Enabled: true
 
