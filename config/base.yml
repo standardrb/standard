@@ -958,9 +958,6 @@ Style/PercentLiteralDelimiters:
 Style/PercentQLiterals:
   Enabled: true
 
-Style/PerlBackrefs:
-  Enabled: true
-
 Style/PreferredHashMethods:
   Enabled: true
 
