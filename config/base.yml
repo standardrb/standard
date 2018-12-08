@@ -365,9 +365,6 @@ Lint/OrderedMagicComments:
 Lint/ParenthesesAsGroupedExpression:
   Enabled: true
 
-Lint/PercentStringArray:
-  Enabled: true
-
 Lint/PercentSymbolArray:
   Enabled: true
 
