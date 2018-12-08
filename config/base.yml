@@ -743,9 +743,6 @@ Standard/SemanticBlocks:
     - it
     - When
 
-Style/AccessModifierDeclarations:
-  Enabled: true
-
 Style/Alias:
   Enabled: true
 
