@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    standard (0.0.15)
+    standard (0.0.16)
       rubocop (>= 0.60)
 
 GEM
@@ -23,7 +23,7 @@ GEM
       method_source (~> 0.9.0)
     rainbow (3.0.0)
     rake (10.5.0)
-    rubocop (0.60.0)
+    rubocop (0.61.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
