@@ -321,5 +321,21 @@ information.
 It can be very handy to know about failures while editing to shorten the
 feedback loop. Some editors support asynchronously running linters.
 
- * **Vim and ALE**: You can override the built-in rubocop with standard with `let g:ale_ruby_rubocop_executable = 'standardrb'`
+### Vim
+
+Install [ale](https://github.com/w0rp/ale). And add these lines to your `.vimrc`
+file.
+
+```vimscript
+let g:ale_linters = {'ruby': ['standardrb']}
+let g:ale_fixers = {'ruby': ['standardrb']}
+```
+
+This sets Standard as your only linter and fixer for Ruby files and so
+prevents conflicts with RuboCop. For automatic fixing on save, add
+this to your `.vimrc`:
+
+```
+let g:ale_fix_on_save = 1
+```
 
