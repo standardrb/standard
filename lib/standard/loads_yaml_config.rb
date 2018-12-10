@@ -1,11 +1,17 @@
 require "yaml"
-require_relative "file_finder"
 require "pathname"
+require_relative "file_finder"
+require_relative "parses_cli_option"
 
 module Standard
   class LoadsYamlConfig
-    def call(search_path)
-      yaml_path = FileFinder.new.call(".standard.yml", search_path)
+    def initialize
+      @parses_cli_option = ParsesCliOption.new
+    end
+
+    def call(argv, search_path)
+      yaml_path = @parses_cli_option.call(argv, "--config") ||
+                  FileFinder.new.call(".standard.yml", search_path)
       construct_config(yaml_path, load_standard_yaml(yaml_path))
     end
 

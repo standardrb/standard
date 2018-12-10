@@ -129,6 +129,11 @@ ignore:
     - Layout/AlignHash
 ```
 
+Note: If you're running Standard in a context where your `.standard.yml` file
+cannot be found by ascending the current working directory (i.e. against a
+temporary file buffer in your editor), you can specify the config location with
+`--config path/to/.standard.yml`.
+
 ## What you might do if you're REALLY clever
 
 Because StandardRB is essentially a wrapper on top of

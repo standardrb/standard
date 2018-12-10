@@ -13,7 +13,7 @@ module Standard
     end
 
     def call(argv, search_path = Dir.pwd)
-      standard_config = @loads_yaml_config.call(search_path)
+      standard_config = @loads_yaml_config.call(argv, search_path)
       settings = @merges_settings.call(argv, standard_config)
       Config.new(
         settings.runner,

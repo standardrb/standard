@@ -85,4 +85,21 @@ class Standard::BuildsConfigTest < UnitTest
     end.for("").to_h
     assert_equal expected_config, result.rubocop_config_store.for("").to_h
   end
+
+  def test_specified_standard_yaml_overrides_local
+    result = @subject.call(["--config", "test/fixture/lol.standard.yml"], path("test/fixture/config/z"))
+
+    assert_equal DEFAULT_OPTIONS.merge(
+      auto_correct: true,
+      safe_auto_correct: true
+    ), result.rubocop_options
+    assert_equal DEFAULT_CONFIG, result.rubocop_config_store.for("").to_h
+  end
+
+  def test_specified_standard_yaml_raises
+    err = assert_raises(StandardError) {
+      @subject.call(["--config", "fake.file"], path("test/fixture/config/z"))
+    }
+    assert_match(/Configuration file ".*fake\.file" not found/, err.message)
+  end
 end
