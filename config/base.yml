@@ -494,9 +494,6 @@ Naming/VariableName:
 Performance/Caller:
   Enabled: true
 
-Performance/Casecmp:
-  Enabled: true
-
 Performance/CompareWithBlock:
   Enabled: true
 
@@ -834,16 +831,10 @@ Style/EndBlock:
 Style/EvalWithLocation:
   Enabled: true
 
-Style/EvenOdd:
-  Enabled: true
-
 Style/FlipFlop:
   Enabled: true
 
 Style/For:
-  Enabled: true
-
-Style/FormatString:
   Enabled: true
 
 Style/GlobalVars:
@@ -878,9 +869,6 @@ Style/MethodCallWithoutArgsParentheses:
   Enabled: true
 
 Style/MethodMissingSuper:
-  Enabled: true
-
-Style/MinMax:
   Enabled: true
 
 Style/MissingRespondToMissing:
