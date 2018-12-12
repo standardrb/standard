@@ -8,12 +8,6 @@ class Standard::BuildsConfigTest < UnitTest
     parallel: false,
   }.freeze
 
-  DEFAULT_CONFIG = RuboCop::ConfigStore.new.tap do |config_store|
-    config_store.options_config = path("config/base.yml")
-    options_config = config_store.instance_variable_get("@options_config")
-    options_config["AllCops"]["TargetRubyVersion"] = RUBY_VERSION.to_f
-  end.for("").to_h.freeze
-
   def setup
     @subject = Standard::BuildsConfig.new
   end
@@ -23,7 +17,7 @@ class Standard::BuildsConfigTest < UnitTest
 
     assert_equal :rubocop, result.runner
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
-    assert_equal DEFAULT_CONFIG, result.rubocop_config_store.for("").to_h
+    assert_equal DEFAULT_RUBOCOP_CONFIG_STORE, result.rubocop_config_store.for("").to_h
   end
 
   def test_custom_argv_with_fix_set
@@ -41,7 +35,7 @@ class Standard::BuildsConfigTest < UnitTest
     result = @subject.call([], path("test/fixture/config/z"))
 
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
-    assert_equal DEFAULT_CONFIG, result.rubocop_config_store.for("").to_h
+    assert_equal DEFAULT_RUBOCOP_CONFIG_STORE, result.rubocop_config_store.for("").to_h
   end
 
   def test_decked_out_standard_yaml
@@ -68,9 +62,9 @@ class Standard::BuildsConfigTest < UnitTest
     result = @subject.call([], path("test/fixture/config/x"))
 
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
-    assert_equal DEFAULT_CONFIG.merge(
-      "AllCops" => DEFAULT_CONFIG["AllCops"].merge(
-        "Exclude" => DEFAULT_CONFIG["AllCops"]["Exclude"] + [path("test/fixture/config/x/pants/**/*")]
+    assert_equal DEFAULT_RUBOCOP_CONFIG_STORE.merge(
+      "AllCops" => DEFAULT_RUBOCOP_CONFIG_STORE["AllCops"].merge(
+        "Exclude" => DEFAULT_RUBOCOP_CONFIG_STORE["AllCops"]["Exclude"] + [path("test/fixture/config/x/pants/**/*")]
       )
     ), result.rubocop_config_store.for("").to_h
   end
@@ -93,7 +87,7 @@ class Standard::BuildsConfigTest < UnitTest
       auto_correct: true,
       safe_auto_correct: true
     ), result.rubocop_options
-    assert_equal DEFAULT_CONFIG, result.rubocop_config_store.for("").to_h
+    assert_equal DEFAULT_RUBOCOP_CONFIG_STORE, result.rubocop_config_store.for("").to_h
   end
 
   def test_specified_standard_yaml_raises

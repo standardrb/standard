@@ -17,6 +17,24 @@ class UnitTest < Minitest::Test
     Pathname.new(Dir.pwd).join(relative).to_s
   end
 
+  DEFAULT_RUBOCOP_CONFIG_STORE = RuboCop::ConfigStore.new.tap do |config_store|
+    config_store.options_config = path("config/base.yml")
+    options_config = config_store.instance_variable_get("@options_config")
+    options_config["AllCops"]["TargetRubyVersion"] = RUBY_VERSION.to_f
+  end.for("").to_h.freeze
+
+  DEFAULT_STANDARD_CONFIG = {
+    ruby_version: Gem::Version.new(RUBY_VERSION),
+    fix: false,
+    format: nil,
+    parallel: false,
+    ignore: [],
+    default_ignores: true,
+    config_root: "",
+  }.freeze
+
+  protected
+
   def path(relative)
     self.class.path(relative)
   end

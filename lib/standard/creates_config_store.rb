@@ -12,7 +12,7 @@ module Standard
         max_rubocop_supported_version(standard_config[:ruby_version])
       )
 
-      standard_config[:ignore].each do |(path, cops)|
+      ignored_patterns(standard_config).each do |(path, cops)|
         cops.each do |cop|
           options_config[cop] ||= {}
           options_config[cop]["Exclude"] ||= []
@@ -26,6 +26,10 @@ module Standard
     end
 
     private
+
+    def ignored_patterns(standard_config)
+      standard_config[:ignore]
+    end
 
     def rubocop_yaml_path(desired_version)
       file_name = if desired_version < Gem::Version.new("1.9")
