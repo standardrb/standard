@@ -1,19 +1,24 @@
 require "test_helper"
 
-class Standard::CreatesConfigStoreTest < UnitTest
-  def setup
-    @subject = Standard::CreatesConfigStore.new
-  end
+class Standard::CreatesConfigStore
+  class Test < UnitTest
+    def setup
+      @assigns_rubocop_yaml = gimme_next(AssignsRubocopYaml)
+      @sets_target_ruby_version = gimme_next(SetsTargetRubyVersion)
+      @configures_ignored_paths = gimme_next(ConfiguresIgnoredPaths)
 
-  def test_minimal_config
-    result = @subject.call(config({}))
+      @subject = Standard::CreatesConfigStore.new
+    end
 
-    assert_equal DEFAULT_RUBOCOP_CONFIG_STORE, result.for("").to_h
-  end
+    def test_minimal_config
+      standard_config = :some_config
+      options_config = :some_options
+      give(@assigns_rubocop_yaml).call(is_a(RuboCop::ConfigStore), standard_config) { options_config }
 
-  private
+      @subject.call(standard_config)
 
-  def config(props = {})
-    DEFAULT_STANDARD_CONFIG.merge(props)
+      verify(@sets_target_ruby_version).call(options_config, standard_config)
+      verify(@configures_ignored_paths).call(options_config, standard_config)
+    end
   end
 end

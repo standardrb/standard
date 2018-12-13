@@ -3,12 +3,9 @@ require "simplecov"
 SimpleCov.start
 
 require "standard"
+require "gimme"
 require "minitest/autorun"
-
-begin
-  require "pry"
-rescue LoadError
-end
+require "pry"
 
 class UnitTest < Minitest::Test
   make_my_diffs_pretty!
@@ -32,6 +29,10 @@ class UnitTest < Minitest::Test
     default_ignores: true,
     config_root: "",
   }.freeze
+
+  def teardown
+    Gimme.reset
+  end
 
   protected
 
