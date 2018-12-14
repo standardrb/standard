@@ -117,14 +117,15 @@ are available creating a `.standard.yml` file in the root of your project.
 Here's an example yaml file with every option set:
 
 ```yaml
-fix: true
-parallel: true
-format: progress
-ruby_version: 2.3.3
+fix: true               # default: false
+parallel: true          # default: false
+format: progress        # default: Standard::Formatter
+ruby_version: 2.3.3     # default: RUBY_VERSION
+default_ignores: false  # default: true
 
-ignore:
+ignore:                 # default: []
   - 'db/schema.rb'
-  - 'vendor/bundle/**/*'
+  - 'vendor/**/*'
   - 'test/**/*':
     - Layout/AlignHash
 ```
@@ -228,9 +229,12 @@ list of files and globs that should be excluded:
 
 ```yaml
 ignore:
-  - 'db/schema.rb'
-  - 'vendor/bundle/**/*'
+  - 'some/file/in/particular.rb'
+  - 'a/whole/directory/**/*'
 ```
+
+You can see the files Standard ignores by default
+[here](https://github.com/testdouble/standard/blob/master/lib/standard/creates_config_store/configures_ignored_paths.rb#L3-L13)
 
 ## How do I hide a certain warning?
 

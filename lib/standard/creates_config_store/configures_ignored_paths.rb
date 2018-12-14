@@ -2,12 +2,12 @@ class Standard::CreatesConfigStore
   class ConfiguresIgnoredPaths
     DEFAULT_IGNORES = [
       # Match RuboCop's defaults: https://github.com/rubocop-hq/rubocop/blob/v0.61.1/config/default.yml#L60-L63
-      "node_modules/**/*",
-      "vendor/**/*",
       ".git/**/*",
+      "node_modules/**/*",
       "vendor/**/*",
       # Standard's own default ignores:
       "bin/*",
+      "db/schema.rb",
       "tmp/**/*",
     ].map { |path| [path, ["AllCops"]] }.freeze
 
