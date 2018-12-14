@@ -6,7 +6,7 @@ class StandardrbTest < UnitTest
     stdout, status = run_standardrb("test/fixture/project/a")
 
     refute status.success?
-    assert_equal <<-MSG.gsub(/^ {6}/, ""), stdout
+    assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
       standard: Run `standardrb --fix` to automatically fix some problems.
         lib/foo/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
@@ -29,7 +29,7 @@ class StandardrbTest < UnitTest
     stdout, status = run_standardrb("test/fixture/project/a/lib/foo")
 
     refute status.success?
-    assert_equal <<-MSG.gsub(/^ {6}/, ""), stdout
+    assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
       standard: Run `standardrb --fix` to automatically fix some problems.
         do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
@@ -48,5 +48,9 @@ class StandardrbTest < UnitTest
     Open3.capture2(File.join(__dir__, "../exe/standardrb"), *args)
   ensure
     Dir.chdir(og_pwd)
+  end
+
+  def assert_same_lines(expected, actual)
+    assert_equal expected.split("\n").sort, actual.split("\n").sort
   end
 end
