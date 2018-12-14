@@ -2,6 +2,11 @@ require "rubocop"
 
 module Standard
   class Formatter < RuboCop::Formatter::BaseFormatter
+    def initialize(*args)
+      super
+      @header_printed_already = false
+    end
+
     def file_finished(file, offenses)
       uncorrected_offenses = offenses.reject(&:corrected?)
       print_header_once unless uncorrected_offenses.empty?
