@@ -1,0 +1,3 @@
+ignore:
+  - tmp2/**/*
+  - lib/foo/tmp3/**/*

@@ -2,6 +2,7 @@ AllCops:
   # Prevent RuboCop from exploding when it finds an older-than-2.2 .ruby-version
   TargetRubyVersion: 2.5
   DisabledByDefault: true
+  Exclude: []
 
 Bundler/DuplicatedGem:
   Enabled: true

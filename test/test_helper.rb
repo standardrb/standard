@@ -3,12 +3,9 @@ require "simplecov"
 SimpleCov.start
 
 require "standard"
+require "gimme"
 require "minitest/autorun"
-
-begin
-  require "pry"
-rescue LoadError
-end
+require "pry"
 
 class UnitTest < Minitest::Test
   make_my_diffs_pretty!
@@ -16,6 +13,12 @@ class UnitTest < Minitest::Test
   def self.path(relative)
     Pathname.new(Dir.pwd).join(relative).to_s
   end
+
+  def teardown
+    Gimme.reset
+  end
+
+  protected
 
   def path(relative)
     self.class.path(relative)
