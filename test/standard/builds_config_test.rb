@@ -72,7 +72,7 @@ class Standard::BuildsConfigTest < UnitTest
 
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
 
-    assert_equal config_store("test/fixture/config/w", "config/ruby-1.9.yml"), result.rubocop_config_store.for("").to_h
+    assert_equal config_store("test/fixture/config/w", "config/ruby-1.9.yml", 2.2), result.rubocop_config_store.for("").to_h
   end
 
   def test_specified_standard_yaml_overrides_local
@@ -94,10 +94,11 @@ class Standard::BuildsConfigTest < UnitTest
 
   private
 
-  def config_store(config_root = nil, rubocop_yml = "config/base.yml")
+  def config_store(config_root = nil, rubocop_yml = "config/base.yml", ruby_version = RUBY_VERSION)
     RuboCop::ConfigStore.new.tap do |config_store|
       config_store.options_config = path(rubocop_yml)
       options_config = config_store.instance_variable_get("@options_config")
+      options_config["AllCops"]["TargetRubyVersion"] = ruby_version.to_f
       options_config["AllCops"]["Exclude"] |= standard_default_ignores(config_root)
     end.for("").to_h
   end
