@@ -8,4 +8,4 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList["test/**/*_test.rb"]
 end
 
-task default: ["standard:fix", :test]
+task default: [:test, "standard:fix"]
