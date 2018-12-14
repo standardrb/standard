@@ -1,6 +1,16 @@
 require "test_helper"
 
 class Standard::LoadsYamlConfigTest < UnitTest
+  DEFAULT_STANDARD_CONFIG = {
+    ruby_version: Gem::Version.new(RUBY_VERSION),
+    fix: false,
+    format: nil,
+    parallel: false,
+    ignore: [],
+    default_ignores: true,
+    config_root: nil,
+  }.freeze
+
   def setup
     @subject = Standard::LoadsYamlConfig.new
   end

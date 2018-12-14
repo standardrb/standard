@@ -17,7 +17,7 @@ class Standard::BuildsConfigTest < UnitTest
 
     assert_equal :rubocop, result.runner
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
-    assert_equal DEFAULT_RUBOCOP_CONFIG_STORE, result.rubocop_config_store.for("").to_h
+    assert_equal config_store, result.rubocop_config_store.for("").to_h
   end
 
   def test_custom_argv_with_fix_set
@@ -35,7 +35,7 @@ class Standard::BuildsConfigTest < UnitTest
     result = @subject.call([], path("test/fixture/config/z"))
 
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
-    assert_equal DEFAULT_RUBOCOP_CONFIG_STORE, result.rubocop_config_store.for("").to_h
+    assert_equal config_store("test/fixture/config/z"), result.rubocop_config_store.for("").to_h
   end
 
   def test_decked_out_standard_yaml
@@ -51,7 +51,8 @@ class Standard::BuildsConfigTest < UnitTest
     expected_config = RuboCop::ConfigStore.new.tap do |config_store|
       config_store.options_config = path("config/ruby-1.8.yml")
       options_config = config_store.instance_variable_get("@options_config")
-      options_config["AllCops"]["Exclude"] << path("test/fixture/config/y/monkey/**/*")
+      options_config["AllCops"]["Exclude"] |= standard_default_ignores("test/fixture/config/y") +
+                                              [path("test/fixture/config/y/monkey/**/*")]
       options_config["Fake/Lol"] = {"Exclude" => [path("test/fixture/config/y/neat/cool.rb")]}
       options_config["Fake/Kek"] = {"Exclude" => [path("test/fixture/config/y/neat/cool.rb")]}
     end.for("").to_h
@@ -62,11 +63,9 @@ class Standard::BuildsConfigTest < UnitTest
     result = @subject.call([], path("test/fixture/config/x"))
 
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
-    assert_equal DEFAULT_RUBOCOP_CONFIG_STORE.merge(
-      "AllCops" => DEFAULT_RUBOCOP_CONFIG_STORE["AllCops"].merge(
-        "Exclude" => DEFAULT_RUBOCOP_CONFIG_STORE["AllCops"]["Exclude"] + [path("test/fixture/config/x/pants/**/*")]
-      )
-    ), result.rubocop_config_store.for("").to_h
+    assert_equal config_store("test/fixture/config/x").dup.tap { |config_store|
+      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/x/pants/**/*")]
+    }, result.rubocop_config_store.for("").to_h
   end
 
   def test_19
@@ -74,10 +73,7 @@ class Standard::BuildsConfigTest < UnitTest
 
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
 
-    expected_config = RuboCop::ConfigStore.new.tap do |config_store|
-      config_store.options_config = path("config/ruby-1.9.yml")
-    end.for("").to_h
-    assert_equal expected_config, result.rubocop_config_store.for("").to_h
+    assert_equal config_store("test/fixture/config/w", "config/ruby-1.9.yml"), result.rubocop_config_store.for("").to_h
   end
 
   def test_specified_standard_yaml_overrides_local
@@ -87,7 +83,7 @@ class Standard::BuildsConfigTest < UnitTest
       auto_correct: true,
       safe_auto_correct: true
     ), result.rubocop_options
-    assert_equal DEFAULT_RUBOCOP_CONFIG_STORE, result.rubocop_config_store.for("").to_h
+    assert_equal config_store("test/fixture"), result.rubocop_config_store.for("").to_h
   end
 
   def test_specified_standard_yaml_raises
@@ -95,5 +91,21 @@ class Standard::BuildsConfigTest < UnitTest
       @subject.call(["--config", "fake.file"], path("test/fixture/config/z"))
     }
     assert_match(/Configuration file ".*fake\.file" not found/, err.message)
+  end
+
+  private
+
+  def config_store(config_root = nil, rubocop_yml = "config/base.yml")
+    RuboCop::ConfigStore.new.tap do |config_store|
+      config_store.options_config = path(rubocop_yml)
+      options_config = config_store.instance_variable_get("@options_config")
+      options_config["AllCops"]["Exclude"] |= standard_default_ignores(config_root)
+    end.for("").to_h
+  end
+
+  def standard_default_ignores(config_root)
+    Standard::CreatesConfigStore::ConfiguresIgnoredPaths::DEFAULT_IGNORES.map { |(path, _)|
+      File.expand_path(File.join(config_root || Dir.pwd, path))
+    }
   end
 end
