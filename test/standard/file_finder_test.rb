@@ -2,7 +2,7 @@ require "test_helper"
 
 class Standard::FileFinderTest < UnitTest
   def setup
-    @some_path = path("test/fixture/a/b/c")
+    @some_path = path("test/fixture/file_finder/b/c")
 
     @subject = Standard::FileFinder.new
   end
@@ -16,12 +16,12 @@ class Standard::FileFinderTest < UnitTest
   def test_finds_up_the_closest_file
     result = @subject.call("file.neat", @some_path)
 
-    assert_match %r{test/fixture/a/b/file.neat}, result
+    assert_match %r{test/fixture/file_finder/b/file.neat}, result
   end
 
   def test_finds_up_grandparent
     result = @subject.call("file.meh", @some_path)
 
-    assert_match %r{test/fixture/a/file.meh}, result
+    assert_match %r{test/fixture/file_finder/file.meh}, result
   end
 end
