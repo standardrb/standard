@@ -25,6 +25,11 @@ class Standard::CreatesConfigStore
 
     private
 
+    def ignored_patterns(standard_config)
+      (standard_config[:default_ignores] ? DEFAULT_IGNORES : []) +
+        standard_config[:ignore]
+    end
+
     def absolutify(config_root, path)
       if !absolute?(path)
         File.expand_path(File.join(config_root || Dir.pwd, path))
@@ -35,10 +40,6 @@ class Standard::CreatesConfigStore
 
     def absolute?(path)
       path =~ %r{\A([A-Z]:)?/}
-    end
-
-    def ignored_patterns(standard_config)
-      DEFAULT_IGNORES + standard_config[:ignore]
     end
   end
 end

@@ -2,6 +2,7 @@ fix: true
 parallel: true
 format: progress
 ruby_version: 1.8.7
+default_ignores: false
 ignore:
   - monkey/**/*
   - neat/cool.rb:

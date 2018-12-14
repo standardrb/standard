@@ -51,8 +51,7 @@ class Standard::BuildsConfigTest < UnitTest
     expected_config = RuboCop::ConfigStore.new.tap do |config_store|
       config_store.options_config = path("config/ruby-1.8.yml")
       options_config = config_store.instance_variable_get("@options_config")
-      options_config["AllCops"]["Exclude"] |= standard_default_ignores("test/fixture/config/y") +
-                                              [path("test/fixture/config/y/monkey/**/*")]
+      options_config["AllCops"]["Exclude"] |= [path("test/fixture/config/y/monkey/**/*")]
       options_config["Fake/Lol"] = {"Exclude" => [path("test/fixture/config/y/neat/cool.rb")]}
       options_config["Fake/Kek"] = {"Exclude" => [path("test/fixture/config/y/neat/cool.rb")]}
     end.for("").to_h
