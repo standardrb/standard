@@ -26,8 +26,7 @@ class Standard::CliTest < UnitTest
       standard: Run `standardrb --fix` to automatically fix some problems.
         test/fixture/cli/unfixable-bad.rb:3:12: Lint/AssignmentInCondition: Wrap assignment in parentheses if intentional
 
-      Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
-        https://github.com/testdouble/standard/issues/new
+      #{call_to_action_message}
     OUTPUT
   end
 
@@ -39,5 +38,11 @@ class Standard::CliTest < UnitTest
     assert_equal 0, exit_code
     assert_empty fake_err.string
     assert_empty fake_out.string
+  end
+
+  private
+
+  def call_to_action_message
+    Standard::Formatter::CALL_TO_ACTION_MESSAGE.chomp
   end
 end

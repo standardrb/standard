@@ -2,8 +2,15 @@ require "rubocop"
 
 module Standard
   class Formatter < RuboCop::Formatter::BaseFormatter
+    CALL_TO_ACTION_MESSAGE = <<-CALL_TO_ACTION.gsub(/^ {6}/, "")
+      Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
+        https://github.com/testdouble/standard/issues/new
+    CALL_TO_ACTION
+
     def file_finished(file, offenses)
       uncorrected_offenses = offenses.reject(&:corrected?)
+      @all_uncorrected_offenses ||= []
+      @all_uncorrected_offenses += uncorrected_offenses
       print_header_once unless uncorrected_offenses.empty?
       working_directory = Pathname.new(Dir.pwd)
 
@@ -12,6 +19,10 @@ module Standard
         relative_path = absolute_path.relative_path_from(working_directory)
         output.printf("  %s:%d:%d: %s\n", relative_path, o.line, o.real_column, o.message.tr("\n", " "))
       end
+    end
+
+    def finished(_inspected_files)
+      print_call_for_feedback unless @all_uncorrected_offenses.empty?
     end
 
     private
@@ -29,6 +40,11 @@ module Standard
         standard: Run `#{command}` to automatically fix some problems.
       HEADER
       @header_printed_already = true
+    end
+
+    def print_call_for_feedback
+      output.print "\n"
+      output.print CALL_TO_ACTION_MESSAGE
     end
   end
 end
