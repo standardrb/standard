@@ -38,4 +38,14 @@ class Standard::MergesSettingsTest < UnitTest
     assert_equal options[:auto_correct], false
     assert_equal options[:safe_auto_correct], false
   end
+
+  def test_last_fix_flag_wins
+    fix_options = @subject.call(["--no-fix", "--fix"], {}).options
+    no_fix_options = @subject.call(["--fix", "--no-fix"], {}).options
+
+    assert_equal fix_options[:auto_correct], true
+    assert_equal fix_options[:safe_auto_correct], true
+    assert_equal no_fix_options[:auto_correct], false
+    assert_equal no_fix_options[:safe_auto_correct], false
+  end
 end
