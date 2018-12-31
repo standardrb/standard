@@ -7,6 +7,11 @@ module Standard
         https://github.com/testdouble/standard/issues/new
     CALL_TO_ACTION
 
+    def initialize(*args)
+      super
+      @header_printed_already = false
+    end
+
     def file_finished(file, offenses)
       uncorrected_offenses = offenses.reject(&:corrected?)
       @all_uncorrected_offenses ||= []

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    standard (0.0.19)
+    standard (0.0.22)
       rubocop (>= 0.60)
 
 GEM
@@ -23,7 +23,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     rainbow (3.0.0)
-    rake (10.5.0)
+    rake (12.3.2)
     rubocop (0.61.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -38,7 +38,7 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    unicode-display_width (1.4.0)
+    unicode-display_width (1.4.1)
 
 PLATFORMS
   ruby
@@ -48,9 +48,9 @@ DEPENDENCIES
   gimme
   minitest (~> 5.0)
   pry
-  rake (~> 10.0)
+  rake (~> 12.0)
   simplecov
   standard!
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
