@@ -9,7 +9,8 @@ module Standard
 
           Options:
 
-            --[no-]fix        Automatically fix failures where possible
+            --fix             Automatically fix failures where possible
+            --no-fix          Do not automatically fix failures
             --format <name>   Format output with any RuboCop formatter (e.g. "json")
             -v, --version     Print the version of Standard
             -h, --help        Print this message
