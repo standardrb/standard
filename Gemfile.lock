@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    standard (0.0.19)
+    standard (0.0.20)
       rubocop (>= 0.60)
 
 GEM
@@ -53,4 +53,4 @@ DEPENDENCIES
   standard!
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
