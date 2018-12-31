@@ -13,8 +13,7 @@ class StandardrbTest < UnitTest
         lib/foo/tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
 
-      Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
-        https://github.com/testdouble/standard/issues/new
+      #{call_to_action_message}
     MSG
   end
 
@@ -35,8 +34,7 @@ class StandardrbTest < UnitTest
         do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
 
-      Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
-        https://github.com/testdouble/standard/issues/new
+      #{call_to_action_message}
     MSG
   end
 
@@ -52,5 +50,9 @@ class StandardrbTest < UnitTest
 
   def assert_same_lines(expected, actual)
     assert_equal expected.split("\n").sort, actual.split("\n").sort
+  end
+
+  def call_to_action_message
+    Standard::Formatter::CALL_TO_ACTION_MESSAGE.chomp
   end
 end
