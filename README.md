@@ -221,6 +221,10 @@ Yes! You can use `standardrb --fix` to fix most issues automatically.
 `standardrb --fix` is built into `standardrb` for maximum convenience. Most
 problems are fixable, but some errors must be fixed manually.
 
+## Can I override the `fix: true` config setting?
+
+Also yes! You can use `standardrb --no-fix`. Not `fix`ing is the default behavior, but this flag will override the `fix: true` setting in your [`.standard.yml` config](#what-you-might-do-if-youre-clever). This is especially useful for checking your projects compliance with `standardrb` in CI environments while keeping the `fix: true` option enabled locally.
+
 ## How do I ignore files?
 
 Sometimes you need to ignore additional folders or specific minified files. To
