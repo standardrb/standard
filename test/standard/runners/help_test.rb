@@ -17,7 +17,7 @@ class Standard::Runners::HelpTest < UnitTest
 
       Options:
 
-        --fix             Automatically fix failures where possible
+        --[no-]fix        Automatically fix failures where possible
         --format <name>   Format output with any RuboCop formatter (e.g. "json")
         -v, --version     Print the version of Standard
         -h, --help        Print this message

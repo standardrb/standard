@@ -20,7 +20,7 @@ module Standard
 
     def separate_argv(argv)
       argv.partition { |flag|
-        ["--fix", "--version", "-v", "--help", "-h"].include?(flag)
+        ["--fix", "--no-fix", "--version", "-v", "--help", "-h"].include?(flag)
       }
     end
 
@@ -29,6 +29,9 @@ module Standard
         if arg == "--fix"
           cli_flags[:auto_correct] = true
           cli_flags[:safe_auto_correct] = true
+        elsif arg == "--no-fix"
+          cli_flags[:auto_correct] = false
+          cli_flags[:safe_auto_correct] = false
         end
       }
     end

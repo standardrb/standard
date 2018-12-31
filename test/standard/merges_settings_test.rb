@@ -24,4 +24,18 @@ class Standard::MergesSettingsTest < UnitTest
     assert_equal :version, @subject.call(["--version"], {}).runner
     assert_equal :version, @subject.call(["-v"], {}).runner
   end
+
+  def test_fix_flag_sets_auto_correct_options
+    options = @subject.call(["--fix"], {}).options
+
+    assert_equal options[:auto_correct], true
+    assert_equal options[:safe_auto_correct], true
+  end
+
+  def test_no_fix_flag_inverts_auto_correct_options
+    options = @subject.call(["--no-fix"], {}).options
+
+    assert_equal options[:auto_correct], false
+    assert_equal options[:safe_auto_correct], false
+  end
 end
