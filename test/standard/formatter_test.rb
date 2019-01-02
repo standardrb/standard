@@ -85,6 +85,12 @@ class Standard::FormatterTest < UnitTest
     MESSAGE
   end
 
+  def test_no_offenses_without_files
+    @subject.finished([@some_path])
+
+    assert_empty @io.string
+  end
+
   private
 
   def call_to_action_message

@@ -10,11 +10,11 @@ module Standard
     def initialize(*args)
       super
       @header_printed_already = false
+      @all_uncorrected_offenses = []
     end
 
     def file_finished(file, offenses)
       uncorrected_offenses = offenses.reject(&:corrected?)
-      @all_uncorrected_offenses ||= []
       @all_uncorrected_offenses += uncorrected_offenses
       print_header_once unless uncorrected_offenses.empty?
       working_directory = Pathname.new(Dir.pwd)
