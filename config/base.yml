@@ -315,6 +315,9 @@ Lint/EnsureReturn:
 Lint/ErbNewArguments:
   Enabled: true
 
+Lint/FlipFlop:
+  Enabled: true
+
 Lint/FloatOutOfRange:
   Enabled: true
 
@@ -830,9 +833,6 @@ Style/EndBlock:
   Enabled: true
 
 Style/EvalWithLocation:
-  Enabled: true
-
-Style/FlipFlop:
   Enabled: true
 
 Style/For:
