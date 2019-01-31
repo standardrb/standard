@@ -24,6 +24,19 @@ class Standard::FormatterTest < UnitTest
     assert_empty @io.string
   end
 
+  def test_does_not_print_fix_command_if_run_with_fix
+    @subject = Standard::Formatter.new(@io, auto_correct: true, safe_auto_correct: true)
+    @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat")])
+    @subject.finished([@some_path])
+
+    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+        Gemfile:42:13: Neat
+
+      #{call_to_action_message}
+    MESSAGE
+  end
+
   def test_prints_uncorrected_offenses
     @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat")])
     @subject.finished([@some_path])
