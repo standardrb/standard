@@ -42,14 +42,24 @@ module Standard
 
       output.print <<-HEADER.gsub(/^ {8}/, "")
         standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-        standard: Run `#{command}` to automatically fix some problems.
       HEADER
+
+      unless auto_correct_option_provided?
+        output.print <<-HEADER.gsub(/^ {10}/, "")
+          standard: Run `#{command}` to automatically fix some problems.
+        HEADER
+      end
+
       @header_printed_already = true
     end
 
     def print_call_for_feedback
       output.print "\n"
       output.print CALL_TO_ACTION_MESSAGE
+    end
+
+    def auto_correct_option_provided?
+      options[:auto_correct] || options[:safe_auto_correct]
     end
   end
 end
