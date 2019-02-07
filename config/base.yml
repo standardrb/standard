@@ -58,7 +58,7 @@ Layout/DefEndAlignment:
 
 Layout/DotPosition:
   Enabled: true
-  EnforcedStyle: trailing
+  EnforcedStyle: leading
 
 Layout/ElseAlignment:
   Enabled: true

@@ -43,8 +43,8 @@ flag.
   `do`/`end` for procedural blocks that have side effects. More
   [here](http://www.virtuouscode.com/2011/07/26/the-procedurefunction-block-convention-in-ruby/)
   and [here](https://github.com/rubocop-hq/ruby-style-guide/issues/162)
-- **Trailing dots on multi-line method chains** - chosen because it makes
-  copying lines into a REPL easier
+- **Leading dots on multi-line method chains** - chosen for
+  [these](https://github.com/testdouble/standard/issues/75) reasons.
 - **And a good deal more**
 
 If you're familiar with [RuboCop](https://github.com/rubocop-hq/rubocop), you
