@@ -1,7 +1,10 @@
 require "rubocop"
+require_relative "helpers/autocorrectable"
 
 module Standard
   class Formatter < RuboCop::Formatter::BaseFormatter
+    include Standard::Helpers::Autocorrectable
+
     CALL_TO_ACTION_MESSAGE = <<-CALL_TO_ACTION.gsub(/^ {6}/, "")
       Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
         https://github.com/testdouble/standard/issues/new
@@ -14,12 +17,12 @@ module Standard
     end
 
     def file_finished(file, offenses)
-      uncorrected_offenses = offenses.reject(&:corrected?)
-      @all_uncorrected_offenses += uncorrected_offenses
-      print_header_once unless uncorrected_offenses.empty?
+      @uncorrected_offenses = offenses.reject(&:corrected?)
+      @all_uncorrected_offenses += @uncorrected_offenses
+      print_header_once unless @uncorrected_offenses.empty?
       working_directory = Pathname.new(Dir.pwd)
 
-      uncorrected_offenses.each do |o|
+      @uncorrected_offenses.each do |o|
         absolute_path = Pathname.new(file)
         relative_path = absolute_path.relative_path_from(working_directory)
         output.printf("  %s:%d:%d: %s\n", relative_path, o.line, o.real_column, o.message.tr("\n", " "))
@@ -44,7 +47,7 @@ module Standard
         standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
       HEADER
 
-      unless auto_correct_option_provided?
+      if should_suggest_auto_correct?
         output.print <<-HEADER.gsub(/^ {10}/, "")
           standard: Run `#{command}` to automatically fix some problems.
         HEADER
@@ -60,6 +63,10 @@ module Standard
 
     def auto_correct_option_provided?
       options[:auto_correct] || options[:safe_auto_correct]
+    end
+
+    def should_suggest_auto_correct?
+      !auto_correct_option_provided? && @uncorrected_offenses.any?(&method(:autocorrectable_offense?))
     end
   end
 end
