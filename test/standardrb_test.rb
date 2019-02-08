@@ -8,7 +8,6 @@ class StandardrbTest < UnitTest
     refute status.success?
     assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-      standard: Run `standardrb --fix` to automatically fix some problems.
         lib/foo/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/foo/tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
@@ -30,7 +29,6 @@ class StandardrbTest < UnitTest
     refute status.success?
     assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-      standard: Run `standardrb --fix` to automatically fix some problems.
         do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
 
