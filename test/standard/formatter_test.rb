@@ -50,13 +50,16 @@ class Standard::FormatterTest < UnitTest
     MESSAGE
   end
 
-  def test_prints_header_only_once
+  def test_prints_header_and_fix_suggestion_exactly_once
+    @subject.file_finished(@some_path, [Offense.new(false, 42, 12, "Yuck", "Lint/UselessAssignment")])
+    @subject.file_finished(@some_path, [])
     @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource")])
     @subject.file_finished(@some_path, [Offense.new(false, 43, 14, "Super", "Bundler/InsecureProtocolSource")])
     @subject.finished([@some_path])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+        Gemfile:42:12: Yuck
       standard: Run `standardrb --fix` to automatically fix some problems.
         Gemfile:42:13: Neat
         Gemfile:43:14: Super
