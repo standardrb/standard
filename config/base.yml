@@ -478,9 +478,6 @@ Naming/FileName:
 Naming/HeredocDelimiterCase:
   Enabled: true
 
-Naming/HeredocDelimiterNaming:
-  Enabled: true
-
 Naming/MethodName:
   Enabled: true
 
