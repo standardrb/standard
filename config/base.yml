@@ -24,7 +24,8 @@ Layout/AlignArray:
 
 Layout/AlignHash:
   Enabled: true
-  EnforcedLastArgumentHashStyle: always_ignore
+  EnforcedHashRocketStyle: key
+  EnforcedColonStyle: key
 
 Layout/AlignParameters:
   Enabled: true
