@@ -31,7 +31,7 @@ class Standard::Runners::RubocopTest < UnitTest
     }
 
     assert_equal "", fake_out.string
-    assert_match /An error occurred while Standard\/BadCop cop was inspecting/, fake_err.string
+    assert_match(/An error occurred while Standard\/BadCop cop was inspecting/, fake_err.string)
 
     RuboCop::Cop::Standard::BadCop.send(:define_method, :on_send) { |_| }
   end
