@@ -1,5 +1,4 @@
 require "test_helper"
-require "standard/detects_fixability"
 
 class Standard::DetectsFixabilityTest < UnitTest
   Offense = Struct.new(:cop_name)

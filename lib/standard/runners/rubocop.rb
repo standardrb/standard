@@ -10,18 +10,26 @@ module Standard
         )
 
         rubocop_runner.run(config.paths).tap do |success|
-          unless success
-            print_errors_and_warnings(rubocop_runner)
-          end
+          print_errors_and_warnings(success, rubocop_runner)
+          print_corrected_code_if_fixing_stdin(config.rubocop_options)
         end
       end
 
       private
 
-      def print_errors_and_warnings(rubocop_runner)
+      def print_errors_and_warnings(success, rubocop_runner)
+        return unless success
+
         (rubocop_runner.warnings + rubocop_runner.errors).each do |message|
           warn message
         end
+      end
+
+      def print_corrected_code_if_fixing_stdin(rubocop_options)
+        return unless rubocop_options[:stdin] && rubocop_options[:auto_correct]
+
+        puts "=" * 20
+        print rubocop_options[:stdin]
       end
     end
   end
