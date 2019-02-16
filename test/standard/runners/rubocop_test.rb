@@ -22,7 +22,7 @@ class Standard::Runners::RubocopTest < UnitTest
   end
 
   def test_error_output_on_cop_error
-    RuboCop::Cop::Standard::BadCop.define_method(:on_send) { |_| raise "hell" }
+    RuboCop::Cop::Standard::BadCop.send(:define_method, :on_send) { |_| raise "hell" }
 
     fake_out, fake_err = do_with_fake_io {
       @subject.call(create_config(
@@ -38,7 +38,7 @@ class Standard::Runners::RubocopTest < UnitTest
     assert_equal "", fake_out.string
     assert_equal expected_error, fake_err.string
 
-    RuboCop::Cop::Standard::BadCop.define_method(:on_send) { |_| }
+    RuboCop::Cop::Standard::BadCop.send(:define_method, :on_send) { |_| }
   end
 
   def test_print_corrected_output_on_stdin
