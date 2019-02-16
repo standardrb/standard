@@ -30,13 +30,8 @@ class Standard::Runners::RubocopTest < UnitTest
       ))
     }
 
-    expected_error = <<-ERR.gsub(/^ {6}/, "")
-      \e[31mAn error occurred while Standard/BadCop cop was inspecting /Users/justin/code/testdouble/standard/test/fixture/runner/agreeable.rb:2:2.\e[0m
-      To see the complete backtrace run rubocop -d.
-      \e[31mAn error occurred while Standard/BadCop cop was inspecting /Users/justin/code/testdouble/standard/test/fixture/runner/agreeable.rb:2:2.\e[0m
-    ERR
     assert_equal "", fake_out.string
-    assert_equal expected_error, fake_err.string
+    assert_match /An error occurred while Standard\/BadCop cop was inspecting/, fake_err.string
 
     RuboCop::Cop::Standard::BadCop.send(:define_method, :on_send) { |_| }
   end
