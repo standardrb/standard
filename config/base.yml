@@ -784,9 +784,6 @@ Style/CommentedKeyword:
 Style/ConditionalAssignment:
   Enabled: true
 
-Style/DateTime:
-  Enabled: true
-
 Style/DefWithParentheses:
   Enabled: true
 
