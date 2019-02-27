@@ -11,7 +11,7 @@ module Standard
 
     def call(argv, search_path)
       yaml_path = @parses_cli_option.call(argv, "--config") ||
-                  FileFinder.new.call(".standard.yml", search_path)
+        FileFinder.new.call(".standard.yml", search_path)
       construct_config(yaml_path, load_standard_yaml(yaml_path))
     end
 

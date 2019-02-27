@@ -165,6 +165,7 @@ Layout/MultilineMethodDefinitionBraceLayout:
 
 Layout/MultilineOperationIndentation:
   Enabled: true
+  EnforcedStyle: indented
 
 Layout/RescueEnsureAlignment:
   Enabled: true

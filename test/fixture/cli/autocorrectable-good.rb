@@ -14,8 +14,12 @@ THINGS = {
 
 class Something
   def do_stuff(a, b, c)
+    maths_and_stuff = 4 +
+      5 +
+      6
+
     plus_stuff = STUFF.map { |e|
-      e + 1
+      e + 1 + maths_and_stuff
     }
 
     STUFF.tap { |arr| arr.delete(0) }
