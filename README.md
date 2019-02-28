@@ -179,7 +179,7 @@ if you've used StandardJS.)
 
 * [Test Double](https://testdouble.com/agency)
 * [Collective Idea](https://collectiveidea.com/)
-* [Collective Idea](https://www.culturefoundry.com/)
+* [Culture Foundry](https://www.culturefoundry.com/)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
