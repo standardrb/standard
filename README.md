@@ -181,6 +181,7 @@ if you've used StandardJS.)
 * [Collective Idea](https://collectiveidea.com/)
 * [Culture Foundry](https://www.culturefoundry.com/)
 * [Evil Martians](https://evilmartians.com)
+* [Rebase Interactive](https://www.rebaseinteractive.com/)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
