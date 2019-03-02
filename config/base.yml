@@ -470,9 +470,6 @@ Naming/ClassAndModuleCamelCase:
 Naming/ConstantName:
   Enabled: true
 
-Naming/FileName:
-  Enabled: true
-
 Naming/HeredocDelimiterCase:
   Enabled: true
 
