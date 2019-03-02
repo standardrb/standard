@@ -440,9 +440,6 @@ Lint/UriEscapeUnescape:
 Lint/UriRegexp:
   Enabled: true
 
-Lint/UselessAccessModifier:
-  Enabled: true
-
 Lint/UselessAssignment:
   Enabled: true
 
@@ -684,9 +681,6 @@ Rails/TimeZone:
   Enabled: true
 
 Rails/UniqBeforePluck:
-  Enabled: true
-
-Rails/UnknownEnv:
   Enabled: true
 
 Rails/Validation:
