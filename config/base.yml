@@ -13,9 +13,6 @@ Bundler/InsecureProtocolSource:
 Gemspec/DuplicatedAssignment:
   Enabled: true
 
-Gemspec/RequiredRubyVersion:
-  Enabled: true
-
 Layout/AccessModifierIndentation:
   Enabled: true
 
