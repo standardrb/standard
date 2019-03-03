@@ -512,9 +512,6 @@ Performance/LstripRstrip:
 Performance/RangeInclude:
   Enabled: true
 
-Performance/RedundantBlockCall:
-  Enabled: true
-
 Performance/RedundantMatch:
   Enabled: true
 
