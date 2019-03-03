@@ -752,9 +752,6 @@ Style/ClassCheck:
 Style/ClassMethods:
   Enabled: true
 
-Style/ClassVars:
-  Enabled: true
-
 Style/ColonMethodCall:
   Enabled: true
 
