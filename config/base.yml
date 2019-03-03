@@ -671,9 +671,6 @@ Rails/SafeNavigation:
 Rails/ScopeArgs:
   Enabled: true
 
-Rails/SkipsModelValidations:
-  Enabled: true
-
 Rails/TimeZone:
   Enabled: true
 
