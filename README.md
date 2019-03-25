@@ -335,6 +335,19 @@ information.
 It can be very handy to know about failures while editing to shorten the
 feedback loop. Some editors support asynchronously running linters.
 
+### Atom
+
+1. Install [linter-rubocop](https://github.com/AtomLinter/linter-rubocop) package.
+2. Make sure you have `standardrb` binstubs generated.
+
+```bash
+bundle binstubs standard
+```
+
+3. Configure `linter-rubocop` to use `./bin/standardrb` command.
+
+![alt "linter-rubocop configuration"](https://user-images.githubusercontent.com/631534/54869518-e5aa7780-4d99-11e9-81e7-777654a4f91b.png)
+
 ### Vim
 
 Install [ale](https://github.com/w0rp/ale). And add these lines to your `.vimrc`
