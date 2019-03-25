@@ -346,7 +346,7 @@ $ bundle binstubs standard
 
 3. Configure `linter-rubocop` to use `./bin/standardrb` command.
 
-![alt "linter-rubocop configuration"](https://user-images.githubusercontent.com/631534/54869518-e5aa7780-4d99-11e9-81e7-777654a4f91b.png =400x)
+![alt "linter-rubocop configuration"](https://user-images.githubusercontent.com/631534/54869518-e5aa7780-4d99-11e9-81e7-777654a4f91b.png)
 
 ### Vim
 
