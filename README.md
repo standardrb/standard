@@ -339,7 +339,7 @@ feedback loop. Some editors support asynchronously running linters.
 
 1. Install [linter-rubocop](https://github.com/AtomLinter/linter-rubocop) package.
 
-2. Configure `linter-rubocop` to use either `standardrb` binstub (`./bin/standardrb`) or a globally installed `standardrb` (with absolute path).
+2. Configure `linter-rubocop` to use either `standardrb` [binstub](https://bundler.io/man/bundle-binstubs.1.html) (`./bin/standardrb`) or a globally installed `standardrb` (with absolute path).
 
 ![alt "linter-rubocop configuration"](https://user-images.githubusercontent.com/631534/54869518-e5aa7780-4d99-11e9-81e7-777654a4f91b.png)
 
