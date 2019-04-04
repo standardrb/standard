@@ -506,9 +506,6 @@ Performance/FlatMap:
 Performance/InefficientHashSearch:
   Enabled: true
 
-Performance/LstripRstrip:
-  Enabled: true
-
 Performance/RangeInclude:
   Enabled: true
 
@@ -518,16 +515,10 @@ Performance/RedundantMatch:
 Performance/RedundantMerge:
   Enabled: true
 
-Performance/RedundantSortBy:
-  Enabled: true
-
 Performance/RegexpMatch:
   Enabled: true
 
 Performance/ReverseEach:
-  Enabled: true
-
-Performance/Sample:
   Enabled: true
 
 Performance/Size:
@@ -540,9 +531,6 @@ Performance/StringReplacement:
   Enabled: true
 
 Performance/UnfreezeString:
-  Enabled: true
-
-Performance/UnneededSort:
   Enabled: true
 
 Performance/UriDefaultParser:
@@ -934,6 +922,9 @@ Style/RedundantReturn:
 Style/RedundantSelf:
   Enabled: true
 
+Style/RedundantSortBy:
+  Enabled: true
+
 Style/RescueModifier:
   Enabled: true
 
@@ -942,6 +933,9 @@ Style/RescueStandardError:
   EnforcedStyle: implicit
 
 Style/SafeNavigation:
+  Enabled: true
+
+Style/Sample:
   Enabled: true
 
 Style/SelfAssignment:
@@ -966,6 +960,9 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Enabled: true
   EnforcedStyle: double_quotes
+
+Style/Strip:
+  Enabled: true
 
 Style/SymbolLiteral:
   Enabled: true
@@ -1009,6 +1006,9 @@ Style/UnneededInterpolation:
   Enabled: true
 
 Style/UnneededPercentQ:
+  Enabled: true
+
+Style/UnneededSort:
   Enabled: true
 
 Style/UnpackFirst:
