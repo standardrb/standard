@@ -407,9 +407,6 @@ Lint/ShadowedArgument:
 Lint/ShadowedException:
   Enabled: true
 
-Lint/ShadowingOuterLocalVariable:
-  Enabled: true
-
 Lint/StringConversionInInterpolation:
   Enabled: true
 
