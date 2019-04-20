@@ -593,9 +593,6 @@ Rails/FindEach:
 Rails/HasAndBelongsToMany:
   Enabled: true
 
-Rails/HasManyOrHasOneDependent:
-  Enabled: true
-
 Rails/HttpPositionalArguments:
   Enabled: true
 
