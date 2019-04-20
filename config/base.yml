@@ -1020,8 +1020,5 @@ Style/WhenThen:
 Style/WhileUntilDo:
   Enabled: true
 
-Style/WhileUntilModifier:
-  Enabled: true
-
 Style/YodaCondition:
   Enabled: true
