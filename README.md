@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/testdouble/standard.svg?style=svg)](https://circleci.com/gh/testdouble/standard)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
-[![Gem Version](https://badge.fury.io/rb/standard.svg)](https://rubygems.org/gems/standard) 
+[![Gem Version](https://badge.fury.io/rb/standard.svg)](https://rubygems.org/gems/standard)
 
 This gem is a spiritual port of [StandardJS](https://standardjs.com) and aims
 to save you (and others!) time in the same three ways:
@@ -46,6 +46,10 @@ flag.
   and [here](https://github.com/rubocop-hq/ruby-style-guide/issues/162)
 - **Leading dots on multi-line method chains** - chosen for
   [these](https://github.com/testdouble/standard/issues/75) reasons.
+- **Spaces inside blocks, but not hash literals** - In Ruby, the `{` and `}`
+  characters do a lot of heavy lifting. To visually distinguish array literals
+  from blocks, Standard enforces that (like arrays), no leading or trailing
+  spaces be added to pad hashes
 - **And a good deal more**
 
 If you're familiar with [RuboCop](https://github.com/rubocop-hq/rubocop), you
