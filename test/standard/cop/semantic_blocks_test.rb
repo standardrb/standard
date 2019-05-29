@@ -57,4 +57,12 @@ class RuboCop::Cop::Standard::SemanticBlocksTest < UnitTest
       end
     RUBY
   end
+
+  def test_lonely_chains_are_functional
+    assert_no_offense @cop, <<-RUBY
+      CONCENTRATION.find { |end_date, _threshold|
+        end_date >= Time.zone.today
+      }&.last || 0
+    RUBY
+  end
 end
