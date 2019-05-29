@@ -1,8 +1,9 @@
-Copyright (c) 2018 Test Double, LLC
+Copyright (c) 2019 Test Double, LLC
 
 Portions of these files Copyright (c) 2012-18 Bozhidar Batsov:
   - config/base.yml
   - lib/standard/cop/semantic_blocks.rb
+  - test/cop_invoker.rb
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
