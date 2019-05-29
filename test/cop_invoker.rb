@@ -2,7 +2,7 @@
 #
 # lib/rubocop/rspec/expect_offense.rb
 module CopInvoker
-  RUBY_VERSION = 2.2
+  RUBY_VERSION = 2.6
 
   # Usage:
   #
