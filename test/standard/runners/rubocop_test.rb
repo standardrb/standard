@@ -47,14 +47,17 @@ class Standard::Runners::RubocopTest < UnitTest
 
     expected_out = <<-OUT.gsub(/^ {6}/, "")
       == test/fixture/runner/agreeable.rb ==
+      C:  1:  1: [Corrected] Style/FrozenStringLiteralComment: Missing magic comment # frozen_string_literal: true.
       C:  1:  1: [Corrected] Style/SingleLineMethods: Avoid single-line method definitions.
-      C:  1:  5: Naming/MethodName: Use snake_case for method names.
       C:  1:  8: [Corrected] Layout/SpaceAfterSemicolon: Space missing after semicolon.
-      C:  1:  8: [Corrected] Style/Semicolon: Do not use semicolons to terminate expressions.
-      C:  1:  9: [Corrected] Layout/TrailingWhitespace: Trailing whitespace detected.
+      C:  3:  5: Naming/MethodName: Use snake_case for method names.
+      C:  3:  8: [Corrected] Style/Semicolon: Do not use semicolons to terminate expressions.
+      C:  3:  9: [Corrected] Layout/TrailingWhitespace: Trailing whitespace detected.
 
-      1 file inspected, 5 offenses detected, 4 offenses corrected
+      1 file inspected, 6 offenses detected, 5 offenses corrected
       ====================
+      # frozen_string_literal: true
+
       def Foo
         'hi'
       end

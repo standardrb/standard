@@ -1,5 +1,7 @@
+require: rubocop-performance
+
 AllCops:
-  # Prevent RuboCop from exploding when it finds an older-than-2.2 .ruby-version
+  # Prevent RuboCop from exploding when it finds an older-than-2.3 .ruby-version
   TargetRubyVersion: 2.5
   DisabledByDefault: true
   Exclude: []
@@ -138,12 +140,12 @@ Layout/ExtraSpacing:
   AllowBeforeTrailingComments: false
   ForceEqualSignAlignment: false
 
-Layout/FirstParameterIndentation:
+Layout/IndentFirstArgument:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
 
-Layout/IndentArray:
+Layout/IndentFirstArrayElement:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
@@ -152,7 +154,7 @@ Layout/IndentAssignment:
   Enabled: true
   IndentationWidth: ~
 
-Layout/IndentHash:
+Layout/IndentFirstHashElement:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
