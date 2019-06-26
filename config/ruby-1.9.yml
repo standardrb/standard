@@ -1,4 +1,0 @@
-inherit_from: ./ruby-2.2.yml
-
-Style/Encoding:
-  Enabled: false

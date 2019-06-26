@@ -20,7 +20,7 @@ class Standard::DetectsFixabilityTest < UnitTest
   end
 
   def test_can_find_a_config_option_for_everything_we_prescribe_with_asploding
-    our_cop_names = YAML.load_file("config/base.yml").keys - ["AllCops"]
+    our_cop_names = YAML.load_file("config/base.yml").keys - ["AllCops", "require"]
 
     result = @subject.call(our_cop_names.map { |cop_name| Offense.new(cop_name) })
 

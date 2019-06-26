@@ -1,5 +1,7 @@
+require: rubocop-performance
+
 AllCops:
-  # Prevent RuboCop from exploding when it finds an older-than-2.2 .ruby-version
+  # Prevent RuboCop from exploding when it finds an older-than-2.3 .ruby-version
   TargetRubyVersion: 2.5
   DisabledByDefault: true
   Exclude: []
@@ -108,18 +110,18 @@ Layout/EndOfLine:
 Layout/ExtraSpacing:
   Enabled: true
 
-Layout/FirstParameterIndentation:
+Layout/IndentFirstArgument:
   Enabled: true
   EnforcedStyle: consistent
 
-Layout/IndentArray:
+Layout/IndentFirstArrayElement:
   Enabled: true
   EnforcedStyle: consistent
 
 Layout/IndentAssignment:
   Enabled: true
 
-Layout/IndentHash:
+Layout/IndentFirstHashElement:
   Enabled: true
   EnforcedStyle: consistent
 
@@ -472,63 +474,6 @@ Naming/UncommunicativeBlockParamName:
   Enabled: true
 
 Naming/VariableName:
-  Enabled: true
-
-Performance/Caller:
-  Enabled: true
-
-Performance/CompareWithBlock:
-  Enabled: true
-
-Performance/Count:
-  Enabled: true
-
-Performance/Detect:
-  Enabled: true
-
-Performance/DoubleStartEndWith:
-  Enabled: true
-
-Performance/EndWith:
-  Enabled: true
-
-Performance/FixedSize:
-  Enabled: true
-
-Performance/FlatMap:
-  Enabled: true
-
-Performance/InefficientHashSearch:
-  Enabled: true
-
-Performance/RangeInclude:
-  Enabled: true
-
-Performance/RedundantMatch:
-  Enabled: true
-
-Performance/RedundantMerge:
-  Enabled: true
-
-Performance/RegexpMatch:
-  Enabled: true
-
-Performance/ReverseEach:
-  Enabled: true
-
-Performance/Size:
-  Enabled: true
-
-Performance/StartWith:
-  Enabled: true
-
-Performance/StringReplacement:
-  Enabled: true
-
-Performance/UnfreezeString:
-  Enabled: true
-
-Performance/UriDefaultParser:
   Enabled: true
 
 Rails/ActionFilter:
