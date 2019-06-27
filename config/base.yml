@@ -737,7 +737,7 @@ Style/ColonMethodDefinition:
 
 Style/CommandLiteral:
   Enabled: true
-  EnforcedStyle: percent_x
+  EnforcedStyle: mixed
 
 Style/CommentedKeyword:
   Enabled: true
