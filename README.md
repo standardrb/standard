@@ -288,7 +288,7 @@ of Ruby (by inspecting `RUBY_VERSION` at runtime. But if you want to lock it
 down, you can specify `ruby_version` in `.standard.yml`.
 
 ```
-ruby_version: 2.3.0
+ruby_version: 1.8.7
 ```
 
 See

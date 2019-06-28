@@ -49,7 +49,7 @@ class Standard::BuildsConfigTest < UnitTest
     ), result.rubocop_options
 
     expected_config = RuboCop::ConfigStore.new.tap do |config_store|
-      config_store.options_config = path("config/ruby-2.3.yml")
+      config_store.options_config = path("config/ruby-1.8.yml")
       options_config = config_store.instance_variable_get("@options_config")
       options_config["AllCops"]["Exclude"] |= [path("test/fixture/config/y/monkey/**/*")]
       options_config["Fake/Lol"] = {"Exclude" => [path("test/fixture/config/y/neat/cool.rb")]}
@@ -65,6 +65,14 @@ class Standard::BuildsConfigTest < UnitTest
     assert_equal config_store("test/fixture/config/x").dup.tap { |config_store|
       config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/x/pants/**/*")]
     }, result.rubocop_config_store.for("").to_h
+  end
+
+  def test_19
+    result = @subject.call([], path("test/fixture/config/w"))
+
+    assert_equal DEFAULT_OPTIONS, result.rubocop_options
+
+    assert_equal config_store("test/fixture/config/w", "config/ruby-1.9.yml", 2.3), result.rubocop_config_store.for("").to_h
   end
 
   def test_specified_standard_yaml_overrides_local
