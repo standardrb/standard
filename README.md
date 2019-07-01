@@ -366,5 +366,19 @@ this to your `.vimrc`:
 let g:ale_fix_on_save = 1
 ```
 
+## Contributing
+
+Follow the steps below to setup standard locally:
+
+```bash
+$ git clone https://github.com/testdouble/standard
+$ cd standard
+$ gem install bundler # if working with ruby version below 2.6.0
+$ bundle install
+$ bundle exec rake # to run test suite
+$ bundle exec standardrb # to lint standard using standard
+$ bundle exec standardrb --format=progress # same as above, but with more verbose output
+```
+
 ## Code of Conduct
 This project follows Test Double's [code of conduct](https://testdouble.com/code-of-conduct) for all community interactions, including (but not limited to) one-on-one communications, public posts/comments, code reviews, pull requests, and GitHub issues. If violations occur, Test Double will take any action they deem appropriate for the infraction, up to and including blocking a user from the organization's repositories.
