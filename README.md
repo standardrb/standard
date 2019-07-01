@@ -376,8 +376,6 @@ $ cd standard
 $ gem install bundler # if working with ruby version below 2.6.0
 $ bundle install
 $ bundle exec rake # to run test suite
-$ bundle exec standardrb # to lint standard using standard
-$ bundle exec standardrb --format=progress # same as above, but with more verbose output
 ```
 
 ## Code of Conduct
