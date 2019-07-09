@@ -162,7 +162,7 @@ Layout/IndentFirstHashElement:
 
 Layout/IndentHeredoc:
   Enabled: true
-  EnforcedStyle: auto_detection
+  EnforcedStyle: squiggly
 
 Layout/IndentationConsistency:
   Enabled: true
