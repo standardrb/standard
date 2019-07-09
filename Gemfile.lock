@@ -1,8 +1,9 @@
 PATH
   remote: .
   specs:
-    standard (0.0.41)
-      rubocop (~> 0.67.1)
+    standard (0.1.0)
+      rubocop (~> 0.72.0)
+      rubocop-performance (~> 1.4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -21,24 +22,24 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    psych (3.1.0)
     rainbow (3.0.0)
     rake (12.3.2)
-    rubocop (0.67.2)
+    rubocop (0.72.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
-      parser (>= 2.5, != 2.5.1.1)
-      psych (>= 3.1.0)
+      parser (>= 2.6)
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 1.6)
+      unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-performance (1.4.0)
+      rubocop (>= 0.71.0)
     ruby-progressbar (1.10.1)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    unicode-display_width (1.5.0)
+    unicode-display_width (1.6.0)
 
 PLATFORMS
   ruby

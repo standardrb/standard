@@ -279,8 +279,8 @@ for details.
 
 Because Standard wraps RuboCop, they share the same [runtime
 requirements](https://github.com/rubocop-hq/rubocop#compatibility)—currently,
-that's MRI 2.2 and newer. While Standard can't avoid this runtime requirement,
-it does allow you to lint codebases that target Ruby versions older than 2.2 by
+that's MRI 2.3 and newer. While Standard can't avoid this runtime requirement,
+it does allow you to lint codebases that target Ruby versions older than 2.3 by
 narrowing the ruleset somewhat.
 
 Standard will default to telling RuboCop to target the currently running version
@@ -297,11 +297,11 @@ for an example.
 
 It's a little confusing to consider, but the targeted Ruby version for linting
 may or may not match the version of the runtime (suppose you're on Ruby 2.5.1,
-but your library supports Ruby 2.2.0). In this case, specify `ruby_version` and
+but your library supports Ruby 2.3.0). In this case, specify `ruby_version` and
 you should be okay. However, note that if you target a _newer_ Ruby version than
 the runtime, RuboCop may behave in surprising or inconsistent ways.
 
-If you are targeting a Ruby older than 2.2 and run into an issue, check out
+If you are targeting a Ruby older than 2.3 and run into an issue, check out
 Standard's [version-specific RuboCop
 configurations](https://github.com/testdouble/standard/tree/master/config) and
 consider helping out by submitting a pull request if you find a rule that won't

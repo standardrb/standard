@@ -1,5 +1,8 @@
+require:
+  - rubocop-performance
+
 AllCops:
-  # Prevent RuboCop from exploding when it finds an older-than-2.2 .ruby-version
+  # Prevent RuboCop from exploding when it finds an older-than-2.3 .ruby-version
   TargetRubyVersion: 2.5
   DisabledByDefault: true
   Exclude: []
@@ -138,12 +141,12 @@ Layout/ExtraSpacing:
   AllowBeforeTrailingComments: false
   ForceEqualSignAlignment: false
 
-Layout/FirstParameterIndentation:
+Layout/IndentFirstArgument:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
 
-Layout/IndentArray:
+Layout/IndentFirstArrayElement:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
@@ -152,14 +155,14 @@ Layout/IndentAssignment:
   Enabled: true
   IndentationWidth: ~
 
-Layout/IndentHash:
+Layout/IndentFirstHashElement:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
 
 Layout/IndentHeredoc:
   Enabled: true
-  EnforcedStyle: auto_detection
+  EnforcedStyle: squiggly
 
 Layout/IndentationConsistency:
   Enabled: true
@@ -630,199 +633,6 @@ Performance/UnfreezeString:
 
 Performance/UriDefaultParser:
   Enabled: true
-
-Rails/ActionFilter:
-  Enabled: true
-  EnforcedStyle: action
-  Include:
-    - app/controllers/**/*.rb
-
-Rails/ActiveRecordAliases:
-  Enabled: true
-
-Rails/ActiveSupportAliases:
-  Enabled: true
-
-Rails/ApplicationJob:
-  Enabled: true
-
-Rails/ApplicationRecord:
-  Enabled: true
-
-Rails/AssertNot:
-  Enabled: true
-  Include:
-    - '**/test/**/*'
-
-Rails/Blank:
-  Enabled: true
-  # Convert usages of `nil? || empty?` to `blank?`
-  NilOrEmpty: true
-  # Convert usages of `!present?` to `blank?`
-  NotPresent: true
-  # Convert usages of `unless present?` to `if blank?`
-  UnlessPresent: true
-
-Rails/BulkChangeTable:
-  Enabled: true
-  Database: null
-  Include:
-    - db/migrate/*.rb
-
-Rails/CreateTableWithTimestamps:
-  Enabled: true
-  Include:
-    - db/migrate/*.rb
-
-Rails/Date:
-  Enabled: true
-  EnforcedStyle: flexible
-
-Rails/Delegate:
-  Enabled: true
-  EnforceForPrefixed: true
-
-Rails/DelegateAllowBlank:
-  Enabled: true
-
-Rails/DynamicFindBy:
-  Enabled: true
-  Whitelist:
-    - find_by_sql
-
-Rails/EnumUniqueness:
-  Enabled: true
-  Include:
-    - app/models/**/*.rb
-
-Rails/EnvironmentComparison:
-  Enabled: true
-
-Rails/Exit:
-  Enabled: true
-  Include:
-    - app/**/*.rb
-    - config/**/*.rb
-    - lib/**/*.rb
-  Exclude:
-    - lib/**/*.rake
-
-Rails/FilePath:
-  Enabled: true
-  EnforcedStyle: arguments
-
-Rails/FindBy:
-  Enabled: true
-  Include:
-    - app/models/**/*.rb
-
-Rails/FindEach:
-  Enabled: true
-  Include:
-    - app/models/**/*.rb
-
-Rails/HasAndBelongsToMany:
-  Enabled: true
-  Include:
-    - app/models/**/*.rb
-
-Rails/HttpPositionalArguments:
-  Enabled: true
-  Include:
-    - 'spec/**/*'
-    - 'test/**/*'
-
-Rails/HttpStatus:
-  Enabled: true
-  EnforcedStyle: symbolic
-
-Rails/InverseOf:
-  Enabled: true
-  Include:
-    - app/models/**/*.rb
-
-Rails/LexicallyScopedActionFilter:
-  Enabled: true
-  Safe: false
-  Include:
-    - app/controllers/**/*.rb
-
-Rails/NotNullColumn:
-  Enabled: true
-  Include:
-    - db/migrate/*.rb
-
-Rails/Output:
-  Enabled: true
-  Include:
-    - app/**/*.rb
-    - config/**/*.rb
-    - db/**/*.rb
-    - lib/**/*.rb
-
-Rails/OutputSafety:
-  Enabled: true
-
-Rails/PluralizationGrammar:
-  Enabled: true
-
-Rails/Presence:
-  Enabled: true
-
-Rails/Present:
-  Enabled: true
-  NotNilAndNotEmpty: true
-  NotBlank: true
-  UnlessBlank: true
-
-Rails/ReadWriteAttribute:
-  Enabled: true
-  Include:
-    - app/models/**/*.rb
-
-Rails/RedundantReceiverInWithOptions:
-  Enabled: true
-
-Rails/RefuteMethods:
-  Enabled: true
-  Include:
-    - '**/test/**/*'
-
-Rails/RelativeDateConstant:
-  Enabled: true
-  AutoCorrect: false
-
-Rails/RequestReferer:
-  Enabled: true
-  EnforcedStyle: referer
-
-Rails/ReversibleMigration:
-  Enabled: true
-  Include:
-    - db/migrate/*.rb
-
-Rails/SafeNavigation:
-  Enabled: true
-  ConvertTry: false
-
-Rails/ScopeArgs:
-  Enabled: true
-  Include:
-    - app/models/**/*.rb
-
-Rails/TimeZone:
-  Enabled: true
-  EnforcedStyle: flexible
-
-Rails/UniqBeforePluck:
-  Enabled: true
-  EnforcedStyle: conservative
-  AutoCorrect: false
-
-Rails/Validation:
-  Enabled: true
-  Include:
-    - app/models/**/*.rb
 
 Security/Eval:
   Enabled: true
