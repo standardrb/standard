@@ -84,7 +84,7 @@ module CopInvoker
     #
     # @return [AnnotatedSource]
     def self.parse(annotated_source)
-      source      = []
+      source = []
       annotations = []
 
       annotated_source.each_line do |source_line|
@@ -105,7 +105,7 @@ module CopInvoker
     # @note annotations are sorted so that reconstructing the annotation
     #   text via {#to_s} is deterministic
     def initialize(lines, annotations)
-      @lines       = lines.freeze
+      @lines = lines.freeze
       @annotations = annotations.sort.freeze
     end
 

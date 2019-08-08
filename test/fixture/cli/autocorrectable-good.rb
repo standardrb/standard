@@ -43,6 +43,8 @@ end
 # some alignment opinions
 class AlignyStuff
   def self.enum(options)
+    a = 3
+    a + 4
   end
 
   enum event_type: {
