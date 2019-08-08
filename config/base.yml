@@ -316,9 +316,6 @@ Layout/TrailingWhitespace:
   Enabled: true
   AllowInHeredoc: false
 
-Lint/AmbiguousBlockAssociation:
-  Enabled: true
-
 Lint/AmbiguousOperator:
   Enabled: true
 
