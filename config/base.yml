@@ -137,7 +137,7 @@ Layout/EndOfLine:
 
 Layout/ExtraSpacing:
   Enabled: true
-  AllowForAlignment: true
+  AllowForAlignment: false
   AllowBeforeTrailingComments: false
   ForceEqualSignAlignment: false
 
