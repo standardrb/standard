@@ -340,31 +340,8 @@ information.
 It can be very handy to know about failures while editing to shorten the
 feedback loop. Some editors support asynchronously running linters.
 
-### Atom
-
-1. Install [linter-rubocop](https://github.com/AtomLinter/linter-rubocop) package.
-
-2. Configure `linter-rubocop` to use either `standardrb` [binstub](https://bundler.io/man/bundle-binstubs.1.html) (`./bin/standardrb`) or a globally installed `standardrb` (with absolute path).
-
-![alt "linter-rubocop configuration"](https://user-images.githubusercontent.com/631534/54869518-e5aa7780-4d99-11e9-81e7-777654a4f91b.png)
-
-### Vim
-
-Install [ale](https://github.com/w0rp/ale). And add these lines to your `.vimrc`
-file.
-
-```vimscript
-let g:ale_linters = {'ruby': ['standardrb']}
-let g:ale_fixers = {'ruby': ['standardrb']}
-```
-
-This sets Standard as your only linter and fixer for Ruby files and so
-prevents conflicts with RuboCop. For automatic fixing on save, add
-this to your `.vimrc`:
-
-```
-let g:ale_fix_on_save = 1
-```
+- [Atom](https://github.com/testdouble/standard/wiki/IDE:-Atom)
+- [vim](https://github.com/testdouble/standard/wiki/IDE:-vim)
 
 ## Contributing
 
