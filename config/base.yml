@@ -7,13 +7,6 @@ AllCops:
   DisabledByDefault: true
   Exclude: []
 
-Bundler/DuplicatedGem:
-  Enabled: true
-  Include:
-    - '**/*.gemfile'
-    - '**/Gemfile'
-    - '**/gems.rb'
-
 Bundler/InsecureProtocolSource:
   Enabled: true
   Include:
