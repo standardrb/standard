@@ -24,6 +24,10 @@ Layout/AccessModifierIndentation:
   EnforcedStyle: indent
   IndentationWidth: ~
 
+Layout/AlignArguments:
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
+
 Layout/AlignArray:
   Enabled: true
 
