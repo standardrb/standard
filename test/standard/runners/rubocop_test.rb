@@ -50,11 +50,12 @@ class Standard::Runners::RubocopTest < UnitTest
       C:  1:  1: [Corrected] Style/FrozenStringLiteralComment: Missing magic comment # frozen_string_literal: true.
       C:  1:  1: [Corrected] Style/SingleLineMethods: Avoid single-line method definitions.
       C:  1:  8: [Corrected] Layout/SpaceAfterSemicolon: Space missing after semicolon.
+      C:  2:  1: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+      C:  2:  8: [Corrected] Style/Semicolon: Do not use semicolons to terminate expressions.
+      C:  2:  9: [Corrected] Layout/TrailingWhitespace: Trailing whitespace detected.
       C:  3:  5: Naming/MethodName: Use snake_case for method names.
-      C:  3:  8: [Corrected] Style/Semicolon: Do not use semicolons to terminate expressions.
-      C:  3:  9: [Corrected] Layout/TrailingWhitespace: Trailing whitespace detected.
 
-      1 file inspected, 6 offenses detected, 5 offenses corrected
+      1 file inspected, 7 offenses detected, 6 offenses corrected
       ====================
       # frozen_string_literal: true
 
