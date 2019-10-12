@@ -57,4 +57,12 @@ class RuboCop::Cop::Standard::SemanticBlocksTest < UnitTest
       end
     RUBY
   end
+
+  def test_method_with_arguments_without_parentheses_multi_line_block_curly_braces
+    assert_no_offense @cop, <<-RUBY
+      some_method argument, another_argument { |block_argument|
+        puts "curly braces should be allowed here"
+      }
+    RUBY
+  end
 end
