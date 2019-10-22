@@ -65,4 +65,12 @@ class RuboCop::Cop::Standard::SemanticBlocksTest < UnitTest
       }
     RUBY
   end
+
+  def test_accepts_a_multiline_functional_block_with_do_end_if_it_is_an_ignored_method
+    assert_no_offense @cop, <<-RUBY
+      foo = lambda do
+        puts 42
+      end
+    RUBY
+  end
 end
