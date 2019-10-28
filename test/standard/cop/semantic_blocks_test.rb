@@ -12,6 +12,38 @@ class RuboCop::Cop::Standard::SemanticBlocksTest < UnitTest
     @cop = RuboCop::Cop::Standard::SemanticBlocks.new(config)
   end
 
+  def test_functional_block_single_line_braces
+    assert_no_offense @cop, <<-RUBY
+      result = [:a].map { |arg| arg }
+    RUBY
+  end
+
+  # This is an exception to "pure" semantic blocks
+  # See: https://github.com/testdouble/standard/pull/9
+  def test_functional_block_single_line_do_end
+    assert_offense @cop, <<-RUBY
+      result = [:a].map do |arg| arg end
+                        ^^ Prefer `{...}` over `do...end` for single-line blocks.
+    RUBY
+  end
+
+  # This is an exception to "pure" semantic blocks
+  # See: https://github.com/testdouble/standard/pull/9
+  def test_procedural_block_single_line_braces
+    assert_no_offense @cop, <<-RUBY
+      [:a].map { puts "procedural" }
+    RUBY
+  end
+
+  # This is an exception to "pure" semantic blocks
+  # See: https://github.com/testdouble/standard/pull/9
+  def test_procedural_block_single_line_do_end
+    assert_offense @cop, <<-RUBY
+      [:a].map do puts "procedural" end
+               ^^ Prefer `{...}` over `do...end` for single-line blocks.
+    RUBY
+  end
+
   def test_do_end_with_assignment_fails
     assert_offense @cop, <<-RUBY
       lulz = [:a].map do
