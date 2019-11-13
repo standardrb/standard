@@ -526,9 +526,6 @@ Lint/Void:
   Enabled: true
   CheckForMethodsWithNoSideEffects: false
 
-Naming/AccessorMethodName:
-  Enabled: true
-
 Naming/AsciiIdentifiers:
   Enabled: true
 
