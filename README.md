@@ -341,8 +341,9 @@ It can be very handy to know about failures while editing to shorten the
 feedback loop. Some editors support asynchronously running linters.
 
 - [Atom](https://github.com/testdouble/standard/wiki/IDE:-Atom)
+- [emacs (via flycheck)](https://github.com/julianrubisch/flycheck-standardrb)
 - [RubyMine](https://www.jetbrains.com/help/ruby/rubocop.html#disable_rubocop)
-- [vim](https://github.com/testdouble/standard/wiki/IDE:-vim)
+- [vim (via ALE)](https://github.com/testdouble/standard/wiki/IDE:-vim)
 - [VS Code](https://github.com/testdouble/standard/wiki/IDE:-vscode)
 
 ## Does Standard work with [Insert other tool name here]?
