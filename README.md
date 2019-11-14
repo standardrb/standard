@@ -341,7 +341,17 @@ It can be very handy to know about failures while editing to shorten the
 feedback loop. Some editors support asynchronously running linters.
 
 - [Atom](https://github.com/testdouble/standard/wiki/IDE:-Atom)
+- [RubyMine](https://www.jetbrains.com/help/ruby/rubocop.html#disable_rubocop)
 - [vim](https://github.com/testdouble/standard/wiki/IDE:-vim)
+- [VS Code](https://github.com/testdouble/standard/wiki/IDE:-vscode)
+
+## Does Standard work with [Insert other tool name here]?
+
+Maybe! Start by searching the repository to see if there's an existing issue open for 
+the tool you're interested in. That aside, here are other known integrations aside
+from editor plugins:
+
+* [Pronto](https://github.com/julianrubisch/pronto-standardrb)
 
 ## Contributing
 
