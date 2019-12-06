@@ -17,7 +17,7 @@ class Standard::CreatesConfigStore
       elsif desired_version < Gem::Version.new("2.3")
         "ruby-2.2.yml"
       else
-        "base.yml"
+        "rails.yml"
       end
 
       Pathname.new(__dir__).join("../../../config/#{file_name}")
