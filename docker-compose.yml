@@ -2,7 +2,6 @@ version: '3.7'
 services:
   app:
     build: .
-    #command: tail -f /dev/null
     volumes:
       - .:/app
       - bundle-volume:/usr/local/bundle
