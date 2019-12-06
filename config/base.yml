@@ -24,20 +24,20 @@ Layout/AccessModifierIndentation:
   EnforcedStyle: indent
   IndentationWidth: ~
 
-Layout/AlignArguments:
+Layout/ArgumentAlignment:
   Enabled: true
   EnforcedStyle: with_fixed_indentation
 
-Layout/AlignArray:
+Layout/ArrayAlignment:
   Enabled: true
 
-Layout/AlignHash:
+Layout/HashAlignment:
   Enabled: true
   EnforcedHashRocketStyle: key
   EnforcedColonStyle: key
   EnforcedLastArgumentHashStyle: always_inspect
 
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   Enabled: true
   EnforcedStyle: with_fixed_indentation
   IndentationWidth: ~
@@ -138,26 +138,26 @@ Layout/ExtraSpacing:
   AllowBeforeTrailingComments: false
   ForceEqualSignAlignment: false
 
-Layout/IndentFirstArgument:
+Layout/FirstArgumentIndentation:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
 
-Layout/IndentFirstArrayElement:
+Layout/FirstArrayElementIndentation:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
 
-Layout/IndentAssignment:
+Layout/AssignmentIndentation:
   Enabled: true
   IndentationWidth: ~
 
-Layout/IndentFirstHashElement:
+Layout/FirstHashElementIndentation:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
 
-Layout/IndentHeredoc:
+Layout/HeredocIndentation:
   Enabled: true
   EnforcedStyle: squiggly
 
@@ -173,7 +173,7 @@ Layout/IndentationWidth:
 Layout/InitialIndentation:
   Enabled: true
 
-Layout/LeadingBlankLines:
+Layout/LeadingEmptyLines:
   Enabled: true
 
 Layout/LeadingCommentSpace:
@@ -305,7 +305,7 @@ Layout/Tab:
   Enabled: true
   IndentationWidth: ~
 
-Layout/TrailingBlankLines:
+Layout/TrailingEmptyLines:
   Enabled: true
   EnforcedStyle: final_newline
 
@@ -344,7 +344,7 @@ Lint/DuplicateCaseCondition:
 Lint/DuplicateMethods:
   Enabled: true
 
-Lint/DuplicatedKey:
+Lint/DuplicateHashKey:
   Enabled: true
 
 Lint/EachWithObjectArgument:
@@ -410,7 +410,7 @@ Lint/MissingCopEnableDirective:
   Enabled: true
   MaximumRangeSize: .inf
 
-Lint/MultipleCompare:
+Lint/MultipleComparison:
   Enabled: true
 
 Lint/NestedMethodDefinition:
@@ -460,7 +460,7 @@ Lint/ReturnInVoidContext:
 
 Lint/SafeNavigationChain:
   Enabled: true
-  Whitelist:
+  AllowedMethods:
     - present?
     - blank?
     - presence
@@ -469,7 +469,7 @@ Lint/SafeNavigationChain:
 
 Lint/SafeNavigationConsistency:
   Enabled: true
-  Whitelist:
+  AllowedMethods:
     - present?
     - blank?
     - presence
@@ -483,7 +483,7 @@ Lint/ShadowedArgument:
 Lint/ShadowedException:
   Enabled: true
 
-Lint/StringConversionInInterpolation:
+Lint/RedundantStringCoercion:
   Enabled: true
 
 Lint/Syntax:
@@ -495,10 +495,10 @@ Lint/UnderscorePrefixedVariableName:
 Lint/UnifiedInteger:
   Enabled: true
 
-Lint/UnneededRequireStatement:
+Lint/RedundantRequireStatement:
   Enabled: true
 
-Lint/UnneededSplatExpansion:
+Lint/RedundantSplatExpansion:
   Enabled: true
 
 Lint/UnreachableCode:
@@ -546,7 +546,7 @@ Naming/MethodName:
   Enabled: true
   EnforcedStyle: snake_case
 
-Naming/UncommunicativeBlockParamName:
+Naming/BlockParameterName:
   Enabled: true
   MinNameLength: 1
   AllowNamesEndingInNumbers: true
@@ -842,7 +842,7 @@ Style/NestedModifier:
 
 Style/NestedParenthesizedCalls:
   Enabled: true
-  Whitelist:
+  AllowedMethods:
     - be
     - be_a
     - be_an
@@ -952,7 +952,7 @@ Style/RescueStandardError:
 Style/SafeNavigation:
   Enabled: true
   ConvertCodeThatCanStartToReturnNil: false
-  Whitelist:
+  AllowedMethods:
     - present?
     - blank?
     - presence
@@ -1026,7 +1026,7 @@ Style/TrivialAccessors:
   AllowPredicates: true
   AllowDSLWriters: false
   IgnoreClassMethods: false
-  Whitelist:
+  AllowedMethod:
     - to_ary
     - to_a
     - to_c
@@ -1048,19 +1048,19 @@ Style/TrivialAccessors:
 Style/UnlessElse:
   Enabled: true
 
-Style/UnneededCapitalW:
+Style/RedundantCapitalW:
   Enabled: true
 
-Style/UnneededCondition:
+Style/RedundantCondition:
   Enabled: true
 
-Style/UnneededInterpolation:
+Style/RedundantInterpolation:
   Enabled: true
 
-Style/UnneededPercentQ:
+Style/RedundantPercentQ:
   Enabled: true
 
-Style/UnneededSort:
+Style/RedundantSort:
   Enabled: true
 
 Style/UnpackFirst:

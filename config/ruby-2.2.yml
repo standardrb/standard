@@ -4,5 +4,5 @@ AllCops:
   TargetRubyVersion: 2.3 # The oldest supported
 
 Layout:
-  IndentHeredoc:
+  HeredocIndentation:
     Enabled: false
