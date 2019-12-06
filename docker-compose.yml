@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  app:
+    build: .
+    #command: tail -f /dev/null
+    volumes:
+      - .:/app
+      - bundle-volume:/usr/local/bundle
+    ports:
+      - "1234:1234" # RubyMine
+
+volumes:
+  bundle-volume:

@@ -358,7 +358,23 @@ from editor plugins:
 
 ## Contributing
 
-Follow the steps below to setup standard locally:
+Follow the steps below to setup Standard using [Docker](https://www.docker.com/):
+
+```bash
+$ git clone https://github.com/testdouble/standard
+$ cd standard
+$ docker-compose build
+$ docker-compose run app rake # to run test suite
+```
+
+The Docker image is built using [Alpine Linux](https://alpinelinux.org/) which 
+uses `sh` instead of `bash`.  So to access the image you need to run:
+
+```bash
+$ docker-compose run app sh
+```
+
+Don't feel like using Docker?  The follow the steps below to setup standard locally:
 
 ```bash
 $ git clone https://github.com/testdouble/standard
