@@ -27,4 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 12.0"
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "gimme"
+
+  spec.add_development_dependency "ruby-debug-ide"
+  spec.add_development_dependency "debase"
 end
