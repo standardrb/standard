@@ -25,6 +25,10 @@ class Standard::MergesSettingsTest < UnitTest
     assert_equal :version, @subject.call(["-v"], {}).runner
   end
 
+  def test_gen_ignore_sets_command_gen_ignore
+    assert_equal :genignore, @subject.call(["--gen-ignore"], {}).runner
+  end
+
   def test_fix_flag_sets_auto_correct_options
     options = @subject.call(["--fix"], {}).options
 
