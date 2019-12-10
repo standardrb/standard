@@ -39,6 +39,19 @@ class Standard::CliTest < UnitTest
     assert_empty fake_out.string
   end
 
+  # REM
+  # def test_gen_ignore_no_issues
+  #  FileUtils.rm_rf("tmp/cli_test")
+  #  FileUtils.mkdir_p("tmp/cli_test")
+  #
+  #  FileUtils.cp("test/fixture/cli/autocorrectable-bad.rb", "tmp/cli_test/subject.rb")
+  #
+  #  exit_code = Standard::Cli.new(["tmp/cli_test/subject.rb", "--gen-ignore"]).run
+  #
+  #  assert_equal 0, exit_code
+  #  assert_equal IO.read("test/fixture/cli/autocorrectable-bad-ignore.rb"), IO.read("tmp/cli_test/.standard_todo.yml")
+  # end
+
   private
 
   def call_to_action_message

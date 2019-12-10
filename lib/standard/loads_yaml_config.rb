@@ -13,18 +13,15 @@ module Standard
       yaml_path = @parses_cli_option.call(argv, "--config") ||
         FileFinder.new.call(".standard.yml", search_path)
 
-      # REM
+      # Check for the todo file.  If found merge with standard config file.
       todo_yaml_path = @parses_cli_option.call(argv, "--todo") ||
-          FileFinder.new.call('.standard_todo.yml', search_path)
+        FileFinder.new.call(".standard_todo.yml", search_path)
 
       standard_yaml = load_standard_yaml(yaml_path)
       todo_yaml = load_standard_yaml(todo_yaml_path)
 
-      puts todo_yaml
-
       standard_yaml.merge!(todo_yaml)
       construct_config(yaml_path, standard_yaml)
-        #construct_config(yaml_path, load_standard_yaml(yaml_path))
     end
 
     private

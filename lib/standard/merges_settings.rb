@@ -20,7 +20,7 @@ module Standard
 
     def separate_argv(argv)
       argv.partition { |flag|
-        ["--gen-exclude", "--fix", "--no-fix", "--version", "-v", "--help", "-h"].include?(flag)
+        ["--gen-ignore", "--fix", "--no-fix", "--version", "-v", "--help", "-h"].include?(flag)
       }
     end
 
@@ -36,14 +36,13 @@ module Standard
       }
     end
 
-    # REM
     def determine_command(argv)
       if (argv & ["--help", "-h"]).any?
         :help
       elsif (argv & ["--version", "-v"]).any?
         :version
-      elsif (argv & ["--gen-exclude"]).any?
-        :genexclude
+      elsif (argv & ["--gen-ignore"]).any?
+        :genignore
       else
         :rubocop
 
