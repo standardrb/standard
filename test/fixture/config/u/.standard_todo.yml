@@ -1,0 +1,3 @@
+ignore:
+  - todo_file_one.rb
+  - todo_file_two.rb

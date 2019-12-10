@@ -92,6 +92,19 @@ class Standard::BuildsConfigTest < UnitTest
     assert_match(/Configuration file ".*fake\.file" not found/, err.message)
   end
 
+  def test_todo_merged
+    result = @subject.call([], path("test/fixture/config/u"))
+
+    assert_equal DEFAULT_OPTIONS, result.rubocop_options
+
+    assert_equal config_store("test/fixture/config/u").dup.tap { |config_store|
+      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/u/none_todo_path/**/*")]
+      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/u/none_todo_file.rb")]
+      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/u/todo_file_one.rb")]
+      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/u/todo_file_two.rb")]
+    }, result.rubocop_config_store.for("").to_h
+  end
+
   private
 
   def config_store(config_root = nil, rubocop_yml = "config/base.yml", ruby_version = RUBY_VERSION)

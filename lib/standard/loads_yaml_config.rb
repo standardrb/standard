@@ -12,19 +12,24 @@ module Standard
     def call(argv, search_path)
       yaml_path = @parses_cli_option.call(argv, "--config") ||
         FileFinder.new.call(".standard.yml", search_path)
+      standard_yaml = load_standard_yaml(yaml_path)
 
-      # Check for the todo file.  If found merge with standard config file.
       todo_yaml_path = @parses_cli_option.call(argv, "--todo") ||
         FileFinder.new.call(".standard_todo.yml", search_path)
-
-      standard_yaml = load_standard_yaml(yaml_path)
       todo_yaml = load_standard_yaml(todo_yaml_path)
 
-      standard_yaml.merge!(todo_yaml)
+      merge_ignore(standard_yaml, todo_yaml)
       construct_config(yaml_path, standard_yaml)
     end
 
     private
+
+    def merge_ignore(merge_into_yaml, merge_from_yaml)
+      merge_into_yaml["ignore"] = arrayify(merge_into_yaml["ignore"])
+      merge_from_yaml["ignore"] = arrayify(merge_from_yaml["ignore"])
+
+      merge_into_yaml["ignore"] = merge_into_yaml["ignore"] + merge_from_yaml["ignore"]
+    end
 
     def load_standard_yaml(yaml_path)
       if yaml_path
