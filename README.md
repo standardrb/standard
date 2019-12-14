@@ -86,6 +86,20 @@ $ bundle exec standardrb "lib/**/*.rb" test
 **Note:** by default, StandardRB will look for all `*.rb` files (and some other
 files typically associated with Ruby like `*.gemspec` and `Gemfile`)
 
+If you have an existing project but aren't ready to fix all the files yet you can
+generate a todo file:
+
+```bash
+$ bundle exec standardrb --gen-ignore
+```
+
+This will create a `.standard_todo.yml` that lists all the files that contain errors.
+When you run Standard in the future it will ignore these files as if they lived under the
+`ignore` section in the `.standard.yml` file.
+
+As you refactor your existing project you can remove files from the list.  You can
+also regenerate the todo file at anytime by re-running the above command.
+
 ### Using with Rake
 
 Standard also ships with Rake tasks. If you're using Rails, these should
@@ -140,6 +154,8 @@ Note: If you're running Standard in a context where your `.standard.yml` file
 cannot be found by ascending the current working directory (i.e. against a
 temporary file buffer in your editor), you can specify the config location with
 `--config path/to/.standard.yml`.
+
+Similar with the `.standard_todo.yml` you can specify `--todo path/to/.standard_todo.yml`.
 
 ## What you might do if you're REALLY clever
 
