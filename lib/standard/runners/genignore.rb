@@ -1,7 +1,6 @@
 require "yaml"
 require_relative "rubocop"
 
-# REM
 module Standard
   module Runners
     class Genignore
@@ -11,6 +10,7 @@ module Standard
         config.rubocop_options[:format] = "files"
         config.rubocop_options[:out] = "exclude.txt"
 
+        File.delete("exclude.txt") if File.exist?("exclude.txt")
         Runners::Rubocop.new.call(config)
 
         # Read in the files with errors.
