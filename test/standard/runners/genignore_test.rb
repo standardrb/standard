@@ -6,7 +6,6 @@ require "standard/runners/rubocop"
 class Standard::Runners::GenignoreTest < UnitTest
   def setup
     @subject = Standard::Runners::Genignore.new
-    # @subject = Standard::Runners::Rubocop.new
   end
 
   def test_todo_generated
