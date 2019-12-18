@@ -19,7 +19,7 @@ class Standard::Runners::GenignoreTest < UnitTest
       @subject.call(create_config)
     end
 
-    assert_equal true, File.exist?("tmp/genignore_test/.standard_todo.yml")
+    assert File.exist?("tmp/genignore_test/.standard_todo.yml")
     assert_equal expected_yaml, YAML.load_file("tmp/genignore_test/.standard_todo.yml")
   end
 
