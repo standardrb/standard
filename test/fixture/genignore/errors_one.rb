@@ -1,4 +1,4 @@
-class ErrosOne
+class ErrorsOne
   def stuff(id)
     if bar = Bar.find(id)
       bar.nice!
