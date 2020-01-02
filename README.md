@@ -190,6 +190,7 @@ if you've used StandardJS.)
 * [Hashrocket](https://hashrocket.com)
 * [Brand New Box](https://brandnewbox.com)
 * [Monterail](https://www.monterail.com)
+* [Level UP Solutions](https://levups.com)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
