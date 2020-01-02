@@ -13,10 +13,17 @@ module Standard
         File.delete("exclude.txt") if File.exist?("temp_exclude.txt")
         Runners::Rubocop.new.call(config)
 
-        # Read in the files with errors.
+        # Read in the files with errors.  It will have the absolute paths
+        # of the files but we only want the relative path.
         files_with_errors = File.open("temp_exclude.txt").readlines.map(&:chomp)
         files_with_errors.map! do |file|
-          Pathname.new(file).relative_path_from(Dir.pwd).to_s
+          # Get the relative file path.  Don't use the
+          # relative_path_from method as it will raise an
+          # error in Ruby 2.4.1 and possibly other versions.
+          #
+          # https://bugs.ruby-lang.org/issues/10011
+          #
+          file.sub(Dir.pwd + File::SEPARATOR, "")
         end
 
         yaml_format_errors = {"ignore" => files_with_errors}
