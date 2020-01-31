@@ -5,6 +5,8 @@ require "standard/runners/rubocop"
 
 class Standard::Runners::GenignoreTest < UnitTest
   def setup
+    super
+
     @subject = Standard::Runners::Genignore.new
   end
 
@@ -13,13 +15,13 @@ class Standard::Runners::GenignoreTest < UnitTest
     FileUtils.mkdir_p("tmp/genignore_test")
     FileUtils.cp_r("test/fixture/genignore/.", "tmp/genignore_test")
 
-    expected_yaml = {"ignore" => %w[errors_one.rb errors_two.rb]}
-
     Dir.chdir("tmp/genignore_test") do
       @subject.call(create_config)
     end
 
     assert File.exist?("tmp/genignore_test/.standard_todo.yml")
+
+    expected_yaml = {"ignore" => %w[errors_one.rb errors_two.rb]}
     assert_equal expected_yaml, YAML.load_file("tmp/genignore_test/.standard_todo.yml")
   end
 

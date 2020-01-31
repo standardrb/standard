@@ -9,6 +9,8 @@ class Standard::Runners::RubocopTest < UnitTest
   }.freeze
 
   def setup
+    super
+
     @subject = Standard::Runners::Rubocop.new
   end
 
