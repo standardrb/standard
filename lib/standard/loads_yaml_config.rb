@@ -10,16 +10,14 @@ module Standard
     end
 
     def call(argv, search_path)
-      yaml_path = @parses_cli_option.call(argv, "--config") ||
-        FileFinder.new.call(".standard.yml", search_path)
-      standard_yaml = load_standard_yaml(yaml_path)
+      standard_yaml_path = determine_yaml_file(argv, search_path, "--config", ".standard.yml")
+      todo_yaml_path = determine_yaml_file(argv, search_path, "--todo", ".standard_todo.yml")
 
-      todo_yaml_path = @parses_cli_option.call(argv, "--todo") ||
-        FileFinder.new.call(".standard_todo.yml", search_path)
+      standard_yaml = load_standard_yaml(standard_yaml_path)
       todo_yaml = load_standard_yaml(todo_yaml_path)
 
       merge_ignore(standard_yaml, todo_yaml)
-      construct_config(yaml_path, standard_yaml)
+      construct_config(standard_yaml_path, standard_yaml)
     end
 
     private
@@ -29,6 +27,10 @@ module Standard
       merge_from_yaml["ignore"] = arrayify(merge_from_yaml["ignore"])
 
       merge_into_yaml["ignore"] = merge_into_yaml["ignore"] + merge_from_yaml["ignore"]
+    end
+
+    def determine_yaml_file(argv, search_path, option_name, default_file)
+      @parses_cli_option.call(argv, option_name) || FileFinder.new.call(default_file, search_path)
     end
 
     def load_standard_yaml(yaml_path)
