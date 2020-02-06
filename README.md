@@ -155,7 +155,7 @@ cannot be found by ascending the current working directory (i.e. against a
 temporary file buffer in your editor), you can specify the config location with
 `--config path/to/.standard.yml`.
 
-Similarly, fow the `.standard_todo.yml` file, you can specify `--todo path/to/.standard_todo.yml`.
+Similarly, for the `.standard_todo.yml` file, you can specify `--todo path/to/.standard_todo.yml`.
 
 ## What you might do if you're REALLY clever
 
