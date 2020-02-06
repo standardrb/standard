@@ -26,7 +26,7 @@ class Standard::MergesSettingsTest < UnitTest
   end
 
   def test_gen_ignore_sets_command_to_gen_ignore
-    assert_equal :genignore, @subject.call(["--gen-ignore"], {}).runner
+    assert_equal :genignore, @subject.call(["--generate-todo"], {}).runner
   end
 
   def test_fix_flag_sets_auto_correct_options

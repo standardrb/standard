@@ -90,7 +90,7 @@ If you have an existing project but aren't ready to fix all the files yet you ca
 generate a todo file:
 
 ```bash
-$ bundle exec standardrb --gen-ignore
+$ bundle exec standardrb --generate-todo
 ```
 
 This will create a `.standard_todo.yml` that lists all the files that contain errors.

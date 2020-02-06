@@ -20,7 +20,7 @@ module Standard
 
     def separate_argv(argv)
       argv.partition { |flag|
-        ["--gen-ignore", "--fix", "--no-fix", "--version", "-v", "--help", "-h"].include?(flag)
+        ["--generate-todo", "--fix", "--no-fix", "--version", "-v", "--help", "-h"].include?(flag)
       }
     end
 
@@ -41,11 +41,10 @@ module Standard
         :help
       elsif (argv & ["--version", "-v"]).any?
         :version
-      elsif (argv & ["--gen-ignore"]).any?
+      elsif (argv & ["--generate-todo"]).any?
         :genignore
       else
         :rubocop
-
       end
     end
 
