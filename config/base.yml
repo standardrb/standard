@@ -422,6 +422,9 @@ Lint/NestedPercentLiteral:
 Lint/NextWithoutAccumulator:
   Enabled: true
 
+Lint/NonDeterministicRequireOrder:
+  Enabled: true
+
 Lint/NonLocalExitFromIterator:
   Enabled: true
 
@@ -1022,7 +1025,7 @@ Style/TrivialAccessors:
   AllowPredicates: true
   AllowDSLWriters: false
   IgnoreClassMethods: false
-  AllowedMethod:
+  AllowedMethods:
     - to_ary
     - to_a
     - to_c
