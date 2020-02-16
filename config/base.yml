@@ -903,10 +903,6 @@ Style/PercentLiteralDelimiters:
     '%w': '[]'
     '%W': '[]'
 
-Style/PercentQLiterals:
-  Enabled: true
-  EnforcedStyle: lower_case_q
-
 Style/PreferredHashMethods:
   Enabled: true
   EnforcedStyle: short
@@ -1046,9 +1042,6 @@ Style/TrivialAccessors:
     - to_sym
 
 Style/UnlessElse:
-  Enabled: true
-
-Style/RedundantCapitalW:
   Enabled: true
 
 Style/RedundantCondition:
