@@ -69,7 +69,7 @@ Layout/ConditionPosition:
 Layout/DefEndAlignment:
   Enabled: true
   EnforcedStyleAlignWith: start_of_line
-  AutoCorrect: false
+  AutoCorrect: true
   Severity: warning
 
 Layout/DotPosition:
@@ -355,7 +355,7 @@ Lint/ElseLayout:
 
 Lint/EmptyEnsure:
   Enabled: true
-  AutoCorrect: false
+  AutoCorrect: true
 
 Lint/EmptyExpression:
   Enabled: true
@@ -528,6 +528,9 @@ Lint/UselessSetterCall:
 Lint/Void:
   Enabled: true
   CheckForMethodsWithNoSideEffects: false
+
+Migration/DepartmentName:
+  Enabled: true
 
 Naming/AsciiIdentifiers:
   Enabled: true
