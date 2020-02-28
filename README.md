@@ -54,7 +54,9 @@ flag.
 
 If you're familiar with [RuboCop](https://github.com/rubocop-hq/rubocop), you
 can look at Standard's current base configuration in
-[config/base.yml](/config/base.yml).
+[config/base.yml](/config/base.yml). In lieu of a separate changelog file,
+significant changes to the configuration will be documented as [GitHub release
+notes](https://github.com/testdouble/standard/releases).
 
 **[NOTE: until StandardRB hits 1.0.0, we consider this configuration to be a
 non-final work in progress and we encourage you to submit your opinions (and
@@ -351,7 +353,7 @@ feedback loop. Some editors support asynchronously running linters.
 
 ## Does Standard work with [Insert other tool name here]?
 
-Maybe! Start by searching the repository to see if there's an existing issue open for 
+Maybe! Start by searching the repository to see if there's an existing issue open for
 the tool you're interested in. That aside, here are other known integrations aside
 from editor plugins:
 
