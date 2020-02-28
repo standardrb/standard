@@ -5,7 +5,7 @@ class Standard::BuildsConfigTest < UnitTest
     auto_correct: false,
     safe_auto_correct: false,
     formatters: [["Standard::Formatter", nil]],
-    parallel: false,
+    parallel: false
   }.freeze
 
   def setup

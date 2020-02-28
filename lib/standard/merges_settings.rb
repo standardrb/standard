@@ -51,7 +51,7 @@ module Standard
         auto_correct: standard_yaml[:fix],
         safe_auto_correct: standard_yaml[:fix],
         formatters: [[standard_yaml[:format] || "Standard::Formatter", nil]],
-        parallel: standard_yaml[:parallel],
+        parallel: standard_yaml[:parallel]
       }.merge(standard_cli_flags).merge(rubocop_cli_flags)
     end
 

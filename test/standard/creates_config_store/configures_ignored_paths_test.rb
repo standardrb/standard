@@ -10,7 +10,7 @@ class Standard::CreatesConfigStore::ConfiguresIgnoredPathsTest < UnitTest
 
     @subject.call(options_config, {
       ignore: [],
-      default_ignores: true,
+      default_ignores: true
     })
 
     assert_equal({
@@ -21,9 +21,9 @@ class Standard::CreatesConfigStore::ConfiguresIgnoredPathsTest < UnitTest
           "vendor/**/*",
           "bin/*",
           "db/schema.rb",
-          "tmp/**/*",
-        ].map { |path| File.expand_path(File.join(Dir.pwd, path)) },
-      },
+          "tmp/**/*"
+        ].map { |path| File.expand_path(File.join(Dir.pwd, path)) }
+      }
     }, options_config)
   end
 
@@ -33,7 +33,7 @@ class Standard::CreatesConfigStore::ConfiguresIgnoredPathsTest < UnitTest
     @subject.call(options_config, {
       ignore: [],
       default_ignores: true,
-      config_root: "/hi/project",
+      config_root: "/hi/project"
     })
 
     assert_equal({
@@ -44,9 +44,9 @@ class Standard::CreatesConfigStore::ConfiguresIgnoredPathsTest < UnitTest
           "/hi/project/vendor/**/*",
           "/hi/project/bin/*",
           "/hi/project/db/schema.rb",
-          "/hi/project/tmp/**/*",
-        ],
-      },
+          "/hi/project/tmp/**/*"
+        ]
+      }
     }, options_config)
   end
 
@@ -55,7 +55,7 @@ class Standard::CreatesConfigStore::ConfiguresIgnoredPathsTest < UnitTest
 
     @subject.call(options_config, {
       ignore: [],
-      default_ignores: false,
+      default_ignores: false
     })
 
     assert_equal({}, options_config)
@@ -66,13 +66,13 @@ class Standard::CreatesConfigStore::ConfiguresIgnoredPathsTest < UnitTest
 
     @subject.call(options_config, {
       ignore: [["/foo/bar/baz/**/*", ["AllCops"]]],
-      default_ignores: false,
+      default_ignores: false
     })
 
     assert_equal({
       "AllCops" => {
-        "Exclude" => ["/foo/bar/baz/**/*"],
-      },
+        "Exclude" => ["/foo/bar/baz/**/*"]
+      }
     }, options_config)
   end
 end

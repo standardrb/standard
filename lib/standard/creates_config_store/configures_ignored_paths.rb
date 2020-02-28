@@ -8,7 +8,7 @@ class Standard::CreatesConfigStore
       # Standard's own default ignores:
       "bin/*",
       "db/schema.rb",
-      "tmp/**/*",
+      "tmp/**/*"
     ].map { |path| [path, ["AllCops"]] }.freeze
 
     def call(options_config, standard_config)
@@ -17,7 +17,7 @@ class Standard::CreatesConfigStore
           options_config[cop] ||= {}
           options_config[cop]["Exclude"] ||= []
           options_config[cop]["Exclude"] |= [
-            absolutify(standard_config[:config_root], path),
+            absolutify(standard_config[:config_root], path)
           ]
         end
       end

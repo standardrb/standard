@@ -1013,11 +1013,11 @@ Style/TrailingBodyOnModule:
 
 Style/TrailingCommaInArrayLiteral:
   Enabled: true
-  EnforcedStyleForMultiline: consistent_comma
+  EnforcedStyleForMultiline: no_comma
 
 Style/TrailingCommaInHashLiteral:
   Enabled: true
-  EnforcedStyleForMultiline: consistent_comma
+  EnforcedStyleForMultiline: no_comma
 
 Style/TrailingMethodEndStatement:
   Enabled: true

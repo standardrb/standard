@@ -5,7 +5,7 @@ require "fixture/runner/bad_cop"
 
 class Standard::Runners::RubocopTest < UnitTest
   DEFAULT_OPTIONS = {
-    formatters: [["quiet", nil]],
+    formatters: [["quiet", nil]]
   }.freeze
 
   def setup

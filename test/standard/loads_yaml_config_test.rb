@@ -8,7 +8,7 @@ class Standard::LoadsYamlConfigTest < UnitTest
     parallel: false,
     ignore: [],
     default_ignores: true,
-    config_root: nil,
+    config_root: nil
   }.freeze
 
   def setup

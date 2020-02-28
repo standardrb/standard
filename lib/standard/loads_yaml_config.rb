@@ -33,7 +33,7 @@ module Standard
         parallel: !!standard_yaml["parallel"],
         ignore: expand_ignore_config(standard_yaml["ignore"]),
         default_ignores: standard_yaml.key?("default_ignores") ? !!standard_yaml["default_ignores"] : true,
-        config_root: yaml_path ? Pathname.new(yaml_path).dirname.to_s : nil,
+        config_root: yaml_path ? Pathname.new(yaml_path).dirname.to_s : nil
       }
     end
 
