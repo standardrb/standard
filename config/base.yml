@@ -1011,6 +1011,10 @@ Style/TrailingBodyOnMethodDefinition:
 Style/TrailingBodyOnModule:
   Enabled: true
 
+Style/TrailingCommaInArguments:
+  Enabled: true
+  EnforcedStyleForMultiline: no_comma
+
 Style/TrailingCommaInArrayLiteral:
   Enabled: true
   EnforcedStyleForMultiline: no_comma
