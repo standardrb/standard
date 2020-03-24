@@ -909,10 +909,6 @@ Style/PercentLiteralDelimiters:
     '%w': '[]'
     '%W': '[]'
 
-Style/PreferredHashMethods:
-  Enabled: true
-  EnforcedStyle: short
-
 Style/Proc:
   Enabled: true
 
