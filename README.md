@@ -194,6 +194,7 @@ if you've used StandardJS.)
 * [Monterail](https://www.monterail.com)
 * [Level UP Solutions](https://levups.com)
 * [Honeybadger](https://www.honeybadger.io)
+* [Amazon Web Services](https://aws.amazon.com/)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
