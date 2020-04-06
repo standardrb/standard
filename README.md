@@ -360,6 +360,7 @@ the tool you're interested in. That aside, here are other known integrations asi
 from editor plugins:
 
 * [Pronto](https://github.com/julianrubisch/pronto-standardrb)
+* [Spring](https://github.com/lakim/spring-commands-standard)
 
 ## Contributing
 
