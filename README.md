@@ -139,7 +139,7 @@ ignore:                 # default: []
 ```
 
 Note: If you're running Standard in a context where your `.standard.yml` file
-cannot be found by ascending the current working directory (i.e. against a
+cannot be found by ascending the current working directory (i.e., against a
 temporary file buffer in your editor), you can specify the config location with
 `--config path/to/.standard.yml`.
 
@@ -225,7 +225,7 @@ No. The whole point of Standard is to save you time by avoiding
 about code style. There are lots of debates online about tabs vs. spaces, etc.
 that will never be resolved. These debates just distract from getting stuff
 done. At the end of the day you have to 'just pick something', and that's the
-whole philosophy of Standard -- its a bunch of sensible 'just pick something'
+whole philosophy of Standard -- it's a bunch of sensible 'just pick something'
 opinions. Hopefully, users see the value in that over defending their own
 opinions.
 
