@@ -1,3 +1,4 @@
+require "yaml"
 require "rubocop"
 require_relative "detects_fixability"
 
@@ -29,6 +30,7 @@ module Standard
     end
 
     def finished(_)
+      print_todo_warning
       print_call_for_feedback if @any_uncorrected_offenses
     end
 
@@ -56,6 +58,22 @@ module Standard
           standard: Run `#{command}` to automatically fix some problems.
         HEADER
         @fix_suggestion_printed_already = true
+      end
+    end
+
+    def print_todo_warning
+      todo_file = options[:todo_file]
+      return unless todo_file
+
+      todo_ignore_files = options[:todo_ignore_files]
+      return unless todo_ignore_files
+
+      output.print <<-HEADER.gsub(/^ {8}/, "")
+        WARNING: this project is being migrated to standard gradually via `#{todo_file}` and is ignoring these files:
+      HEADER
+
+      todo_ignore_files.each do |f|
+        output.printf("  %s\n", f)
       end
     end
 

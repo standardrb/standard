@@ -6,6 +6,8 @@ class Standard::BuildsConfigTest < UnitTest
     safe_auto_correct: false,
     formatters: [["Standard::Formatter", nil]],
     parallel: false,
+    todo_file: nil,
+    todo_ignore_files: [],
   }.freeze
 
   def setup
@@ -95,7 +97,10 @@ class Standard::BuildsConfigTest < UnitTest
   def test_todo_merged
     result = @subject.call([], path("test/fixture/config/u"))
 
-    assert_equal DEFAULT_OPTIONS, result.rubocop_options
+    assert_equal DEFAULT_OPTIONS.merge(
+      todo_file: path("test/fixture/config/u/.standard_todo.yml"),
+      todo_ignore_files: %w[todo_file_one.rb todo_file_two.rb],
+    ), result.rubocop_options
 
     assert_equal config_store("test/fixture/config/u").dup.tap { |config_store|
       config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/u/none_todo_path/**/*")]
