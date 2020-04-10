@@ -18,7 +18,7 @@ module Standard
       todo_yaml_path = determine_yaml_file(argv, search_path, "--todo", ".standard_todo.yml")
       standard_config = @loads_yaml_config.call(standard_yaml_path, todo_yaml_path)
 
-      settings = @merges_settings.call(argv, standard_config, todo_yaml_path)
+      settings = @merges_settings.call(argv, standard_config)
       Config.new(
         settings.runner,
         settings.paths,

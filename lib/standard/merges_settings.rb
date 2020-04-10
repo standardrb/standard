@@ -4,14 +4,14 @@ module Standard
   class MergesSettings
     Settings = Struct.new(:runner, :options, :paths)
 
-    def call(argv, standard_yaml, todo_path)
+    def call(argv, standard_yaml)
       standard_argv, rubocop_argv = separate_argv(argv)
       standard_cli_flags = parse_standard_argv(standard_argv)
       rubocop_cli_flags, lint_paths = RuboCop::Options.new.parse(rubocop_argv)
 
       Settings.new(
         determine_command(standard_argv),
-        merge(standard_yaml, standard_cli_flags, without_banned(rubocop_cli_flags), todo_path),
+        merge(standard_yaml, standard_cli_flags, without_banned(rubocop_cli_flags)),
         lint_paths
       )
     end
@@ -48,7 +48,7 @@ module Standard
       end
     end
 
-    def merge(standard_yaml, standard_cli_flags, rubocop_cli_flags, todo_path)
+    def merge(standard_yaml, standard_cli_flags, rubocop_cli_flags)
       {
         auto_correct: standard_yaml[:fix],
         safe_auto_correct: standard_yaml[:fix],
