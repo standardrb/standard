@@ -114,6 +114,14 @@ module RuboCop::Cop
       end
 
       def correction_would_break_code?(node)
+        rescue_child_block?(node) || non_parenthesized_keyword_args?(node)
+      end
+
+      def rescue_child_block?(node)
+        node.children.any?(&:rescue_type?)
+      end
+
+      def non_parenthesized_keyword_args?(node)
         return unless node.keywords?
 
         node.send_node.arguments? && !node.send_node.parenthesized?
