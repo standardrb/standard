@@ -1,0 +1,9 @@
+fix: false
+ruby_version: 2.2
+ignore:
+  - hello/**/*
+  - neat/cool.rb:
+    - Fake/Hi
+    - Fake/Lol
+  - nest/file.rb:
+    - Fake/T

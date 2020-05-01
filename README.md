@@ -143,6 +143,8 @@ cannot be found by ascending the current working directory (i.e., against a
 temporary file buffer in your editor), you can specify the config location with
 `--config path/to/.standard.yml`.
 
+You can also set a global configuration by creating a `.standard_global.yml` in your home directory.
+
 ## What you might do if you're REALLY clever
 
 Because StandardRB is essentially a wrapper on top of

@@ -92,6 +92,55 @@ class Standard::BuildsConfigTest < UnitTest
     assert_match(/Configuration file ".*fake\.file" not found/, err.message)
   end
 
+  def test_global_standard_yaml
+    loads_yaml_config = @subject.instance_variable_get(:@loads_yaml_config)
+    assert_equal ENV["HOME"], loads_yaml_config.instance_variable_get(:@global_config_dir)
+
+    loads_yaml_config.instance_variable_set(:@global_config_dir, path("test/fixture/config/u"))
+    result = @subject.call([], path("test/fixture/config/u"))
+
+    assert_equal DEFAULT_OPTIONS.merge(
+      auto_correct: true,
+      safe_auto_correct: true,
+      parallel: true,
+      formatters: [["progress", nil]]
+    ), result.rubocop_options
+
+    expected_config = RuboCop::ConfigStore.new.tap do |config_store|
+      config_store.options_config = path("config/ruby-1.8.yml")
+      options_config = config_store.instance_variable_get("@options_config")
+      options_config["AllCops"]["Exclude"] |= [path("test/fixture/config/u/monkey/**/*")]
+      options_config["Fake/Lol"] = {"Exclude" => [path("test/fixture/config/u/neat/cool.rb")]}
+      options_config["Fake/Kek"] = {"Exclude" => [path("test/fixture/config/u/neat/cool.rb")]}
+    end.for("").to_h
+    assert_equal expected_config, result.rubocop_config_store.for("").to_h
+  end
+
+  def test_specified_standard_yaml_overrides_global
+    loads_yaml_config = @subject.instance_variable_get(:@loads_yaml_config)
+    assert_equal ENV["HOME"], loads_yaml_config.instance_variable_get(:@global_config_dir)
+
+    loads_yaml_config.instance_variable_set(:@global_config_dir, path("test/fixture/config/t"))
+    result = @subject.call([], path("test/fixture/config/t"))
+
+    assert_equal DEFAULT_OPTIONS.merge(
+      safe_auto_correct: false,
+      parallel: true,
+      formatters: [["progress", nil]]
+    ), result.rubocop_options
+
+    expected_config = RuboCop::ConfigStore.new.tap do |config_store|
+      config_store.options_config = path("config/ruby-2.2.yml")
+      options_config = config_store.instance_variable_get("@options_config")
+      options_config["AllCops"]["Exclude"] |= [path("test/fixture/config/t/hello/**/*"), path("test/fixture/config/t/monkey/**/*")]
+      options_config["Fake/Hi"] = {"Exclude" => [path("test/fixture/config/t/neat/cool.rb")]}
+      options_config["Fake/Lol"] = {"Exclude" => [path("test/fixture/config/t/neat/cool.rb")]}
+      options_config["Fake/T"] = {"Exclude" => [path("test/fixture/config/t/nest/file.rb")]}
+      options_config["Fake/Kek"] = {"Exclude" => [path("test/fixture/config/t/neat/cool.rb")]}
+    end.for("").to_h
+    assert_equal expected_config, result.rubocop_config_store.for("").to_h
+  end
+
   private
 
   def config_store(config_root = nil, rubocop_yml = "config/base.yml", ruby_version = RUBY_VERSION)
