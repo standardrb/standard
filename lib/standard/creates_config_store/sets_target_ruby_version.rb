@@ -9,7 +9,7 @@ class Standard::CreatesConfigStore
     private
 
     def max_rubocop_supported_version(desired_version)
-      rubocop_supported_version = Gem::Version.new("2.3")
+      rubocop_supported_version = Gem::Version.new("2.4")
       if desired_version < rubocop_supported_version
         rubocop_supported_version
       else

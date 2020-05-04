@@ -2,7 +2,7 @@ require:
   - rubocop-performance
 
 AllCops:
-  # Prevent RuboCop from exploding when it finds an older-than-2.3 .ruby-version
+  # Prevent RuboCop from exploding when it finds an older-than-2.4 .ruby-version
   TargetRubyVersion: 2.5
   DisabledByDefault: true
   Exclude: []
@@ -301,7 +301,7 @@ Layout/SpaceInsideStringInterpolation:
   Enabled: true
   EnforcedStyle: no_space
 
-Layout/Tab:
+Layout/IndentationStyle:
   Enabled: true
   IndentationWidth: ~
 
@@ -364,9 +364,6 @@ Lint/EmptyInterpolation:
   Enabled: true
 
 Lint/EmptyWhen:
-  Enabled: true
-
-Lint/EndInMethod:
   Enabled: true
 
 Lint/EnsureReturn:
