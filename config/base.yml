@@ -30,6 +30,7 @@ Layout/ArgumentAlignment:
 
 Layout/ArrayAlignment:
   Enabled: true
+  EnforcedStyle: with_fixed_indentation
 
 Layout/HashAlignment:
   Enabled: true
@@ -328,6 +329,7 @@ Lint/BigDecimalNew:
 
 Lint/BooleanSymbol:
   Enabled: true
+  AutoCorrect: true
 
 Lint/CircularArgumentReference:
   Enabled: true
@@ -434,7 +436,13 @@ Lint/ParenthesesAsGroupedExpression:
 Lint/PercentSymbolArray:
   Enabled: true
 
+Lint/RaiseException:
+  Enabled: true
+
 Lint/RandOne:
+  Enabled: true
+
+Lint/RedundantStringCoercion:
   Enabled: true
 
 Lint/RedundantWithIndex:
@@ -483,7 +491,7 @@ Lint/ShadowedArgument:
 Lint/ShadowedException:
   Enabled: true
 
-Lint/RedundantStringCoercion:
+Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 
 Lint/Syntax:
@@ -766,6 +774,7 @@ Style/Encoding:
 
 Style/EndBlock:
   Enabled: true
+  AutoCorrect: true
 
 Style/EvalWithLocation:
   Enabled: true
@@ -1011,6 +1020,9 @@ Style/TrailingCommaInArguments:
 Style/TrailingCommaInArrayLiteral:
   Enabled: true
   EnforcedStyleForMultiline: no_comma
+
+Style/TrailingCommaInBlockArgs:
+  Enabled: true
 
 Style/TrailingCommaInHashLiteral:
   Enabled: true
