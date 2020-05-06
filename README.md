@@ -54,7 +54,9 @@ flag.
 
 If you're familiar with [RuboCop](https://github.com/rubocop-hq/rubocop), you
 can look at Standard's current base configuration in
-[config/base.yml](/config/base.yml).
+[config/base.yml](/config/base.yml). In lieu of a separate changelog file,
+significant changes to the configuration will be documented as [GitHub release
+notes](https://github.com/testdouble/standard/releases).
 
 **[NOTE: until StandardRB hits 1.0.0, we consider this configuration to be a
 non-final work in progress and we encourage you to submit your opinions (and
@@ -151,7 +153,7 @@ ignore:                 # default: []
 ```
 
 Note: If you're running Standard in a context where your `.standard.yml` file
-cannot be found by ascending the current working directory (i.e. against a
+cannot be found by ascending the current working directory (i.e., against a
 temporary file buffer in your editor), you can specify the config location with
 `--config path/to/.standard.yml`.
 
@@ -206,6 +208,9 @@ if you've used StandardJS.)
 * [Hashrocket](https://hashrocket.com)
 * [Brand New Box](https://brandnewbox.com)
 * [Monterail](https://www.monterail.com)
+* [Level UP Solutions](https://levups.com)
+* [Honeybadger](https://www.honeybadger.io)
+* [Amazon Web Services](https://aws.amazon.com/)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
@@ -236,7 +241,7 @@ No. The whole point of Standard is to save you time by avoiding
 about code style. There are lots of debates online about tabs vs. spaces, etc.
 that will never be resolved. These debates just distract from getting stuff
 done. At the end of the day you have to 'just pick something', and that's the
-whole philosophy of Standard -- its a bunch of sensible 'just pick something'
+whole philosophy of Standard -- it's a bunch of sensible 'just pick something'
 opinions. Hopefully, users see the value in that over defending their own
 opinions.
 
@@ -366,11 +371,12 @@ feedback loop. Some editors support asynchronously running linters.
 
 ## Does Standard work with [Insert other tool name here]?
 
-Maybe! Start by searching the repository to see if there's an existing issue open for 
+Maybe! Start by searching the repository to see if there's an existing issue open for
 the tool you're interested in. That aside, here are other known integrations aside
 from editor plugins:
 
 * [Pronto](https://github.com/julianrubisch/pronto-standardrb)
+* [Spring](https://github.com/lakim/spring-commands-standard)
 
 ## Contributing
 
@@ -385,4 +391,10 @@ $ bundle exec rake # to run test suite
 ```
 
 ## Code of Conduct
-This project follows Test Double's [code of conduct](https://testdouble.com/code-of-conduct) for all community interactions, including (but not limited to) one-on-one communications, public posts/comments, code reviews, pull requests, and GitHub issues. If violations occur, Test Double will take any action they deem appropriate for the infraction, up to and including blocking a user from the organization's repositories.
+
+This project follows Test Double's [code of
+conduct](https://testdouble.com/code-of-conduct) for all community interactions,
+including (but not limited to) one-on-one communications, public posts/comments,
+code reviews, pull requests, and GitHub issues. If violations occur, Test Double
+will take any action they deem appropriate for the infraction, up to and
+including blocking a user from the organization's repositories.

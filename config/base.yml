@@ -2,7 +2,7 @@ require:
   - rubocop-performance
 
 AllCops:
-  # Prevent RuboCop from exploding when it finds an older-than-2.3 .ruby-version
+  # Prevent RuboCop from exploding when it finds an older-than-2.4 .ruby-version
   TargetRubyVersion: 2.5
   DisabledByDefault: true
   Exclude: []
@@ -24,20 +24,21 @@ Layout/AccessModifierIndentation:
   EnforcedStyle: indent
   IndentationWidth: ~
 
-Layout/AlignArguments:
+Layout/ArgumentAlignment:
   Enabled: true
   EnforcedStyle: with_fixed_indentation
 
-Layout/AlignArray:
+Layout/ArrayAlignment:
   Enabled: true
+  EnforcedStyle: with_fixed_indentation
 
-Layout/AlignHash:
+Layout/HashAlignment:
   Enabled: true
   EnforcedHashRocketStyle: key
   EnforcedColonStyle: key
   EnforcedLastArgumentHashStyle: always_inspect
 
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   Enabled: true
   EnforcedStyle: with_fixed_indentation
   IndentationWidth: ~
@@ -69,7 +70,7 @@ Layout/ConditionPosition:
 Layout/DefEndAlignment:
   Enabled: true
   EnforcedStyleAlignWith: start_of_line
-  AutoCorrect: false
+  AutoCorrect: true
   Severity: warning
 
 Layout/DotPosition:
@@ -138,26 +139,26 @@ Layout/ExtraSpacing:
   AllowBeforeTrailingComments: false
   ForceEqualSignAlignment: false
 
-Layout/IndentFirstArgument:
+Layout/FirstArgumentIndentation:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
 
-Layout/IndentFirstArrayElement:
+Layout/FirstArrayElementIndentation:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
 
-Layout/IndentAssignment:
+Layout/AssignmentIndentation:
   Enabled: true
   IndentationWidth: ~
 
-Layout/IndentFirstHashElement:
+Layout/FirstHashElementIndentation:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
 
-Layout/IndentHeredoc:
+Layout/HeredocIndentation:
   Enabled: true
   EnforcedStyle: squiggly
 
@@ -173,7 +174,7 @@ Layout/IndentationWidth:
 Layout/InitialIndentation:
   Enabled: true
 
-Layout/LeadingBlankLines:
+Layout/LeadingEmptyLines:
   Enabled: true
 
 Layout/LeadingCommentSpace:
@@ -301,11 +302,11 @@ Layout/SpaceInsideStringInterpolation:
   Enabled: true
   EnforcedStyle: no_space
 
-Layout/Tab:
+Layout/IndentationStyle:
   Enabled: true
   IndentationWidth: ~
 
-Layout/TrailingBlankLines:
+Layout/TrailingEmptyLines:
   Enabled: true
   EnforcedStyle: final_newline
 
@@ -328,6 +329,7 @@ Lint/BigDecimalNew:
 
 Lint/BooleanSymbol:
   Enabled: true
+  AutoCorrect: true
 
 Lint/CircularArgumentReference:
   Enabled: true
@@ -344,7 +346,7 @@ Lint/DuplicateCaseCondition:
 Lint/DuplicateMethods:
   Enabled: true
 
-Lint/DuplicatedKey:
+Lint/DuplicateHashKey:
   Enabled: true
 
 Lint/EachWithObjectArgument:
@@ -355,7 +357,7 @@ Lint/ElseLayout:
 
 Lint/EmptyEnsure:
   Enabled: true
-  AutoCorrect: false
+  AutoCorrect: true
 
 Lint/EmptyExpression:
   Enabled: true
@@ -364,9 +366,6 @@ Lint/EmptyInterpolation:
   Enabled: true
 
 Lint/EmptyWhen:
-  Enabled: true
-
-Lint/EndInMethod:
   Enabled: true
 
 Lint/EnsureReturn:
@@ -410,7 +409,7 @@ Lint/MissingCopEnableDirective:
   Enabled: true
   MaximumRangeSize: .inf
 
-Lint/MultipleCompare:
+Lint/MultipleComparison:
   Enabled: true
 
 Lint/NestedMethodDefinition:
@@ -420,6 +419,9 @@ Lint/NestedPercentLiteral:
   Enabled: true
 
 Lint/NextWithoutAccumulator:
+  Enabled: true
+
+Lint/NonDeterministicRequireOrder:
   Enabled: true
 
 Lint/NonLocalExitFromIterator:
@@ -434,7 +436,13 @@ Lint/ParenthesesAsGroupedExpression:
 Lint/PercentSymbolArray:
   Enabled: true
 
+Lint/RaiseException:
+  Enabled: true
+
 Lint/RandOne:
+  Enabled: true
+
+Lint/RedundantStringCoercion:
   Enabled: true
 
 Lint/RedundantWithIndex:
@@ -460,7 +468,7 @@ Lint/ReturnInVoidContext:
 
 Lint/SafeNavigationChain:
   Enabled: true
-  Whitelist:
+  AllowedMethods:
     - present?
     - blank?
     - presence
@@ -469,7 +477,7 @@ Lint/SafeNavigationChain:
 
 Lint/SafeNavigationConsistency:
   Enabled: true
-  Whitelist:
+  AllowedMethods:
     - present?
     - blank?
     - presence
@@ -483,7 +491,7 @@ Lint/ShadowedArgument:
 Lint/ShadowedException:
   Enabled: true
 
-Lint/StringConversionInInterpolation:
+Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 
 Lint/Syntax:
@@ -495,10 +503,10 @@ Lint/UnderscorePrefixedVariableName:
 Lint/UnifiedInteger:
   Enabled: true
 
-Lint/UnneededRequireStatement:
+Lint/RedundantRequireStatement:
   Enabled: true
 
-Lint/UnneededSplatExpansion:
+Lint/RedundantSplatExpansion:
   Enabled: true
 
 Lint/UnreachableCode:
@@ -526,6 +534,9 @@ Lint/Void:
   Enabled: true
   CheckForMethodsWithNoSideEffects: false
 
+Migration/DepartmentName:
+  Enabled: true
+
 Naming/AsciiIdentifiers:
   Enabled: true
 
@@ -546,7 +557,7 @@ Naming/MethodName:
   Enabled: true
   EnforcedStyle: snake_case
 
-Naming/UncommunicativeBlockParamName:
+Naming/BlockParameterName:
   Enabled: true
   MinNameLength: 1
   AllowNamesEndingInNumbers: true
@@ -763,6 +774,7 @@ Style/Encoding:
 
 Style/EndBlock:
   Enabled: true
+  AutoCorrect: true
 
 Style/EvalWithLocation:
   Enabled: true
@@ -842,7 +854,7 @@ Style/NestedModifier:
 
 Style/NestedParenthesizedCalls:
   Enabled: true
-  Whitelist:
+  AllowedMethods:
     - be
     - be_a
     - be_an
@@ -903,14 +915,6 @@ Style/PercentLiteralDelimiters:
     '%w': '[]'
     '%W': '[]'
 
-Style/PercentQLiterals:
-  Enabled: true
-  EnforcedStyle: lower_case_q
-
-Style/PreferredHashMethods:
-  Enabled: true
-  EnforcedStyle: short
-
 Style/Proc:
   Enabled: true
 
@@ -952,7 +956,7 @@ Style/RescueStandardError:
 Style/SafeNavigation:
   Enabled: true
   ConvertCodeThatCanStartToReturnNil: false
-  Whitelist:
+  AllowedMethods:
     - present?
     - blank?
     - presence
@@ -1009,13 +1013,20 @@ Style/TrailingBodyOnMethodDefinition:
 Style/TrailingBodyOnModule:
   Enabled: true
 
+Style/TrailingCommaInArguments:
+  Enabled: true
+  EnforcedStyleForMultiline: no_comma
+
 Style/TrailingCommaInArrayLiteral:
   Enabled: true
-  EnforcedStyleForMultiline: consistent_comma
+  EnforcedStyleForMultiline: no_comma
+
+Style/TrailingCommaInBlockArgs:
+  Enabled: true
 
 Style/TrailingCommaInHashLiteral:
   Enabled: true
-  EnforcedStyleForMultiline: consistent_comma
+  EnforcedStyleForMultiline: no_comma
 
 Style/TrailingMethodEndStatement:
   Enabled: true
@@ -1026,7 +1037,7 @@ Style/TrivialAccessors:
   AllowPredicates: true
   AllowDSLWriters: false
   IgnoreClassMethods: false
-  Whitelist:
+  AllowedMethods:
     - to_ary
     - to_a
     - to_c
@@ -1048,19 +1059,16 @@ Style/TrivialAccessors:
 Style/UnlessElse:
   Enabled: true
 
-Style/UnneededCapitalW:
+Style/RedundantCondition:
   Enabled: true
 
-Style/UnneededCondition:
+Style/RedundantInterpolation:
   Enabled: true
 
-Style/UnneededInterpolation:
+Style/RedundantPercentQ:
   Enabled: true
 
-Style/UnneededPercentQ:
-  Enabled: true
-
-Style/UnneededSort:
+Style/RedundantSort:
   Enabled: true
 
 Style/UnpackFirst:

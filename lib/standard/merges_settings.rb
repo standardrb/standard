@@ -55,7 +55,7 @@ module Standard
         formatters: [[standard_yaml[:format] || "Standard::Formatter", nil]],
         parallel: standard_yaml[:parallel],
         todo_file: standard_yaml[:todo_file],
-        todo_ignore_files: standard_yaml[:todo_ignore_files],
+        todo_ignore_files: standard_yaml[:todo_ignore_files]
       }.merge(standard_cli_flags).merge(rubocop_cli_flags)
     end
 
