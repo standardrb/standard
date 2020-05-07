@@ -16,7 +16,7 @@ class Standard::Runners::GenignoreTest < UnitTest
     FileUtils.cp_r("test/fixture/genignore/.", "tmp/genignore_test")
 
     Dir.chdir("tmp/genignore_test") do
-      @subject.call(create_config)
+      @subject.call(create_config("../../config/base.yml"))
     end
 
     assert File.exist?("tmp/genignore_test/.standard_todo.yml")
@@ -27,7 +27,11 @@ class Standard::Runners::GenignoreTest < UnitTest
 
   private
 
-  def create_config
-    Standard::Config.new(nil, ["."], {}, RuboCop::ConfigStore.new)
+  def create_config(config_path)
+    store = RuboCop::ConfigStore.new.tap do |config_store|
+      config_store.options_config = config_path
+    end
+
+    Standard::Config.new(nil, ["."], {}, store)
   end
 end
