@@ -99,7 +99,7 @@ class Standard::BuildsConfigTest < UnitTest
 
     assert_equal DEFAULT_OPTIONS.merge(
       todo_file: path("test/fixture/config/u/.standard_todo.yml"),
-      todo_ignore_files: %w[todo_file_one.rb todo_file_two.rb],
+      todo_ignore_files: %w[todo_file_one.rb todo_file_two.rb]
     ), result.rubocop_options
 
     assert_equal config_store("test/fixture/config/u").dup.tap { |config_store|
