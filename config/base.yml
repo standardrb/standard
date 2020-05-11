@@ -667,6 +667,8 @@ Standard/SemanticBlocks:
     # Rails
     - transaction
   FunctionalMethods:
+    - given
+    - given!
     - let
     - let!
     - subject
