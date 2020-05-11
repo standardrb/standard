@@ -377,6 +377,7 @@ from editor plugins:
 
 * [Pronto](https://github.com/julianrubisch/pronto-standardrb)
 * [Spring](https://github.com/lakim/spring-commands-standard)
+* [Guard](https://github.com/JodyVanden/guard-standardrb)
 
 ## Contributing
 
