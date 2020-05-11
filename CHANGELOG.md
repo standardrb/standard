@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+* add given/given! as `{}` friendly blocks [#172](https://github.com/testdouble/standard/pull/172)
+
 ## 0.4.0
 
 * Add `--todo` mode for incremental adoption of Standard to a project ([PR](https://github.com/testdouble/standard/pull/155) by [@mrbiggred](https://github.com/mrbiggred))
