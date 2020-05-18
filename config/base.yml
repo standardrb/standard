@@ -312,7 +312,7 @@ Layout/TrailingEmptyLines:
 
 Layout/TrailingWhitespace:
   Enabled: true
-  AllowInHeredoc: false
+  AllowInHeredoc: true
 
 Lint/AmbiguousOperator:
   Enabled: true
@@ -329,7 +329,6 @@ Lint/BigDecimalNew:
 
 Lint/BooleanSymbol:
   Enabled: true
-  AutoCorrect: true
 
 Lint/CircularArgumentReference:
   Enabled: true
@@ -367,6 +366,7 @@ Lint/EmptyInterpolation:
 
 Lint/EmptyWhen:
   Enabled: true
+  AllowComments: true
 
 Lint/EnsureReturn:
   Enabled: true
