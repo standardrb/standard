@@ -7,6 +7,7 @@ Gem::Specification.new do |spec|
   spec.version = Standard::VERSION
   spec.authors = ["Justin Searls"]
   spec.email = ["searls@gmail.com"]
+  spec.required_ruby_version = ">= 2.4.0"
 
   spec.summary = "Ruby Style Guide, with linter & automatic code fixer"
   spec.homepage = "https://github.com/testdouble/standard"
