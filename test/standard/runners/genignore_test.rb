@@ -30,6 +30,17 @@ class Standard::Runners::GenignoreTest < UnitTest
   def create_config(config_path)
     store = RuboCop::ConfigStore.new.tap do |config_store|
       config_store.options_config = config_path
+
+      # Simulate a `.standard_todo.yml` that contains an ignore file:
+      #
+      #   ---
+      #   ignore:
+      #     - errors_one.rb
+      #
+      options_config = config_store.instance_variable_get("@options_config")
+      options_config["AllCops"] ||= []
+      options_config["AllCops"]["Exclude"] ||= []
+      options_config["AllCops"]["Exclude"] |= [path("errors_one.rb")]
     end
 
     Standard::Config.new(nil, ["."], {}, store)

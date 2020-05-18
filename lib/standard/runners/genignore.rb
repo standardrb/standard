@@ -13,6 +13,7 @@ module Standard
           config.rubocop_options[:formatters] = [["files", temp_file.path]]
           config.rubocop_options[:format] = "files"
           config.rubocop_options[:out] = temp_file.path
+          remove_project_files_from_ignore_list(config)
           Runners::Rubocop.new.call(config)
 
           # Read in the files with errors.  It will have the absolute paths
@@ -42,6 +43,14 @@ module Standard
           temp_file.close
           temp_file.unlink
         end
+      end
+
+      # FIXME: This will also remove files which are in
+      # `Standard::CreatesConfigStore::ConfiguresIgnoredPaths::DEFAULT_IGNORES`.
+      def remove_project_files_from_ignore_list(config)
+        options_config = config.rubocop_config_store.instance_variable_get("@options_config")
+        options_config["AllCops"] ||= []
+        options_config["AllCops"]["Exclude"] = []
       end
     end
   end
