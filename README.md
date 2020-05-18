@@ -47,7 +47,7 @@ flag.
 - **Leading dots on multi-line method chains** - chosen for
   [these](https://github.com/testdouble/standard/issues/75) reasons.
 - **Spaces inside blocks, but not hash literals** - In Ruby, the `{` and `}`
-  characters do a lot of heavy lifting. To visually distinguish array literals
+  characters do a lot of heavy lifting. To visually distinguish hash literals
   from blocks, Standard enforces that (like arrays), no leading or trailing
   spaces be added to pad hashes
 - **And a good deal more**
@@ -134,7 +134,7 @@ $ rake standard STANDARDOPTS="lib \"app/**/*\""
 ## What you might do if you're clever
 
 If you want or need to configure Standard, there are a _handful_ of options
-are available creating a `.standard.yml` file in the root of your project.
+available by creating a `.standard.yml` file in the root of your project.
 
 Here's an example yaml file with every option set:
 
@@ -163,7 +163,7 @@ Similarly, for the `.standard_todo.yml` file, you can specify `--todo path/to/.s
 
 Because StandardRB is essentially a wrapper on top of
 [RuboCop](https://github.com/rubocop-hq/rubocop), it will actually forward the
-vast majority of CLI and ENV arguments forward to RuboCop.
+vast majority of CLI and ENV arguments to RuboCop.
 
 You can see a list of
 [RuboCop](https://docs.rubocop.org/en/latest/basic_usage/#other-useful-command-line-flags)'s
@@ -257,7 +257,12 @@ problems are fixable, but some errors must be fixed manually.
 
 ## Can I override the `fix: true` config setting?
 
-Also yes! You can use `standardrb --no-fix`. Not `fix`ing is the default behavior, but this flag will override the `fix: true` setting in your [`.standard.yml` config](#what-you-might-do-if-youre-clever). This is especially useful for checking your projects compliance with `standardrb` in CI environments while keeping the `fix: true` option enabled locally.
+Also yes! You can use `standardrb --no-fix`. Not `fix`ing is the default
+behavior, but this flag will override the `fix: true` setting in your
+[`.standard.yml` config](#what-you-might-do-if-youre-clever).
+This is especially useful for checking your project's compliance with
+`standardrb` in CI environments while keeping the `fix: true` option enabled
+locally.
 
 ## How do I ignore files?
 
