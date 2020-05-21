@@ -17,6 +17,10 @@ module Standard
       @any_uncorrected_offenses = false
     end
 
+    def started(_target_files)
+      print_todo_warning
+    end
+
     def file_finished(file, offenses)
       return unless (uncorrected_offenses = offenses.reject(&:corrected?)).any?
       @any_uncorrected_offenses = true
@@ -30,7 +34,6 @@ module Standard
     end
 
     def finished(_)
-      print_todo_warning
       print_call_for_feedback if @any_uncorrected_offenses
     end
 

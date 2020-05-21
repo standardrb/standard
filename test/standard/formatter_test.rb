@@ -122,7 +122,7 @@ class Standard::FormatterTest < UnitTest
   def test_prints_todo_warning
     mock_options = {todo_file: ".standard_todo.yml", todo_ignore_files: %w[file1.rb file2.rb]}
     @subject.stub :options, mock_options do
-      @subject.finished([@some_path])
+      @subject.started([@some_path])
 
       assert_equal <<-MESSAGE.gsub(/^ {8}/, ""), @io.string
         WARNING: this project is being migrated to standard gradually via `.standard_todo.yml` and is ignoring these files:
