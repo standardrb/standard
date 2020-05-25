@@ -537,9 +537,6 @@ Lint/Void:
 Migration/DepartmentName:
   Enabled: true
 
-Naming/AsciiIdentifiers:
-  Enabled: true
-
 Naming/BinaryOperatorParameterName:
   Enabled: true
 
