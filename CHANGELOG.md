@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.5
+
+* Disable `Naming/AsciiIdentifiers` for the same reason as mentioned below in
+  0.4.4 (specifically to allow programs written in non-Latin languages to define
+  identifiers)
+
 ## 0.4.4
 
 * Disable `Naming/MethodName` cop. While `snake_case` is the conventional way to
