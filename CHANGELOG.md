@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.6
+
+* Disable `Naming/BinaryOperatorParameterName` because (when non-ascii method
+  names are used), it incorrectly identifies them as being `+()` operator
+  overrides (overly aggressive)
+
 ## 0.4.5
 
 * Disable `Naming/AsciiIdentifiers` for the same reason as mentioned below in
