@@ -553,10 +553,6 @@ Naming/HeredocDelimiterCase:
   Enabled: true
   EnforcedStyle: uppercase
 
-Naming/MethodName:
-  Enabled: true
-  EnforcedStyle: snake_case
-
 Naming/BlockParameterName:
   Enabled: true
   MinNameLength: 1
