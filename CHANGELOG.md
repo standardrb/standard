@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.4
+
+* Disable `Naming/MethodName` cop. While `snake_case` is the conventional way to
+  name a Ruby method, the cop is too restrictive in that it also prevents
+  non-ASCII characters from being included in method names
+
+## 0.4.3
+
+* Improve output of the todo feature
+
 ## 0.4.2
 
 * Track Rubocop
