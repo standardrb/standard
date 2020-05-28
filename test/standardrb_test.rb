@@ -8,9 +8,9 @@ class StandardrbTest < UnitTest
     refute status.success?
     assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-        lib/foo/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
-        lib/foo/tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
-        lib/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
+        lib/foo/do_lint.rb:3:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
+        lib/foo/tmp/do_lint.rb:3:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
+        lib/do_lint.rb:3:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
 
       #{call_to_action_message}
     MSG
@@ -29,8 +29,8 @@ class StandardrbTest < UnitTest
     refute status.success?
     assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-        do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
-        tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
+        do_lint.rb:3:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
+        tmp/do_lint.rb:3:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
 
       #{call_to_action_message}
     MSG
