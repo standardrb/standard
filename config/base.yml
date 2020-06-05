@@ -160,7 +160,6 @@ Layout/FirstHashElementIndentation:
 
 Layout/HeredocIndentation:
   Enabled: true
-  EnforcedStyle: squiggly
 
 Layout/IndentationConsistency:
   Enabled: true
@@ -339,6 +338,9 @@ Lint/Debugger:
 Lint/DeprecatedClassMethods:
   Enabled: true
 
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
 Lint/DuplicateCaseCondition:
   Enabled: true
 
@@ -408,6 +410,9 @@ Lint/Loop:
 Lint/MissingCopEnableDirective:
   Enabled: true
   MaximumRangeSize: .inf
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
 
 Lint/MultipleComparison:
   Enabled: true
@@ -558,6 +563,9 @@ Naming/VariableName:
   Enabled: true
   EnforcedStyle: snake_case
 
+Performance/BindCall:
+  Enabled: true
+
 Performance/Caller:
   Enabled: true
 
@@ -565,6 +573,12 @@ Performance/CompareWithBlock:
   Enabled: true
 
 Performance/Count:
+  Enabled: true
+
+Performance/DeletePrefix:
+  Enabled: true
+
+Performance/DeleteSuffix:
   Enabled: true
 
 Performance/Detect:
@@ -576,8 +590,6 @@ Performance/DoubleStartEndWith:
 
 Performance/EndWith:
   Enabled: true
-  SafeAutoCorrect: false
-  AutoCorrect: false
 
 Performance/FixedSize:
   Enabled: true
@@ -612,8 +624,6 @@ Performance/Size:
 
 Performance/StartWith:
   Enabled: true
-  SafeAutoCorrect: false
-  AutoCorrect: false
 
 Performance/StringReplacement:
   Enabled: true
@@ -926,6 +936,12 @@ Style/RedundantFreeze:
   Enabled: true
 
 Style/RedundantParentheses:
+  Enabled: true
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
   Enabled: true
 
 Style/RedundantReturn:
