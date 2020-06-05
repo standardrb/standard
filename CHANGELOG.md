@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.4.7
+
+* Update Rubocop from
+  [0.83.0](https://github.com/rubocop-hq/rubocop/blob/master/CHANGELOG.md#0830-2020-05-11)
+  to
+  [0.85.0](https://github.com/rubocop-hq/rubocop/blob/master/CHANGELOG.md#0850-2020-06-01), notably:
+
+  * Enable
+    [Lint/MixedRegexpCaptureTypes](https://rubocop.readthedocs.io/en/stable/cops_lint/#lintmixedregexpcapturetypes)
+  * Enable
+    [Lint/DeprecatedOpenSSLConstant](https://rubocop.readthedocs.io/en/stable/cops_lint/#lintdeprecatedopensslconstant)
+  * Enable
+    [Style/RedundantRegexpCharacterClass](https://github.com/rubocop-hq/rubocop/pull/8055)
+  * Enable
+    [Style/RedundantRegexpEscape](https://github.com/rubocop-hq/rubocop/pull/7908)
+* Update rubocop-performance to
+  [1.6.0](https://github.com/rubocop-hq/rubocop-performance/blob/master/CHANGELOG.md#160-2020-05-22),
+  enabling:
+  * [Performance/BindCall](https://github.com/rubocop-hq/rubocop-performance/issues/77)
+  * [Performance/DeletePrefix](https://github.com/rubocop-hq/rubocop-performance/pull/105)
+  * [Performance/DeleteSuffix](https://github.com/rubocop-hq/rubocop-performance/pull/105)
+
+
 ## 0.4.6
 
 * Disable `Naming/BinaryOperatorParameterName` because (when non-ascii method
