@@ -166,7 +166,7 @@ Because StandardRB is essentially a wrapper on top of
 vast majority of CLI and ENV arguments to RuboCop.
 
 You can see a list of
-[RuboCop](https://docs.rubocop.org/en/latest/basic_usage/#other-useful-command-line-flags)'s
+[RuboCop](https://docs.rubocop.org/rubocop/usage/basic_usage.html#command-line-flags)'s
 CLI flags here.
 
 ## Why should I use Ruby Standard Style?
