@@ -844,6 +844,9 @@ Style/MultilineMemoization:
   Enabled: true
   EnforcedStyle: keyword
 
+Style/MultilineWhenThen:
+  Enabled: true
+
 Style/NegatedIf:
   Enabled: true
   EnforcedStyle: both
