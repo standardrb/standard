@@ -213,6 +213,7 @@ if you've used StandardJS.)
 * [Amazon Web Services](https://aws.amazon.com/)
 * [Envoy](https://www.envoy.com)
 * [myRent](https://www.myrent.co.nz)
+* [Renuo](https://www.renuo.ch/)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
