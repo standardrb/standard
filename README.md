@@ -214,6 +214,7 @@ if you've used StandardJS.)
 * [Envoy](https://www.envoy.com)
 * [myRent](https://www.myrent.co.nz)
 * [Renuo](https://www.renuo.ch/)
+* [JetThoughts](https://www.jetthoughts.com/)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
