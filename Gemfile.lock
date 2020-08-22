@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    standard (0.4.7)
+    standard (0.5.0)
       rubocop (~> 0.89.1)
       rubocop-performance (~> 1.7.1)
 

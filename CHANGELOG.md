@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.5.0
+
+* Update Rubocop from
+  [0.85.0](https://github.com/rubocop-hq/rubocop/blob/master/CHANGELOG.md#0850-2020-06-01)
+  to
+  [0.89.1](https://github.com/rubocop-hq/rubocop/releases/tag/v0.89.1),
+  enabling:
+  * `Lint/BinaryOperatorWithIdenticalOperands`
+  * `Lint/DuplicateElsifCondition`
+  * `Lint/DuplicateRescueException`
+  * `Lint/FloatComparison`
+  * `Lint/MissingSuper`
+  * `Lint/OutOfRangeRegexpRef`
+  * `Lint/RedundantRequireStatement`
+  * `Lint/RedundantSplatExpansion`
+  * `Lint/SafeNavigationWithEmpty`
+  * `Lint/SelfAssignment`
+  * `Lint/TopLevelReturnWithArgument`
+  * `Style/GlobalStdStream`
+  * `Style/RedundantAssignment`
+  * `Style/RedundantFetchBlock`
+  * `Style/RedundantFileExtensionInRequire`
+* Update rubocop-performance from 1.6.0 to 1.7.1, enabling:
+  * `Performance/BigDecimalWithNumericArgument`
+  * `Performance/RedundantSortBlock`
+  * `Performance/RedundantStringChars`
+  * `Performance/ReverseFirst`
+  * `Performance/SortReverse`
+  * `Performance/Squeeze`
+
 ## 0.4.7
 
 * Update Rubocop from
