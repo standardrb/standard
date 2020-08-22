@@ -4,10 +4,20 @@ require_relative "detects_fixability"
 
 module Standard
   class Formatter < RuboCop::Formatter::BaseFormatter
-    CALL_TO_ACTION_MESSAGE = <<-CALL_TO_ACTION.gsub(/^ {6}/, "")
+    STANDARD_GREETING = <<-MSG.gsub(/^ {6}/, "")
+      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+    MSG
+
+    CALL_TO_ACTION_MESSAGE = <<-MSG.gsub(/^ {6}/, "")
       Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
         https://github.com/testdouble/standard/issues/new
-    CALL_TO_ACTION
+    MSG
+
+    def self.fixable_error_message(command)
+      <<-MSG.gsub(/^ {8}/, "")
+        standard: Run `#{command}` to automatically fix some problems.
+      MSG
+    end
 
     def initialize(*args)
       super
@@ -42,9 +52,7 @@ module Standard
     def print_header_once
       return if @header_printed_already
 
-      output.print <<-HEADER.gsub(/^ {8}/, "")
-        standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-      HEADER
+      output.print STANDARD_GREETING
 
       @header_printed_already = true
     end
@@ -57,9 +65,7 @@ module Standard
           "standardrb --fix"
         end
 
-        output.print <<-HEADER.gsub(/^ {10}/, "")
-          standard: Run `#{command}` to automatically fix some problems.
-        HEADER
+        output.print self.class.fixable_error_message(command)
         @fix_suggestion_printed_already = true
       end
     end

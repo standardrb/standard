@@ -347,10 +347,16 @@ Lint/DeprecatedOpenSSLConstant:
 Lint/DuplicateCaseCondition:
   Enabled: true
 
+Lint/DuplicateElsifCondition:
+  Enabled: true
+
 Lint/DuplicateMethods:
   Enabled: true
 
 Lint/DuplicateHashKey:
+  Enabled: true
+
+Lint/DuplicateRescueException:
   Enabled: true
 
 Lint/EachWithObjectArgument:
@@ -380,6 +386,9 @@ Lint/ErbNewArguments:
   Enabled: true
 
 Lint/FlipFlop:
+  Enabled: true
+
+Lint/FloatComparison:
   Enabled: true
 
 Lint/FloatOutOfRange:
@@ -441,6 +450,9 @@ Lint/NonLocalExitFromIterator:
 Lint/OrderedMagicComments:
   Enabled: true
 
+Lint/OutOfRangeRegexpRef:
+  Enabled: true
+
 Lint/ParenthesesAsGroupedExpression:
   Enabled: true
 
@@ -451,6 +463,12 @@ Lint/RaiseException:
   Enabled: true
 
 Lint/RandOne:
+  Enabled: true
+
+Lint/RedundantRequireStatement:
+  Enabled: true
+
+Lint/RedundantSplatExpansion:
   Enabled: true
 
 Lint/RedundantStringCoercion:
@@ -495,6 +513,12 @@ Lint/SafeNavigationConsistency:
     - try
     - try!
 
+Lint/SafeNavigationWithEmpty:
+  Enabled: true
+
+Lint/SelfAssignment:
+  Enabled: true
+
 Lint/ShadowedArgument:
   Enabled: true
   IgnoreImplicitReferences: false
@@ -508,16 +532,13 @@ Layout/SpaceAroundMethodCallOperator:
 Lint/Syntax:
   Enabled: true
 
+Lint/TopLevelReturnWithArgument:
+  Enabled: true
+
 Lint/UnderscorePrefixedVariableName:
   Enabled: true
 
 Lint/UnifiedInteger:
-  Enabled: true
-
-Lint/RedundantRequireStatement:
-  Enabled: true
-
-Lint/RedundantSplatExpansion:
   Enabled: true
 
 Lint/UnreachableCode:
@@ -806,6 +827,9 @@ Style/For:
   Enabled: true
   EnforcedStyle: each
 
+Style/GlobalStdStream:
+  Enabled: true
+
 Style/GlobalVars:
   Enabled: true
   AllowedVariables: []
@@ -941,6 +965,9 @@ Style/Proc:
 Style/RandomWithOffset:
   Enabled: true
 
+Style/RedundantAssignment:
+  Enabled: true
+
 Style/RedundantBegin:
   Enabled: true
 
@@ -948,6 +975,12 @@ Style/RedundantConditional:
   Enabled: true
 
 Style/RedundantException:
+  Enabled: true
+
+Style/RedundantFetchBlock:
+  Enabled: true
+
+Style/RedundantFileExtensionInRequire:
   Enabled: true
 
 Style/RedundantFreeze:

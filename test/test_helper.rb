@@ -17,19 +17,6 @@ class UnitTest < Minitest::Test
     Pathname.new(Dir.pwd).join(relative).to_s
   end
 
-  def setup
-    # Rubocop will cache and reuse the current working directory, which can
-    # be different the actual working directory.  This can mess up tests that
-    # use the quite/simple formatter as they can write out either relative or
-    # absolute paths.  This is not in the Rubocop documentation but can be
-    # found in this PR:
-    #
-    # https://github.com/rubocop-hq/rubocop/pull/262#issuecomment-19265766
-    #
-    # This forces RuboCop to use current working directory.
-    RuboCop::PathUtil.reset_pwd
-  end
-
   def teardown
     Gimme.reset
   end
@@ -51,5 +38,17 @@ class UnitTest < Minitest::Test
     [fake_out, fake_err, result]
   ensure
     $stdout, $stderr = og_stdout, og_stderr
+  end
+
+  def standard_greeting
+    Standard::Formatter::STANDARD_GREETING.chomp
+  end
+
+  def fixable_error_message(command = "standardrb --fix")
+    Standard::Formatter.fixable_error_message(command).chomp
+  end
+
+  def call_to_action_message
+    Standard::Formatter::CALL_TO_ACTION_MESSAGE.chomp
   end
 end

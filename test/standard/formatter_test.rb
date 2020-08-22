@@ -30,7 +30,7 @@ class Standard::FormatterTest < UnitTest
     @subject.finished([@some_path])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+      #{standard_greeting}
         Gemfile:42:13: Neat
 
       #{call_to_action_message}
@@ -42,8 +42,8 @@ class Standard::FormatterTest < UnitTest
     @subject.finished([@some_path])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-      standard: Run `standardrb --fix` to automatically fix some problems.
+      #{standard_greeting}
+      #{fixable_error_message}
         Gemfile:42:13: Neat
 
       #{call_to_action_message}
@@ -58,9 +58,9 @@ class Standard::FormatterTest < UnitTest
     @subject.finished([@some_path])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+      #{standard_greeting}
         Gemfile:42:12: Yuck
-      standard: Run `standardrb --fix` to automatically fix some problems.
+      #{fixable_error_message}
         Gemfile:42:13: Neat
         Gemfile:43:14: Super
 
@@ -76,8 +76,8 @@ class Standard::FormatterTest < UnitTest
     @subject.finished([@some_path])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-      standard: Run `rake standard:fix` to automatically fix some problems.
+      #{standard_greeting}
+      #{fixable_error_message("rake standard:fix")}
         Gemfile:42:13: Neat
 
       #{call_to_action_message}
@@ -92,8 +92,8 @@ class Standard::FormatterTest < UnitTest
     @subject.finished([@some_path])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-      standard: Run `standardrb --fix` to automatically fix some problems.
+      #{standard_greeting}
+      #{fixable_error_message}
         Gemfile:42:13: Neat
         Gemfile:43:14: Super
 
@@ -108,11 +108,11 @@ class Standard::FormatterTest < UnitTest
   end
 
   def test_does_not_print_fix_command_if_offense_not_autocorrectable
-    @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat", "Lint/UselessAssignment")])
+    @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat", "Lint/FlipFlop")])
     @subject.finished([@some_path])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+      #{standard_greeting}
         Gemfile:42:13: Neat
 
       #{call_to_action_message}
@@ -128,11 +128,5 @@ class Standard::FormatterTest < UnitTest
         file1.rb
         file2.rb
     MESSAGE
-  end
-
-  private
-
-  def call_to_action_message
-    Standard::Formatter::CALL_TO_ACTION_MESSAGE.chomp
   end
 end

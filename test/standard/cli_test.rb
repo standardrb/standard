@@ -22,7 +22,7 @@ class Standard::CliTest < UnitTest
     refute_equal 0, exit_code
     assert_empty fake_err.string
     assert_equal <<-OUTPUT.gsub(/^ {6}/, ""), fake_out.string
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+      #{standard_greeting}
         test/fixture/cli/unfixable-bad.rb:3:12: Lint/AssignmentInCondition: Wrap assignment in parentheses if intentional
 
       #{call_to_action_message}
@@ -37,11 +37,5 @@ class Standard::CliTest < UnitTest
     assert_equal 0, exit_code
     assert_empty fake_err.string
     assert_empty fake_out.string
-  end
-
-  private
-
-  def call_to_action_message
-    Standard::Formatter::CALL_TO_ACTION_MESSAGE.chomp
   end
 end

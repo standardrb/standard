@@ -7,7 +7,7 @@ class StandardrbTest < UnitTest
 
     refute status.success?
     assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+      #{standard_greeting}
         lib/foo/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/foo/tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
@@ -28,7 +28,7 @@ class StandardrbTest < UnitTest
 
     refute status.success?
     assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+      #{standard_greeting}
         do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
 
@@ -48,9 +48,5 @@ class StandardrbTest < UnitTest
 
   def assert_same_lines(expected, actual)
     assert_equal expected.split("\n").sort, actual.split("\n").sort
-  end
-
-  def call_to_action_message
-    Standard::Formatter::CALL_TO_ACTION_MESSAGE.chomp
   end
 end

@@ -46,7 +46,25 @@ module CopInvoker
   def assert_correction(cop, expected)
     raise "`assert_correction` must follow `assert_offense`" unless @last_source
 
-    actual = RuboCop::Cop::Corrector.new(@last_source.buffer, cop.corrections).rewrite
+    iteration = 0
+    actual = loop {
+      iteration += 1
+
+      corrected_source = @last_corrector.rewrite
+
+      break corrected_source unless loop
+      break corrected_source if @last_corrector.empty?
+      break corrected_source if corrected_source == @processed_source.buffer.source
+
+      if iteration > RuboCop::Runner::MAX_ITERATIONS
+        raise RuboCop::Runner::InfiniteCorrectionLoop.new(@processed_source.path, [])
+      end
+
+      # Prepare for next loop
+      @processed_source = parse_source(corrected_source,
+        @processed_source.path)
+      _investigate(cop, @processed_source)
+    }
 
     assert_equal expected, actual
   end
@@ -171,15 +189,21 @@ module CopInvoker
     attr_reader :lines, :annotations
   end
 
-  def _investigate(cop, last_source)
-    forces = RuboCop::Cop::Force.all.each_with_object([]) { |klass, instances|
-      next unless cop.join_force?(klass)
+  def _investigate(cop, processed_source)
+    team = RuboCop::Cop::Team.new([cop], nil, raise_error: true)
+    report = team.investigate(processed_source)
+    @processed_source = processed_source
+    @last_corrector = report.correctors.first || RuboCop::Cop::Corrector.new(processed_source)
+    report.offenses
+  end
 
-      instances << klass.new([cop])
-    }
+  def parse_source(source, file = nil)
+    if file&.respond_to?(:write)
+      file.write(source)
+      file.rewind
+      file = file.path
+    end
 
-    commissioner = RuboCop::Cop::Commissioner.new([cop], forces, raise_error: true)
-    commissioner.investigate(last_source)
-    commissioner
+    RuboCop::ProcessedSource.new(source, RUBY_VERSION, file)
   end
 end
