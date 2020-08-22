@@ -326,6 +326,9 @@ Lint/AssignmentInCondition:
 Lint/BigDecimalNew:
   Enabled: true
 
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: true
+
 Lint/BooleanSymbol:
   Enabled: true
 
@@ -410,6 +413,9 @@ Lint/Loop:
 Lint/MissingCopEnableDirective:
   Enabled: true
   MaximumRangeSize: .inf
+
+Lint/MissingSuper:
+  Enabled: true
 
 Lint/MixedRegexpCaptureTypes:
   Enabled: true
@@ -524,9 +530,6 @@ Lint/UriRegexp:
   Enabled: true
 
 Lint/UselessAssignment:
-  Enabled: true
-
-Lint/UselessComparison:
   Enabled: true
 
 Lint/UselessElseWithoutRescue:
@@ -820,9 +823,6 @@ Style/LineEndConcatenation:
 Style/MethodCallWithoutArgsParentheses:
   Enabled: true
   IgnoredMethods: []
-
-Style/MethodMissingSuper:
-  Enabled: true
 
 Style/MissingRespondToMissing:
   Enabled: true
