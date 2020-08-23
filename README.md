@@ -1,6 +1,6 @@
 ## Standard - Ruby style guide, linter, and formatter
 
-[![CircleCI](https://circleci.com/gh/testdouble/standard.svg?style=svg)](https://circleci.com/gh/testdouble/standard)
+[![Tests](https://github.com/testdouble/standard/workflows/Tests/badge.svg)](https://github.com/testdouble/standard/actions?query=workflow%3ATests)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
 [![Gem Version](https://badge.fury.io/rb/standard.svg)](https://rubygems.org/gems/standard)
 
