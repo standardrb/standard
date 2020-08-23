@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1
+
+* Enabled `Style/MultilineWhenThen`
+
 ## 0.5.0
 
 * Update Rubocop from
