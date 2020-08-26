@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.2
+
+* Turned off `Lint/MissingSuper`, because it effectively bans a common idiom in
+  Sorbet ([#195](https://github.com/testdouble/standard/issues/195)) and might
+  be a bit too heavy-handed/opinionated for cases where a class is designed
+  intentionally to not run its parent's initializer (like abstract superclasses
+  more generally)
+
 ## 0.5.1
 
 * Enabled `Style/MultilineWhenThen`
