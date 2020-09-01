@@ -13,7 +13,7 @@ THINGS = {
     }
 
 class Something
-
+    alias do_more_stuff do_stuff
 
     def do_stuff( a,b,c )
 	maths_and_stuff = 4 +
@@ -75,4 +75,3 @@ class AlignyStuff
   end
 
 end
-

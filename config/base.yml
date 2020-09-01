@@ -726,7 +726,7 @@ Standard/SemanticBlocks:
 
 Style/Alias:
   Enabled: true
-  EnforcedStyle: prefer_alias
+  EnforcedStyle: prefer_alias_method
 
 Style/AndOr:
   Enabled: true
