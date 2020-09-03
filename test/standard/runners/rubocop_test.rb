@@ -56,7 +56,7 @@ class Standard::Runners::RubocopTest < UnitTest
       C:  1:  8: [Corrected] Style/Semicolon: Do not use semicolons to terminate expressions.
       C:  1:  9: [Corrected] Layout/TrailingWhitespace: Trailing whitespace detected.
 
-      1 file inspected, 6 offenses detected, 4 offenses corrected
+      1 file inspected, 6 offenses detected, 4 offenses corrected, 1 more offense can be corrected with `rubocop -A`
       ====================
       def Foo
         'hi'

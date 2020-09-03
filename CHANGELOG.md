@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.3
+
+* Update Rubocop from
+  [0.89.1](https://github.com/rubocop-hq/rubocop/releases/tag/v0.89.1)
+  to
+  [0.90](https://github.com/rubocop-hq/rubocop/releases/tag/v0.90.0),
+  enabling:
+  * [`Style/KeywordParametersOrder`](https://github.com/rubocop-hq/rubocop/pull/8563)
+  * [`Lint/DuplicateRequire`](https://github.com/rubocop-hq/rubocop/pull/8474)
+  * [`Lint/TrailingCommaInAttributeDeclaration`](https://github.com/rubocop-hq/rubocop/pull/8549)
+* Update [`Style/Alias` to prefer `alias_method`](https://github.com/testdouble/standard/pull/196)
+
 ## 0.5.2
 
 * Turned off `Lint/MissingSuper`, because it effectively bans a common idiom in
@@ -108,4 +120,3 @@
 ## 0.3.0
 
 * Update Standard to track Rubocop 0.82.0 ([commit](https://github.com/testdouble/standard/commit/d663ea62d519c659087ad606bfed031c6303ff20))
-
