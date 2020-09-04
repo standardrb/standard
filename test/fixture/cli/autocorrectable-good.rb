@@ -15,6 +15,7 @@ THINGS = {
 class Something
   alias_method :do_more_stuff, :do_stuff
 
+  attr_reader :foo
   def do_stuff(a, b, c)
     maths_and_stuff = 4 +
       5 +
@@ -70,5 +71,13 @@ class AlignyStuff
       aws_secret_access_key: ENV["S3_SECRET"],
       region: ENV["S3_REGION"]
     )
+  end
+end
+
+def bad_function(a:, b:, test: true)
+  if test
+    a
+  else
+    b
   end
 end

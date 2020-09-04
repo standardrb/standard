@@ -13,7 +13,12 @@ THINGS = {
     }
 
 class Something
+
+
+
     alias do_more_stuff do_stuff
+
+  attr_reader :foo,
 
     def do_stuff( a,b,c )
 	maths_and_stuff = 4 +
@@ -74,4 +79,12 @@ class AlignyStuff
     )
   end
 
+end
+
+def bad_function(test: true, a:, b:)
+  if test
+    a
+  else
+    b
+  end
 end
