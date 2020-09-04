@@ -11,6 +11,9 @@
   * [`Lint/DuplicateRequire`](https://github.com/rubocop-hq/rubocop/pull/8474)
   * [`Lint/TrailingCommaInAttributeDeclaration`](https://github.com/rubocop-hq/rubocop/pull/8549)
 * Update [`Style/Alias` to prefer `alias_method`](https://github.com/testdouble/standard/pull/196)
+* Update rubocop-performance from 1.7.1 to 1.8.0:
+  * Plan to enable [`Performance/Sum`](https://github.com/rubocop-hq/rubocop-performance/pull/137) in the future, but there is currently a bug in the implementation
+* Add `ruby-2.3.yml` to add support for 2.3.
 
 ## 0.5.2
 

@@ -1,7 +1,4 @@
-inherit_from: ./base.yml
-
-AllCops:
-  TargetRubyVersion: 2.4 # The oldest supported
+inherit_from: ./ruby-2.3.yml
 
 Layout:
   HeredocIndentation:
