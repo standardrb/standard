@@ -35,11 +35,23 @@ class Something
       end
     end
 
+    test = "hi"
+    test2 = "hi"
+    test3 = test.equal?(test2)
+    if test3
+      32 + 3
+    end
     THINGS.keys.each do |key|
       if plus_stuff.reduce(:+) > 1
         THINGS[key] = plus_stuff[i]
       end
     end
+  end
+
+  def do_even_more_stuff
+    do_stuff(1, 2, 3)
+  rescue
+    nil
   end
 end
 

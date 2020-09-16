@@ -39,12 +39,27 @@ class Something
           end
         }
 
+        test = 'hi'
+        test2 = 'hi'
+        test3 = test.object_id == test2.object_id
+        if test3
+          32 + 3
+        end
         THINGS.keys.each { |key|
             if ( plus_stuff.reduce(:+) > 1 )
                 THINGS[key] = plus_stuff[i]
             end
         }
     end
+
+  def do_even_more_stuff
+    foo = begin
+  do_stuff(1,2,3)
+                          rescue StandardError
+                   nil
+end
+    foo
+  end
 
 end
 
