@@ -13,6 +13,7 @@ Bundler/InsecureProtocolSource:
     - '**/*.gemfile'
     - '**/Gemfile'
     - '**/gems.rb'
+    - '**/config.ru'
 
 Gemspec/DuplicatedAssignment:
   Enabled: true
