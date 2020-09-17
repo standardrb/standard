@@ -100,7 +100,7 @@ When you run Standard in the future it will ignore these files as if they lived 
 `ignore` section in the `.standard.yml` file.
 
 As you refactor your existing project you can remove files from the list.  You can
-also regenerate the todo file at anytime by re-running the above command.
+also regenerate the todo file at any time by re-running the above command.
 
 ### Using with Rake
 
