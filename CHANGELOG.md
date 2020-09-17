@@ -1,6 +1,6 @@
 # Changelog
 
-## unreleased
+## 0.6.1
 
 * Update Rubocop from
   [0.90](https://github.com/rubocop-hq/rubocop/releases/tag/v0.90.0)
