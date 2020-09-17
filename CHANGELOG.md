@@ -1,5 +1,20 @@
 # Changelog
 
+## unreleased
+
+* Update Rubocop from
+  [0.90](https://github.com/rubocop-hq/rubocop/releases/tag/v0.90.0)
+  to
+  [0.91](https://github.com/rubocop-hq/rubocop/releases/tag/v0.91.0),
+  enabling:
+  * [`Lint/UselessTimes`](https://github.com/rubocop-hq/rubocop/pull/8702)
+  * [`Layout/BeginEndAlignment`](https://github.com/rubocop-hq/rubocop/pull/8628)
+  * [`Lint/ConstantDefinitionInBlock`](https://github.com/rubocop-hq/rubocop/pull/8707)
+  * [`Lint/IdentityComparison`](https://github.com/rubocop-hq/rubocop/pull/8699/)
+  re-enabling after bug fixes:
+  * [`Bundler/DuplicatedGem`](https://github.com/rubocop-hq/rubocop/pull/8666)
+  * [`Naming/BinaryOperatorParameterName`](https://github.com/rubocop-hq/rubocop/issues/8664)
+
 ## 0.6.0
 
 * Update Rubocop from

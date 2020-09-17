@@ -7,6 +7,13 @@ AllCops:
   DisabledByDefault: true
   Exclude: []
 
+Bundler/DuplicatedGem:
+  Enabled: true
+  Include:
+    - '**/*.gemfile'
+    - '**/Gemfile'
+    - '**/gems.rb'
+
 Bundler/InsecureProtocolSource:
   Enabled: true
   Include:
@@ -32,16 +39,15 @@ Layout/ArrayAlignment:
   Enabled: true
   EnforcedStyle: with_fixed_indentation
 
-Layout/HashAlignment:
+Layout/AssignmentIndentation:
   Enabled: true
-  EnforcedHashRocketStyle: key
-  EnforcedColonStyle: key
-  EnforcedLastArgumentHashStyle: always_inspect
-
-Layout/ParameterAlignment:
-  Enabled: true
-  EnforcedStyle: with_fixed_indentation
   IndentationWidth: ~
+
+Layout/BeginEndAlignment:
+  Enabled: true
+  EnforcedStyleAlignWith: start_of_line
+  AutoCorrect: true
+  Severity: warning
 
 Layout/BlockAlignment:
   Enabled: true
@@ -149,14 +155,16 @@ Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
   IndentationWidth: ~
 
-Layout/AssignmentIndentation:
-  Enabled: true
-  IndentationWidth: ~
-
 Layout/FirstHashElementIndentation:
   Enabled: true
   EnforcedStyle: consistent
   IndentationWidth: ~
+
+Layout/HashAlignment:
+  Enabled: true
+  EnforcedHashRocketStyle: key
+  EnforcedColonStyle: key
+  EnforcedLastArgumentHashStyle: always_inspect
 
 Layout/HeredocIndentation:
   Enabled: true
@@ -206,6 +214,11 @@ Layout/MultilineMethodDefinitionBraceLayout:
 Layout/MultilineOperationIndentation:
   Enabled: true
   EnforcedStyle: indented
+  IndentationWidth: ~
+
+Layout/ParameterAlignment:
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
   IndentationWidth: ~
 
 Layout/RescueEnsureAlignment:
@@ -335,6 +348,9 @@ Lint/BooleanSymbol:
 Lint/CircularArgumentReference:
   Enabled: true
 
+Lint/ConstantDefinitionInBlock:
+  Enabled: true
+
 Lint/Debugger:
   Enabled: true
 
@@ -398,6 +414,9 @@ Lint/FloatOutOfRange:
   Enabled: true
 
 Lint/FormatParameterMismatch:
+  Enabled: true
+
+Lint/IdentityComparison:
   Enabled: true
 
 Lint/ImplicitStringConcatenation:
@@ -562,11 +581,17 @@ Lint/UselessElseWithoutRescue:
 Lint/UselessSetterCall:
   Enabled: true
 
+Lint/UselessTimes:
+  Enabled: true
+
 Lint/Void:
   Enabled: true
   CheckForMethodsWithNoSideEffects: false
 
 Migration/DepartmentName:
+  Enabled: true
+
+Naming/BinaryOperatorParameterName:
   Enabled: true
 
 Naming/ClassAndModuleCamelCase:
