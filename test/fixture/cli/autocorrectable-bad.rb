@@ -46,7 +46,7 @@ class Something
           32 + 3
         end
         THINGS.keys.each { |key|
-            if ( plus_stuff.reduce(:+) > 1 )
+            if ( (5..10).reduce(10,:+) > 1 )
                 THINGS[key] = plus_stuff[i]
             end
         }

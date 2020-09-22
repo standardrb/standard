@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased
+
+* Update rubocop-performance from 1.8.0 to 1.8.1:
+  * Enable `Performance/Sum`
+
 ## 0.6.1
 
 * Update Rubocop from
