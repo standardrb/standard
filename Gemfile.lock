@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     standard (0.6.1)
-      rubocop (~> 0.90)
-      rubocop-performance (~> 1.8.0)
+      rubocop (= 0.91.1)
+      rubocop-performance (= 1.8.1)
 
 GEM
   remote: https://rubygems.org/
@@ -22,9 +22,9 @@ GEM
       method_source (~> 1.0)
     rainbow (3.0.0)
     rake (13.0.1)
-    regexp_parser (1.7.1)
+    regexp_parser (1.8.0)
     rexml (3.2.4)
-    rubocop (0.91.0)
+    rubocop (0.91.1)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
       rainbow (>= 2.2.2, < 4.0)

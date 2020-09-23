@@ -22,18 +22,21 @@ really the only one we'll need for releasing the gem to
 ## Release steps
 
 1. Make sure git is up to date and `bundle exec rake` exits cleanly
-2. Bump the appropriate version segment in `lib/standard/version.rb` (basic
+2. If you upgraded a Rubocop dependency, be sure to lock it down in
+   `standard.gemspec`. Until Rubocop hits 1.0, we're going to stick to exact
+   release dependencies (e.g. "0.91.0" instead of "~> 0.91")
+3. Bump the appropriate version segment in `lib/standard/version.rb` (basic
    semantic versioning rules apply; if the release updates Rubocop, follow its
    version bump at a minimum—if rubocop saw minor bump, we'll also bump the
    minor version)
-3. Run `bundle` so that Bundler writes this version to `Gemfile.lock`
-4. Update `CHANGELOG.md` as exhaustively as you are able and set the top header
+4. Run `bundle` so that Bundler writes this version to `Gemfile.lock`
+5. Update `CHANGELOG.md` as exhaustively as you are able and set the top header
    to that of the new version
-5. Commit `lib/standard/version.rb`, `Gemfile.lock`, and `CHANGELOG.md` together
+6. Commit `lib/standard/version.rb`, `Gemfile.lock`, and `CHANGELOG.md` together
    with the message equal to the new version (e.g. "0.42.1")
-6. Finally, run `bundle exec rake release`, which will hopefully succeed
-7. Provide your multi-factor-auth token when prompted to finish publishing the
+7. Finally, run `bundle exec rake release`, which will hopefully succeed
+8. Provide your multi-factor-auth token when prompted to finish publishing the
    gem
-8. [Tweet](https://twitter.com) about your awesome new release! (Shameless
+9. [Tweet](https://twitter.com) about your awesome new release! (Shameless
    self-promotion is the most important part of open source software)
 

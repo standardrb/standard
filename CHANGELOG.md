@@ -2,6 +2,8 @@
 
 ## unreleased
 
+* Update rubocop from 0.91 to
+  [0.91.1](https://github.com/rubocop-hq/rubocop/releases/tag/v0.91.1)
 * Update rubocop-performance from 1.8.0 to 1.8.1:
   * Enable `Performance/Sum`
 
