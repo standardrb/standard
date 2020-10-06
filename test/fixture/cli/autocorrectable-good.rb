@@ -42,9 +42,7 @@ class Something
       32 + 3
     end
     THINGS.keys.each do |key|
-      if (5..10).sum(10) > 1
-        THINGS[key] = plus_stuff[i]
-      end
+      THINGS[key] = plus_stuff[i]
     end
   end
 

@@ -2,7 +2,3 @@ inherit_from: ./base.yml
 
 AllCops:
   TargetRubyVersion: 2.4 # The oldest supported
-
-Performance:
-  Sum:
-    Enabled: false
