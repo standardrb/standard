@@ -701,10 +701,6 @@ Performance/StartWith:
 Performance/StringReplacement:
   Enabled: true
 
-Performance/Sum:
-  Enabled: true
-  AutoCorrect: true
-
 Performance/UnfreezeString:
   Enabled: true
 

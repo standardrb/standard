@@ -1,5 +1,9 @@
 # Changelog
 
+## unreleased
+
+* Disable `Performance/Sum` because #208 and the lack of actual auto-correcting is also causing more trouble
+
 ## 0.7
 
 * Update rubocop from 0.91.1 to
