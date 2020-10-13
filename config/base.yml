@@ -789,6 +789,9 @@ Style/ClassCheck:
   Enabled: true
   EnforcedStyle: is_a?
 
+Style/ClassEqualityComparison:
+  Enabled: true
+
 Style/ClassMethods:
   Enabled: true
 

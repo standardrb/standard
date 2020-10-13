@@ -2,6 +2,10 @@
 
 ## unreleased
 
+* Update rubocop from 0.92 to
+  [0.93](https://github.com/rubocop-hq/rubocop/releases/tag/v0.93) to
+  [0.93.1](https://github.com/rubocop-hq/rubocop/releases/tag/v0.93.1) enabling:
+  * [`Style/ClassEqualityComparison`](https://github.com/rubocop-hq/rubocop/pull/8833)
 * Disable `Performance/Sum` because #208 and the lack of actual auto-correcting is also causing more trouble
 
 ## 0.7
