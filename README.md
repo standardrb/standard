@@ -384,6 +384,7 @@ Maybe! Start by searching the repository to see if there's an existing issue ope
 the tool you're interested in. That aside, here are other known integrations aside
 from editor plugins:
 
+* [Code Climate](https://github.com/testdouble/standard/wiki/CI:-Code-Climate)
 * [Pronto](https://github.com/julianrubisch/pronto-standardrb)
 * [Spring](https://github.com/lakim/spring-commands-standard)
 * [Guard](https://github.com/JodyVanden/guard-standardrb)
