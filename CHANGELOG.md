@@ -2,6 +2,7 @@
 
 ## unreleased
 
+* Update rubocop from 0.93.1 to [1.0.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.0.0)
 * Update rubocop from 0.92 to
   [0.93](https://github.com/rubocop-hq/rubocop/releases/tag/v0.93) to
   [0.93.1](https://github.com/rubocop-hq/rubocop/releases/tag/v0.93.1) enabling:
