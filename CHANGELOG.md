@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.1
+
+* Make it match semver
+
 ## 0.8
 
 * Update rubocop from 0.93.1 to [1.0.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.0.0)
