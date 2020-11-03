@@ -1,5 +1,11 @@
 # Changelog
 
+## unreleased
+
+* Update rubocop from 1.0.0 to [1.1.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.1.0) enabling:
+  * [`Lint/DuplicateRegexpCharacterClassElement`](https://github.com/rubocop-hq/rubocop/pull/8896)
+  * [`Style/ArgumentsForwarding`](https://github.com/rubocop-hq/rubocop/pull/7646)
+
 ## 0.8.1
 
 * Make it match semver

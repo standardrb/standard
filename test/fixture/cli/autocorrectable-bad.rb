@@ -20,7 +20,7 @@ class Something
 
   attr_reader :foo,
 
-    def do_stuff( a,b,c )
+    def do_stuff( a:,b:,c: )
 	maths_and_stuff = 4 +
                           5 +
 			  6
@@ -52,7 +52,11 @@ class Something
 
   def do_even_more_stuff
     foo = begin
-  do_stuff(1,2,3)
+do_stuff(
+              a: 1,
+                     b: 2,
+                     c: 3
+                    )
                           rescue StandardError
                    nil
 end
@@ -96,7 +100,7 @@ end
 
 def bad_function(test: true, a:, b:)
   if test
-    a
+    /[xyx]/ =~ a
   else
     b
   end
