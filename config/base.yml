@@ -1118,14 +1118,14 @@ Style/TrailingCommaInArguments:
 
 Style/TrailingCommaInArrayLiteral:
   Enabled: true
-  EnforcedStyleForMultiline: no_comma
+  EnforcedStyleForMultiline: comma
 
 Style/TrailingCommaInBlockArgs:
   Enabled: true
 
 Style/TrailingCommaInHashLiteral:
   Enabled: true
-  EnforcedStyleForMultiline: no_comma
+  EnforcedStyleForMultiline: comma
 
 Style/TrailingMethodEndStatement:
   Enabled: true
