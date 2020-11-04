@@ -16,7 +16,7 @@ class Something
   alias_method :do_more_stuff, :do_stuff
 
   attr_reader :foo
-  def do_stuff(a, b, c)
+  def do_stuff(a:, b:, c:)
     maths_and_stuff = 4 +
       5 +
       6
@@ -47,7 +47,11 @@ class Something
   end
 
   def do_even_more_stuff
-    do_stuff(1, 2, 3)
+    do_stuff(
+      a: 1,
+      b: 2,
+      c: 3
+    )
   rescue
     nil
   end
@@ -86,7 +90,7 @@ end
 
 def bad_function(a:, b:, test: true)
   if test
-    a
+    /[xy]/ =~ a
   else
     b
   end

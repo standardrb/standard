@@ -372,6 +372,9 @@ Lint/DuplicateHashKey:
 Lint/DuplicateMethods:
   Enabled: true
 
+Lint/DuplicateRegexpCharacterClassElement:
+  Enabled: true
+
 Lint/DuplicateRequire:
   Enabled: true
 
@@ -765,6 +768,10 @@ Style/Alias:
 Style/AndOr:
   Enabled: true
   EnforcedStyle: always
+
+Style/ArgumentsForwarding:
+  Enabled: true
+  AllowOnlyRestArgument: true
 
 Style/ArrayJoin:
   Enabled: true
