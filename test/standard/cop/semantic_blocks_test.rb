@@ -67,17 +67,14 @@ class RuboCop::Cop::Standard::SemanticBlocksTest < UnitTest
     RUBY
   end
 
-  def test_braces_with_rescue_does_not_correct
-    assert_offense @cop, <<-RUBY
+  def test_braces_with_rescue_does_not_fail
+    assert_no_offense @cop, <<-RUBY
       lulz = [:a].map do
-                      ^^ Prefer `{...}` over `do...end` for functional blocks.
         :lol
       rescue StandardError
         :nolol
       end
     RUBY
-
-    assert_no_correction @cop
   end
 
   def test_braces_with_side_effect_fails

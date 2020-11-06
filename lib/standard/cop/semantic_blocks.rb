@@ -18,7 +18,9 @@ module RuboCop::Cop
       end
 
       def on_block(node)
-        return if ignored_node?(node) || proper_block_style?(node)
+        return if ignored_node?(node) ||
+          proper_block_style?(node) ||
+          (!node.braces? && rescue_child_block?(node))
 
         add_offense(node, location: :begin)
       end
@@ -118,7 +120,7 @@ module RuboCop::Cop
       end
 
       def rescue_child_block?(node)
-        node.children.any?(&:rescue_type?)
+        node.children.any? { |node| node.rescue_type? || node.ensure_type? }
       end
 
       def non_parenthesized_keyword_args?(node)
