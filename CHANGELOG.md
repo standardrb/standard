@@ -2,6 +2,7 @@
 
 ## unreleased
 
+* Update rubocop from 1.1.0 to [1.2.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.2.0)
 * Update rubocop from 1.0.0 to [1.1.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.1.0) enabling:
   * [`Lint/DuplicateRegexpCharacterClassElement`](https://github.com/rubocop-hq/rubocop/pull/8896)
   * [`Style/ArgumentsForwarding`](https://github.com/rubocop-hq/rubocop/pull/7646)
