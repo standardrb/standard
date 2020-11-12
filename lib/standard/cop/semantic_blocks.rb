@@ -28,9 +28,7 @@ module RuboCop::Cop
       def autocorrect(node)
         return if correction_would_break_code?(node)
 
-        if node.single_line?
-          replace_do_end_with_braces(node.loc)
-        elsif node.braces?
+        if node.braces?
           replace_braces_with_do_end(node.loc)
         else
           replace_do_end_with_braces(node.loc)
