@@ -360,6 +360,9 @@ Lint/DeprecatedClassMethods:
 Lint/DeprecatedOpenSSLConstant:
   Enabled: true
 
+Lint/DuplicateBranch:
+  Enabled: true
+
 Lint/DuplicateCaseCondition:
   Enabled: true
 
@@ -893,7 +896,6 @@ Style/IfWithSemicolon:
 
 Style/InfiniteLoop:
   Enabled: true
-  SafeAutoCorrect: true
 
 Style/KeywordParametersOrder:
   Enabled: true
@@ -970,6 +972,9 @@ Style/NestedTernaryOperator:
 Style/NilComparison:
   Enabled: true
   EnforcedStyle: predicate
+
+Style/NilLambda:
+  Enabled: true
 
 Style/NonNilCheck:
   Enabled: true
