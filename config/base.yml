@@ -621,9 +621,6 @@ Naming/VariableName:
   Enabled: true
   EnforcedStyle: snake_case
 
-Performance/ArraySemiInfiniteRangeSlice:
-  Enabled: true
-
 Performance/BigDecimalWithNumericArgument:
   Enabled: true
 
