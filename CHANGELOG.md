@@ -1,5 +1,9 @@
 # Changelog
 
+## unreleased
+
+* remove [`Performance/ArraySemiInfiniteRangeSlice`](https://github.com/testdouble/standard/pull/225#discussion_r532678908)
+
 ## 0.10.0
 
 * Update rubocop-performance from 1.8.1 to [1.9.1](https://github.com/rubocop-hq/rubocop-performance/releases/tag/v1.9.1) enabling:
