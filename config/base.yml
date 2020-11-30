@@ -621,10 +621,16 @@ Naming/VariableName:
   Enabled: true
   EnforcedStyle: snake_case
 
+Performance/ArraySemiInfiniteRangeSlice:
+  Enabled: true
+
 Performance/BigDecimalWithNumericArgument:
   Enabled: true
 
 Performance/BindCall:
+  Enabled: true
+
+Performance/BlockGivenWithExplicitBlock:
   Enabled: true
 
 Performance/Caller:
@@ -634,6 +640,9 @@ Performance/CollectionLiteralInLoop:
   Enabled: false
 
 Performance/CompareWithBlock:
+  Enabled: true
+
+Performance/ConstantRegexp:
   Enabled: true
 
 Performance/Count:

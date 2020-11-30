@@ -2,7 +2,11 @@
 
 ## unreleased
 
-* Update rubocop from 1.2.0 to [1.3.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.3.0) enabling:
+* Update rubocop-performance from 1.8.1 to [1.9.1](https://github.com/rubocop-hq/rubocop-performance/releases/tag/v1.9.1) enabling:
+  * [`Performance/BlockGivenWithExplicitBlock`](https://github.com/rubocop-hq/rubocop-performance/pull/173)
+  * [`Performance/ConstantRegexp`](https://github.com/rubocop-hq/rubocop-performance/pull/174)
+  * [`Performance/ArraySemiInfiniteRangeSlice`](https://github.com/rubocop-hq/rubocop-performance/pull/175)
+* Update rubocop from 1.2.0 to [1.4.2](https://github.com/rubocop-hq/rubocop/releases/tag/v1.4.2) enabling:
   * [`Style/NilLambda`](https://github.com/rubocop-hq/rubocop/pull/9020)
   * [`Lint/DuplicateBranch`](https://github.com/rubocop-hq/rubocop/pull/8404)
   
