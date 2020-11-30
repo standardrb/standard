@@ -1,6 +1,6 @@
 # Changelog
 
-## unreleased
+## 0.10.1
 
 * remove [`Performance/ArraySemiInfiniteRangeSlice`](https://github.com/testdouble/standard/pull/225#discussion_r532678908)
 
