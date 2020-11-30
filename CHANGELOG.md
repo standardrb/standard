@@ -1,6 +1,6 @@
 # Changelog
 
-## unreleased
+## 0.10.0
 
 * Update rubocop-performance from 1.8.1 to [1.9.1](https://github.com/rubocop-hq/rubocop-performance/releases/tag/v1.9.1) enabling:
   * [`Performance/BlockGivenWithExplicitBlock`](https://github.com/rubocop-hq/rubocop-performance/pull/173)
