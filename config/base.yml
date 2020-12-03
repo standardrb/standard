@@ -363,8 +363,9 @@ Lint/DeprecatedClassMethods:
 Lint/DeprecatedOpenSSLConstant:
   Enabled: true
 
+# Disabled because it can promote code that is overly DRY at the expense of readability -- see #TODO
 Lint/DuplicateBranch:
-  Enabled: true
+  Enabled: false
 
 Lint/DuplicateCaseCondition:
   Enabled: true
