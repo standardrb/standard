@@ -1,10 +1,13 @@
 # Changelog
 
+## 0.10.2
+
+* Remove
+  [`Lint/DuplicateBranch`](https://github.com/testdouble/standard/pull/228)
+
 ## 0.10.1
 
 * Remove [`Performance/ArraySemiInfiniteRangeSlice`](https://github.com/testdouble/standard/pull/225#discussion_r532678908)
-* Remove
-  [`Lint/DuplicateBranch`](https://github.com/testdouble/standard/pull/228)
 
 ## 0.10.0
 
