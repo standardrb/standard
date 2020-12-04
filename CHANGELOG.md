@@ -1,8 +1,10 @@
 # Changelog
 
-## unreleased
+## 0.10.1
 
-* remove [`Performance/ArraySemiInfiniteRangeSlice`](https://github.com/testdouble/standard/pull/225#discussion_r532678908)
+* Remove [`Performance/ArraySemiInfiniteRangeSlice`](https://github.com/testdouble/standard/pull/225#discussion_r532678908)
+* Remove
+  [`Lint/DuplicateBranch`](https://github.com/testdouble/standard/pull/228)
 
 ## 0.10.0
 
@@ -13,7 +15,7 @@
 * Update rubocop from 1.2.0 to [1.4.2](https://github.com/rubocop-hq/rubocop/releases/tag/v1.4.2) enabling:
   * [`Style/NilLambda`](https://github.com/rubocop-hq/rubocop/pull/9020)
   * [`Lint/DuplicateBranch`](https://github.com/rubocop-hq/rubocop/pull/8404)
-  
+
 ## 0.9.0
 
 * Update rubocop from 1.0.0 to [1.2.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.2.0) enabling:
