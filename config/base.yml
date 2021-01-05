@@ -939,7 +939,7 @@ Style/MultilineWhenThen:
 
 Style/NegatedIf:
   Enabled: true
-  EnforcedStyle: both
+  EnforcedStyle: postfix
 
 Style/NegatedWhile:
   Enabled: true

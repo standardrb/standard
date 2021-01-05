@@ -4,6 +4,7 @@
 
 * Update rubocop-performance from 1.9.1 to [1.9.2](https://github.com/rubocop-hq/rubocop-performance/releases/tag/v1.9.2)
 * Update rubocop from 1.4.2 to [1.7.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.7.0)
+* Changed `Style/NegatedIf` to `postfix`
 
 ## 0.10.2
 
