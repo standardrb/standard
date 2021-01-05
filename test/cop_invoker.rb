@@ -25,9 +25,9 @@ module CopInvoker
 
     raise "Error parsing example code" unless @last_source.valid_syntax?
 
-    _investigate(cop, @last_source)
+    offenses = _investigate(cop, @last_source)
 
-    actual_annotations = expected.with_offense_annotations(cop.offenses)
+    actual_annotations = expected.with_offense_annotations(offenses)
     assert_equal expected.to_s, actual_annotations.to_s
   end
 
@@ -86,9 +86,9 @@ module CopInvoker
 
     raise "Error parsing example code" unless processed_source.valid_syntax?
 
-    _investigate(cop, processed_source)
+    offenses = _investigate(cop, processed_source)
 
-    assert_equal [], cop.offenses
+    assert_equal [], offenses
   end
 
   # Parsed representation of code annotated with the `^^^ Message` style
