@@ -49,7 +49,7 @@ class Standard::Runners::RubocopTest < UnitTest
 
     expected_out = <<-OUT.gsub(/^ {6}/, "")
       == test/fixture/runner/agreeable.rb ==
-      C:  1:  1: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+      C:  1:  1: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
       C:  1:  1: [Corrected] Style/SingleLineMethods: Avoid single-line method definitions.
       C:  1:  5: Naming/MethodName: Use snake_case for method names.
       C:  1:  8: [Corrected] Layout/SpaceAfterSemicolon: Space missing after semicolon.
