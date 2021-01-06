@@ -367,7 +367,7 @@ Refer to RuboCop's [documentation on
 formatters](https://rubocop.readthedocs.io/en/latest/formatters/) for more
 information.
 
-## How do I run standard in my editor?
+## How do I run Standard in my editor?
 
 It can be very handy to know about failures while editing to shorten the
 feedback loop. Some editors support asynchronously running linters.
@@ -377,6 +377,10 @@ feedback loop. Some editors support asynchronously running linters.
 - [RubyMine](https://www.jetbrains.com/help/ruby/rubocop.html#disable_rubocop)
 - [vim (via ALE)](https://github.com/testdouble/standard/wiki/IDE:-vim)
 - [VS Code](https://github.com/testdouble/standard/wiki/IDE:-vscode)
+
+## How do I use Standard with Rubocop extensions?
+
+This is not officially supported by Standard. However, Evil Martians wrote up [a regularly updated guide](https://evilmartians.com/chronicles/rubocoping-with-legacy-bring-your-ruby-code-up-to-standard) on how to do so.
 
 ## Does Standard work with [Insert other tool name here]?
 
