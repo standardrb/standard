@@ -18,6 +18,8 @@ class Standard::CreatesConfigStore
         "ruby-2.2.yml"
       elsif desired_version < Gem::Version.new("2.4")
         "ruby-2.3.yml"
+      elsif desired_version < Gem::Version.new("2.6")
+        "ruby-2.5.yml"
       else
         "base.yml"
       end
