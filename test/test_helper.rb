@@ -1,8 +1,11 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
-require "simplecov"
-SimpleCov.start
-SimpleCov.start do
-  add_filter "vendor"
+begin
+  require "simplecov"
+  SimpleCov.start
+  SimpleCov.start do
+    add_filter "vendor"
+  end
+rescue LoadError
 end
 
 require "standard"
