@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased
+
+* Update rubocop from 1.7.0 to [1.8.1](https://github.com/rubocop-hq/rubocop/releases/tag/v1.8.1)
+* Enabled [`Style/SlicingWithRange`](https://github.com/testdouble/standard/issues/175)
+
 ## 0.11.0 
 
 * Update rubocop-performance from 1.9.1 to [1.9.2](https://github.com/rubocop-hq/rubocop-performance/releases/tag/v1.9.2)
