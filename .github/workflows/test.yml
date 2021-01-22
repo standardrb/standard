@@ -9,10 +9,12 @@ on:
 jobs:
   test:
 
-    runs-on: ubuntu-latest
     strategy:
       matrix:
+        os: [ ubuntu-latest ]
         ruby-version: [2.4, 2.7, 3.0]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v2
@@ -20,7 +22,16 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
+    - name: Set up caching
+      uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: bundle-user-ruby-${{ matrix.os }}-${{matrix.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          bundle-use-ruby-${{ matrix.os }}-${{ matrix.ruby-version }}-
     - name: Install dependencies
-      run: bundle
-    - name: Run tests
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+    - name: Run tests for Ruby ${{ matrix.ruby-version }} on ${{ matrix.os }}
       run: bundle exec rake
