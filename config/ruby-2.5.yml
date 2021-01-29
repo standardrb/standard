@@ -1,0 +1,7 @@
+inherit_from: ./base.yml
+
+AllCops:
+  TargetRubyVersion: 2.5
+
+Style/SlicingWithRange:
+  Enabled: false

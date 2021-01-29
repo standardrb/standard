@@ -112,13 +112,26 @@ class Standard::BuildsConfigTest < UnitTest
 
   private
 
-  def config_store(config_root = nil, rubocop_yml = "config/base.yml", ruby_version = RUBY_VERSION)
+  def config_store(config_root = nil, rubocop_yml = highest_compatible_yml_version, ruby_version = RUBY_VERSION)
     RuboCop::ConfigStore.new.tap do |config_store|
       config_store.options_config = path(rubocop_yml)
       options_config = config_store.instance_variable_get("@options_config")
       options_config["AllCops"]["TargetRubyVersion"] = ruby_version.to_f
       options_config["AllCops"]["Exclude"] |= standard_default_ignores(config_root)
     end.for("").to_h
+  end
+
+  def highest_compatible_yml_version
+    non_latest_rubby = Dir["config/*.yml"]
+      .map { |n| n.match(/ruby-(.*)\.yml/) }.compact
+      .map { |m| Gem::Version.new(m[1]) }.sort.reverse
+      .find { |v| Gem::Version.new(RUBY_VERSION) < v }
+
+    if non_latest_rubby
+      "config/ruby-#{non_latest_rubby}.yml"
+    else
+      "config/base.yml"
+    end
   end
 
   def standard_default_ignores(config_root)

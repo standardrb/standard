@@ -49,18 +49,14 @@ class Standard::Runners::RubocopTest < UnitTest
 
     expected_out = <<-OUT.gsub(/^ {6}/, "")
       == test/fixture/runner/agreeable.rb ==
-      C:  1:  1: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
       C:  1:  1: [Corrected] Style/SingleLineMethods: Avoid single-line method definitions.
-      C:  1:  5: Naming/MethodName: Use snake_case for method names.
       C:  1:  8: [Corrected] Layout/SpaceAfterSemicolon: Space missing after semicolon.
-      C:  1:  8: [Corrected] Style/Semicolon: Do not use semicolons to terminate expressions.
-      C:  1:  9: [Corrected] Layout/TrailingWhitespace: Trailing whitespace detected.
+      E:  1: 11: Lint/Syntax: unexpected token tEQL
+      (Using Ruby 2.4 parser; configure using TargetRubyVersion parameter, under AllCops)
 
-      1 file inspected, 6 offenses detected, 4 offenses corrected, 1 more offense can be corrected with `rubocop -A`
+      1 file inspected, 3 offenses detected, 2 offenses corrected
       ====================
-      def Foo
-        'hi'
-      end
+      def Foo() = 'hi'
     OUT
     assert_equal expected_out, fake_out.string
     assert_equal "", fake_err.string
