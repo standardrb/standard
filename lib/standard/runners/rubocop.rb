@@ -28,7 +28,11 @@ module Standard
       def print_corrected_code_if_fixing_stdin(rubocop_options)
         return unless rubocop_options[:stdin] && rubocop_options[:auto_correct]
 
-        puts "=" * 20
+        if rubocop_options[:stderr]
+          warn "=" * 20
+        else
+          puts "=" * 20
+        end
         print rubocop_options[:stdin]
       end
     end
