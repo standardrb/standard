@@ -1,0 +1,7 @@
+inherit_from: ./base.yml
+
+AllCops:
+  TargetRubyVersion: 2.7
+
+Style/HashExcept:
+  Enabled: true

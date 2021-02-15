@@ -1,5 +1,12 @@
 # Changelog
 
+## unreleased
+
+* Update rubocop from 1.7.0 to [1.10.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.10.0) enabling:
+  * [`Lint/AmbiguousAssignment`](https://github.com/rubocop-hq/rubocop/issues/9223)
+  * [`Style/HashExcept`](https://github.com/rubocop-hq/rubocop/pull/9283)
+  * [`Lint/DeprecatedConstants`](https://github.com/rubocop-hq/rubocop/pull/9324)
+
 ## 0.12.0
 
 * Update rubocop from 1.7.0 to [1.8.1](https://github.com/rubocop-hq/rubocop/releases/tag/v1.8.1)
