@@ -329,6 +329,9 @@ Layout/TrailingWhitespace:
   Enabled: true
   AllowInHeredoc: true
 
+Lint/AmbiguousAssignment:
+  Enabled: true
+
 Lint/AmbiguousOperator:
   Enabled: true
 
@@ -358,6 +361,9 @@ Lint/Debugger:
   Enabled: true
 
 Lint/DeprecatedClassMethods:
+  Enabled: true
+
+Lint/DeprecatedConstants:
   Enabled: true
 
 Lint/DeprecatedOpenSSLConstant:
@@ -879,6 +885,9 @@ Style/GlobalStdStream:
 Style/GlobalVars:
   Enabled: true
   AllowedVariables: []
+
+Style/HashExcept:
+  Enabled: true
 
 Style/HashSyntax:
   Enabled: true
