@@ -1,6 +1,6 @@
 # Changelog
 
-## unreleased
+## 0.13.0
 
 * Update rubocop from 1.7.0 to [1.10.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.10.0) enabling:
   * [`Lint/AmbiguousAssignment`](https://github.com/rubocop-hq/rubocop/issues/9223)
