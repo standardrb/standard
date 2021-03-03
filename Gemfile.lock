@@ -13,7 +13,7 @@ GEM
     docile (1.3.5)
     gimme (0.5.0)
     method_source (1.0.0)
-    minitest (5.14.3)
+    minitest (5.14.4)
     parallel (1.20.1)
     parser (3.0.0.0)
       ast (~> 2.4.1)
@@ -22,7 +22,7 @@ GEM
       method_source (~> 1.0)
     rainbow (3.0.0)
     rake (13.0.3)
-    regexp_parser (2.0.3)
+    regexp_parser (2.1.1)
     rexml (3.2.4)
     rubocop (1.10.0)
       parallel (~> 1.10)
@@ -60,4 +60,4 @@ DEPENDENCIES
   standard!
 
 BUNDLED WITH
-   2.2.6
+   2.3.0.dev
