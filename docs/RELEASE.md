@@ -23,7 +23,7 @@ really the only one we'll need for releasing the gem to
 
 1. Make sure git is up to date and `bundle exec rake` exits cleanly
 2. If you upgraded a Rubocop dependency, be sure to lock it down in
-   `standard.gemspec`. Until Rubocop hits 1.0, we're going to stick to exact
+   `standard.gemspec`. To avoid being broken transitively, we stick to exact
    release dependencies (e.g. "0.91.0" instead of "~> 0.91")
 3. Bump the appropriate version segment in `lib/standard/version.rb` (basic
    semantic versioning rules apply; if the release updates Rubocop, follow its

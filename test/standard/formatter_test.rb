@@ -32,8 +32,6 @@ class Standard::FormatterTest < UnitTest
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
       #{standard_greeting}
         Gemfile:42:13: Neat
-
-      #{call_to_action_message}
     MESSAGE
   end
 
@@ -45,8 +43,6 @@ class Standard::FormatterTest < UnitTest
       #{standard_greeting}
       #{fixable_error_message}
         Gemfile:42:13: Neat
-
-      #{call_to_action_message}
     MESSAGE
   end
 
@@ -63,8 +59,6 @@ class Standard::FormatterTest < UnitTest
       #{fixable_error_message}
         Gemfile:42:13: Neat
         Gemfile:43:14: Super
-
-      #{call_to_action_message}
     MESSAGE
   end
 
@@ -79,8 +73,6 @@ class Standard::FormatterTest < UnitTest
       #{standard_greeting}
       #{fixable_error_message("rake standard:fix")}
         Gemfile:42:13: Neat
-
-      #{call_to_action_message}
     MESSAGE
 
     $PROGRAM_NAME = og_name
@@ -96,8 +88,6 @@ class Standard::FormatterTest < UnitTest
       #{fixable_error_message}
         Gemfile:42:13: Neat
         Gemfile:43:14: Super
-
-      #{call_to_action_message}
     MESSAGE
   end
 
@@ -114,8 +104,6 @@ class Standard::FormatterTest < UnitTest
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
       #{standard_greeting}
         Gemfile:42:13: Neat
-
-      #{call_to_action_message}
     MESSAGE
   end
 

@@ -5,8 +5,10 @@
 * Relax multi-line block rules, moving away from enforcing semantic blocks to
   instead allowing code to adhere to whatever multi-line format the author deems
   best [#263](https://github.com/testdouble/standard/pull/263)
-* Allow a `standard:disable` comment directive in addition to `rubocop:disable` 
+* Allow a `standard:disable` comment directive in addition to `rubocop:disable`
   [#186](https://github.com/testdouble/standard/pull/186)
+* Remove the banner text that standard outputs after failure
+  [#264](https://github.com/testdouble/standard/pull/264)
 
 ## 0.13.0
 

@@ -60,12 +60,6 @@ can look at Standard's current base configuration in
 significant changes to the configuration will be documented as [GitHub release
 notes](https://github.com/testdouble/standard/releases).
 
-**[NOTE: until StandardRB hits 1.0.0, we consider this configuration to be a
-non-final work in progress and we encourage you to submit your opinions (and
-reasoned arguments) for the addition, removal, or change to a rule by [opening
-an issue](https://github.com/testdouble/standard/issues/new). If you start using
-Standard, don't be shocked if things change a bit!]**
-
 ## Usage
 
 Once you've installed Standard, you should be able to use the `standardrb`
