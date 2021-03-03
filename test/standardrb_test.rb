@@ -11,8 +11,6 @@ class StandardrbTest < UnitTest
         lib/foo/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/foo/tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
-
-      #{call_to_action_message}
     MSG
   end
 
@@ -31,8 +29,6 @@ class StandardrbTest < UnitTest
       #{standard_greeting}
         do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
-
-      #{call_to_action_message}
     MSG
   end
 

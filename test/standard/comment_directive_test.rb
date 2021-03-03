@@ -13,14 +13,6 @@ class Standard::CommentDirectiveTest < UnitTest
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
       standard: Run `standardrb --fix` to automatically fix some problems.
         test/fixture/comment_directive_test/disabled.rb:11:1: Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
-
-      #{call_to_action_message}
     OUTPUT
-  end
-
-  private
-
-  def call_to_action_message
-    Standard::Formatter::CALL_TO_ACTION_MESSAGE.chomp
   end
 end

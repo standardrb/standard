@@ -50,8 +50,4 @@ class UnitTest < Minitest::Test
   def fixable_error_message(command = "standardrb --fix")
     Standard::Formatter.fixable_error_message(command).chomp
   end
-
-  def call_to_action_message
-    Standard::Formatter::CALL_TO_ACTION_MESSAGE.chomp
-  end
 end

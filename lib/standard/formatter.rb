@@ -8,11 +8,6 @@ module Standard
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
     MSG
 
-    CALL_TO_ACTION_MESSAGE = <<-MSG.gsub(/^ {6}/, "")
-      Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
-        https://github.com/testdouble/standard/issues/new
-    MSG
-
     def self.fixable_error_message(command)
       <<-MSG.gsub(/^ {8}/, "")
         standard: Run `#{command}` to automatically fix some problems.
@@ -24,7 +19,6 @@ module Standard
       @detects_fixability = DetectsFixability.new
       @header_printed_already = false
       @fix_suggestion_printed_already = false
-      @any_uncorrected_offenses = false
     end
 
     def started(_target_files)
@@ -33,7 +27,6 @@ module Standard
 
     def file_finished(file, offenses)
       return unless (uncorrected_offenses = offenses.reject(&:corrected?)).any?
-      @any_uncorrected_offenses = true
 
       print_header_once
       print_fix_suggestion_once(uncorrected_offenses)
@@ -41,10 +34,6 @@ module Standard
       uncorrected_offenses.each do |o|
         output.printf("  %s:%d:%d: %s\n", path_to(file), o.line, o.real_column, o.message.tr("\n", " "))
       end
-    end
-
-    def finished(_)
-      print_call_for_feedback if @any_uncorrected_offenses
     end
 
     private
@@ -88,11 +77,6 @@ module Standard
 
     def path_to(file)
       Pathname.new(file).relative_path_from(Pathname.new(Dir.pwd))
-    end
-
-    def print_call_for_feedback
-      output.print "\n"
-      output.print CALL_TO_ACTION_MESSAGE
     end
 
     def auto_correct_option_provided?

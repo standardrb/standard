@@ -24,8 +24,6 @@ class Standard::CliTest < UnitTest
     assert_equal <<-OUTPUT.gsub(/^ {6}/, ""), fake_out.string
       #{standard_greeting}
         test/fixture/cli/unfixable-bad.rb:3:12: Lint/AssignmentInCondition: Wrap assignment in parentheses if intentional
-
-      #{call_to_action_message}
     OUTPUT
   end
 

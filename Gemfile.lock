@@ -58,6 +58,3 @@ DEPENDENCIES
   rake (~> 13.0)
   simplecov
   standard!
-
-BUNDLED WITH
-   2.3.0.dev
