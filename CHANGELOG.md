@@ -5,6 +5,8 @@
 * Relax multi-line block rules, moving away from enforcing semantic blocks to
   instead allowing code to adhere to whatever multi-line format the author deems
   best
+* Allow a `standard:disable` comment directive in addition to `rubocop:disable` 
+  [#186](https://github.com/testdouble/standard/pull/186)
 
 ## 0.13.0
 

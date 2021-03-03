@@ -304,10 +304,50 @@ ignore:
     - Style/BlockDelimiters
 ```
 
+## How do I disable a warning within my source code?
+
 You can also use special comments to disable all or certain rules within your
-source code. See [RuboCop's
-docs](https://docs.rubocop.org/en/latest/configuration/#disabling-cops-within-source-code)
-for details.
+source code.
+
+Given this source listing `foo.rb`:
+
+```ruby
+baz = 42
+```
+
+Running `standard foo.rb` would fail:
+
+```
+foo.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `baz`.
+```
+
+If we wanted to make an exception, we could add the following comment:
+
+```ruby
+baz = 42 # standard:disable Lint/UselessAssignment
+```
+
+The comment directives (both `standard:disable` and `rubocop:disable`) will
+suppress the error and Standard would succeed.
+
+If, however, you needed to disable standard for multiple lines, you could use
+open and closing directives like this:
+
+```ruby
+# standard:disable Layout/IndentationWidth
+def foo
+    123
+end
+# standard:enable Layout/IndentationWidth
+```
+
+And if you don't know or care which rule is being violated, you can also
+substitute its name for "all". This line actually triggers three different
+violations, so we can suppress them like this:
+
+```ruby
+baz = ['a'].each do end # standard:disable all
+```
 
 ## How do I specify a Ruby version? What is supported?
 
