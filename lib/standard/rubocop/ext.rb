@@ -9,7 +9,7 @@ module RuboCop
   class CommentConfig
     remove_const :COMMENT_DIRECTIVE_REGEXP
     COMMENT_DIRECTIVE_REGEXP = Regexp.new(
-      ('# standardrb : ((?:disable|enable|todo))\b ' + COPS_PATTERN)
+      ('# (?:standard|rubocop) : ((?:disable|enable|todo))\b ' + COPS_PATTERN)
         .gsub(" ", '\s*')
     )
   end

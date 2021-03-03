@@ -12,7 +12,7 @@ class Standard::CommentDirectiveTest < UnitTest
     assert_equal <<-OUTPUT.gsub(/^ {6}/, ""), fake_out.string
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
       standard: Run `standardrb --fix` to automatically fix some problems.
-        test/fixture/comment_directive_test/disabled.rb:8:1: Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
+        test/fixture/comment_directive_test/disabled.rb:11:1: Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
 
       #{call_to_action_message}
     OUTPUT
