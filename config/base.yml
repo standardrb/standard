@@ -738,39 +738,8 @@ Security/YAMLLoad:
   Enabled: true
   SafeAutoCorrect: false
 
-Standard/SemanticBlocks:
-  ProceduralMethods:
-    - benchmark
-    - bm
-    - bmbm
-    - tap
-    # Enumerable
-    - cycle
-    - each
-    - each_cons
-    - each_entry
-    - each_slice
-    - each_with_index
-    # Rails
-    - transaction
-  FunctionalMethods:
-    - given
-    - given!
-    - let
-    - let!
-    - subject
-    - watch
-    - Given
-    - Given!
-    - Invariant
-    - Then
-    - And
-  IgnoredMethods:
-    - lambda
-    - proc
-    - describe
-    - it
-    - When
+Standard/BlockDelimiters:
+  Enabled: true
 
 Style/Alias:
   Enabled: true
