@@ -21,19 +21,19 @@ class Something
       5 +
       6
 
-    plus_stuff = STUFF.map { |e|
+    plus_stuff = STUFF.map do |e|
       e + 1 + maths_and_stuff
-    }
+    end
 
     STUFF.tap { |arr| arr.delete(0) }
 
     STUFF.each { |e| e.succ }
 
-    THINGS.tap do |things|
+    THINGS.tap { |things|
       if THINGS.is_a?(Hash)
         42 + 8
       end
-    end
+    }
 
     test = "hi"
     test2 = "hi"
@@ -41,9 +41,9 @@ class Something
     if test3
       32 + 3
     end
-    THINGS.keys.each do |key|
+    THINGS.keys.each { |key|
       THINGS[key] = plus_stuff[i]
-    end
+    }
   end
 
   def do_even_more_stuff

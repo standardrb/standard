@@ -40,10 +40,12 @@ flag.
   you'll need interpolation in a string slows people down
 - **1.9 hash syntax** - When all the keys in a hash literal are symbols,
   Standard enforces Ruby 1.9's `{hash: syntax}`
-- **Semantic blocks** - `{`/`}` for functional blocks that return a value, and
-  `do`/`end` for procedural blocks that have side effects. More
-  [here](http://www.virtuouscode.com/2011/07/26/the-procedurefunction-block-convention-in-ruby/)
-  and [here](https://github.com/rubocop-hq/ruby-style-guide/issues/162)
+- **Braces for single-line blocks** - Require `{`/`}` for one-line blocks, but
+  allow either braces or `do`/`end` for multiline blocks. Like using `do`/`end`
+  for multiline blocks? Prefer `{`/`}` when chaining? A fan of expressing intent
+  with Jim Weirich's [semantic
+  block](http://www.virtuouscode.com/2011/07/26/the-procedurefunction-block-convention-in-ruby/)
+  approach? Standard lets you do you!
 - **Leading dots on multi-line method chains** - chosen for
   [these](https://github.com/testdouble/standard/issues/75) reasons.
 - **Spaces inside blocks, but not hash literals** - In Ruby, the `{` and `}`
