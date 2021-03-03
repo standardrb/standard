@@ -1,6 +1,6 @@
 # Changelog
 
-## unreleased changes
+## 1.0.0
 
 * Relax multi-line block rules, moving away from enforcing semantic blocks to
   instead allowing code to adhere to whatever multi-line format the author deems

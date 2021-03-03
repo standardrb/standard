@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    standard (0.13.0)
+    standard (1.0.0)
       rubocop (= 1.10.0)
       rubocop-performance (= 1.9.2)
 
@@ -58,3 +58,6 @@ DEPENDENCIES
   rake (~> 13.0)
   simplecov
   standard!
+
+BUNDLED WITH
+   2.2.3
