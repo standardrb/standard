@@ -231,11 +231,6 @@ style.
 
 ## I disagree with rule X, can you change it?
 
-**[NOTE: until StandardRB hits 1.0.0, the answer is yes! It just requires
-[opening an issue](https://github.com/testdouble/standard/issues/new) and
-convincing [@searls](https://twitter.com/searls) (the BDFNow) to make the
-change.]**
-
 No. The whole point of Standard is to save you time by avoiding
 [bikeshedding](https://www.freebsd.org/doc/en/books/faq/misc.html#bikeshed-painting)
 about code style. There are lots of debates online about tabs vs. spaces, etc.
