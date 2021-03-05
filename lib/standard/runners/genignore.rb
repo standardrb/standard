@@ -13,7 +13,7 @@ module Standard
           config.rubocop_options[:formatters] = [["files", temp_file.path]]
           config.rubocop_options[:format] = "files"
           config.rubocop_options[:out] = temp_file.path
-          Runners::Rubocop.new.call(config)
+          exit_code = Runners::Rubocop.new.call(config)
 
           # Read in the files with errors.  It will have the absolute paths
           # of the files but we only want the relative path.
@@ -37,6 +37,7 @@ module Standard
             file.puts "# Remove from this list as you refactor files."
             file.write(yaml_format_errors.to_yaml)
           end
+          exit_code
         ensure
           # Clean up temp file.
           temp_file.close
