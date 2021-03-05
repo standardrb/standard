@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+* Preserve RuboCop's CLI exit codes
+  ([#270](https://github.com/testdouble/standard/pull/270)) by
+  [@nicksieger](https://github.com/nicksieger)
+
 ## 1.0.1
 
 * Update rubocop from 1.10.0 to [1.11.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.11.0)

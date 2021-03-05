@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    standard (1.0.1)
+    standard (1.0.2)
       rubocop (= 1.11.0)
       rubocop-performance (= 1.10.1)
 
@@ -61,4 +61,4 @@ DEPENDENCIES
   standard!
 
 BUNDLED WITH
-   2.2.6
+   2.3.0.dev
