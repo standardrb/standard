@@ -36,4 +36,24 @@ class Standard::CliTest < UnitTest
     assert_empty fake_err.string
     assert_empty fake_out.string
   end
+
+  def test_version
+    fake_out, fake_err, exit_code = do_with_fake_io {
+      Standard::Cli.new(["--version"]).run
+    }
+
+    assert_equal 0, exit_code
+    assert_empty fake_err.string
+    refute_empty fake_out.string
+  end
+
+  def test_help
+    fake_out, fake_err, exit_code = do_with_fake_io {
+      Standard::Cli.new(["--help"]).run
+    }
+
+    assert_equal 0, exit_code
+    assert_empty fake_err.string
+    refute_empty fake_out.string
+  end
 end
