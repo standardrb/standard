@@ -1,14 +1,14 @@
 require "test_helper"
 require "cop_invoker"
 
-class RuboCop::Cop::Standard::BlockDelimitersTest < UnitTest
+class RuboCop::Cop::Standard::BlockSingleLineBracesTest < UnitTest
   include CopInvoker
 
   def setup
-    config = RuboCop::Config.new("Standard/BlockDelimiters" => {
+    config = RuboCop::Config.new("Standard/BlockSingleLineBraces" => {
       "Enabled" => true
     })
-    @cop = RuboCop::Cop::Standard::BlockDelimiters.new(config)
+    @cop = RuboCop::Cop::Standard::BlockSingleLineBraces.new(config)
   end
 
   def test_single_line_with_braces

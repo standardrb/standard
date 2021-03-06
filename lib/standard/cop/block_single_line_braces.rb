@@ -10,7 +10,7 @@ module RuboCop::Cop
     #   # good - single line block
     #   items.each { |item| item / 5 }
     #
-    class BlockDelimiters < RuboCop::Cop::Base
+    class BlockSingleLineBraces < RuboCop::Cop::Base
       extend RuboCop::Cop::AutoCorrector
 
       def on_send(node)

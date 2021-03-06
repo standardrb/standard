@@ -290,7 +290,7 @@ rules to ignore for a particular glob:
 ```yaml
 ignore:
   - 'test/**/*':
-    - Style/BlockDelimiters
+    - Layout/EndAlignment
 ```
 
 ## How do I disable a warning within my source code?

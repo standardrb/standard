@@ -738,7 +738,7 @@ Security/YAMLLoad:
   Enabled: true
   SafeAutoCorrect: false
 
-Standard/BlockDelimiters:
+Standard/BlockSingleLineBraces:
   Enabled: true
 
 Style/Alias:
