@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.3
+
+* Fix an exit code bug introduced in 1.0.2
+  ([#271](https://github.com/testdouble/standard/pull/272)
+
 ## 1.0.2
 
 * Preserve RuboCop's CLI exit codes
