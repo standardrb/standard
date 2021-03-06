@@ -11,7 +11,7 @@ module Standard
 
     def run
       config = @builds_config.call(@argv)
-      @loads_runner.call(config.runner).call(config)
+      @loads_runner.call(config.runner).call(config).to_i
     end
   end
 end
