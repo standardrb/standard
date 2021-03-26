@@ -747,7 +747,6 @@ Style/Alias:
 
 Style/AndOr:
   Enabled: true
-  EnforcedStyle: always
 
 Style/ArgumentsForwarding:
   Enabled: true
