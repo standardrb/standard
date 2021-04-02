@@ -211,6 +211,7 @@ if you've used StandardJS.)
 * [myRent](https://www.myrent.co.nz)
 * [Renuo](https://www.renuo.ch/)
 * [JetThoughts](https://www.jetthoughts.com/)
+* [Oyster](https://www.oysterhr.com/)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
