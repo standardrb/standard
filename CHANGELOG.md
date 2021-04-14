@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.5
+
+* Update rubocop from 1.11.0 to [1.12.1](https://github.com/rubocop-hq/rubocop/releases/tag/v1.12.1)
+
 ## 1.0.4
 
 * Workaround RuboCop's CLI from erroring when it detects a cop named
