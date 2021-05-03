@@ -1,5 +1,20 @@
 # Changelog
 
+## unreleased
+
+* Update rubocop from 1.12.1 to [1.13.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.13.0)
+* Update rubocop-performance from 1.9.2 to [1.11.1](https://github.com/rubocop-hq/rubocop-performance/releases/tag/v1.11.1)
+* Enabled the following rules:
+  * [`Performance/RedundantSplitRegexpArgument`](https://github.com/rubocop/rubocop-performance/pull/190)
+  * [`Style/IfWithBooleanLiteralBranches`](https://github.com/rubocop-hq/rubocop/pull/9396)
+  * [`Lint/TripleQuotes`](https://github.com/rubocop-hq/rubocop/pull/9402)
+  * [`Lint/SymbolConversion`](https://github.com/rubocop/rubocop/pull/9362)
+  * [`Lint/OrAssignmentToConstant`](https://github.com/rubocop-hq/rubocop/pull/9363)
+  * [`Lint/NumberedParameterAssignment`](https://github.com/rubocop-hq/rubocop/pull/9326)
+  * [`Style/HashConversion`](https://github.com/rubocop-hq/rubocop/pull/9478)
+  * [`Gemspec/DateAssignment`](https://github.com/rubocop-hq/rubocop/pull/9496)
+  * [`Style/StringChars`](https://github.com/rubocop/rubocop/pull/9615)
+
 ## 1.0.5
 
 * Update rubocop from 1.11.0 to [1.12.1](https://github.com/rubocop-hq/rubocop/releases/tag/v1.12.1)

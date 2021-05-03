@@ -21,6 +21,9 @@ Bundler/InsecureProtocolSource:
     - '**/Gemfile'
     - '**/gems.rb'
 
+Gemspec/DateAssignment:
+  Enabled: true
+
 Gemspec/DuplicatedAssignment:
   Enabled: true
   Include:
@@ -478,6 +481,12 @@ Lint/NonDeterministicRequireOrder:
 Lint/NonLocalExitFromIterator:
   Enabled: true
 
+Lint/NumberedParameterAssignment:
+  Enabled: true
+
+Lint/OrAssignmentToConstant:
+  Enabled: true
+
 Lint/OrderedMagicComments:
   Enabled: true
 
@@ -557,6 +566,9 @@ Lint/ShadowedArgument:
 Lint/ShadowedException:
   Enabled: true
 
+Lint/SymbolConversion:
+  Enabled: true
+
 Lint/Syntax:
   Enabled: true
 
@@ -564,6 +576,9 @@ Lint/TopLevelReturnWithArgument:
   Enabled: true
 
 Lint/TrailingCommaInAttributeDeclaration:
+  Enabled: true
+
+Lint/TripleQuotes:
   Enabled: true
 
 Lint/UnderscorePrefixedVariableName:
@@ -687,6 +702,9 @@ Performance/RedundantMerge:
   MaxKeyValuePairs: 2
 
 Performance/RedundantSortBlock:
+  Enabled: true
+
+Performance/RedundantSplitRegexpArgument:
   Enabled: true
 
 Performance/RedundantStringChars:
@@ -854,6 +872,9 @@ Style/GlobalVars:
   Enabled: true
   AllowedVariables: []
 
+Style/HashConversion:
+  Enabled: true
+
 Style/HashExcept:
   Enabled: true
 
@@ -868,6 +889,9 @@ Style/IfInsideElse:
   Enabled: true
 
 Style/IfUnlessModifierOfIfUnless:
+  Enabled: true
+
+Style/IfWithBooleanLiteralBranches:
   Enabled: true
 
 Style/IfWithSemicolon:
@@ -1087,6 +1111,9 @@ Style/StabbyLambdaParentheses:
   EnforcedStyle: require_parentheses
 
 Style/StderrPuts:
+  Enabled: true
+
+Style/StringChars:
   Enabled: true
 
 Style/StringLiterals:
