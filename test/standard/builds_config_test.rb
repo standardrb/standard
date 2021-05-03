@@ -124,8 +124,8 @@ class Standard::BuildsConfigTest < UnitTest
   def highest_compatible_yml_version
     non_latest_ruby = Dir["config/*.yml"]
       .map { |n| n.match(/ruby-(.*)\.yml/) }.compact
-      .map { |m| Gem::Version.new(m[1]) }.sort
-      .find { |v| Gem::Version.new(RUBY_VERSION) < v }
+      .map { |m| Gem::Version.new(m[1]) }.sort.reverse
+      .find { |v| Gem::Version.new(RUBY_VERSION) > v }
 
     if non_latest_ruby
       "config/ruby-#{non_latest_ruby}.yml"
