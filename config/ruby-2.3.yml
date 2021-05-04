@@ -1,4 +1,1 @@
-inherit_from: ./ruby-2.5.yml
-
-AllCops:
-  TargetRubyVersion: 2.4 # The oldest supported
+inherit_from: ./ruby-2.4.yml
