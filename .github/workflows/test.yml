@@ -22,16 +22,6 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
-    - name: Set up caching
-      uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: bundle-user-ruby-${{ matrix.os }}-${{matrix.ruby-version }}-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          bundle-use-ruby-${{ matrix.os }}-${{ matrix.ruby-version }}-
-    - name: Install dependencies
-      run: |
-        bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
+        bundler-cache: true
     - name: Run tests for Ruby ${{ matrix.ruby-version }} on ${{ matrix.os }}
-      run: bundle exec rake
+      run: bundle config unset deployment && bundle exec rake
