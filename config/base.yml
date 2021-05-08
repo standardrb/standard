@@ -667,7 +667,7 @@ Performance/DeletePrefix:
   Enabled: true
 
 Performance/DeleteSuffix:
-  Enabled: true
+  Enabled: false
 
 Performance/Detect:
   Enabled: true

@@ -28,7 +28,7 @@
 
 * Workaround RuboCop's CLI from erroring when it detects a cop named
   BlockDelimiters by renaming it to BlockSingleLineBraces
-  ([#271](https://github.com/testdouble/standard/issues/271)0
+  ([#271](https://github.com/testdouble/standard/issues/271))
 
 ## 1.0.3
 
