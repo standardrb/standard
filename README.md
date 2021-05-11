@@ -215,7 +215,7 @@ if you've used StandardJS.)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
-request](https://github.com/testdouble/standard/edit/master/README.md) to let us
+request](https://github.com/testdouble/standard/edit/main/README.md) to let us
 know!
 
 ## Is there a readme badge?
@@ -273,7 +273,7 @@ ignore:
 ```
 
 You can see the files Standard ignores by default
-[here](https://github.com/testdouble/standard/blob/master/lib/standard/creates_config_store/configures_ignored_paths.rb#L3-L13)
+[here](https://github.com/testdouble/standard/blob/main/lib/standard/creates_config_store/configures_ignored_paths.rb#L3-L13)
 
 ## How do I hide a certain warning?
 
@@ -356,7 +356,7 @@ ruby_version: 1.8.7
 ```
 
 See
-[testdouble/suture](https://github.com/testdouble/suture/blob/master/.standard.yml)
+[testdouble/suture](https://github.com/testdouble/suture/blob/main/.standard.yml)
 for an example.
 
 It's a little confusing to consider, but the targeted Ruby version for linting
@@ -367,7 +367,7 @@ the runtime, RuboCop may behave in surprising or inconsistent ways.
 
 If you are targeting a Ruby older than 2.3 and run into an issue, check out
 Standard's [version-specific RuboCop
-configurations](https://github.com/testdouble/standard/tree/master/config) and
+configurations](https://github.com/testdouble/standard/tree/main/config) and
 consider helping out by submitting a pull request if you find a rule that won't
 work for older Rubies.
 
