@@ -425,6 +425,7 @@ from editor plugins:
 * [Pronto](https://github.com/julianrubisch/pronto-standardrb)
 * [Spring](https://github.com/lakim/spring-commands-standard)
 * [Guard](https://github.com/JodyVanden/guard-standardrb)
+* [Danger](https://github.com/ashfurrow/danger-rubocop/)
 
 ## Contributing
 
