@@ -12,6 +12,7 @@ module Standard
             --fix             Automatically fix failures where possible
             --no-fix          Do not automatically fix failures
             --format <name>   Format output with any RuboCop formatter (e.g. "json")
+            --generate-todo   Create a .standard_todo.yml that lists all the files that contain errors
             -v, --version     Print the version of Standard
             -h, --help        Print this message
             FILE              Files to lint [default: ./]
