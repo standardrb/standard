@@ -2,7 +2,7 @@
 
 ## unreleased
 
-* Update rubocop from 1.14.0 to [1.16.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.16.0)
+* Update rubocop from 1.14.0 to [1.17.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.17.0)
 
 ## 1.1.1
 
