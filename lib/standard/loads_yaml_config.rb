@@ -32,7 +32,7 @@ module Standard
         default_ignores: standard_yaml.key?("default_ignores") ? !!standard_yaml["default_ignores"] : true,
         config_root: yaml_path ? Pathname.new(yaml_path).dirname.to_s : nil,
         todo_file: todo_path,
-        todo_ignore_files: todo_yaml["ignore"] || []
+        todo_ignore_files: (todo_yaml["ignore"] || []).map { |f| Hash === f ? f.keys.first : f }
       }
     end
 
