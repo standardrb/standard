@@ -213,6 +213,7 @@ if you've used StandardJS.)
 * [JetThoughts](https://www.jetthoughts.com/)
 * [Oyster](https://www.oysterhr.com/)
 * [Podia](https://www.podia.com/)
+* [RubyCI](https://ruby.ci)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
