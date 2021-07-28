@@ -21,7 +21,7 @@ class Standard::Runners::GenignoreTest < UnitTest
 
     assert File.exist?("tmp/genignore_test/.standard_todo.yml")
 
-    expected_yaml = {"ignore" => %w[errors_one.rb errors_two.rb]}
+    expected_yaml = {"ignore" => [{"errors_one.rb" => ["Lint/AssignmentInCondition"]}, {"errors_two.rb" => ["Lint/UselessAssignment"]}]}
     assert_equal expected_yaml, YAML.load_file("tmp/genignore_test/.standard_todo.yml")
   end
 

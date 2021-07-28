@@ -110,6 +110,22 @@ class Standard::BuildsConfigTest < UnitTest
     }, result.rubocop_config_store.for("").to_h
   end
 
+  def test_todo_with_offenses_merged
+    result = @subject.call([], path("test/fixture/config/t"))
+
+    assert_equal DEFAULT_OPTIONS.merge(
+      todo_file: path("test/fixture/config/t/.standard_todo.yml"),
+      todo_ignore_files: %w[todo_file_one.rb todo_file_two.rb]
+    ), result.rubocop_options
+
+    assert_equal config_store("test/fixture/config/t").dup.tap { |config_store|
+      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/t/none_todo_path/**/*")]
+      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/t/none_todo_file.rb")]
+      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/t/todo_file_two.rb")]
+      config_store["Lint/AssignmentInCondition"]["Exclude"] = [path("test/fixture/config/t/todo_file_one.rb")]
+    }, result.rubocop_config_store.for("").to_h
+  end
+
   private
 
   def config_store(config_root = nil, rubocop_yml = highest_compatible_yml_version, ruby_version = RUBY_VERSION)

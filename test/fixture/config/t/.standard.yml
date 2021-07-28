@@ -1,0 +1,3 @@
+ignore:
+  - none_todo_path/**/*
+  - none_todo_file.rb
