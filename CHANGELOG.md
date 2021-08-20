@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+* Update rubocop from 1.18.4 to [1.19.1](https://github.com/rubocop-hq/rubocop/releases/tag/v1.19.1)
+* Update rubocop-performance from 1.11.4 to [1.11.5](https://github.com/rubocop-hq/rubocop-performance/releases/tag/v1.11.5)
+
 ## 1.1.7
 
 * Fix an issue with nested generated todos being ignored
