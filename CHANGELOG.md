@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.3.0
 
 * Update rubocop from 1.19.1 to [1.20.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.20.0)
 
