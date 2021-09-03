@@ -214,6 +214,7 @@ if you've used StandardJS.)
 * [Oyster](https://www.oysterhr.com/)
 * [Podia](https://www.podia.com/)
 * [RubyCI](https://ruby.ci)
+* [thoughtbot](https://thoughtbot.com/)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
