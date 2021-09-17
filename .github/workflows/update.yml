@@ -1,0 +1,28 @@
+name: Update
+
+on:
+  schedule:
+    - cron: '0 13 * * 5'
+
+jobs:
+  update:
+    name: Check for updates
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.0
+        bundler-cache: true
+    - name: Update Gemspec
+      run: |
+        eval "$(bundle outdated |
+        grep rubocop |
+        awk '{print "sed -i /\"" $1 "\"/s/" $2 "/" $3 "/ standard.gemspec"}' - )"
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        reviewers: camilopayan
