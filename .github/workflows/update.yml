@@ -3,7 +3,7 @@ name: Update
 on:
   schedule:
     - cron: '13 13 * * 5'
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   update:
