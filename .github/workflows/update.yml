@@ -1,9 +1,9 @@
 name: Update
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '13 13 * * 5'
-  workflow_dispatch:
 
 jobs:
   update:
