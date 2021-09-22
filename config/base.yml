@@ -810,9 +810,6 @@ Style/CommandLiteral:
   EnforcedStyle: mixed
   AllowInnerBackticks: false
 
-Style/CommentedKeyword:
-  Enabled: true
-
 Style/ConditionalAssignment:
   Enabled: true
   EnforcedStyle: assign_to_condition
