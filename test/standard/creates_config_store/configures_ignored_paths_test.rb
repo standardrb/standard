@@ -5,7 +5,21 @@ class Standard::CreatesConfigStore::ConfiguresIgnoredPathsTest < UnitTest
     @subject = Standard::CreatesConfigStore::ConfiguresIgnoredPaths.new
   end
 
-  def test_defaults
+  def test_leaves_existing_excludes_alone
+    options_config = {"AllCops" => {"Exclude" => ["foo"]}}
+
+    @subject.call(options_config, {
+      ignore: [],
+      default_ignores: true
+    })
+
+    assert_equal(
+      {"AllCops" => {"Exclude" => [File.expand_path(File.join(Dir.pwd, "foo"))]}},
+      options_config
+    )
+  end
+
+  def test_leaves_missing_excludes_alone
     options_config = {}
 
     @subject.call(options_config, {
@@ -13,22 +27,11 @@ class Standard::CreatesConfigStore::ConfiguresIgnoredPathsTest < UnitTest
       default_ignores: true
     })
 
-    assert_equal({
-      "AllCops" => {
-        "Exclude" => [
-          ".git/**/*",
-          "node_modules/**/*",
-          "vendor/**/*",
-          "bin/*",
-          "db/schema.rb",
-          "tmp/**/*"
-        ].map { |path| File.expand_path(File.join(Dir.pwd, path)) }
-      }
-    }, options_config)
+    assert_equal({}, options_config)
   end
 
   def test_defaults_with_config_file_defined_somewhere_in_the_ancestry
-    options_config = {}
+    options_config = {"AllCops" => {"Exclude" => ["foo"]}}
 
     @subject.call(options_config, {
       ignore: [],
@@ -36,29 +39,23 @@ class Standard::CreatesConfigStore::ConfiguresIgnoredPathsTest < UnitTest
       config_root: "/hi/project"
     })
 
-    assert_equal({
-      "AllCops" => {
-        "Exclude" => [
-          "/hi/project/.git/**/*",
-          "/hi/project/node_modules/**/*",
-          "/hi/project/vendor/**/*",
-          "/hi/project/bin/*",
-          "/hi/project/db/schema.rb",
-          "/hi/project/tmp/**/*"
-        ]
-      }
-    }, options_config)
+    assert_equal(
+      {"AllCops" => {"Exclude" => ["/hi/project/foo"]}},
+      options_config
+    )
   end
 
   def test_disabled_default_ignores
-    options_config = {}
+    options_config = {
+      "AllCops" => {"Exclude" => ["foo"]}
+    }
 
     @subject.call(options_config, {
       ignore: [],
       default_ignores: false
     })
 
-    assert_equal({}, options_config)
+    assert_equal({"AllCops" => {"Exclude" => []}}, options_config)
   end
 
   def test_absolute_path

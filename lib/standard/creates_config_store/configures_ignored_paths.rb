@@ -1,21 +1,19 @@
 class Standard::CreatesConfigStore
   class ConfiguresIgnoredPaths
-    DEFAULT_IGNORES = [
-      # Match RuboCop's defaults: https://github.com/rubocop-hq/rubocop/blob/v0.61.1/config/default.yml#L60-L63
-      ".git/**/*",
-      "node_modules/**/*",
-      "vendor/**/*",
-      # Standard's own default ignores:
-      "bin/*",
-      "db/schema.rb",
-      "tmp/**/*"
-    ].map { |path| [path, ["AllCops"]] }.freeze
-
     def call(options_config, standard_config)
-      ignored_patterns(standard_config).each do |(path, cops)|
+      # being careful not to set [] or delete Exclude since that would change inherit_gem users intentions
+      if (all_excludes = options_config.dig("AllCops", "Exclude"))
+        if standard_config[:default_ignores]
+          all_excludes.map! { |path| absolutify(standard_config[:config_root], path) }
+        else
+          all_excludes.clear
+        end
+      end
+
+      # add user provided ignores
+      standard_config[:ignore].each do |path, cops|
         cops.each do |cop|
-          options_config[cop] ||= {}
-          options_config[cop]["Exclude"] ||= []
+          (options_config[cop] ||= {})["Exclude"] ||= []
           options_config[cop]["Exclude"] |= [
             absolutify(standard_config[:config_root], path)
           ]
@@ -25,11 +23,8 @@ class Standard::CreatesConfigStore
 
     private
 
-    def ignored_patterns(standard_config)
-      (standard_config[:default_ignores] ? DEFAULT_IGNORES : []) +
-        standard_config[:ignore]
-    end
-
+    # not sure if this is necessary with rubocop already doing this in
+    # lib/rubocop/config.rb:77:in `block in make_excludes_absolute'
     def absolutify(config_root, path)
       if !absolute?(path)
         File.expand_path(File.join(config_root || Dir.pwd, path))

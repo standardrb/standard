@@ -28,7 +28,6 @@ class StandardrbTest < UnitTest
     assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
       #{standard_greeting}
         do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
-        tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
     MSG
   end
 

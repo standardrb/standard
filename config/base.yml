@@ -4,7 +4,15 @@ require:
 AllCops:
   # Prevent RuboCop from exploding when it finds an older-than-2.4 .ruby-version
   TargetRubyVersion: 2.5
-  Exclude: []
+  Exclude:
+  # Match RuboCop's defaults: https://github.com/rubocop-hq/rubocop/blob/v0.61.1/config/default.yml#L60-L63
+  - ".git/**/*"
+  - "node_modules/**/*"
+  - "vendor/**/*"
+  # Standard's own default ignores:
+  - "bin/*"
+  - "db/schema.rb"
+  - "tmp/**/*"
 
 Bundler/DuplicatedGem:
   Enabled: true
