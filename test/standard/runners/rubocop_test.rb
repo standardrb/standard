@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "../../test_helper"
 
 require "standard/runners/rubocop"
 require "fixture/runner/bad_cop"

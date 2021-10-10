@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "../test_helper"
 
 class Standard::BuildsConfigTest < UnitTest
   DEFAULT_OPTIONS = {
