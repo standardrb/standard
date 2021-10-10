@@ -8,6 +8,8 @@ begin
 rescue LoadError
 end
 
+$LOAD_PATH << "test"
+
 require "standard"
 require "gimme"
 require "minitest/autorun"
