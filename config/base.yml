@@ -342,8 +342,7 @@ Lint/AmbiguousRegexpLiteral:
   Enabled: true
 
 Lint/AssignmentInCondition:
-  Enabled: true
-  AllowSafeAssignment: true
+  Enabled: false
 
 Lint/BigDecimalNew:
   Enabled: true
@@ -758,6 +757,10 @@ Security/YAMLLoad:
 
 Standard/BlockSingleLineBraces:
   Enabled: true
+
+Standard/AssignmentInCondition:
+  Enabled: true
+  AllowSafeAssignment: true
 
 Style/Alias:
   Enabled: true

@@ -1,6 +1,7 @@
 require "rubocop"
 
 require "standard/rubocop/ext"
+require "standard/cop/assignment_in_condition"
 
 require "standard/version"
 require "standard/cli"
