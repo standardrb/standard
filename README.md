@@ -200,7 +200,7 @@ Change your `.rubocop.yml` to:
 require: standard
 
 inherit_gem:
-  standard: config/ruby-2.7.yml
+  standard: config/base.yml
 
 AllCops:
   DisabledByDefault: true
