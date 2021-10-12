@@ -505,6 +505,9 @@ Lint/RaiseException:
 Lint/RandOne:
   Enabled: true
 
+Lint/RedundantCopDisableDirective:
+  Enabled: true
+
 Lint/RedundantRequireStatement:
   Enabled: true
 
