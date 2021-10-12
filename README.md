@@ -231,6 +231,7 @@ if you've used StandardJS.)
 * [Podia](https://www.podia.com/)
 * [RubyCI](https://ruby.ci)
 * [thoughtbot](https://thoughtbot.com/)
+* [Planet Argon](https://www.planetargon.com/)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
