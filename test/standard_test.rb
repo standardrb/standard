@@ -28,7 +28,7 @@ class StandardTest < UnitTest
       sections = File.read(base).strip.split(separator)
       sections += missing.map { |key| "#{key}:\n  Enabled: false" }
       sections = sections.first(1) + sections[1..-1].sort # keep require in the front
-      File.write(base, sections.join(separator)) + "\n"
+      File.write(base, sections.join(separator) + "\n")
       flunk "#{base} has been rewritten to add missing cops, review and commit it"
     end
 
