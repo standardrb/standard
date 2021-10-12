@@ -634,7 +634,7 @@ Lint/RandOne:
   Enabled: true
 
 Lint/RedundantCopDisableDirective:
-  Enabled: false
+  Enabled: true
 
 Lint/RedundantCopEnableDirective:
   Enabled: false

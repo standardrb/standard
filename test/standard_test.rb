@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "test_helper"
 
 class StandardTest < UnitTest
   def test_loads_stuff

@@ -1,5 +1,7 @@
 #Some code that violates lots of rules
 
+require "json" # standard:disable Lint/AssignmentInCondition
+
 STUFF = [
   1,
           3,

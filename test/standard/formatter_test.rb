@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "../test_helper"
 
 class Standard::FormatterTest < UnitTest
   Offense = Struct.new(:corrected?, :line, :real_column, :message, :cop_name)
