@@ -24,7 +24,7 @@ module Standard
 
     def construct_config(yaml_path, standard_yaml, todo_path, todo_yaml)
       {
-        ruby_version: Gem::Version.new((standard_yaml["ruby_version"] || RUBY_VERSION)),
+        ruby_version: normalized_ruby_version(standard_yaml["ruby_version"]),
         fix: !!standard_yaml["fix"],
         format: standard_yaml["format"],
         parallel: !!standard_yaml["parallel"],
@@ -34,6 +34,12 @@ module Standard
         todo_file: todo_path,
         todo_ignore_files: (todo_yaml["ignore"] || []).map { |f| Hash === f ? f.keys.first : f }
       }
+    end
+
+    def normalized_ruby_version(version)
+      return version unless Gem::Version.correct?(version)
+
+      Gem::Version.new((version || RUBY_VERSION))
     end
 
     def expand_ignore_config(ignore_config)
