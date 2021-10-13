@@ -24,6 +24,16 @@ class Standard::FormatterTest < UnitTest
     assert_empty @io.string
   end
 
+  def test_no_uncorrected_offenses_with_todo_file_prints_todo_congratulations
+    @subject = Standard::Formatter.new(@io, todo_file: ".standard_todo.yml", todo_ignore_files: [])
+    @subject.file_finished(@some_path, [Offense.new(true)])
+    @subject.finished([@some_path])
+
+    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+      Congrats, you're done! Delete `.standard_todo.yml` in celebration.
+    MESSAGE
+  end
+
   def test_does_not_print_fix_command_if_run_with_fix
     @subject = Standard::Formatter.new(@io, auto_correct: true, safe_auto_correct: true)
     @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource")])
@@ -116,5 +126,12 @@ class Standard::FormatterTest < UnitTest
         file1.rb
         file2.rb
     MESSAGE
+  end
+
+  def test_no_ignored_files_in_todo_file_prints_nothing
+    @subject = Standard::Formatter.new(@io, todo_file: ".standard_todo.yml", todo_ignore_files: [])
+    @subject.started([@some_path])
+
+    assert_empty @io.string
   end
 end
