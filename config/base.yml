@@ -1470,7 +1470,8 @@ Style/NumericLiterals:
   Enabled: false
 
 Style/NumericPredicate:
-  Enabled: false
+  Enabled: true
+  EnforcedStyle: comparison
 
 Style/OneLineConditional:
   Enabled: true
@@ -1789,4 +1790,4 @@ Style/YodaCondition:
   EnforcedStyle: forbid_for_all_comparison_operators
 
 Style/ZeroLengthPredicate:
-  Enabled: false
+  Enabled: false # not safe always fix and both versions are readable
