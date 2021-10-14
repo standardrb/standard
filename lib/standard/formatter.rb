@@ -87,7 +87,7 @@ module Standard
       return if todo_ignore_files&.any?
 
       output.print <<-HEADER.gsub(/^ {8}/, "")
-        Congrats, you're done! Delete `#{todo_file}` in celebration.
+        Congratulations, you've successfully migrated this project to Standard! Delete `#{todo_file}` in celebration.
       HEADER
     end
 

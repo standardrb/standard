@@ -30,7 +30,7 @@ class Standard::FormatterTest < UnitTest
     @subject.finished([@some_path])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
-      Congrats, you're done! Delete `.standard_todo.yml` in celebration.
+      Congratulations, you've successfully migrated this project to Standard! Delete `.standard_todo.yml` in celebration.
     MESSAGE
   end
 
