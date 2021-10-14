@@ -26,13 +26,17 @@ module Standard
     end
 
     def file_finished(file, offenses)
-      return unless (uncorrected_offenses = offenses.reject(&:corrected?)).any?
+      uncorrected_offenses = offenses.reject(&:corrected?)
 
-      print_header_once
-      print_fix_suggestion_once(uncorrected_offenses)
+      if uncorrected_offenses.any?
+        print_header_once
+        print_fix_suggestion_once(uncorrected_offenses)
 
-      uncorrected_offenses.each do |o|
-        output.printf("  %s:%d:%d: %s\n", path_to(file), o.line, o.real_column, o.message.tr("\n", " "))
+        uncorrected_offenses.each do |o|
+          output.printf("  %s:%d:%d: %s\n", path_to(file), o.line, o.real_column, o.message.tr("\n", " "))
+        end
+      else
+        print_todo_congratulations
       end
     end
 
@@ -64,7 +68,7 @@ module Standard
       return unless todo_file
 
       todo_ignore_files = options[:todo_ignore_files]
-      return unless todo_ignore_files
+      return unless todo_ignore_files&.any?
 
       output.print <<-HEADER.gsub(/^ {8}/, "")
         WARNING: this project is being migrated to standard gradually via `#{todo_file}` and is ignoring these files:
@@ -73,6 +77,18 @@ module Standard
       todo_ignore_files.each do |f|
         output.printf("  %s\n", f)
       end
+    end
+
+    def print_todo_congratulations
+      todo_file = options[:todo_file]
+      return unless todo_file
+
+      todo_ignore_files = options[:todo_ignore_files]
+      return if todo_ignore_files&.any?
+
+      output.print <<-HEADER.gsub(/^ {8}/, "")
+        Congratulations, you've successfully migrated this project to Standard! Delete `#{todo_file}` in celebration.
+      HEADER
     end
 
     def path_to(file)
