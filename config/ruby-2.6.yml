@@ -1,0 +1,5 @@
+inherit_from: ./ruby-2.7.yml
+
+AllCops:
+  TargetRubyVersion: 2.6
+
