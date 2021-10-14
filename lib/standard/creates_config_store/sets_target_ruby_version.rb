@@ -1,7 +1,7 @@
 class Standard::CreatesConfigStore
   class SetsTargetRubyVersion
     def call(options_config, standard_config)
-      options_config["AllCops"]["TargetRubyVersion"] = floatify_version(
+      options_config["AllCops"]["TargetRubyVersion"] = normalize_version(
         max_rubocop_supported_version(standard_config[:ruby_version])
       )
     end
@@ -9,6 +9,8 @@ class Standard::CreatesConfigStore
     private
 
     def max_rubocop_supported_version(desired_version)
+      return desired_version unless Gem::Version.correct?(desired_version)
+
       rubocop_supported_version = Gem::Version.new("2.5")
       if desired_version < rubocop_supported_version
         rubocop_supported_version
@@ -17,7 +19,9 @@ class Standard::CreatesConfigStore
       end
     end
 
-    def floatify_version(version)
+    def normalize_version(version)
+      return version unless Gem::Version.correct?(version)
+
       major, minor = version.segments
       "#{major}.#{minor}".to_f # lol
     end
