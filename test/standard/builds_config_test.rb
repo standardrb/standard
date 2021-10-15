@@ -1,5 +1,7 @@
 require_relative "../test_helper"
 
+SingleCov.covered!
+
 class Standard::BuildsConfigTest < UnitTest
   DEFAULT_OPTIONS = {
     auto_correct: false,

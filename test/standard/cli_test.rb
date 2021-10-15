@@ -1,6 +1,8 @@
 require_relative "../test_helper"
 require "fileutils"
 
+SingleCov.covered!
+
 class Standard::CliTest < UnitTest
   def test_autocorrectable
     FileUtils.rm_rf("tmp/cli_test")

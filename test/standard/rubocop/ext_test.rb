@@ -1,7 +1,9 @@
-require_relative "../test_helper"
+require_relative "../../test_helper"
 require "fileutils"
 
-class Standard::CommentDirectiveTest < UnitTest
+SingleCov.covered! uncovered: 1
+
+class Standard::ExtTest < UnitTest
   def test_comment_directive
     fake_out, fake_err, exit_code = do_with_fake_io {
       Standard::Cli.new(["test/fixture/comment_directive_test/disabled.rb"]).run
