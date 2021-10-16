@@ -19,6 +19,7 @@ module Standard
       @detects_fixability = DetectsFixability.new
       @header_printed_already = false
       @fix_suggestion_printed_already = false
+      @offenses_encountered = false
     end
 
     def started(_target_files)
@@ -28,16 +29,20 @@ module Standard
     def file_finished(file, offenses)
       uncorrected_offenses = offenses.reject(&:corrected?)
 
-      if uncorrected_offenses.any?
-        print_header_once
-        print_fix_suggestion_once(uncorrected_offenses)
+      return unless uncorrected_offenses.any?
 
-        uncorrected_offenses.each do |o|
-          output.printf("  %s:%d:%d: %s\n", path_to(file), o.line, o.real_column, o.message.tr("\n", " "))
-        end
-      else
-        print_todo_congratulations
+      @offenses_encountered = true
+
+      print_header_once
+      print_fix_suggestion_once(uncorrected_offenses)
+
+      uncorrected_offenses.each do |o|
+        output.printf("  %s:%d:%d: %s\n", path_to(file), o.line, o.real_column, o.message.tr("\n", " "))
       end
+    end
+
+    def finished(inspected_files)
+      print_todo_congratulations
     end
 
     private
@@ -80,6 +85,8 @@ module Standard
     end
 
     def print_todo_congratulations
+      return if @offenses_encountered
+
       todo_file = options[:todo_file]
       return unless todo_file
 
