@@ -37,9 +37,9 @@ module Standard
     end
 
     def normalized_ruby_version(version)
-      return version unless Gem::Version.correct?(version)
+      return version if version && !Gem::Version.correct?(version)
 
-      Gem::Version.new((version || RUBY_VERSION))
+      Gem::Version.new(version || RUBY_VERSION)
     end
 
     def expand_ignore_config(ignore_config)
