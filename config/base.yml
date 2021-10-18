@@ -1406,8 +1406,7 @@ Style/MutableConstant:
   Enabled: false
 
 Style/NegatedIf:
-  Enabled: true
-  EnforcedStyle: postfix
+  Enabled: false
 
 Style/NegatedIfElseCondition:
   Enabled: false
