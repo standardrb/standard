@@ -27,10 +27,23 @@ class Standard::FormatterTest < UnitTest
   def test_no_uncorrected_offenses_with_todo_file_prints_todo_congratulations
     @subject = Standard::Formatter.new(@io, todo_file: ".standard_todo.yml", todo_ignore_files: [])
     @subject.file_finished(@some_path, [Offense.new(true)])
-    @subject.finished([@some_path])
+    @subject.file_finished("main.rb", [Offense.new(true)])
+    @subject.finished([@some_path, "main.rb"])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
       Congratulations, you've successfully migrated this project to Standard! Delete `.standard_todo.yml` in celebration.
+    MESSAGE
+  end
+
+  def test_does_not_print_congratulations_if_offenses_were_detected
+    @subject = Standard::Formatter.new(@io, todo_file: ".standard_todo.yml", todo_ignore_files: [])
+    @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource")])
+    @subject.finished([@some_path])
+
+    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+      #{standard_greeting}
+      #{fixable_error_message}
+        Gemfile:42:13: Neat
     MESSAGE
   end
 
