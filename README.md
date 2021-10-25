@@ -232,6 +232,7 @@ if you've used StandardJS.)
 * [RubyCI](https://ruby.ci)
 * [thoughtbot](https://thoughtbot.com/)
 * [Planet Argon](https://www.planetargon.com/)
+* [Brave Software](https://github.com/brave-intl/publishers)
 * And that's about it so far!
 
 If your team starts using Standard, [send a pull
