@@ -5,6 +5,10 @@
 * Remove
   [`Style/NegatedIf`](https://github.com/TODO)
 
+## Also unreleased
+
+* Update rubocop from 1.19.1 to [1.22.3](https://github.com/rubocop-hq/rubocop/releases/tag/v1.22.3)
+
 ## 1.3.0
 
 * Update rubocop from 1.19.1 to [1.20.0](https://github.com/rubocop-hq/rubocop/releases/tag/v1.20.0)

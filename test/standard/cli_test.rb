@@ -11,7 +11,7 @@ class Standard::CliTest < UnitTest
     exit_code = Standard::Cli.new(["tmp/cli_test/subject.rb", "--fix"]).run
 
     assert_equal 0, exit_code
-    assert_equal IO.read("test/fixture/cli/autocorrectable-good.rb"), IO.read("tmp/cli_test/subject.rb")
+    assert_equal File.read("test/fixture/cli/autocorrectable-good.rb"), File.read("tmp/cli_test/subject.rb")
   end
 
   def test_unfixable_broken
