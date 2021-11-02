@@ -34,4 +34,3 @@ jobs:
         title: '[ {{ steps.date.output.date }} ] - Update dependencies'
         delete-branch: true
         branch: update-deps-{{ steps.date.output.date }}
-
