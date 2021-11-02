@@ -15,6 +15,8 @@ jobs:
       with:
         ruby-version: 3.0.0
         bundler-cache: true
+    - name: Unset deployment
+      run: bundle config unset deployment
     - name: Update Gemspec
       run: |
         eval "$(bundle outdated |
