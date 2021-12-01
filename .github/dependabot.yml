@@ -1,0 +1,8 @@
+version: 2
+updates:
+  - package-ecosystem: "bundler"
+    directory: "/"
+    allow: direct
+    schedule:
+      interval: "weekly"
+      day: monday
