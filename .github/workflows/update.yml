@@ -23,18 +23,18 @@ jobs:
     - name: Get Outdated
       id: outdated
       run: |
-        eval "$(bundle outdated |
+        eval "$(bundle outdated rubocop rubocop-performance |
         grep rubocop |
         awk '{print "echo \"::set-output name="$1"_OLD::"$2"\"; echo \"::set-output name="$1"_NEW::"$3"\";"}' - )";
     - name: Update Changelog
       run: |
-        eval "$(bundle outdated |
+        eval "$(bundle outdated rubocop rubocop-performance |
         grep rubocop |
         awk '{print "sed -i \"2i* Update "$1" from "$2" to ["$3"](https://github.com/rubocop/"$1"/tag/v"$3")\" CHANGELOG.md"}' - )";
         sed -i '2i\\n## Unreleased\n' CHANGELOG.md;
     - name: Update Gemspec
       run: |
-        eval "$(bundle outdated |
+        eval "$(bundle outdated rubocop rubocop-performance |
         grep rubocop |
         awk '{print "sed -i /\"" $1 "\"/s/" $2 "/" $3 "/ standard.gemspec"}' - )"
     - name: Update Gemfile
