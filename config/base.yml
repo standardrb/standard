@@ -923,6 +923,9 @@ Performance/CollectionLiteralInLoop:
 Performance/CompareWithBlock:
   Enabled: true
 
+Performance/ConcurrentMonotonicTime:
+  Enabled: true
+
 Performance/ConstantRegexp:
   Enabled: true
 
