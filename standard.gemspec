@@ -20,5 +20,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "rubocop", "1.22.3"
-  spec.add_dependency "rubocop-performance", "1.11.5"
+  spec.add_dependency "rubocop-performance", "~> 1.12"
 end
