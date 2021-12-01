@@ -5,6 +5,11 @@
 * Remove
   [`Style/NegatedIf`](https://github.com/TODO)
 
+## 1.4.1
+
+* loosen constraint on rubocop-performance to support [1.12.0](https://github.com/rubocop/rubocop-performance/releases/tag/v1.12.0)
+* update gems in gemfile.
+
 ## 1.4.0
 
 * Update rubocop from 1.19.1 to [1.22.3](https://github.com/rubocop-hq/rubocop/releases/tag/v1.22.3)

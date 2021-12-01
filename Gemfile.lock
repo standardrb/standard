@@ -3,7 +3,7 @@ PATH
   specs:
     standard (1.4.0)
       rubocop (= 1.22.3)
-      rubocop-performance (~> 1.12)
+      rubocop-performance (= 1.11.5)
 
 GEM
   remote: https://rubygems.org/
@@ -15,7 +15,7 @@ GEM
     method_source (1.0.0)
     minitest (5.14.4)
     parallel (1.21.0)
-    parser (3.0.3.1)
+    parser (3.0.2.0)
       ast (~> 2.4.1)
     pry (0.14.1)
       coderay (~> 1.1)
@@ -33,9 +33,9 @@ GEM
       rubocop-ast (>= 1.12.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.13.0)
+    rubocop-ast (1.12.0)
       parser (>= 3.0.1.1)
-    rubocop-performance (1.12.0)
+    rubocop-performance (1.11.5)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
@@ -61,4 +61,4 @@ DEPENDENCIES
   standard!
 
 BUNDLED WITH
-   2.2.23
+   2.2.22
