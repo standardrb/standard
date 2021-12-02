@@ -49,6 +49,9 @@ Gemspec/RequiredRubyVersion:
 Gemspec/RubyVersionGlobalsUsage:
   Enabled: false
 
+Gemspec/RequireMFA:
+  Enabled: false
+
 Layout/AccessModifierIndentation:
   Enabled: true
   EnforcedStyle: indent
@@ -803,6 +806,9 @@ Lint/IncompatibleIoSelectWithFiberScheduler:
 Lint/RequireRelativeSelfPath:
   Enabled: true
 
+Lint/UselessRuby2Keywords:
+  Enabled: true
+
 Metrics/AbcSize:
   Enabled: false
 
@@ -1034,6 +1040,9 @@ Performance/UnfreezeString:
   Enabled: true
 
 Performance/UriDefaultParser:
+  Enabled: true
+
+Performance/ConcurrentMonotonicTime:
   Enabled: true
 
 Security/Eval:
@@ -1811,3 +1820,7 @@ Style/NumberedParametersLimit:
 
 Style/SelectByRegexp:
   Enabled: false
+
+Style/OpenStructUse:
+  Enabled: false
+
