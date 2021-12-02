@@ -3,3 +3,6 @@ inherit_from: ./ruby-2.3.yml
 Layout:
   HeredocIndentation:
     Enabled: false
+
+Performance/ConcurrentMonotonicTime:
+  Enabled: false
