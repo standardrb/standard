@@ -214,6 +214,7 @@ if you've used StandardJS.)
 
 * [Test Double](https://testdouble.com/agency)
 * [Amazon Web Services](https://aws.amazon.com/)
+* [Babylist](https://www.babylist.com/)
 * [Brand New Box](https://brandnewbox.com)
 * [Brave Software](https://github.com/brave-intl/publishers)
 * [Collective Idea](https://collectiveidea.com/)
