@@ -193,7 +193,6 @@ project healthier.
 ## Usage via rubocop
 
 If you only want to use the rules and not the cli (to keep current IDE/tooling/workflow support).
-It needs to repeat `AllCops` because of a [rubocop issue](https://github.com/rubocop/rubocop/issues/10175).
 Change your `.rubocop.yml` to:
 
 ```yaml
@@ -201,9 +200,6 @@ require: standard
 
 inherit_gem:
   standard: config/base.yml
-
-AllCops:
-  DisabledByDefault: true
 ```
 
 ## Who uses Ruby Standard Style?
