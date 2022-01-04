@@ -5,3 +5,9 @@ Style/HashSyntax:
 
 Style/Lambda:
   Enabled: false
+
+Style/FileWrite:
+  Enabled: false
+
+Style/FileRead:
+  Enabled: false
