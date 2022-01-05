@@ -801,7 +801,7 @@ Lint/Void:
   CheckForMethodsWithNoSideEffects: false
 
 Lint/IncompatibleIoSelectWithFiberScheduler:
-  Enabled: false
+  Enabled: true
 
 Lint/RequireRelativeSelfPath:
   Enabled: true
