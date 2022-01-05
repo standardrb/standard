@@ -897,7 +897,7 @@ Naming/VariableNumber:
   Enabled: false
 
 Naming/BlockForwarding:
-  Enabled: true
+  Enabled: false
 
 Performance/AncestorsInclude:
   Enabled: false
