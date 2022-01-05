@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     standard (1.5.0)
-      rubocop (= 1.23.0)
-      rubocop-performance (= 1.12.0)
+      rubocop (= 1.24.1)
+      rubocop-performance (= 1.13.1)
 
 GEM
   remote: https://rubygems.org/
@@ -13,29 +13,29 @@ GEM
     docile (1.4.0)
     gimme (0.5.0)
     method_source (1.0.0)
-    minitest (5.14.4)
+    minitest (5.15.0)
     parallel (1.21.0)
-    parser (3.0.3.1)
+    parser (3.1.0.0)
       ast (~> 2.4.1)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
     rainbow (3.0.0)
     rake (13.0.6)
-    regexp_parser (2.1.1)
+    regexp_parser (2.2.0)
     rexml (3.2.5)
-    rubocop (1.23.0)
+    rubocop (1.24.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.12.0, < 2.0)
+      rubocop-ast (>= 1.15.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.13.0)
+    rubocop-ast (1.15.1)
       parser (>= 3.0.1.1)
-    rubocop-performance (1.12.0)
+    rubocop-performance (1.13.1)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
@@ -61,4 +61,4 @@ DEPENDENCIES
   standard!
 
 BUNDLED WITH
-   2.2.22
+   2.3.4

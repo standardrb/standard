@@ -801,7 +801,7 @@ Lint/Void:
   CheckForMethodsWithNoSideEffects: false
 
 Lint/IncompatibleIoSelectWithFiberScheduler:
-  Enabled: false
+  Enabled: true
 
 Lint/RequireRelativeSelfPath:
   Enabled: true
@@ -894,6 +894,9 @@ Naming/VariableName:
   EnforcedStyle: snake_case
 
 Naming/VariableNumber:
+  Enabled: false
+
+Naming/BlockForwarding:
   Enabled: false
 
 Performance/AncestorsInclude:
@@ -1043,6 +1046,9 @@ Performance/UriDefaultParser:
   Enabled: true
 
 Performance/ConcurrentMonotonicTime:
+  Enabled: true
+
+Performance/StringIdentifierArgument:
   Enabled: true
 
 Security/Eval:
@@ -1824,3 +1830,11 @@ Style/SelectByRegexp:
 Style/OpenStructUse:
   Enabled: false
 
+Style/MapToHash:
+  Enabled: false
+
+Style/FileWrite:
+  Enabled: true
+
+Style/FileRead:
+  Enabled: true
