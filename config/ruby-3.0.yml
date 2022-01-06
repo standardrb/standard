@@ -8,6 +8,3 @@ Style/HashExcept:
 
 Naming/BlockForwarding:
   Enabled: false
-
-Naming/BlockForwarding:
-  Enabled: false
