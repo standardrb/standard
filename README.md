@@ -460,7 +460,7 @@ file—from shell scripts to Rails apps—it wouldn't be appropriate for Standar
 either enforce or preclude the magic comment. Instead, you might consider
 either:
 
-* Assessing measure memory performance by enabling frozen string literals as
+* Measuring memory performance by enabling frozen string literals as
   the default at runtime (with `RUBYOPT=--enable-frozen-string-literal`)
 * Introducing the
   [magic_frozen_string_literal](https://github.com/Invoca/magic_frozen_string_literal)
