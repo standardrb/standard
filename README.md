@@ -14,17 +14,16 @@ to save you (and others!) time in the same three ways:
 * **Catch style issues & programmer errors early.** Save precious code review
   time by eliminating back-and-forth between reviewer & contributor.
 
-No decisions to make. It just works. Here's a [⚡ lightning talk ⚡](https://www.youtube.com/watch?v=uLyV5hOqGQ8) about it.
+No decisions to make. It just works. Here's a [⚡ lightning talk
+⚡](https://www.youtube.com/watch?v=uLyV5hOqGQ8) about it.
 
-Install by adding it to your Gemfile:
+Install Standard by adding it to your Gemfile and running `bundle install`:
 
 ```ruby
 gem "standard", group: [:development, :test]
 ```
 
-And running `bundle install`.
-
-Run Standard from the command line with:
+You can then run Standard from the command line with:
 
 ```ruby
 $ bundle exec standardrb
@@ -32,6 +31,14 @@ $ bundle exec standardrb
 
 And if you'd like, Standard can autocorrect your code by tacking on a `--fix`
 flag.
+
+If your project uses Rake, adding `require "standard/rake"` adds two tasks:
+`standard` and `standard:fix`. In most new projects, we tend to add the fixer
+variant to our default `rake` task after our test command, similar to this:
+
+```ruby
+task default: [:test, "standard:fix"]
+```
 
 ## StandardRB — The Rules
 
@@ -73,8 +80,8 @@ standard: Run `standardrb --fix` to automatically fix some problems.
   /Users/code/cli.rb:31:23: Style/Semicolon: Do not use semicolons to terminate expressions.
 ```
 
-You can optionally pass in a directory (or directories) using the glob pattern. Be
-sure to quote paths containing glob patterns so that they are expanded by
+You can optionally pass in a directory (or directories) using a glob pattern.
+Be sure to quote paths containing glob patterns so that they are expanded by
 `standardrb` instead of your shell:
 
 ```bash
@@ -84,19 +91,20 @@ $ bundle exec standardrb "lib/**/*.rb" test
 **Note:** by default, StandardRB will look for all `*.rb` files (and some other
 files typically associated with Ruby like `*.gemspec` and `Gemfile`)
 
-If you have an existing project but aren't ready to fix all the files yet you can
-generate a todo file:
+If you want to add Standard to an existing project, but don't want to stop all
+development until you've fixed every violation in every file, you can create a
+backlog of to-be-converted files by generating a TODO file:
 
 ```bash
 $ bundle exec standardrb --generate-todo
 ```
 
-This will create a `.standard_todo.yml` that lists all the files that contain errors.
-When you run Standard in the future it will ignore these files as if they lived under the
-`ignore` section in the `.standard.yml` file.
+This will create a `.standard_todo.yml` that lists all the files that contain
+errors. When you run Standard in the future, it will ignore these files as if
+they were listed under the `ignore` section in the `.standard.yml` file.
 
-As you refactor your existing project you can remove files from the list.  You can
-also regenerate the todo file at any time by re-running the above command.
+As you refactor your existing project you can remove files from the list. You
+can also regenerate the TODO file at any time by re-running the above command.
 
 ### Using with Rake
 
@@ -151,9 +159,8 @@ ignore:                 # default: []
 Note: If you're running Standard in a context where your `.standard.yml` file
 cannot be found by ascending the current working directory (i.e., against a
 temporary file buffer in your editor), you can specify the config location with
-`--config path/to/.standard.yml`.
-
-Similarly, for the `.standard_todo.yml` file, you can specify `--todo path/to/.standard_todo.yml`.
+`--config path/to/.standard.yml`. (Similarly, for the `.standard_todo.yml` file,
+you can specify `--todo path/to/.standard_todo.yml`.)
 
 ## What you might do if you're REALLY clever
 
@@ -190,10 +197,11 @@ community conventions higher than personal style. This might not make sense for
 place for newbies. Setting up clear, automated contributor expectations makes a
 project healthier.
 
-## Usage via rubocop
+## Usage via RuboCop
 
-If you only want to use the rules and not the cli (to keep current IDE/tooling/workflow support).
-Change your `.rubocop.yml` to:
+If you only want to use Standard's rules while continuing to use RuboCop's CLI
+(for example, to continue using your favorite IDE/tooling/workflow with RuboCop
+support), you can configure this in your `.rubocop.yml`:
 
 ```yaml
 require: standard
@@ -230,7 +238,6 @@ if you've used StandardJS.)
 * [Renuo](https://www.renuo.ch/)
 * [RubyCI](https://ruby.ci)
 * [thoughtbot](https://thoughtbot.com/)
-* And that's about it so far!
 
 If your team starts using Standard, [send a pull
 request](https://github.com/testdouble/standard/edit/main/README.md) to let us
@@ -428,15 +435,50 @@ feedback loop. Some editors support asynchronously running linters.
 - [vim (via ALE)](https://github.com/testdouble/standard/wiki/IDE:-vim)
 - [VS Code](https://github.com/testdouble/standard/wiki/IDE:-vscode)
 
-## How do I use Standard with Rubocop extensions?
+## Why aren't `frozen_string_literal: true` magic comments enforced?
 
-This is not officially supported by Standard. However, Evil Martians wrote up [a regularly updated guide](https://evilmartians.com/chronicles/rubocoping-with-legacy-bring-your-ruby-code-up-to-standard) on how to do so.
+Standard does not take a stance on whether you should plaster a
+[frozen_string_literal magic
+comment](https://docs.ruby-lang.org/en/3.0/doc/syntax/comments_rdoc.html#label-Magic+Comments)
+directive at the top of every file. Enforcing use of the comment became popular
+when it was believed that string literals would be frozen by default in a future
+version of Ruby, but [according to
+Matz](https://bugs.ruby-lang.org/issues/11473#note-53) there are no (longer any)
+such plans.
+
+Aside from one's personal opinion on the degree to which the comment is an
+eyesore, the decision to include the magic comment at the top of every file
+listing ought to be made based on the performance characteristics of each
+project (e.g. whether it defines a significant number of string literals,
+whether the commensurate memory usage is a material constraint, whether the code
+is run as a one-off command or a long-lived server application). These tend to
+indicate whether the magic comment might lead to meaningful reductions in memory
+usage.
+
+Because Standard is intended to be used as a default for every kind of Ruby
+file—from shell scripts to Rails apps—it wouldn't be appropriate for Standard to
+either enforce or preclude the magic comment. Instead, you might consider
+either:
+
+* Assessing measure memory performance by enabling frozen string literals as
+  the default at runtime (with `RUBYOPT=--enable-frozen-string-literal`)
+* Introducing the
+  [magic_frozen_string_literal](https://github.com/Invoca/magic_frozen_string_literal)
+  gem to your build, which will automatically ensure that the comment is
+  prepended for every applicable file in your project
+
+## How do I use Standard with RuboCop extensions?
+
+This is not officially supported by Standard. However, Evil Martians wrote up [a
+regularly updated
+guide](https://evilmartians.com/chronicles/rubocoping-with-legacy-bring-your-ruby-code-up-to-standard)
+on how to do so.
 
 ## Does Standard work with [Insert other tool name here]?
 
-Maybe! Start by searching the repository to see if there's an existing issue open for
-the tool you're interested in. That aside, here are other known integrations aside
-from editor plugins:
+Maybe! Start by searching the repository to see if there's an existing issue
+open for the tool you're interested in. That aside, here are other known
+integrations aside from editor plugins:
 
 * [Code Climate](https://github.com/testdouble/standard/wiki/CI:-Code-Climate)
 * [Pronto](https://github.com/julianrubisch/pronto-standardrb)
