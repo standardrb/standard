@@ -4,7 +4,7 @@ class Standard::CreatesConfigStore
   class AssignsRubocopYaml
     def call(config_store, standard_config)
       config_store.options_config = rubocop_yaml_path(standard_config[:ruby_version])
-      config_store.instance_variable_get("@options_config")
+      config_store.instance_variable_get(:@options_config)
     end
 
     private

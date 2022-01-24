@@ -52,7 +52,7 @@ class Standard::BuildsConfigTest < UnitTest
 
     expected_config = RuboCop::ConfigStore.new.tap do |config_store|
       config_store.options_config = path("config/ruby-1.8.yml")
-      options_config = config_store.instance_variable_get("@options_config")
+      options_config = config_store.instance_variable_get(:@options_config)
       options_config["AllCops"]["Exclude"] |= [path("test/fixture/config/y/monkey/**/*")]
       options_config["Fake/Lol"] = {"Exclude" => [path("test/fixture/config/y/neat/cool.rb")]}
       options_config["Fake/Kek"] = {"Exclude" => [path("test/fixture/config/y/neat/cool.rb")]}
@@ -131,7 +131,7 @@ class Standard::BuildsConfigTest < UnitTest
   def config_store(config_root = nil, rubocop_yml = highest_compatible_yml_version, ruby_version = RUBY_VERSION)
     RuboCop::ConfigStore.new.tap do |config_store|
       config_store.options_config = path(rubocop_yml)
-      options_config = config_store.instance_variable_get("@options_config")
+      options_config = config_store.instance_variable_get(:@options_config)
       options_config["AllCops"]["TargetRubyVersion"] = ruby_version.to_f
       options_config["AllCops"]["Exclude"] |= standard_default_ignores(config_root)
     end.for("").to_h
