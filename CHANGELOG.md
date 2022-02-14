@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Removes Style/RedundantBegin from Ruby versions <= 2.4
+
 ## 1.7.1
 
 * Update rubocop from 1.25.0 to [1.25.1](https://github.com/rubocop/rubocop/tag/v1.25.1)

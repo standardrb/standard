@@ -2,3 +2,6 @@ inherit_from: ./ruby-2.5.yml
 
 AllCops:
   TargetRubyVersion: 2.5 # The oldest supported
+
+Style/RedundantBegin:
+  Enabled: false
