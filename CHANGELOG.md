@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.7.2
 
 * Removes Style/RedundantBegin from Ruby versions <= 2.4
 
