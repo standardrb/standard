@@ -8,3 +8,6 @@ Style/HashExcept:
 
 Naming/BlockForwarding:
   Enabled: false
+
+Style/NestedFileDirname:
+  Enabled: false
