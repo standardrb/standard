@@ -1,7 +1,7 @@
-inherit_from: ./base.yml
+inherit_from: ./ruby-3.0.yml
 
 AllCops:
   TargetRubyVersion: 2.7
 
 Style/HashExcept:
-  Enabled: true
+  Enabled: false

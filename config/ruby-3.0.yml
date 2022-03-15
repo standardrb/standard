@@ -3,9 +3,6 @@ inherit_from: ./base.yml
 AllCops:
   TargetRubyVersion: 3.0
 
-Style/HashExcept:
-  Enabled: true
-
 Naming/BlockForwarding:
   Enabled: false
 

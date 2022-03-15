@@ -28,6 +28,8 @@ class Standard::CreatesConfigStore
         "ruby-2.5.yml"
       elsif desired_version < Gem::Version.new("3.0")
         "ruby-2.7.yml"
+      elsif desired_version < Gem::Version.new("3.1")
+        "ruby-3.0.yml"
       else
         default
       end
