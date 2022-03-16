@@ -74,7 +74,8 @@ class Standard::BuildsConfigTest < UnitTest
 
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
 
-    assert_equal config_store("test/fixture/config/w", "config/ruby-1.9.yml", 2.5), result.rubocop_config_store.for("").to_h
+    assert_equal config_store("test/fixture/config/w", "config/ruby-1.9.yml", 2.5),
+      result.rubocop_config_store.for("").to_h
   end
 
   def test_specified_standard_yaml_overrides_local
@@ -88,9 +89,9 @@ class Standard::BuildsConfigTest < UnitTest
   end
 
   def test_specified_standard_yaml_raises
-    err = assert_raises(StandardError) {
+    err = assert_raises(StandardError) do
       @subject.call(["--config", "fake.file"], path("test/fixture/config/z"))
-    }
+    end
     assert_match(/Configuration file ".*fake\.file" not found/, err.message)
   end
 
@@ -138,10 +139,11 @@ class Standard::BuildsConfigTest < UnitTest
   end
 
   def highest_compatible_yml_version
+    current_ruby = RUBY_VERSION.split(".")[0, 2].join(".") # We only want major/minor
     non_latest_ruby = Dir["config/*.yml"]
       .map { |n| n.match(/ruby-(.*)\.yml/) }.compact
       .map { |m| Gem::Version.new(m[1]) }.sort.reverse
-      .find { |v| Gem::Version.new(RUBY_VERSION) >= v }
+      .find { |v| v == Gem::Version.new(current_ruby) }
 
     if non_latest_ruby
       "config/ruby-#{non_latest_ruby}.yml"
@@ -151,8 +153,8 @@ class Standard::BuildsConfigTest < UnitTest
   end
 
   def standard_default_ignores(config_root)
-    Standard::CreatesConfigStore::ConfiguresIgnoredPaths::DEFAULT_IGNORES.map { |(path, _)|
+    Standard::CreatesConfigStore::ConfiguresIgnoredPaths::DEFAULT_IGNORES.map do |(path, _)|
       File.expand_path(File.join(config_root || Dir.pwd, path))
-    }
+    end
   end
 end

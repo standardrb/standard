@@ -1446,6 +1446,9 @@ Style/NegatedUnless:
 Style/NegatedWhile:
   Enabled: true
 
+Style/NestedFileDirname:
+  Enabled: true
+
 Style/NestedModifier:
   Enabled: true
 
