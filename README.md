@@ -17,10 +17,10 @@ to save you (and others!) time in the same three ways:
 No decisions to make. It just works. Here's a [⚡ lightning talk
 ⚡](https://www.youtube.com/watch?v=uLyV5hOqGQ8) about it.
 
-Install Standard by adding it to your Gemfile and running `bundle install`:
+Install Standard and add it to your Gemfile by running:
 
-```ruby
-gem "standard", group: [:development, :test]
+```sh
+bundle add standard --group "development,test"
 ```
 
 You can then run Standard from the command line with:
