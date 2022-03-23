@@ -83,9 +83,8 @@ Layout/BlockEndNewline:
   Enabled: true
 
 Layout/CaseIndentation:
-  # Disabled because IndentOneStep can't be configured for one-liner cases. See:
-  # https://github.com/rubocop-hq/rubocop/issues/6447
-  Enabled: false
+  Enabled: true
+  EnforcedStyle: end
 
 Layout/ClassStructure:
   Enabled: false

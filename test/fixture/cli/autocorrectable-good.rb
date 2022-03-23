@@ -97,3 +97,13 @@ def bad_function(a:, b:, test: true)
     b
   end
 end
+
+def count_carbs(food)
+  carbs = case food
+  when :pancakes
+    23
+  when :mushrooms
+    4
+  end
+  carbs + 1
+end
