@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.9.0
+
+* Rule change to `Layout/CaseIndentation` to have the `when` and `in`s inside a case statement aligned with the `end` of the case. The `end` will be aligned with a variable instead of the `case` keyword if applicable.
+
 ## 1.8.0
 
 * Update rubocop from 1.25.1 to [1.26.0](https://github.com/rubocop/rubocop/tag/v1.26.0)
