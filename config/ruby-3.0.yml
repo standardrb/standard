@@ -8,3 +8,6 @@ Naming/BlockForwarding:
 
 Style/NestedFileDirname:
   Enabled: false
+
+Lint/RefinementImportMethods:
+  Enabled: false

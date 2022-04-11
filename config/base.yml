@@ -665,6 +665,10 @@ Lint/RedundantWithIndex:
 Lint/RedundantWithObject:
   Enabled: true
 
+Lint/RefinementImportMethods:
+  Enabled: true
+  SafeAutoCorrect: false
+
 Lint/RegexpAsCondition:
   Enabled: true
 
@@ -1584,6 +1588,9 @@ Style/RedundantFileExtensionInRequire:
   Enabled: true
 
 Style/RedundantFreeze:
+  Enabled: true
+
+Style/RedundantInitialize:
   Enabled: true
 
 Style/RedundantInterpolation:
