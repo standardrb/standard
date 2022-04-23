@@ -32,6 +32,14 @@ class StandardrbTest < UnitTest
     MSG
   end
 
+  def test_quoted_symbols_are_enforced
+    stdout, status = run_standardrb("test/fixture/quoted_symbols")
+    refute status.success?, stdout
+    assert_equal stdout.scan(/.*\.rb.*/), [
+      "  test.rb:2:5: Style/QuotedSymbols: Prefer double-quoted symbols unless you need single quotes to avoid extra backslashes for escaping."
+    ]
+  end
+
   private
 
   def run_standardrb(cwd, args = [])
