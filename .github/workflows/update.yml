@@ -30,7 +30,7 @@ jobs:
       run: |
         eval "$(bundle outdated rubocop rubocop-performance |
         grep rubocop |
-        awk '{print "sed -i \"2i* Update "$1" from "$2" to ["$3"](https://github.com/rubocop/"$1"/tag/v"$3")\" CHANGELOG.md"}' - )";
+        awk '{print "sed -i \"2i* Update "$1" from "$2" to ["$3"](https://github.com/rubocop/"$1"/releases/tag/v"$3")\" CHANGELOG.md"}' - )";
         sed -i '2i\\n## Unreleased\n' CHANGELOG.md;
     - name: Update Gemspec
       run: |

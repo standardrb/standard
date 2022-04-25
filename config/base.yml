@@ -235,7 +235,7 @@ Layout/IndentationStyle:
 Layout/IndentationWidth:
   Enabled: true
   Width: 2
-  IgnoredPatterns: []
+  AllowedPatterns: []
 
 Layout/InitialIndentation:
   Enabled: true
