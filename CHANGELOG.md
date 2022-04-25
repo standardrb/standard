@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Update rubocop from 1.27.0 to [1.28.2](https://github.com/rubocop/rubocop/tag/v1.28.2)
+
 ## 1.10.0
 
 * Update rubocop from 1.26.1 to [1.27.0](https://github.com/rubocop/rubocop/tag/v1.27.0)
