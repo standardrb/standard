@@ -1,12 +1,16 @@
 # Changelog
 
+## Unreleased
+
+* Update rubocop from 1.27.0 to [1.28.2](https://github.com/rubocop/rubocop/releases/tag/v1.28.2)
+
 ## 1.10.0
 
-* Update rubocop from 1.26.1 to [1.27.0](https://github.com/rubocop/rubocop/tag/v1.27.0)
+* Update rubocop from 1.26.1 to [1.27.0](https://github.com/rubocop/rubocop/releases/tag/v1.27.0)
 
 ## 1.9.1
 
-* Update rubocop from 1.26.0 to [1.26.1](https://github.com/rubocop/rubocop/tag/v1.26.1)
+* Update rubocop from 1.26.0 to [1.26.1](https://github.com/rubocop/rubocop/releases/tag/v1.26.1)
 
 ## 1.9.0
 
@@ -14,7 +18,7 @@
 
 ## 1.8.0
 
-* Update rubocop from 1.25.1 to [1.26.0](https://github.com/rubocop/rubocop/tag/v1.26.0)
+* Update rubocop from 1.25.1 to [1.26.0](https://github.com/rubocop/rubocop/releases/tag/v1.26.0)
 
 ## 1.7.3
 
@@ -26,22 +30,22 @@
 
 ## 1.7.1
 
-* Update rubocop from 1.25.0 to [1.25.1](https://github.com/rubocop/rubocop/tag/v1.25.1)
+* Update rubocop from 1.25.0 to [1.25.1](https://github.com/rubocop/rubocop/releases/tag/v1.25.1)
 
 ## 1.7.0
 
 * Update rubocop-performance from 1.13.1 to [1.13.2](https://github.com/rubocop/rubocop-performance/tag/v1.13.2)
-* Update rubocop from 1.24.1 to [1.25.0](https://github.com/rubocop/rubocop/tag/v1.25.0)
+* Update rubocop from 1.24.1 to [1.25.0](https://github.com/rubocop/rubocop/releases/tag/v1.25.0)
 
 ## 1.6.0
 
 * Update rubocop-performance from 1.12.0 to [1.13.1](https://github.com/rubocop/rubocop-performance/tag/v1.13.1)
-* Update rubocop from 1.23.0 to [1.24.1](https://github.com/rubocop/rubocop/tag/v1.24.1)
+* Update rubocop from 1.23.0 to [1.24.1](https://github.com/rubocop/rubocop/releases/tag/v1.24.1)
 
 ## 1.5.0
 
 * Update rubocop-performance from 1.11.5 to [1.12.0](https://github.com/rubocop/rubocop-performance/tag/v1.12.0)
-* Update rubocop from 1.22.3 to [1.23.0](https://github.com/rubocop/rubocop/tag/v1.23.0)
+* Update rubocop from 1.22.3 to [1.23.0](https://github.com/rubocop/rubocop/releases/tag/v1.23.0)
 
 ## 1.4.0
 
