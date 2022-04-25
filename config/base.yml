@@ -1057,6 +1057,9 @@ Performance/StringIdentifierArgument:
 Security/Eval:
   Enabled: true
 
+Security/CompoundHash:
+  Enabled: true
+
 Security/JSONLoad:
   Enabled: true
   AutoCorrect: false
@@ -1270,6 +1273,9 @@ Style/ExplicitBlockArgument:
   Enabled: false
 
 Style/ExponentialNotation:
+  Enabled: false
+
+Style/FetchEnvVar:
   Enabled: false
 
 Style/FloatDivision:
@@ -1504,6 +1510,9 @@ Style/NumericLiterals:
   Enabled: false
 
 Style/NumericPredicate:
+  Enabled: false
+
+Style/ObjectThen:
   Enabled: false
 
 Style/OneLineConditional:
