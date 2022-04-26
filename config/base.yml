@@ -1561,7 +1561,8 @@ Style/Proc:
   Enabled: true
 
 Style/QuotedSymbols:
-  Enabled: false
+  Enabled: true
+  EnforcedStyle: same_as_string_literals
 
 Style/RaiseArgs:
   Enabled: false
