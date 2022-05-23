@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+
+
 ## 1.12.1
 
 * Update rubocop from 1.29.0 to [1.29.1](https://github.com/rubocop/rubocop/releases/tag/v1.29.1), fixing [#413](https://github.com/testdouble/standard/issues/413)
