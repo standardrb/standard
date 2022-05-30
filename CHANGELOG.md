@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+* Update rubocop-performance from 1.13.3 to [1.14.0](https://github.com/rubocop/rubocop-performance/releases/tag/v1.14.0)
+* Update rubocop from 1.29.1 to [1.30.0](https://github.com/rubocop/rubocop/releases/tag/v1.30.0)
+
 ## 1.12.1
 
 * Update rubocop from 1.29.0 to [1.29.1](https://github.com/rubocop/rubocop/releases/tag/v1.29.1), fixing [#413](https://github.com/testdouble/standard/issues/413)
