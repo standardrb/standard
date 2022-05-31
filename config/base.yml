@@ -38,6 +38,9 @@ Gemspec/DateAssignment:
 Gemspec/DependencyVersion:
   Enabled: false
 
+Gemspec/DeprecatedAttributeAssignment:
+  Enabled: false
+
 Gemspec/DuplicatedAssignment:
   Enabled: true
   Include:
@@ -1382,6 +1385,9 @@ Style/LambdaCall:
 Style/LineEndConcatenation:
   Enabled: true
   SafeAutoCorrect: false
+
+Style/MapCompactWithConditionalBlock:
+  Enabled: true
 
 Style/MethodCallWithArgsParentheses:
   Enabled: false
