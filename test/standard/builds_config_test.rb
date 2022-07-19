@@ -2,8 +2,7 @@ require_relative "../test_helper"
 
 class Standard::BuildsConfigTest < UnitTest
   DEFAULT_OPTIONS = {
-    auto_correct: false,
-    safe_auto_correct: false,
+    autocorrect: false,
     formatters: [["Standard::Formatter", nil]],
     parallel: false,
     todo_file: nil,
@@ -26,8 +25,7 @@ class Standard::BuildsConfigTest < UnitTest
     result = @subject.call(["--only", "Standard/SemanticBlocks", "--fix", "--parallel"])
 
     assert_equal DEFAULT_OPTIONS.merge(
-      auto_correct: true,
-      safe_auto_correct: true,
+      autocorrect: true,
       parallel: true,
       only: ["Standard/SemanticBlocks"]
     ), result.rubocop_options
@@ -44,8 +42,7 @@ class Standard::BuildsConfigTest < UnitTest
     result = @subject.call([], path("test/fixture/config/y"))
 
     assert_equal DEFAULT_OPTIONS.merge(
-      auto_correct: true,
-      safe_auto_correct: true,
+      autocorrect: true,
       parallel: true,
       formatters: [["progress", nil]]
     ), result.rubocop_options
@@ -82,8 +79,7 @@ class Standard::BuildsConfigTest < UnitTest
     result = @subject.call(["--config", "test/fixture/lol.standard.yml"], path("test/fixture/config/z"))
 
     assert_equal DEFAULT_OPTIONS.merge(
-      auto_correct: true,
-      safe_auto_correct: true
+      autocorrect: true,
     ), result.rubocop_options
     assert_equal config_store("test/fixture"), result.rubocop_config_store.for("").to_h
   end

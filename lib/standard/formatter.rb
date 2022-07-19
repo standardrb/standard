@@ -102,12 +102,12 @@ module Standard
       Pathname.new(file).relative_path_from(Pathname.new(Dir.pwd))
     end
 
-    def auto_correct_option_provided?
-      options[:auto_correct] || options[:safe_auto_correct]
+    def autocorrect_option_provided?
+      options[:autocorrect]
     end
 
     def should_suggest_fix?(offenses)
-      !auto_correct_option_provided? && @detects_fixability.call(offenses)
+      !autocorrect_option_provided? && @detects_fixability.call(offenses)
     end
   end
 end
