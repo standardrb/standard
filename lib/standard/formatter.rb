@@ -41,7 +41,7 @@ module Standard
       end
     end
 
-    def finished(inspected_files)
+    def finished(_inspected_files)
       print_todo_congratulations
     end
 
@@ -103,7 +103,7 @@ module Standard
     end
 
     def auto_correct_option_provided?
-      options[:auto_correct] || options[:safe_auto_correct]
+      options[:autocorrect]
     end
 
     def should_suggest_fix?(offenses)

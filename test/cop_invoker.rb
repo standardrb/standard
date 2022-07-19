@@ -16,7 +16,7 @@ module CopInvoker
   def assert_offense(cop, source)
     RuboCop::Formatter::DisabledConfigFormatter.config_to_allow_offenses = {}
     RuboCop::Formatter::DisabledConfigFormatter.detected_styles = {}
-    cop.instance_variable_get(:@options)[:auto_correct] = true
+    cop.instance_variable_get(:@options)[:autocorrect] = true
     expected = AnnotatedSource.parse(source)
 
     @last_source = RuboCop::ProcessedSource.new(
@@ -47,7 +47,7 @@ module CopInvoker
     raise "`assert_correction` must follow `assert_offense`" unless @last_source
 
     iteration = 0
-    actual = loop {
+    actual = loop do
       iteration += 1
 
       corrected_source = @last_corrector.rewrite
@@ -64,7 +64,7 @@ module CopInvoker
       @processed_source = parse_source(corrected_source,
         @processed_source.path)
       _investigate(cop, @processed_source)
-    }
+    end
 
     assert_equal expected, actual
   end
@@ -93,7 +93,7 @@ module CopInvoker
 
   # Parsed representation of code annotated with the `^^^ Message` style
   class AnnotatedSource
-    ANNOTATION_PATTERN = /\A\s*\^+ /.freeze
+    ANNOTATION_PATTERN = /\A\s*\^+ /
 
     # @param annotated_source [String] string passed to the matchers
     #
@@ -174,12 +174,12 @@ module CopInvoker
     # @return [self]
     def with_offense_annotations(offenses)
       offense_annotations =
-        offenses.map { |offense|
+        offenses.map do |offense|
           indent = " " * offense.column
           carets = "^" * offense.column_length
 
           [offense.line, "#{indent}#{carets} #{offense.message}\n"]
-        }
+        end
 
       self.class.new(lines, offense_annotations)
     end
