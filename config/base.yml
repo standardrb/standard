@@ -32,11 +32,11 @@ Bundler/InsecureProtocolSource:
 Bundler/OrderedGems:
   Enabled: false
 
-Gemspec/DateAssignment:
-  Enabled: true
-
 Gemspec/DependencyVersion:
   Enabled: false
+
+Gemspec/DeprecatedAttributeAssignment:
+  Enabled: true
 
 Gemspec/DuplicatedAssignment:
   Enabled: true
@@ -46,13 +46,13 @@ Gemspec/DuplicatedAssignment:
 Gemspec/OrderedDependencies:
   Enabled: false
 
+Gemspec/RequireMFA:
+  Enabled: false
+
 Gemspec/RequiredRubyVersion:
   Enabled: false
 
 Gemspec/RubyVersionGlobalsUsage:
-  Enabled: false
-
-Gemspec/RequireMFA:
   Enabled: false
 
 Layout/AccessModifierIndentation:
@@ -248,6 +248,12 @@ Layout/LeadingCommentSpace:
 
 Layout/LeadingEmptyLines:
   Enabled: true
+
+Layout/LineContinuationLeadingSpace:
+  Enabled: false
+
+Layout/LineContinuationSpacing:
+  Enabled: false
 
 Layout/LineEndStringConcatenationIndentation:
   Enabled: false
@@ -451,6 +457,9 @@ Lint/CircularArgumentReference:
 Lint/ConstantDefinitionInBlock:
   Enabled: true
 
+Lint/ConstantOverwrittenInRescue:
+  Enabled: false
+
 Lint/ConstantResolution:
   Enabled: false
 
@@ -558,6 +567,9 @@ Lint/IdentityComparison:
 Lint/ImplicitStringConcatenation:
   Enabled: true
 
+Lint/IncompatibleIoSelectWithFiberScheduler:
+  Enabled: true
+
 Lint/IneffectiveAccessModifier:
   Enabled: true
 
@@ -603,6 +615,9 @@ Lint/NextWithoutAccumulator:
   Enabled: true
 
 Lint/NoReturnInBeginEndBlocks:
+  Enabled: false
+
+Lint/NonAtomicFileOperation:
   Enabled: false
 
 Lint/NonDeterministicRequireOrder:
@@ -676,6 +691,9 @@ Lint/RegexpAsCondition:
   Enabled: true
 
 Lint/RequireParentheses:
+  Enabled: true
+
+Lint/RequireRelativeSelfPath:
   Enabled: true
 
 Lint/RescueException:
@@ -790,8 +808,14 @@ Lint/UselessAccessModifier:
 Lint/UselessAssignment:
   Enabled: true
 
+Lint/UselessElseWithoutRescue:
+  Enabled: false
+
 Lint/UselessMethodDefinition:
   Enabled: false
+
+Lint/UselessRuby2Keywords:
+  Enabled: true
 
 Lint/UselessSetterCall:
   Enabled: true
@@ -802,15 +826,6 @@ Lint/UselessTimes:
 Lint/Void:
   Enabled: true
   CheckForMethodsWithNoSideEffects: false
-
-Lint/IncompatibleIoSelectWithFiberScheduler:
-  Enabled: true
-
-Lint/RequireRelativeSelfPath:
-  Enabled: true
-
-Lint/UselessRuby2Keywords:
-  Enabled: true
 
 Metrics/AbcSize:
   Enabled: false
@@ -850,6 +865,9 @@ Naming/AsciiIdentifiers:
 
 Naming/BinaryOperatorParameterName:
   Enabled: true
+
+Naming/BlockForwarding:
+  Enabled: false
 
 Naming/BlockParameterName:
   Enabled: true
@@ -899,9 +917,6 @@ Naming/VariableName:
 Naming/VariableNumber:
   Enabled: false
 
-Naming/BlockForwarding:
-  Enabled: false
-
 Performance/AncestorsInclude:
   Enabled: false
 
@@ -933,6 +948,9 @@ Performance/CollectionLiteralInLoop:
   Enabled: false
 
 Performance/CompareWithBlock:
+  Enabled: true
+
+Performance/ConcurrentMonotonicTime:
   Enabled: true
 
 Performance/ConstantRegexp:
@@ -1030,6 +1048,9 @@ Performance/Squeeze:
 Performance/StartWith:
   Enabled: true
 
+Performance/StringIdentifierArgument:
+  Enabled: true
+
 Performance/StringInclude:
   Enabled: false
 
@@ -1048,17 +1069,15 @@ Performance/UnfreezeString:
 Performance/UriDefaultParser:
   Enabled: true
 
-Performance/ConcurrentMonotonicTime:
-  Enabled: true
-
-Performance/StringIdentifierArgument:
+Security/CompoundHash:
   Enabled: true
 
 Security/Eval:
   Enabled: true
 
-Security/CompoundHash:
-  Enabled: true
+Security/IoMethods:
+  Enabled: false
+  Safe: false
 
 Security/JSONLoad:
   Enabled: true
@@ -1075,10 +1094,6 @@ Security/Open:
 Security/YAMLLoad:
   Enabled: true
   SafeAutoCorrect: false
-
-Security/IoMethods:
-  Enabled: false
-  Safe: false
 
 Standard/BlockSingleLineBraces:
   Enabled: true
@@ -1281,6 +1296,12 @@ Style/ExponentialNotation:
 Style/FetchEnvVar:
   Enabled: false
 
+Style/FileRead:
+  Enabled: true
+
+Style/FileWrite:
+  Enabled: true
+
 Style/FloatDivision:
   Enabled: false
 
@@ -1382,6 +1403,12 @@ Style/LambdaCall:
 Style/LineEndConcatenation:
   Enabled: true
   SafeAutoCorrect: false
+
+Style/MapCompactWithConditionalBlock:
+  Enabled: false
+
+Style/MapToHash:
+  Enabled: false
 
 Style/MethodCallWithArgsParentheses:
   Enabled: false
@@ -1505,6 +1532,12 @@ Style/NonNilCheck:
 Style/Not:
   Enabled: true
 
+Style/NumberedParameters:
+  Enabled: false
+
+Style/NumberedParametersLimit:
+  Enabled: false
+
 Style/NumericLiteralPrefix:
   Enabled: true
   EnforcedOctalStyle: zero_with_o
@@ -1520,6 +1553,9 @@ Style/ObjectThen:
 
 Style/OneLineConditional:
   Enabled: true
+
+Style/OpenStructUse:
+  Enabled: false
 
 Style/OptionHash:
   Enabled: false
@@ -1665,6 +1701,9 @@ Style/SafeNavigation:
 
 Style/Sample:
   Enabled: true
+
+Style/SelectByRegexp:
+  Enabled: false
 
 Style/SelfAssignment:
   Enabled: true
@@ -1840,24 +1879,3 @@ Style/YodaCondition:
 
 Style/ZeroLengthPredicate:
   Enabled: false
-
-Style/NumberedParameters:
-  Enabled: false
-
-Style/NumberedParametersLimit:
-  Enabled: false
-
-Style/SelectByRegexp:
-  Enabled: false
-
-Style/OpenStructUse:
-  Enabled: false
-
-Style/MapToHash:
-  Enabled: false
-
-Style/FileWrite:
-  Enabled: true
-
-Style/FileRead:
-  Enabled: true
