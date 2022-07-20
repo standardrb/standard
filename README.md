@@ -182,7 +182,7 @@ The beauty of Ruby Standard Style is that it's simple. No one wants to
 maintain multiple hundred-line style configuration files for every module/project
 they work on. Enough of this madness!
 
-This gem saves you (and others!) time in three ways:
+This gem saves you (and others!) time in four ways:
 
 - **No configuration.** The easiest way to enforce consistent style in your
   project. Just drop it in.
@@ -190,6 +190,9 @@ This gem saves you (and others!) time in three ways:
   messy or inconsistent code.
 - **Catch style issues & programmer errors early.** Save precious code review
   time by eliminating back-and-forth between reviewer & contributor.
+- **Deliberate pace.** We strive to take hassle of upgrading Rubocop out of each
+  individual team's hands and shoulder it ourselves. We enable about ~20% of new
+  cops and generally choose conservative configurations for them.
 
 Adopting Standard style means ranking the importance of code clarity and
 community conventions higher than personal style. This might not make sense for
