@@ -1,11 +1,11 @@
-require_relative '../../test_helper'
+require_relative "../../test_helper"
 
-require 'standard/runners/rubocop'
-require 'fixture/runner/bad_cop'
+require "standard/runners/rubocop"
+require "fixture/runner/bad_cop"
 
 class Standard::Runners::RubocopTest < UnitTest
   DEFAULT_OPTIONS = {
-    formatters: [['quiet', nil]]
+    formatters: [["quiet", nil]]
   }.freeze
 
   EXPECTED_REPORT = <<~REPORT
@@ -41,20 +41,20 @@ class Standard::Runners::RubocopTest < UnitTest
       @subject.call(create_config)
     end
 
-    assert_equal '', fake_out.string
-    assert_equal '', fake_err.string
+    assert_equal "", fake_out.string
+    assert_equal "", fake_err.string
   end
 
   def test_error_output_on_cop_error
-    RuboCop::Cop::Standard::BadCop.send(:define_method, :on_send) { |_| raise 'hell' }
+    RuboCop::Cop::Standard::BadCop.send(:define_method, :on_send) { |_| raise "hell" }
 
     fake_out, fake_err = do_with_fake_io do
       @subject.call(create_config(
-                      only: ['Standard/BadCop']
-                    ))
+        only: ["Standard/BadCop"]
+      ))
     end
 
-    assert_equal '', fake_out.string
+    assert_equal "", fake_out.string
     assert_match(%r{An error occurred while Standard/BadCop cop was inspecting}, fake_err.string)
 
     RuboCop::Cop::Standard::BadCop.send(:define_method, :on_send) { |_| }
@@ -63,22 +63,22 @@ class Standard::Runners::RubocopTest < UnitTest
   def test_print_corrected_output_on_stdin
     fake_out, fake_err = do_with_fake_io do
       @subject.call(create_config(
-                      autocorrect: true,
-                      stdin: "def Foo;'hi'end\n"
-                    ))
+        autocorrect: true,
+        stdin: "def Foo;'hi'end\n"
+      ))
     end
 
     assert_equal EXPECTED_REPORT + EXPECTED_FIXED, fake_out.string
-    assert_equal '', fake_err.string
+    assert_equal "", fake_err.string
   end
 
   def test_print_corrected_output_on_stdin_with_corrections_on_stderr
     fake_out, fake_err = do_with_fake_io do
       @subject.call(create_config(
-                      autocorrect: true,
-                      stderr: true,
-                      stdin: "def Foo;'hi'end\n"
-                    ))
+        autocorrect: true,
+        stderr: true,
+        stdin: "def Foo;'hi'end\n"
+      ))
     end
 
     assert_equal EXPECTED_FIXED, fake_out.string
@@ -87,8 +87,8 @@ class Standard::Runners::RubocopTest < UnitTest
 
   private
 
-  def create_config(options = {}, path = 'test/fixture/runner/agreeable.rb')
+  def create_config(options = {}, path = "test/fixture/runner/agreeable.rb")
     Standard::Config.new(nil, [path], DEFAULT_OPTIONS.merge(options),
-                         RuboCop::ConfigStore.new)
+      RuboCop::ConfigStore.new)
   end
 end
