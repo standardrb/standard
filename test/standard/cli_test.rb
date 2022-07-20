@@ -1,3 +1,23 @@
+^^^
+test/standard/cli_test.rb:49:1: E: Lint/Syntax: unexpected token tRSHFT
+(Using Ruby 2.7 parser; configure using TargetRubyVersion parameter, under AllCops)
+>>>>>>> c0a396e (Updating rubocop invocation to reflect option changes)
+^^
+test/standard/cli_test.rb:57:1: E: Lint/Syntax: unexpected token tLSHFT
+(Using Ruby 2.7 parser; configure using TargetRubyVersion parameter, under AllCops)
+<<<<<<< HEAD
+^^
+test/standard/cli_test.rb:61:1: E: Lint/Syntax: unexpected token tEQQ
+(Using Ruby 2.7 parser; configure using TargetRubyVersion parameter, under AllCops)
+=======
+^^^
+test/standard/cli_test.rb:65:1: E: Lint/Syntax: unexpected token tRSHFT
+(Using Ruby 2.7 parser; configure using TargetRubyVersion parameter, under AllCops)
+>>>>>>> c0a396e (Updating rubocop invocation to reflect option changes)
+^^
+
+1 file inspected, 6 offenses detected
+====================
 require_relative "../test_helper"
 require "fileutils"
 
