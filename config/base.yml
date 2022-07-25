@@ -297,6 +297,9 @@ Layout/MultilineMethodDefinitionBraceLayout:
   Enabled: true
   EnforcedStyle: symmetrical
 
+Layout/MultilineMethodParameterLineBreaks:
+  Enabled: false
+
 Layout/MultilineOperationIndentation:
   Enabled: true
   EnforcedStyle: indented
@@ -691,6 +694,9 @@ Lint/RegexpAsCondition:
   Enabled: true
 
 Lint/RequireParentheses:
+  Enabled: true
+
+Lint/RequireRangeParentheses:
   Enabled: true
 
 Lint/RequireRelativeSelfPath:
@@ -1254,6 +1260,9 @@ Style/EmptyCaseCondition:
 Style/EmptyElse:
   Enabled: true
   EnforcedStyle: both
+
+Style/EmptyHeredoc:
+  Enabled: false
 
 Style/EmptyLambdaParameter:
   Enabled: true

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Update rubocop from 1.31.2 to [1.32.0](https://github.com/rubocop/rubocop/releases/tag/v1.32.0)
+
 ## 1.13.0
 
 * Update rubocop-performance from 1.13.3 to [1.14.3](https://github.com/rubocop/rubocop-performance/releases/tag/v1.14.3)
