@@ -190,7 +190,7 @@ This gem saves you (and others!) time in four ways:
   messy or inconsistent code.
 - **Catch style issues & programmer errors early.** Save precious code review
   time by eliminating back-and-forth between reviewer & contributor.
-- **Deliberate pace.** We strive to take hassle of upgrading Rubocop out of each
+- **Deliberate pace.** We strive to take the hassle of upgrading Rubocop out of each
   individual team's hands and shoulder it ourselves. We enable about ~20% of new
   cops and generally choose conservative configurations for them.
 
