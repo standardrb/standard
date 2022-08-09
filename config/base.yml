@@ -1424,7 +1424,7 @@ Style/MethodCallWithArgsParentheses:
 
 Style/MethodCallWithoutArgsParentheses:
   Enabled: true
-  IgnoredMethods: []
+  AllowedMethods: []
 
 Style/MethodCalledOnDoEndBlock:
   Enabled: false
