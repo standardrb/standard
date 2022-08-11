@@ -1838,7 +1838,7 @@ Style/TrivialAccessors:
   ExactNameMatch: true
   AllowPredicates: true
   AllowDSLWriters: false
-  IgnoreClassMethods: false
+  IgnoreClassMethods: true
   AllowedMethods:
     - to_ary
     - to_a
