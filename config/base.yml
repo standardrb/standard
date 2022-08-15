@@ -1413,6 +1413,9 @@ Style/LineEndConcatenation:
   Enabled: true
   SafeAutoCorrect: false
 
+Style/MagicCommentFormat:
+  Enabled: false
+
 Style/MapCompactWithConditionalBlock:
   Enabled: true
 
