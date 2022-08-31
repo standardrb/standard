@@ -1816,19 +1816,16 @@ Style/TrailingBodyOnModule:
   Enabled: true
 
 Style/TrailingCommaInArguments:
-  Enabled: true
-  EnforcedStyleForMultiline: no_comma
+  Enabled: false
 
 Style/TrailingCommaInArrayLiteral:
-  Enabled: true
-  EnforcedStyleForMultiline: no_comma
+  Enabled: false
 
 Style/TrailingCommaInBlockArgs:
   Enabled: true
 
 Style/TrailingCommaInHashLiteral:
-  Enabled: true
-  EnforcedStyleForMultiline: no_comma
+  Enabled: false
 
 Style/TrailingMethodEndStatement:
   Enabled: true

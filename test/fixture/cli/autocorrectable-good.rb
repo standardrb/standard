@@ -6,12 +6,12 @@ STUFF = [
   1,
   3,
   4,
-  5
+  5,
 ]
 
 THINGS = {
   oh: :io,
-  hi: "neat"
+  hi: "neat",
 }
 
 class Something
@@ -70,7 +70,7 @@ class AlignyStuff
     thing_1: 0,
     thing_2: 1,
     longer_thing: 2,
-    even_longer_thing: 3
+    even_longer_thing: 3,
   }
 
   def setup_fog_credentials(config)
@@ -78,14 +78,14 @@ class AlignyStuff
       provider: "AWS",
       aws_access_key_id: ENV["S3_ACCESS_KEY"],
       aws_secret_access_key: ENV["S3_SECRET"],
-      region: ENV["S3_REGION"]
+      region: ENV["S3_REGION"],
     }
 
     config.fog_credentials_as_kwargs(
       provider: "AWS",
       aws_access_key_id: ENV["S3_ACCESS_KEY"],
       aws_secret_access_key: ENV["S3_SECRET"],
-      region: ENV["S3_REGION"]
+      region: ENV["S3_REGION"],
     )
   end
 end
