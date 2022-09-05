@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Update rubocop from 1.35.1 to [1.36.0](https://github.com/rubocop/rubocop/releases/tag/v1.36.0)
+
 ## 1.16.1
 
 * Update rubocop from 1.35.0 to [1.35.1](https://github.com/rubocop/rubocop/releases/tag/v1.35.1)
