@@ -1,1 +1,4 @@
 inherit_from: ./ruby-2.4.yml
+
+AllCops:
+  TargetRubyVersion: 2.3

@@ -1,5 +1,8 @@
 inherit_from: ./ruby-2.3.yml
 
+AllCops:
+  TargetRubyVersion: 2.2
+
 Layout:
   HeredocIndentation:
     Enabled: false
