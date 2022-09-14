@@ -1,9 +1,19 @@
+require_relative "runners/rubocop"
+require_relative "runners/version"
+require_relative "runners/verbose_version"
+require_relative "runners/help"
+
 module Standard
   class LoadsRunner
-    # Warning: clever metaprogramming. 99% of the time this is Runners::Rubocop
+    RUNNERS = {
+      rubocop: ::Standard::Runners::Rubocop,
+      version: ::Standard::Runners::Version,
+      verbose_version: ::Standard::Runners::VerboseVersion,
+      help: ::Standard::Runners::Help
+    }.freeze
+
     def call(command)
-      require_relative "runners/#{command}"
-      ::Standard::Runners.const_get(command.to_s.capitalize).new
+      RUNNERS[command].new
     end
   end
 end

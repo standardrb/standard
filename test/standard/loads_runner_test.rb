@@ -17,6 +17,12 @@ class Standard::LoadsRunnerTest < UnitTest
     assert_instance_of ::Standard::Runners::Version, result
   end
 
+  def test_verbose_version
+    result = @subject.call(:verbose_version)
+
+    assert_instance_of ::Standard::Runners::VerboseVersion, result
+  end
+
   def test_help
     result = @subject.call(:help)
 

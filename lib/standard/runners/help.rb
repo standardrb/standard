@@ -9,13 +9,14 @@ module Standard
 
           Options:
 
-            --fix             Automatically fix failures where possible
-            --no-fix          Do not automatically fix failures
-            --format <name>   Format output with any RuboCop formatter (e.g. "json")
-            --generate-todo   Create a .standard_todo.yml that lists all the files that contain errors
-            -v, --version     Print the version of Standard
-            -h, --help        Print this message
-            FILE              Files to lint [default: ./]
+            --fix                   Automatically fix failures where possible
+            --no-fix                Do not automatically fix failures
+            --format <name>         Format output with any RuboCop formatter (e.g. "json")
+            --generate-todo         Create a .standard_todo.yml that lists all the files that contain errors
+            -v, --version           Print the version of Standard
+            -V, --verbose-version   Print the version of Standard and its dependencies.
+            -h, --help              Print this message
+            FILE                    Files to lint [default: ./]
 
           Standard also forwards most CLI arguments to RuboCop. To see them, run:
 
