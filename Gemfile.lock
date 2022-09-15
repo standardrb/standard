@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     standard (1.16.1)
-      rubocop (= 1.35.1)
+      rubocop (>= 1.30)
       rubocop-performance (= 1.14.3)
 
 GEM
