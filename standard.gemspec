@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version = Standard::VERSION
   spec.authors = ["Justin Searls"]
   spec.email = ["searls@gmail.com"]
-  spec.required_ruby_version = ">= 2"
+  spec.required_ruby_version = ">= 2.6.0"
 
   spec.summary = "Ruby Style Guide, with linter & automatic code fixer"
   spec.homepage = "https://github.com/testdouble/standard"
@@ -19,6 +19,6 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rubocop", ">= 1.30"
+  spec.add_dependency "rubocop", ">= 1.35.1"
   spec.add_dependency "rubocop-performance", "1.14.3"
 end
