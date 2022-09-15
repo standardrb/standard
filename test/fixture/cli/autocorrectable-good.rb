@@ -1,7 +1,5 @@
 # Some code that violates lots of rules
 
-require "json"
-
 STUFF = [
   1,
   3,
