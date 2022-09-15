@@ -71,7 +71,7 @@ class Standard::BuildsConfigTest < UnitTest
 
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
 
-    assert_equal config_store("test/fixture/config/w", "config/ruby-1.9.yml", 2.5),
+    assert_equal config_store("test/fixture/config/w", "config/ruby-1.9.yml", 2.0),
       result.rubocop_config_store.for("").to_h
   end
 
