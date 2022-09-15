@@ -9,3 +9,7 @@ Layout:
 
 Performance/ConcurrentMonotonicTime:
   Enabled: false
+
+# The foo&.bar syntax is not available until Ruby 2.3.
+Style/SafeNavigation:
+  Enabled: false
