@@ -3,13 +3,14 @@ inherit_from: ./ruby-2.3.yml
 AllCops:
   TargetRubyVersion: 2.2
 
-Layout:
-  HeredocIndentation:
-    Enabled: false
+# The below cops are for features not available until Ruby 2.3 but,
+# as of this writing, the cops don't correctly use the TargetRubyVersion.
+
+Layout/HeredocIndentation:
+  Enabled: false
 
 Performance/ConcurrentMonotonicTime:
   Enabled: false
 
-# The foo&.bar syntax is not available until Ruby 2.3.
 Style/SafeNavigation:
   Enabled: false
