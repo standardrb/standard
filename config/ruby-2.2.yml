@@ -1,8 +1,16 @@
 inherit_from: ./ruby-2.3.yml
 
-Layout:
-  HeredocIndentation:
-    Enabled: false
+AllCops:
+  TargetRubyVersion: 2.2
+
+# The below cops are for features not available until Ruby 2.3 but,
+# as of this writing, the cops don't correctly use the TargetRubyVersion.
+
+Layout/HeredocIndentation:
+  Enabled: false
 
 Performance/ConcurrentMonotonicTime:
+  Enabled: false
+
+Style/SafeNavigation:
   Enabled: false

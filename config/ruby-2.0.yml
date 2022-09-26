@@ -1,0 +1,4 @@
+inherit_from: ./ruby-2.1.yml
+
+AllCops:
+  TargetRubyVersion: 2.0
