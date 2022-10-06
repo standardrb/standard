@@ -1355,7 +1355,7 @@ Style/HashLikeCase:
 Style/HashSyntax:
   Enabled: true
   EnforcedStyle: ruby19_no_mixed_keys
-  EnforcedShorthandSyntax: either
+  EnforcedShorthandSyntax: consistent
 
 Style/HashTransformKeys:
   Enabled: false
