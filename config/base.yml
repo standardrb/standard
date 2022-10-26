@@ -1800,7 +1800,7 @@ Style/SymbolProc:
 
 Style/TernaryParentheses:
   Enabled: true
-  EnforcedStyle: require_no_parentheses
+  EnforcedStyle: require_parentheses_when_complex
   AllowSafeAssignment: true
 
 Style/TopLevelMethodDefinition:
