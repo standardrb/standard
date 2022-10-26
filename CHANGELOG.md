@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Require parentheses around complex ternary conditions [3b0b499a](https://github.com/testdouble/standard/commit/3b0b499a480f8ed90dda1272d31b5617dc340b27)
+
 ## 1.16.1
 
 * Update rubocop from 1.35.0 to [1.35.1](https://github.com/rubocop/rubocop/releases/tag/v1.35.1)
