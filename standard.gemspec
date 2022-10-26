@@ -21,4 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rubocop", "1.35.1"
   spec.add_dependency "rubocop-performance", "1.14.3"
+
+  # not semver: first three are lsp protocol version, last is patch
+  spec.add_dependency "language_server-protocol", "3.17.0.1"
 end

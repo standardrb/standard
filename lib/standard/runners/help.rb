@@ -4,8 +4,8 @@ module Standard
   module Runners
     class Help
       def call(config)
-        puts <<-MESSAGE.gsub(/^ {10}/, "")
-          Usage: standardrb [--fix] [-vh] [--format <name>] [--] [FILE]...
+        puts <<~MESSAGE
+          Usage: standardrb [--fix] [--lsp] [-vh] [--format <name>] [--] [FILE]...
 
           Options:
 
@@ -13,6 +13,7 @@ module Standard
             --no-fix          Do not automatically fix failures
             --format <name>   Format output with any RuboCop formatter (e.g. "json")
             --generate-todo   Create a .standard_todo.yml that lists all the files that contain errors
+            --lsp             Start a LSP server listening on STDIN
             -v, --version     Print the version of Standard
             -h, --help        Print this message
             FILE              Files to lint [default: ./]
