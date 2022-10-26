@@ -15,8 +15,8 @@ module Standard
 
       def initialize(standardizer)
         self.standardizer = standardizer
-        self.writer = Proto::Transport::Stdio::Writer.new
-        self.reader = Proto::Transport::Stdio::Reader.new
+        self.writer = Proto::Transport::Io::Writer.new($stdout)
+        self.reader = Proto::Transport::Io::Reader.new($stdin)
         self.logger = $stderr
         self.text_cache = {}
 
@@ -98,6 +98,7 @@ module Standard
 
         lsp_diagnostics = offenses.map do |o|
           code = o[:cop_name]
+
           msg = o[:message].delete_prefix(code)
           loc = o[:location]
 
