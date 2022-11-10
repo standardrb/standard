@@ -22,6 +22,8 @@ module CopInvoker
     @last_source = RuboCop::ProcessedSource.new(
       expected.plain_source, RUBY_VERSION, nil
     )
+    @last_source.config = configuration
+    @last_source.registry = registry
 
     raise "Error parsing example code" unless @last_source.valid_syntax?
 
@@ -205,5 +207,22 @@ module CopInvoker
     end
 
     RuboCop::ProcessedSource.new(source, RUBY_VERSION, file)
+  end
+
+  def configuration
+    @configuration ||= if defined?(config)
+      config
+    else
+      RuboCop::Config.new({}, "#{Dir.pwd}/.rubocop.yml")
+    end
+  end
+
+  def registry
+    @registry ||= begin
+      cops = configuration.keys.map { |cop| RuboCop::Cop::Registry.global.find_by_cop_name(cop) }
+      cops << cop_class if defined?(cop_class) && !cops.include?(cop_class)
+      cops.compact!
+      RuboCop::Cop::Registry.new(cops)
+    end
   end
 end
