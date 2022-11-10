@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Update rubocop-performance from 1.14.3 to [1.15.0](https://github.com/rubocop/rubocop-performance/releases/tag/v1.15.0)
+* Update rubocop from 1.35.1 to [1.38.0](https://github.com/rubocop/rubocop/releases/tag/v1.38.0)
 * Require parentheses around complex ternary conditions [3b0b499a](https://github.com/testdouble/standard/commit/3b0b499a480f8ed90dda1272d31b5617dc340b27)
 
 ## 1.16.1
