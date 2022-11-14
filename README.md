@@ -479,6 +479,10 @@ regularly updated
 guide](https://evilmartians.com/chronicles/rubocoping-with-legacy-bring-your-ruby-code-up-to-standard)
 on how to do so.
 
+## How often is Standard updated?
+
+We aim to update Standard once a month, in the first week of the month. In between releases, we'll be considering RuboCop updates, RuboCop Performance updates, and community contributions.
+
 ## Does Standard work with [Insert other tool name here]?
 
 Maybe! Start by searching the repository to see if there's an existing issue
