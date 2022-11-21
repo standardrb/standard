@@ -3,7 +3,7 @@ PATH
   specs:
     standard (1.18.0)
       rubocop (= 1.39.0)
-      rubocop-performance (= 1.15.0)
+      rubocop-performance (= 1.15.1)
 
 GEM
   remote: https://rubygems.org/
@@ -24,7 +24,7 @@ GEM
       method_source (~> 1.0)
     rainbow (3.1.1)
     rake (13.0.6)
-    regexp_parser (2.6.0)
+    regexp_parser (2.6.1)
     rexml (3.2.5)
     rubocop (1.39.0)
       json (~> 2.3)
@@ -38,7 +38,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.23.0)
       parser (>= 3.1.1.0)
-    rubocop-performance (1.15.0)
+    rubocop-performance (1.15.1)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)

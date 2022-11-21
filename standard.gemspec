@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "rubocop", "1.39.0"
-  spec.add_dependency "rubocop-performance", "1.15.0"
+  spec.add_dependency "rubocop-performance", "1.15.1"
 
   # not semver: first three are lsp protocol version, last is patch
   spec.add_dependency "language_server-protocol", "3.17.0.1"
