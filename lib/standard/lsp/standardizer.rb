@@ -24,6 +24,7 @@ module Standard
       def run_standard(text, format:)
         Tempfile.open(BASENAME) do |temp|
           temp.write text
+          temp.flush
           stdout = capture_rubocop_stdout make_config(temp.path, format)
           format ? File.read(temp.path) : stdout
         end
