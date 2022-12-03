@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     standard (1.18.1)
+      language_server-protocol (= 3.17.0.1)
       rubocop (= 1.39.0)
       rubocop-performance (= 1.15.1)
 
