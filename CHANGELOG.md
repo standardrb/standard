@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.19.0
+
+* Add a language server protocol (LSP) server via the new `standardrb --lsp`
+  command line mode. All credit to [@will](https://github.com/)!
+  [#475](https://github.com/testdouble/standard/pull/475)
+
 ## 1.18.1
 
 * Update rubocop-performance from 1.15.0 to [1.15.1](https://github.com/rubocop/rubocop-performance/releases/tag/v1.15.1)
