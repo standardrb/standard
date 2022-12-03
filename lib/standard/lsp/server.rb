@@ -52,7 +52,7 @@ module Standard
           },
 
           "textDocument/didClose" => ->(request) {
-            text_cache.delete request[:params][:textDocument][:uri]
+            text_cache.delete(request.dig(:params, :textDocument, :uri))
           },
 
           "textDocument/formatting" => ->(request) {
@@ -80,23 +80,26 @@ module Standard
 
       def format_file(file_uri)
         text = text_cache[file_uri]
-        new_text = standardizer.format text
+        new_text = standardizer.format(text)
 
         if new_text == text
           []
         else
           [{
             newText: new_text,
-            range: {start: {line: 0, character: 0}, end: {line: text.count("\n") + 1, character: 0}}
+            range: {
+              start: {line: 0, character: 0},
+              end: {line: text.count("\n") + 1, character: 0}
+            }
           }]
         end
       end
 
       def diagnostic(file_uri, text)
         text_cache[file_uri] = text
-        offenses = standardizer.offenses text
+        offenses = standardizer.offenses(text)
 
-        lsp_diagnostics = offenses.map do |o|
+        lsp_diagnostics = offenses.map { |o|
           code = o[:cop_name]
 
           msg = o[:message].delete_prefix(code)
@@ -126,7 +129,7 @@ module Standard
             severity: severity,
             source: "standard"
           }
-        end
+        }
 
         {
           method: "textDocument/publishDiagnostics",
