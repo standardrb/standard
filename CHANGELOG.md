@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+
+
 ## 1.19.0
 
 * Add a language server protocol (LSP) server via the new `standardrb --lsp`
