@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Update rubocop from 1.39.0 to [1.40.0](https://github.com/rubocop/rubocop/releases/tag/v1.40.0)
+
 ## 1.19.1
 
 * Loosen dependency on `language_server-protocol`
