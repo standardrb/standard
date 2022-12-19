@@ -182,7 +182,7 @@ Layout/EndOfLine:
 Layout/ExtraSpacing:
   Enabled: true
   AllowForAlignment: false
-  AllowBeforeTrailingComments: false
+  AllowBeforeTrailingComments: true
   ForceEqualSignAlignment: false
 
 Layout/FirstArgumentIndentation:
