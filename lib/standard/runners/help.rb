@@ -4,19 +4,20 @@ module Standard
   module Runners
     class Help
       def call(config)
-        puts <<-MESSAGE.gsub(/^ {10}/, "")
-          Usage: standardrb [--fix] [-vh] [--format <name>] [--] [FILE]...
+        puts <<~MESSAGE
+          Usage: standardrb [--fix] [--lsp] [-vh] [--format <name>] [--] [FILE]...
 
           Options:
 
-            --fix                   Automatically fix failures where possible
-            --no-fix                Do not automatically fix failures
-            --format <name>         Format output with any RuboCop formatter (e.g. "json")
-            --generate-todo         Create a .standard_todo.yml that lists all the files that contain errors
-            -v, --version           Print the version of Standard
+            --fix             Automatically fix failures where possible
+            --no-fix          Do not automatically fix failures
+            --format <name>   Format output with any RuboCop formatter (e.g. "json")
+            --generate-todo   Create a .standard_todo.yml that lists all the files that contain errors
+            --lsp             Start a LSP server listening on STDIN
+            -v, --version     Print the version of Standard
             -V, --verbose-version   Print the version of Standard and its dependencies.
-            -h, --help              Print this message
-            FILE                    Files to lint [default: ./]
+            -h, --help        Print this message
+            FILE              Files to lint [default: ./]
 
           Standard also forwards most CLI arguments to RuboCop. To see them, run:
 

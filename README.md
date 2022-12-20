@@ -229,6 +229,7 @@ if you've used StandardJS.)
 * [Elevate Labs](https://elevatelabs.com)
 * [Envoy](https://www.envoy.com)
 * [Evil Martians](https://evilmartians.com)
+* [Firstline](https://firstline.org/)
 * [Hashrocket](https://hashrocket.com)
 * [Honeybadger](https://www.honeybadger.io)
 * [JetThoughts](https://www.jetthoughts.com/)
@@ -431,12 +432,32 @@ information.
 ## How do I run Standard in my editor?
 
 It can be very handy to know about failures while editing to shorten the
-feedback loop. Some editors support asynchronously running linters.
+feedback loop.
+
+### Language Server Protocol support
+
+To provide immediate feedback of Standard violations and support autofixing
+of your code while avoiding the performance cost of starting and stopping the
+`standardrb` binary repeatedly, Standard Ruby ships with a built-in [Language
+Server Protocol](https://microsoft.github.io/language-server-protocol/) server,
+which is powered by the [language_server-protocol
+gem](https://github.com/mtsmfm/language_server-protocol-ruby) and can be
+activated from the command line with the `--lsp` flag.
+
+Most likely, you'd instantiate this server indirectly in your editor's
+configuration, as can be demonstrated easily with
+[neovim](https://github.com/testdouble/standard/wiki/IDE:-neovim).
+Theoretically, this feature could be leveraged by a purpose-built editor plugin
+to performantly format and fix your code. (If you're looking for a project, we'd
+love to see one created for VS Code!)
+
+### Editor-specific guides
 
 - [Atom](https://github.com/testdouble/standard/wiki/IDE:-Atom)
 - [emacs (via flycheck)](https://github.com/julianrubisch/flycheck-standardrb)
 - [RubyMine](https://www.jetbrains.com/help/ruby/rubocop.html#disable_rubocop)
 - [vim (via ALE)](https://github.com/testdouble/standard/wiki/IDE:-vim)
+- [neovim (via LSP)](https://github.com/testdouble/standard/wiki/IDE:-neovim)
 - [VS Code](https://github.com/testdouble/standard/wiki/IDE:-vscode)
 
 ## Why aren't `frozen_string_literal: true` magic comments enforced?

@@ -182,7 +182,7 @@ Layout/EndOfLine:
 Layout/ExtraSpacing:
   Enabled: true
   AllowForAlignment: false
-  AllowBeforeTrailingComments: false
+  AllowBeforeTrailingComments: true
   ForceEqualSignAlignment: false
 
 Layout/FirstArgumentIndentation:
@@ -444,6 +444,7 @@ Lint/AmbiguousRegexpLiteral:
 Lint/AssignmentInCondition:
   Enabled: true
   AllowSafeAssignment: true
+  AutoCorrect: false
 
 Lint/BigDecimalNew:
   Enabled: true
@@ -491,6 +492,9 @@ Lint/DuplicateElsifCondition:
   Enabled: true
 
 Lint/DuplicateHashKey:
+  Enabled: true
+
+Lint/DuplicateMagicComment:
   Enabled: true
 
 Lint/DuplicateMethods:
@@ -1124,6 +1128,9 @@ Style/ArgumentsForwarding:
 Style/ArrayCoercion:
   Enabled: false
 
+Style/ArrayIntersect:
+  Enabled: false
+
 Style/ArrayJoin:
   Enabled: true
 
@@ -1569,6 +1576,9 @@ Style/OneLineConditional:
 Style/OpenStructUse:
   Enabled: false
 
+Style/OperatorMethodCall:
+  Enabled: false
+
 Style/OptionHash:
   Enabled: false
 
@@ -1639,6 +1649,12 @@ Style/RedundantCondition:
 Style/RedundantConditional:
   Enabled: true
 
+Style/RedundantConstantBase:
+  Enabled: false
+
+Style/RedundantEach:
+  Enabled: false
+
 Style/RedundantException:
   Enabled: true
 
@@ -1688,7 +1704,13 @@ Style/RedundantSort:
 Style/RedundantSortBy:
   Enabled: true
 
+Style/RedundantStringEscape:
+  Enabled: true
+
 Style/RegexpLiteral:
+  Enabled: false
+
+Style/RequireOrder:
   Enabled: false
 
 Style/RescueModifier:
@@ -1800,7 +1822,7 @@ Style/SymbolProc:
 
 Style/TernaryParentheses:
   Enabled: true
-  EnforcedStyle: require_no_parentheses
+  EnforcedStyle: require_parentheses_when_complex
   AllowSafeAssignment: true
 
 Style/TopLevelMethodDefinition:

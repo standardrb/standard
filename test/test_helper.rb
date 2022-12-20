@@ -31,17 +31,17 @@ class UnitTest < Minitest::Test
     self.class.path(relative)
   end
 
-  def do_with_fake_io
-    og_stdout, og_stderr = $stdout, $stderr
+  def do_with_fake_io(fake_in = $stdin)
+    og_stdin, og_stdout, og_stderr = $stdin, $stdout, $stderr
     fake_out, fake_err = StringIO.new, StringIO.new
 
-    $stdout, $stderr = fake_out, fake_err
+    $stdin, $stdout, $stderr = fake_in, fake_out, fake_err
     result = yield
-    $stdout, $stderr = og_stdout, og_stderr
+    $stdin, $stdout, $stderr = og_stdin, og_stdout, og_stderr
 
     [fake_out, fake_err, result]
   ensure
-    $stdout, $stderr = og_stdout, og_stderr
+    $stdin, $stdout, $stderr = og_stdin, og_stdout, og_stderr
   end
 
   def standard_greeting

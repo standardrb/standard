@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.20.0
+
+* Update rubocop from 1.39.0 to [1.40.0](https://github.com/rubocop/rubocop/releases/tag/v1.40.0)
+
+## 1.19.1
+
+* Loosen dependency on `language_server-protocol`
+
+## 1.19.0
+
+* Add a language server protocol (LSP) server via the new `standardrb --lsp`
+  command line mode. All credit to [@will](https://github.com/)!
+  [#475](https://github.com/testdouble/standard/pull/475)
+
+## 1.18.1
+
+* Update rubocop-performance from 1.15.0 to [1.15.1](https://github.com/rubocop/rubocop-performance/releases/tag/v1.15.1)
+
+## 1.18.0
+
+* Update rubocop from 1.38.0 to [1.39.0](https://github.com/rubocop/rubocop/releases/tag/v1.39.0)
+
+## 1.17.0
+
+* Update rubocop-performance from 1.14.3 to [1.15.0](https://github.com/rubocop/rubocop-performance/releases/tag/v1.15.0)
+* Update rubocop from 1.35.1 to [1.38.0](https://github.com/rubocop/rubocop/releases/tag/v1.38.0)
+* Require parentheses around complex ternary conditions [3b0b499a](https://github.com/testdouble/standard/commit/3b0b499a480f8ed90dda1272d31b5617dc340b27)
+
 ## 1.16.1
 
 * Update rubocop from 1.35.0 to [1.35.1](https://github.com/rubocop/rubocop/releases/tag/v1.35.1)
