@@ -444,6 +444,7 @@ Lint/AmbiguousRegexpLiteral:
 Lint/AssignmentInCondition:
   Enabled: true
   AllowSafeAssignment: true
+  AutoCorrect: false
 
 Lint/BigDecimalNew:
   Enabled: true
@@ -1127,6 +1128,9 @@ Style/ArgumentsForwarding:
 Style/ArrayCoercion:
   Enabled: false
 
+Style/ArrayIntersect:
+  Enabled: false
+
 Style/ArrayJoin:
   Enabled: true
 
@@ -1645,6 +1649,9 @@ Style/RedundantCondition:
 Style/RedundantConditional:
   Enabled: true
 
+Style/RedundantConstantBase:
+  Enabled: false
+
 Style/RedundantEach:
   Enabled: false
 
@@ -1701,6 +1708,9 @@ Style/RedundantStringEscape:
   Enabled: true
 
 Style/RegexpLiteral:
+  Enabled: false
+
+Style/RequireOrder:
   Enabled: false
 
 Style/RescueModifier:
