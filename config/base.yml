@@ -444,6 +444,7 @@ Lint/AmbiguousRegexpLiteral:
 Lint/AssignmentInCondition:
   Enabled: true
   AllowSafeAssignment: true
+  AutoCorrect: false
 
 Lint/BigDecimalNew:
   Enabled: true
