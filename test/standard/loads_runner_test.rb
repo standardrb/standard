@@ -23,6 +23,18 @@ class Standard::LoadsRunnerTest < UnitTest
     assert_instance_of ::Standard::Runners::VerboseVersion, result
   end
 
+  def test_lsp
+    result = @subject.call(:lsp)
+
+    assert_instance_of ::Standard::Runners::Lsp, result
+  end
+
+  def test_genignore
+    result = @subject.call(:genignore)
+
+    assert_instance_of ::Standard::Runners::Genignore, result
+  end
+
   def test_help
     result = @subject.call(:help)
 
