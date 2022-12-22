@@ -13,4 +13,13 @@ module RuboCop
         .gsub(" ", '\s*')
     )
   end
+
+  class CommentConfig
+    alias_method :old_initialize, :initialize
+
+    def initialize(processed_source)
+      old_initialize(processed_source)
+      @no_directives &&= !processed_source.raw_source.include?("standard")
+    end
+  end
 end
