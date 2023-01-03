@@ -1213,6 +1213,9 @@ Style/CommentAnnotation:
 Style/CommentedKeyword:
   Enabled: false
 
+Style/ConcatArrayLiterals:
+  Enabled: false
+
 Style/ConditionalAssignment:
   Enabled: true
   EnforcedStyle: assign_to_condition
@@ -1429,6 +1432,9 @@ Style/MapCompactWithConditionalBlock:
 Style/MapToHash:
   Enabled: false
 
+Style/MapToSet:
+  Enabled: false
+
 Style/MethodCallWithArgsParentheses:
   Enabled: false
 
@@ -1443,6 +1449,9 @@ Style/MethodDefParentheses:
   Enabled: false
 
 Style/MinMax:
+  Enabled: false
+
+Style/MinMaxComparison:
   Enabled: false
 
 Style/MissingElse:
@@ -1651,6 +1660,9 @@ Style/RedundantConditional:
 
 Style/RedundantConstantBase:
   Enabled: false
+
+Style/RedundantDoubleSplatHashBraces:
+  Enabled: true
 
 Style/RedundantEach:
   Enabled: false
@@ -1910,6 +1922,9 @@ Style/WordArray:
 Style/YodaCondition:
   Enabled: true
   EnforcedStyle: forbid_for_all_comparison_operators
+
+Style/YodaExpression:
+  Enabled: false
 
 Style/ZeroLengthPredicate:
   Enabled: false
