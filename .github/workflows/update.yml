@@ -3,7 +3,9 @@ name: Update
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 7 * * 1'
+    - cron: '0 0 */100,1-7 * 1'
+      # https://blog.healthchecks.io/2022/09/schedule-cron-job-the-funky-way/
+      # In case you want to know how that cron job works to get the first Monday of each month.
 
 jobs:
   update:
