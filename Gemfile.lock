@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    standard (1.21.0)
+    standard (1.21.1)
       language_server-protocol (~> 3.17.0.2)
       rubocop (= 1.42.0)
       rubocop-performance (= 1.15.2)
@@ -49,7 +49,7 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
-    unicode-display_width (2.4.0)
+    unicode-display_width (2.4.2)
 
 PLATFORMS
   ruby
