@@ -23,6 +23,7 @@ class Standard::Runners::HelpTest < UnitTest
         --generate-todo   Create a .standard_todo.yml that lists all the files that contain errors
         --lsp             Start a LSP server listening on STDIN
         -v, --version     Print the version of Standard
+        -V, --verbose-version   Print the version of Standard and its dependencies.
         -h, --help        Print this message
         FILE              Files to lint [default: ./]
 

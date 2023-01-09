@@ -20,7 +20,7 @@ module Standard
 
     def separate_argv(argv)
       argv.partition do |flag|
-        ["--generate-todo", "--fix", "--no-fix", "--version", "-v", "--help", "-h", "--lsp"].include?(flag)
+        ["--generate-todo", "--fix", "--no-fix", "--version", "-v", "--verbose-version", "-V", "--help", "-h", "--lsp"].include?(flag)
       end
     end
 
@@ -39,6 +39,8 @@ module Standard
         :help
       elsif (argv & ["--version", "-v"]).any?
         :version
+      elsif (argv & ["--verbose-version", "-V"]).any?
+        :verbose_version
       elsif (argv & ["--generate-todo"]).any?
         :genignore
       elsif (argv & ["--lsp"]).any?
