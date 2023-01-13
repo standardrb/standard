@@ -215,9 +215,7 @@ inherit_gem:
 
 ## Who uses Ruby Standard Style?
 
-(This section will not [look very
-familiar](https://github.com/standard/standard#who-uses-javascript-standard-style)
-if you've used StandardJS.)
+Here are a few examples of Ruby Standard-compliant teams & projects:
 
 * [Test Double](https://testdouble.com/agency)
 * [Amazon Web Services](https://aws.amazon.com/)
@@ -244,9 +242,7 @@ if you've used StandardJS.)
 * [RubyCI](https://ruby.ci)
 * [thoughtbot](https://thoughtbot.com/)
 
-If your team starts using Standard, [send a pull
-request](https://github.com/testdouble/standard/edit/main/README.md) to let us
-know!
+Does your team use Standard? [Add your name to the list](https://github.com/testdouble/standard/edit/main/README.md)!
 
 ## Is there a readme badge?
 
