@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.22.0
+
+* Add `extend_config` option [#506](https://github.com/testdouble/standard/pull/506)
+
 ## 1.21.1
 
 * Fix standard comment directives [#498](https://github.com/testdouble/standard/pull/498)
