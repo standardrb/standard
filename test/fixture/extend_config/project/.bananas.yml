@@ -1,0 +1,8 @@
+require:
+  - ../bananas.rb
+
+AllCops:
+  DisabledByDefault: true
+
+Bananas/BananasOnly:
+  Enabled: true

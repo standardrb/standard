@@ -1,0 +1,10 @@
+require:
+  - fixture/extend_config/betterment.rb
+
+AllCops:
+  StyleGuideBaseURL: https://betterlint.yml
+
+Betterment/UnscopedFind:
+  Enabled: true
+  unauthenticated_models:
+    - SystemConfiguration
