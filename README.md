@@ -492,12 +492,50 @@ either:
   gem to your build, which will automatically ensure that the comment is
   prepended for every applicable file in your project
 
-## How do I use Standard with RuboCop extensions?
+## How do I use Standard with RuboCop extensions or custom rules?
 
-This is not officially supported by Standard. However, Evil Martians wrote up [a
-regularly updated
+If you want to use Standard in conjunction with RuboCop extensions or custom
+cops, you can specify them in your own [RuboCop configuration
+YAML](https://docs.rubocop.org/rubocop/configuration.html) files and
+`.standard.yml` using the "extend_config:` setting:
+
+```yml
+# .standard.yml
+extend_config:
+  - .betterlint.yml
+```
+
+Which in turn would refer to a RuboCop configuration file:
+
+```yml
+# .betterlint.yml
+require:
+  - rubocop/cop/betterment.rb
+
+AllCops:
+  DisabledByDefault: true
+
+Betterment/UnscopedFind:
+  Enabled: true
+
+  unauthenticated_models:
+    - SystemConfiguration
+```
+
+When Standard runs, it will merge your configuration files with Standard's base
+ruleset. To ensure that this feature does not result in Standard's rules being
+modified, any configuration of rules includued in `rubocop` or
+`rubocop-performance` will be ignored. Most settings under `AllCops:` can be
+configured, unless they'd conflict with a setting used by Standard (like
+`TargetRubyVersion`) or prevent Standard's own rules from running (like
+`StyleGuideCopsOnly`). If you specify multiple YAML files under `extend_config`,
+note that their resulting RuboCop configurations will be merged in order (i.e.
+last-in-wins).
+
+If you find that Standard's `extend_config` feature doesn't meet your needs,
+Evil Martians also maintains [a regularly updated
 guide](https://evilmartians.com/chronicles/rubocoping-with-legacy-bring-your-ruby-code-up-to-standard)
-on how to do so.
+on how to configure RuboCop to load and execute Standard's ruleset.
 
 ## How often is Standard updated?
 

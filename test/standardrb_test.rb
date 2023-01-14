@@ -40,6 +40,16 @@ class StandardrbTest < UnitTest
     ]
   end
 
+  def test_extend_config_option
+    stdout, status = run_standardrb("test/fixture/extend_config/project")
+
+    refute status.success?
+    assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
+      #{standard_greeting}
+        oranges.rb:1:1: Bananas/BananasOnly: Bananas only! No oranges.
+    MSG
+  end
+
   private
 
   def run_standardrb(cwd, args = [])
