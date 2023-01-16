@@ -1269,6 +1269,7 @@ Style/EmptyCaseCondition:
 
 Style/EmptyElse:
   Enabled: true
+  AllowComments: true
   EnforcedStyle: both
 
 Style/EmptyHeredoc:
