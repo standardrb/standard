@@ -437,6 +437,27 @@ configured, unless they'd conflict with a setting used by Standard (like
 note that their resulting RuboCop configurations will be merged in order (i.e.
 last-in-wins).
 
+Note that some gems (like
+[rubocop-rails](https://github.com/rubocop/rubocop-rails) and
+[rubocop-rspec](https://github.com/rubocop/rubocop-rspec) will autoload their
+configurations by overriding RuboCop's defaults after Standard has already
+loaded its configuration. As a result, in addition to requiring the extension,
+you may need to specify an `inherit_gem` when using one of these gems in
+conjunction when loading them with Standard even though you don't need to when
+executing them with the RuboCop CLI. For more discussion, [see this
+issue](https://github.com/testdouble/standard/issues/507). As a result, despite
+the `rubocop-rails` README only identifying `require: rubocop-rails`, when used
+with Standard, you'd need to spell out the following:
+
+```yml
+# .rubocop_rails.yml
+require:
+  - rubocop-rails
+
+inherit_gem:
+  rubocop-rails: config/default.yml
+```
+
 If you find that Standard's `extend_config` feature doesn't meet your needs,
 Evil Martians also maintains [a regularly updated
 guide](https://evilmartians.com/chronicles/rubocoping-with-legacy-bring-your-ruby-code-up-to-standard)
