@@ -219,6 +219,7 @@ Here are a few examples of Ruby Standard-compliant teams & projects:
 
 * [Test Double](https://testdouble.com/agency)
 * [Amazon Web Services](https://aws.amazon.com/)
+* [Arrows](https://arrows.to/)
 * [Babylist](https://www.babylist.com/)
 * [Brand New Box](https://brandnewbox.com)
 * [Brave Software](https://github.com/brave-intl/publishers)
