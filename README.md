@@ -439,7 +439,7 @@ last-in-wins).
 
 Note that some gems (like
 [rubocop-rails](https://github.com/rubocop/rubocop-rails) and
-[rubocop-rspec](https://github.com/rubocop/rubocop-rspec) will autoload their
+[rubocop-rspec](https://github.com/rubocop/rubocop-rspec)) will autoload their
 configurations by overriding RuboCop's defaults after Standard has already
 loaded its configuration. As a result, in addition to requiring the extension,
 you may need to specify an `inherit_gem` when using one of these gems in
