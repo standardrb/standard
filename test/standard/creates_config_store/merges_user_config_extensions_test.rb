@@ -6,9 +6,9 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
   end
 
   def test_doesnt_change_config_when_no_extensions_defined
-    options_config = {
+    options_config = RuboCop::Config.new({
       "AllCops" => {}
-    }
+    }, "")
 
     @subject.call(options_config, {
       extend_config: []
@@ -16,15 +16,18 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
 
     assert_equal({
       "AllCops" => {}
-    }, options_config)
+    }, options_config.to_h)
   end
 
   def test_when_one_file_extends
-    options_config = {
+    options_config = RuboCop::Config.new({
       "AllCops" => {
-        "TargetRubyVersion" => "2.6"
+        "TargetRubyVersion" => "2.6",
+        "StyleGuideCopsOnly" => false,
+        "DisabledByDefault" => false,
+        "StyleGuideBaseURL" => "https://standardrb.example.com"
       }
-    }
+    }, "")
 
     @subject.call(options_config, {
       extend_config: ["test/fixture/extend_config/all_cops.yml"]
@@ -34,20 +37,25 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
       "AllCops" => {
         # Ignored b/c DISALLOWED_ALLCOPS_KEYS
         "TargetRubyVersion" => "2.6",
-        # Excluded b/c DISALLOWED_ALLCOPS_KEYS
-        # "StyleGuideCopsOnly" => false,
+        # Ignored b/c DISALLOWED_ALLCOPS_KEYS
+        "StyleGuideCopsOnly" => false,
 
         # Allowed to overwrite
         "DisabledByDefault" => true,
         "StyleGuideBaseURL" => "https://all_cops.yml"
       }
-    }, options_config)
+    }, options_config.to_h)
   end
 
   def test_when_two_files_extend
-    options_config = {
-      "AllCops" => {}
-    }
+    options_config = RuboCop::Config.new({
+      "AllCops" => {
+        "TargetRubyVersion" => nil,
+        "StyleGuideCopsOnly" => false,
+        "DisabledByDefault" => false,
+        "StyleGuideBaseURL" => "https://standardrb.example.com"
+      }
+    }, "")
 
     @subject.call(options_config, {
       extend_config: [
@@ -58,6 +66,8 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
 
     assert_equal({
       "AllCops" => {
+        "TargetRubyVersion" => nil,
+        "StyleGuideCopsOnly" => false,
         "DisabledByDefault" => true,
         # Last-in wins
         "StyleGuideBaseURL" => "https://betterlint.yml"
@@ -66,14 +76,19 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
         "Enabled" => true,
         "unauthenticated_models" => ["SystemConfiguration"]
       }
-    }, options_config)
+    }, options_config.to_h)
   end
 
   def test_when_three_files_extend_with_monkey_business
-    options_config = {
-      "AllCops" => {},
+    options_config = RuboCop::Config.new({
+      "AllCops" => {
+        "TargetRubyVersion" => nil,
+        "StyleGuideCopsOnly" => false,
+        "DisabledByDefault" => false,
+        "StyleGuideBaseURL" => "https://standardrb.example.com"
+      },
       "Naming/VariableName" => {"Enabled" => true}
-    }
+    }, "")
 
     @subject.call(options_config, {
       extend_config: [
@@ -85,6 +100,8 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
 
     assert_equal({
       "AllCops" => {
+        "TargetRubyVersion" => nil,
+        "StyleGuideCopsOnly" => false,
         "DisabledByDefault" => true,
         "StyleGuideBaseURL" => "https://betterlint.yml"
       },
@@ -99,6 +116,6 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
       "Naming/VariableName" => {
         "Enabled" => true
       }
-    }, options_config)
+    }, options_config.to_h)
   end
 end

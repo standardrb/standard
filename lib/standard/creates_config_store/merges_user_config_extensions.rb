@@ -12,18 +12,20 @@ class Standard::CreatesConfigStore
     def call(options_config, standard_config)
       return unless standard_config[:extend_config]&.any?
 
-      extended_config = load_and_merge_extended_rubocop_configs(standard_config)
+      extended_config = load_and_merge_extended_rubocop_configs(options_config, standard_config)
       merge_standard_and_user_all_cops!(options_config, extended_config)
       merge_extended_rules_into_standard!(options_config, extended_config)
     end
 
     private
 
-    def load_and_merge_extended_rubocop_configs(standard_config)
-      # Blank configuration object to merge extensions into
-      config = RuboCop::Config.new({"AllCops" => {}}, "")
-
+    def load_and_merge_extended_rubocop_configs(options_config, standard_config)
       orig_default_config = RuboCop::ConfigLoader.instance_variable_get(:@default_configuration)
+
+      # Blank configuration object to merge extensions into, with all known
+      # AllCops keys set to avoid warnings about unknown properties
+      config = RuboCop::Config.new(options_config.to_h.slice("AllCops"), "")
+      RuboCop::ConfigLoader.instance_variable_set(:@default_configuration, config)
 
       standard_config[:extend_config].each do |path|
         # RuboCop plugins often modify the default configuration in-place
