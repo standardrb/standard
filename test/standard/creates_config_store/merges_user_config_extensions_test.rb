@@ -89,9 +89,10 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
         "StyleGuideBaseURL" => "https://betterlint.yml"
       },
 
-      # Last-in wins, shallow merge for nested hashes other than AllCops
+      # Last-in wins, deep merge for nested hashes
       "Betterment/UnscopedFind" => {
-        "Enabled" => false
+        "Enabled" => false,
+        "unauthenticated_models" => ["SystemConfiguration"]
       },
 
       # Note that Naming/VariableName is not modified here, b/c it's a built-in
