@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.22.1
+
+* Improve the behavior of `extend_config` to more accurately reflect how Rubocop
+extensions would behave when loaded via the `rubocop` CLI (by capturing any
+mutations to RuboCop's default configuration)
+[#512](https://github.com/testdouble/standard/pull/512)
+
 ## 1.22.0
 
 * Add `extend_config` option [#506](https://github.com/testdouble/standard/pull/506)
