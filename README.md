@@ -403,18 +403,49 @@ work for older Rubies.
 If you want to use Standard in conjunction with RuboCop extensions or custom
 cops, you can specify them in your own [RuboCop configuration
 YAML](https://docs.rubocop.org/rubocop/configuration.html) files and
-`.standard.yml` using the "extend_config:` setting:
+`.standard.yml` using the "extend_config` setting.
+
+For a simple example, you could include [rubocop-rails](https://github.com/rubocop/rubocop-rails)
+when Standard runs by first specifying a file in `.standard.yml`:
+
+```yaml
+# .standard.yml
+
+extend_config:
+  - .standard_rubocop_extensions.yml
+```
+
+And a minimal RuboCop configuration file:
+
+```yaml
+# .standard_rubocop_extensions.yml
+
+require:
+  - rubocop-rails
+```
+
+That's it! Now, in addition to all of Standard's built-in rules, `standardrb`
+and `rake standard` will also execute the default configuration of the
+`rubocop-rails` gem without needing to invoke `rubocop` separately.
+
+For a slightly more complex example, we could add the
+[https://github.com/Betterment/betterlint] gem from our friends at
+[Betterment](https://www.betterment.com), first by telling Standard where our
+configuration file is:
 
 ```yml
 # .standard.yml
+
 extend_config:
   - .betterlint.yml
 ```
 
-Which in turn would refer to a RuboCop configuration file:
+But if we only wanted to enable a particular rule, we could configure it more
+narrowly, like this:
 
 ```yml
 # .betterlint.yml
+
 require:
   - rubocop/cop/betterment.rb
 
@@ -428,36 +459,20 @@ Betterment/UnscopedFind:
     - SystemConfiguration
 ```
 
-When Standard runs, it will merge your configuration files with Standard's base
-ruleset. To ensure that this feature does not result in Standard's rules being
-modified, any configuration of rules includued in `rubocop` or
-`rubocop-performance` will be ignored. Most settings under `AllCops:` can be
-configured, unless they'd conflict with a setting used by Standard (like
-`TargetRubyVersion`) or prevent Standard's own rules from running (like
-`StyleGuideCopsOnly`). If you specify multiple YAML files under `extend_config`,
-note that their resulting RuboCop configurations will be merged in order (i.e.
-last-in-wins).
+This same approach works for more than just gems! Just require a Ruby file that
+defines or loads your [custom RuboCop
+implementation](https://docs.rubocop.org/rubocop/development.html) and configure
+it using `extend_config`.
 
-Note that some gems (like
-[rubocop-rails](https://github.com/rubocop/rubocop-rails) and
-[rubocop-rspec](https://github.com/rubocop/rubocop-rspec)) will autoload their
-configurations by overriding RuboCop's defaults after Standard has already
-loaded its configuration. As a result, in addition to requiring the extension,
-you may need to specify an `inherit_gem` when using one of these gems in
-conjunction when loading them with Standard even though you don't need to when
-executing them with the RuboCop CLI. For more discussion, [see this
-issue](https://github.com/testdouble/standard/issues/507). As a result, despite
-the `rubocop-rails` README only identifying `require: rubocop-rails`, when used
-with Standard, you'd need to spell out the following:
-
-```yml
-# .rubocop_rails.yml
-require:
-  - rubocop-rails
-
-inherit_gem:
-  rubocop-rails: config/default.yml
-```
+When Standard encounters an `extend_config` property, it will merge your
+configuration files with Standard's base ruleset. To prevent Standard's built-in
+rules from being modified, any configuration of rules includued in the `rubocop`
+or `rubocop-performance` gems will be ignored. Most settings under `AllCops:`
+can be configured, however, unless they'd conflict with a setting used by
+Standard (like `TargetRubyVersion`) or prevent Standard's own rules from running
+(like `StyleGuideCopsOnly`). If you specify multiple YAML files under
+`extend_config`, note that their resulting RuboCop configurations will be merged
+in order (i.e.  last-in-wins).
 
 If you find that Standard's `extend_config` feature doesn't meet your needs,
 Evil Martians also maintains [a regularly updated
