@@ -35,8 +35,11 @@ module Standard
           "initialized" => ->(request) { logger.puts "standard v#{Standard::VERSION} initialized, pid #{Process.pid}" },
 
           "shutdown" => ->(request) {
-            logger.puts "asked to shutdown, exiting..."
-            exit
+            logger.puts "Asked to shutdown Standard LSP server. Exiting..."
+            at_exit {
+              writer.write(id: request[:id], result: nil)
+            }
+            exit 0
           },
 
           "textDocument/diagnostic" => ->(request) {
