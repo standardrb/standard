@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Update rubocop from 1.42.0 to [1.44.1](https://github.com/rubocop/rubocop/releases/tag/v1.44.1)
+
 ## 1.22.1
 
 * Improve the behavior of `extend_config` to more accurately reflect how Rubocop

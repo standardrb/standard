@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rubocop", "1.42.0"
+  spec.add_dependency "rubocop", "1.44.1"
   spec.add_dependency "rubocop-performance", "1.15.2"
 
   # not semver: first three are lsp protocol version, last is patch
