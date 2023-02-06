@@ -38,6 +38,9 @@ Gemspec/DependencyVersion:
 Gemspec/DeprecatedAttributeAssignment:
   Enabled: true
 
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
 Gemspec/DuplicatedAssignment:
   Enabled: true
   Include:
@@ -824,6 +827,9 @@ Lint/UselessElseWithoutRescue:
 Lint/UselessMethodDefinition:
   Enabled: false
 
+Lint/UselessRescue:
+  Enabled: true
+
 Lint/UselessRuby2Keywords:
   Enabled: true
 
@@ -1213,6 +1219,9 @@ Style/CommentAnnotation:
 Style/CommentedKeyword:
   Enabled: false
 
+Style/ComparableClamp:
+  Enabled: true
+
 Style/ConcatArrayLiterals:
   Enabled: false
 
@@ -1405,6 +1414,9 @@ Style/InlineComment:
   Enabled: false
 
 Style/InverseMethods:
+  Enabled: false
+
+Style/InvertibleUnlessCondition:
   Enabled: false
 
 Style/IpAddresses:
