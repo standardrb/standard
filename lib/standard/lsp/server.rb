@@ -39,6 +39,12 @@ module Standard
             exit
           },
 
+          "textDocument/diagnostic" => ->(request) {
+            td = request[:params][:textDocument]
+            result = diagnostic(td[:uri], td[:text])
+            writer.write(result)
+          },
+
           "textDocument/didChange" => ->(request) {
             params = request[:params]
             result = diagnostic(params[:textDocument][:uri], params[:contentChanges][0][:text])
