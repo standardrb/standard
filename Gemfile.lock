@@ -4,7 +4,7 @@ PATH
     standard (1.22.1)
       language_server-protocol (~> 3.17.0.2)
       rubocop (= 1.44.1)
-      rubocop-performance (= 1.15.2)
+      rubocop-performance (= 1.16.0)
 
 GEM
   remote: https://rubygems.org/
@@ -39,7 +39,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.24.1)
       parser (>= 3.1.1.0)
-    rubocop-performance (1.15.2)
+    rubocop-performance (1.16.0)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
