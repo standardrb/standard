@@ -76,7 +76,11 @@ module Standard
           if (subscriber = subscribers[method])
             subscriber.call(request)
           else
-            logger.puts "unknown method: #{method}"
+            writer.write({id: request[:id], error: Proto::Interface::ResponseError.new(
+              code: Proto::Constant::ErrorCodes::METHOD_NOT_FOUND,
+              message: "Unsupported Method: #{method}"
+            )})
+            logger.puts "Unsupported Method: #{method}"
           end
         rescue => e
           logger.puts "error #{e.class} #{e.message[0..100]}"
