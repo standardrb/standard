@@ -98,18 +98,22 @@ module Standard
 
       def format_file(file_uri)
         text = text_cache[file_uri]
-        new_text = standardizer.format(text)
-
-        if new_text == text
+        if text.nil?
+          logger.puts "Format request arrived before text synchonized; skipping format of: `#{file_uri}'"
           []
         else
-          [{
-            newText: new_text,
-            range: {
-              start: {line: 0, character: 0},
-              end: {line: text.count("\n") + 1, character: 0}
-            }
-          }]
+          new_text = standardizer.format(text)
+          if new_text == text
+            []
+          else
+            [{
+              newText: new_text,
+              range: {
+                start: {line: 0, character: 0},
+                end: {line: text.count("\n") + 1, character: 0}
+              }
+            }]
+          end
         end
       end
 
