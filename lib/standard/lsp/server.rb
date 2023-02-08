@@ -71,9 +71,10 @@ module Standard
             writer.write({id: request[:id], result: format_file(uri)})
           },
 
+          # Unsupported/no-op commands
           "textDocument/didSave" => ->(request) {},
-
-          "$/cancelRequest" => ->(request) {}
+          "$/cancelRequest" => ->(request) {},
+          "$/setTrace" => ->(request) {}
         }
       end
 
