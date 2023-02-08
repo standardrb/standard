@@ -26,16 +26,18 @@ module Standard
               capabilities: Proto::Interface::ServerCapabilities.new(
                 document_formatting_provider: true,
                 diagnostic_provider: true,
-                text_document_sync: Proto::Constant::TextDocumentSyncKind::FULL
+                text_document_sync: Proto::Interface::TextDocumentSyncOptions.new(
+                  change: Proto::Constant::TextDocumentSyncKind::FULL
+                )
               )
             )
             writer.write(id: request[:id], result: init_result)
           },
 
-          "initialized" => ->(request) { logger.puts "standard v#{Standard::VERSION} initialized, pid #{Process.pid}" },
+          "initialized" => ->(request) { logger.puts "Standard Ruby v#{Standard::VERSION} LSP server initialized, pid #{Process.pid}" },
 
           "shutdown" => ->(request) {
-            logger.puts "Asked to shutdown Standard LSP server. Exiting..."
+            logger.puts "Client asked to shutdown Standard LSP server. Exiting..."
             at_exit {
               writer.write(id: request[:id], result: nil)
             }
@@ -69,7 +71,9 @@ module Standard
             writer.write({id: request[:id], result: format_file(uri)})
           },
 
-          "textDocument/didSave" => ->(request) {}
+          "textDocument/didSave" => ->(request) {},
+
+          "$/cancelRequest" => ->(request) {}
         }
       end
 
@@ -86,7 +90,7 @@ module Standard
             logger.puts "Unsupported Method: #{method}"
           end
         rescue => e
-          logger.puts "error #{e.class} #{e.message[0..100]}"
+          logger.puts "Error #{e.class} #{e.message[0..100]}"
           logger.puts e.backtrace.inspect
         end
       end
@@ -128,7 +132,7 @@ module Standard
           when "refactor", "info"
             SEV::HINT
           else # the above cases fully cover what RuboCop sends at this time
-            logger.puts "unknown severity: #{severity.inspect}"
+            logger.puts "Unknown severity: #{severity.inspect}"
             SEV::HINT
           end
 
