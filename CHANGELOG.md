@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.24.0
+
+* Improve `--lsp` server to better support the commands used by VS Code
+
 ## 1.23.0
 
 * Update rubocop from 1.42.0 to [1.44.1](https://github.com/rubocop/rubocop/releases/tag/v1.44.1)
