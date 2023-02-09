@@ -10,11 +10,12 @@ end
 $LOAD_PATH << "test"
 
 require "standard"
-require "gimme"
+require "mocktail"
 require "minitest/autorun"
 require "pry"
 
 class UnitTest < Minitest::Test
+  include Mocktail::DSL
   make_my_diffs_pretty!
 
   def self.path(relative)
@@ -22,7 +23,7 @@ class UnitTest < Minitest::Test
   end
 
   def teardown
-    Gimme.reset
+    Mocktail.reset
   end
 
   protected
