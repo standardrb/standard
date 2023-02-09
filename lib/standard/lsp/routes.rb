@@ -72,6 +72,11 @@ module Standard
         @writer.write({id: request[:id], result: format_file(uri)})
       end
 
+      handle "workspace/didChangeWatchedFiles" do |request|
+        @logger.puts "Configuration file changed; restart required"
+        exit 0
+      end
+
       handle "workspace/executeCommand" do |request|
         if request[:params][:command] == "standardRuby.formatAutoFixes"
           uri = request[:params][:arguments][0][:uri]
