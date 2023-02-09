@@ -99,7 +99,7 @@ module Standard
       def format_file(file_uri)
         text = text_cache[file_uri]
         if text.nil?
-          logger.puts "Format request arrived before text synchonized; skipping format of: `#{file_uri}'"
+          logger.puts "Format request arrived before text synchonized; skipping: `#{file_uri}'"
           []
         else
           new_text = standardizer.format(text)

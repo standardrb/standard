@@ -16,7 +16,7 @@ class Standard::Runners::LspTest < UnitTest
     assert_equal msgs.first, {
       id: 2,
       result: {capabilities: {
-        textDocumentSync: 1,
+        textDocumentSync: {change: 1},
         documentFormattingProvider: true,
         diagnosticProvider: true
       }},
@@ -24,9 +24,51 @@ class Standard::Runners::LspTest < UnitTest
     }
   end
 
-  def test_get_diagnostics
+  def test_did_open
     msgs, err = run_server_on_requests({
       method: "textDocument/didOpen",
+      jsonrpc: "2.0",
+      params: {
+        textDocument: {
+          languageId: "ruby",
+          text: "def hi\n  [1, 2,\n   3  ]\nend\n",
+          uri: "file:///path/to/file.rb",
+          version: 0
+        }
+      }
+    })
+
+    assert_equal "", err.string
+    assert_equal 1, msgs.count
+    assert_equal({
+      method: "textDocument/publishDiagnostics",
+      params: {
+        diagnostics: [
+          {code: "Layout/ArrayAlignment",
+           message: "Use one level of indentation for elements following the first line of a multi-line array.",
+           range: {start: {character: 3, line: 2}, end: {character: 3, line: 2}},
+           severity: 3,
+           source: "standard"},
+          {code: "Layout/ExtraSpacing",
+           message: "Unnecessary spacing detected.",
+           range: {start: {character: 4, line: 2}, end: {character: 4, line: 2}},
+           severity: 3,
+           source: "standard"},
+          {code: "Layout/SpaceInsideArrayLiteralBrackets",
+           message: "Do not use space inside array brackets.",
+           range: {start: {character: 4, line: 2}, end: {character: 5, line: 2}},
+           severity: 3,
+           source: "standard"}
+        ],
+        uri: "file:///path/to/file.rb"
+      },
+      jsonrpc: "2.0"
+    }, msgs.first)
+  end
+
+  def test_diagnotic_route
+    msgs, err = run_server_on_requests({
+      method: "textDocument/diagnostic",
       jsonrpc: "2.0",
       params: {
         textDocument: {
@@ -114,6 +156,63 @@ class Standard::Runners::LspTest < UnitTest
              end: {line: 6, character: 0}
            }}
         ],
+        jsonrpc: "2.0"
+      },
+      format_result
+    )
+  end
+
+  def test_unsupported_commands
+    _, err = run_server_on_requests(
+      {
+        method: "$/cancelRequest",
+        id: 1,
+        jsonrpc: "2.0",
+        params: {}
+      },
+      {
+        method: "$/setTrace",
+        id: 1,
+        jsonrpc: "2.0",
+        params: {}
+      }
+    )
+
+    assert_empty err.string
+  end
+
+  def test_initialized
+    _, err = run_server_on_requests(
+      {
+        method: "initialized",
+        id: 1,
+        jsonrpc: "2.0",
+        params: {}
+      }
+    )
+
+    assert_match(/Standard Ruby v\d+.\d+.\d+ LSP server initialized, pid \d+/, err.string)
+  end
+
+  def test_format_with_unsynced_file
+    msgs, err = run_server_on_requests(
+      {
+        method: "textDocument/formatting",
+        id: 20,
+        jsonrpc: "2.0",
+        params: {
+          options: {insertSpaces: true, tabSize: 2},
+          textDocument: {uri: "file:///path/to/file.rb"}
+        }
+      }
+    )
+
+    assert_equal "Format request arrived before text synchonized; skipping: `file:///path/to/file.rb'", err.string.chomp
+    format_result = msgs.last
+    assert_equal(
+      {
+        id: 20,
+        result: [],
         jsonrpc: "2.0"
       },
       format_result
