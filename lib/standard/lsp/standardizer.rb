@@ -2,7 +2,7 @@ require_relative "../runners/rubocop"
 require "tempfile"
 
 module Standard
-  module LSP
+  module Lsp
     class Standardizer
       def initialize(config)
         @template_options = config
