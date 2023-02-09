@@ -96,16 +96,17 @@ module Standard
           end
         end
       end
+
       handle "textDocument/didSave" do |_request|
-        # No-op
+        # Nothing to do
       end
 
       handle "$/cancelRequest" do |_request|
-        # No-op
+        # Can't cancel anything because single-threaded
       end
 
       handle "$/setTrace" do |_request|
-        # No-op
+        # No-op, we log everything
       end
 
       private
