@@ -14,7 +14,10 @@ module Standard
       end
 
       def for(name)
-        method("handle_#{name}")
+        name = "handle_#{name}"
+        if respond_to?(name)
+          method(name)
+        end
       end
 
       handle "initialize" do |request|

@@ -162,7 +162,7 @@ class Standard::Runners::LspTest < UnitTest
     )
   end
 
-  def test_unsupported_commands
+  def test_no_op_commands
     _, err = run_server_on_requests(
       {
         method: "$/cancelRequest",
@@ -197,6 +197,28 @@ class Standard::Runners::LspTest < UnitTest
   def test_format_with_unsynced_file
     msgs, err = run_server_on_requests(
       {
+        method: "textDocument/didOpen",
+        jsonrpc: "2.0",
+        params: {
+          textDocument: {
+            languageId: "ruby",
+            text: "def hi\n  [1, 2,\n   3  ]\nend\n",
+            uri: "file:///path/to/file.rb",
+            version: 0
+          }
+        }
+      },
+      # didClose should cause the file to be unsynced
+      {
+        method: "textDocument/didClose",
+        jsonrpc: "2.0",
+        params: {
+          textDocument: {
+            uri: "file:///path/to/file.rb"
+          }
+        }
+      },
+      {
         method: "textDocument/formatting",
         id: 20,
         jsonrpc: "2.0",
@@ -217,6 +239,34 @@ class Standard::Runners::LspTest < UnitTest
       },
       format_result
     )
+  end
+
+  def test_unknown_commands
+    msgs, err = run_server_on_requests(
+      {
+        id: 18,
+        method: "textDocument/didMassage",
+        jsonrpc: "2.0",
+        params: {
+          textDocument: {
+            languageId: "ruby",
+            text: "def hi\n  [1, 2,\n   3  ]\nend\n",
+            uri: "file:///path/to/file.rb",
+            version: 0
+          }
+        }
+      }
+    )
+
+    assert_equal "Unsupported Method: textDocument/didMassage", err.string.chomp
+    assert_equal({
+      id: 18,
+      error: {
+        code: -32601,
+        message: "Unsupported Method: textDocument/didMassage"
+      },
+      jsonrpc: "2.0"
+    }, msgs.last)
   end
 
   private
