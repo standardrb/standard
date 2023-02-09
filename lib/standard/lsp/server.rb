@@ -1,6 +1,7 @@
 require "language_server-protocol"
 require_relative "standardizer"
 require_relative "routes"
+require_relative "logger"
 
 module Standard
   module Lsp
@@ -16,7 +17,7 @@ module Standard
         @standardizer = standardizer
         @writer = Proto::Transport::Io::Writer.new($stdout)
         @reader = Proto::Transport::Io::Reader.new($stdin)
-        @logger = $stderr
+        @logger = Logger.new
         @routes = Routes.new(@writer, @logger, @standardizer)
       end
 

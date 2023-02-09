@@ -229,7 +229,7 @@ class Standard::Runners::LspTest < UnitTest
       }
     )
 
-    assert_equal "Format request arrived before text synchonized; skipping: `file:///path/to/file.rb'", err.string.chomp
+    assert_equal "[server] Format request arrived before text synchonized; skipping: `file:///path/to/file.rb'", err.string.chomp
     format_result = msgs.last
     assert_equal(
       {
@@ -258,7 +258,7 @@ class Standard::Runners::LspTest < UnitTest
       }
     )
 
-    assert_equal "Unsupported Method: textDocument/didMassage", err.string.chomp
+    assert_equal "[server] Unsupported Method: textDocument/didMassage", err.string.chomp
     assert_equal({
       id: 18,
       error: {
