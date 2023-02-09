@@ -25,6 +25,7 @@ module Standard
           capabilities: Proto::Interface::ServerCapabilities.new(
             document_formatting_provider: true,
             diagnostic_provider: true,
+            execute_command_provider: true,
             text_document_sync: Proto::Interface::TextDocumentSyncOptions.new(
               change: Proto::Constant::TextDocumentSyncKind::FULL
             )
@@ -71,6 +72,25 @@ module Standard
         @writer.write({id: request[:id], result: format_file(uri)})
       end
 
+      handle "workspace/executeCommand" do |request|
+        if request[:params][:command] == "standardRuby.formatAutoFixes"
+          uri = request[:params][:arguments][0][:uri]
+          changes = format_file(uri)
+          if changes.any?
+            @writer.write(answer = {
+              method: "workspace/applyEdit",
+              params: {
+                label: "Format with Standard Ruby auto-fixes",
+                edit: {
+                  changes: {
+                    uri => changes
+                  }
+                }
+              }
+            })
+          end
+        end
+      end
       handle "textDocument/didSave" do |_request|
         # No-op
       end
