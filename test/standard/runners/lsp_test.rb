@@ -316,7 +316,7 @@ class Standard::Runners::LspTest < UnitTest
         label: "Format with Standard Ruby auto-fixes",
         edit: {
           changes: {
-            :"file:///path/to/file.rb" => [{
+            "file:///path/to/file.rb": [{
               newText: "puts \"hi\"\n",
               range: {
                 start: {line: 0, character: 0},
