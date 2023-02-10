@@ -43,8 +43,8 @@ module Standard
       handle "shutdown" do |request|
         @logger.puts "Client asked to shutdown Standard LSP server."
         @kills_server.call do
-          @logger.puts "Exiting..."
           @writer.write(id: request[:id], result: nil)
+          @logger.puts "Exiting..."
         end
       end
 
