@@ -80,20 +80,20 @@ module Standard
       handle "workspace/executeCommand" do |request|
         if request[:params][:command] == "standardRuby.formatAutoFixes"
           uri = request[:params][:arguments][0][:uri]
-          changes = format_file(uri)
-          if changes.any?
-            @writer.write(answer = {
-              method: "workspace/applyEdit",
-              params: {
-                label: "Format with Standard Ruby auto-fixes",
-                edit: {
-                  changes: {
-                    uri => changes
-                  }
+          @writer.write({
+            id: request[:id],
+            method: "workspace/applyEdit",
+            params: {
+              label: "Format with Standard Ruby auto-fixes",
+              edit: {
+                changes: {
+                  uri => format_file(uri)
                 }
               }
-            })
-          end
+            }
+          })
+        else
+          handle_unsupported_method(request, request[:params][:command])
         end
       end
 
@@ -107,6 +107,14 @@ module Standard
 
       handle "$/setTrace" do |_request|
         # No-op, we log everything
+      end
+
+      def handle_unsupported_method(request, method = request[:method])
+        @writer.write({id: request[:id], error: Proto::Interface::ResponseError.new(
+          code: Proto::Constant::ErrorCodes::METHOD_NOT_FOUND,
+          message: "Unsupported Method: #{method}"
+        )})
+        @logger.puts "Unsupported Method: #{method}"
       end
 
       private

@@ -23,15 +23,13 @@ module Standard
 
       def start
         @reader.read do |request|
+          next unless request.key?(:method) # ignore responses without methods
+
           method = request[:method]
           if (route = @routes.for(method))
             route.call(request)
           else
-            @writer.write({id: request[:id], error: Proto::Interface::ResponseError.new(
-              code: Proto::Constant::ErrorCodes::METHOD_NOT_FOUND,
-              message: "Unsupported Method: #{method}"
-            )})
-            @logger.puts "Unsupported Method: #{method}"
+            @routes.handle_unsupported_method(request)
           end
         rescue => e
           @logger.puts "Error #{e.class} #{e.message[0..100]}"
