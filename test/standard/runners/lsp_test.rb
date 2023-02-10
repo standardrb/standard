@@ -18,7 +18,8 @@ class Standard::Runners::LspTest < UnitTest
       result: {capabilities: {
         textDocumentSync: {change: 1},
         documentFormattingProvider: true,
-        diagnosticProvider: true
+        diagnosticProvider: true,
+        executeCommandProvider: true
       }},
       jsonrpc: "2.0"
     }
@@ -264,6 +265,90 @@ class Standard::Runners::LspTest < UnitTest
       error: {
         code: -32601,
         message: "Unsupported Method: textDocument/didMassage"
+      },
+      jsonrpc: "2.0"
+    }, msgs.last)
+  end
+
+  def test_methodless_requests_are_ignored
+    msgs, err = run_server_on_requests(
+      {
+        id: 1,
+        jsonrpc: "2.0",
+        result: {}
+      }
+    )
+
+    assert_equal "", err.string
+    assert_empty msgs
+  end
+
+  def test_execute_command_formatting
+    msgs, err = run_server_on_requests(
+      {
+        method: "textDocument/didOpen",
+        jsonrpc: "2.0",
+        params: {
+          textDocument: {
+            languageId: "ruby",
+            text: "puts 'hi'",
+            uri: "file:///path/to/file.rb",
+            version: 0
+          }
+        }
+      },
+      {
+        method: "workspace/executeCommand",
+        id: 99,
+        jsonrpc: "2.0",
+        params: {
+          command: "standardRuby.formatAutoFixes",
+          arguments: [{uri: "file:///path/to/file.rb"}]
+        }
+      }
+    )
+
+    assert_equal "", err.string
+    assert_equal({
+      id: 99,
+      method: "workspace/applyEdit",
+      params: {
+        label: "Format with Standard Ruby auto-fixes",
+        edit: {
+          changes: {
+            "file:///path/to/file.rb": [{
+              newText: "puts \"hi\"\n",
+              range: {
+                start: {line: 0, character: 0},
+                end: {line: 1, character: 0}
+              }
+            }]
+          }
+        }
+      },
+      jsonrpc: "2.0"
+    }, msgs.last)
+  end
+
+  def test_execute_command_with_unsupported_command
+    msgs, err = run_server_on_requests(
+      {
+        method: "workspace/executeCommand",
+        id: 99,
+        jsonrpc: "2.0",
+        params: {
+          command: "standardRuby.somethingElse",
+          arguments: [{uri: "file:///path/to/file.rb"}]
+        }
+      }
+    )
+
+    assert_equal "[server] Unsupported Method: standardRuby.somethingElse", err.string.chomp
+    assert_equal({
+      id: 99,
+      error: {
+        code: -32601,
+        message: "Unsupported Method: standardRuby.somethingElse"
       },
       jsonrpc: "2.0"
     }, msgs.last)

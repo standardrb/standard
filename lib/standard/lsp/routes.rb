@@ -1,3 +1,5 @@
+require_relative "kills_server"
+
 module Standard
   module Lsp
     class Routes
@@ -7,6 +9,7 @@ module Standard
         @standardizer = standardizer
 
         @text_cache = {}
+        @kills_server = KillsServer.new
       end
 
       def self.handle(name, &block)
@@ -25,6 +28,7 @@ module Standard
           capabilities: Proto::Interface::ServerCapabilities.new(
             document_formatting_provider: true,
             diagnostic_provider: true,
+            execute_command_provider: true,
             text_document_sync: Proto::Interface::TextDocumentSyncOptions.new(
               change: Proto::Constant::TextDocumentSyncKind::FULL
             )
@@ -37,11 +41,11 @@ module Standard
       end
 
       handle "shutdown" do |request|
-        @logger.puts "Client asked to shutdown Standard LSP server. Exiting..."
-        at_exit {
+        @logger.puts "Client asked to shutdown Standard LSP server."
+        @kills_server.call do
           @writer.write(id: request[:id], result: nil)
-        }
-        exit 0
+          @logger.puts "Exiting..."
+        end
       end
 
       handle "textDocument/diagnostic" do |request|
@@ -71,16 +75,51 @@ module Standard
         @writer.write({id: request[:id], result: format_file(uri)})
       end
 
+      handle "workspace/didChangeWatchedFiles" do |request|
+        if request[:params][:changes].any? { |change| change[:uri].end_with?(".standard.yml") }
+          @logger.puts "Configuration file changed; restart required"
+          @kills_server.call
+        end
+      end
+
+      handle "workspace/executeCommand" do |request|
+        if request[:params][:command] == "standardRuby.formatAutoFixes"
+          uri = request[:params][:arguments][0][:uri]
+          @writer.write({
+            id: request[:id],
+            method: "workspace/applyEdit",
+            params: {
+              label: "Format with Standard Ruby auto-fixes",
+              edit: {
+                changes: {
+                  uri => format_file(uri)
+                }
+              }
+            }
+          })
+        else
+          handle_unsupported_method(request, request[:params][:command])
+        end
+      end
+
       handle "textDocument/didSave" do |_request|
-        # No-op
+        # Nothing to do
       end
 
       handle "$/cancelRequest" do |_request|
-        # No-op
+        # Can't cancel anything because single-threaded
       end
 
       handle "$/setTrace" do |_request|
-        # No-op
+        # No-op, we log everything
+      end
+
+      def handle_unsupported_method(request, method = request[:method])
+        @writer.write({id: request[:id], error: Proto::Interface::ResponseError.new(
+          code: Proto::Constant::ErrorCodes::METHOD_NOT_FOUND,
+          message: "Unsupported Method: #{method}"
+        )})
+        @logger.puts "Unsupported Method: #{method}"
       end
 
       private
