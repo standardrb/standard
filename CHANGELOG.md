@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.24.2
+
+* _Further_ _further_ improve `--lsp` server to always respond to requests
+
 ## 1.24.1
 
 * _Further_ improve `--lsp` server to better support commands used by VS Code
