@@ -270,10 +270,26 @@ class Standard::Runners::LspTest < UnitTest
     }, msgs.last)
   end
 
-  def test_methodless_requests_are_ignored
+  def test_methodless_requests_are_acked
     msgs, err = run_server_on_requests(
       {
         id: 1,
+        jsonrpc: "2.0",
+        result: {}
+      }
+    )
+
+    assert_equal "", err.string
+    assert_equal({
+      id: 1,
+      jsonrpc: "2.0",
+      result: nil
+    }, msgs.last)
+  end
+
+  def test_methodless_and_idless_requests_are_dropped
+    msgs, err = run_server_on_requests(
+      {
         jsonrpc: "2.0",
         result: {}
       }

@@ -23,10 +23,9 @@ module Standard
 
       def start
         @reader.read do |request|
-          next unless request.key?(:method) # ignore responses without methods
-
-          method = request[:method]
-          if (route = @routes.for(method))
+          if !request.key?(:method)
+            @routes.handle_method_missing(request)
+          elsif (route = @routes.for(request[:method]))
             route.call(request)
           else
             @routes.handle_unsupported_method(request)

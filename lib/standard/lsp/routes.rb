@@ -122,6 +122,12 @@ module Standard
         @logger.puts "Unsupported Method: #{method}"
       end
 
+      def handle_method_missing(request)
+        if request.key?(:id)
+          @writer.write({id: request[:id], result: nil})
+        end
+      end
+
       private
 
       def format_file(file_uri)
