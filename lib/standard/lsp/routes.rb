@@ -1,3 +1,5 @@
+require_relative "kills_server"
+
 module Standard
   module Lsp
     class Routes
@@ -7,6 +9,7 @@ module Standard
         @standardizer = standardizer
 
         @text_cache = {}
+        @kills_server = KillsServer.new
       end
 
       def self.handle(name, &block)
@@ -38,11 +41,11 @@ module Standard
       end
 
       handle "shutdown" do |request|
-        @logger.puts "Client asked to shutdown Standard LSP server. Exiting..."
-        at_exit {
+        @logger.puts "Client asked to shutdown Standard LSP server."
+        @kills_server.call do
+          @logger.puts "Exiting..."
           @writer.write(id: request[:id], result: nil)
-        }
-        exit 0
+        end
       end
 
       handle "textDocument/diagnostic" do |request|
@@ -73,8 +76,10 @@ module Standard
       end
 
       handle "workspace/didChangeWatchedFiles" do |request|
-        @logger.puts "Configuration file changed; restart required"
-        exit 0
+        if request[:params][:changes].any? { |change| change[:uri].end_with?(".standard.yml") }
+          @logger.puts "Configuration file changed; restart required"
+          @kills_server.call
+        end
       end
 
       handle "workspace/executeCommand" do |request|
