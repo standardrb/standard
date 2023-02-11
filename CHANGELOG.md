@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.24.3
+
+* _Further_ _further_ _further_ improve `--lsp` server to ignore files correctly
+
 ## 1.24.2
 
 * _Further_ _further_ improve `--lsp` server to always respond to requests
