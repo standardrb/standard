@@ -117,7 +117,7 @@ class Standard::Runners::LspTest < UnitTest
         params: {
           textDocument: {
             languageId: "ruby",
-            text: "def hi\n  [1, 2,\n   3  ]\nend\n",
+            text: "puts 'hi'",
             uri: "file:///path/to/file.rb",
             version: 0
           }
@@ -127,7 +127,7 @@ class Standard::Runners::LspTest < UnitTest
         method: "textDocument/didChange",
         jsonrpc: "2.0",
         params: {
-          contentChanges: [{text: "def goodbye\n  [3, 2,\n   1  ]\n\nend\n"}],
+          contentChanges: [{text: "puts 'bye'"}],
           textDocument: {
             uri: "file:///path/to/file.rb",
             version: 10
@@ -151,10 +151,10 @@ class Standard::Runners::LspTest < UnitTest
       {
         id: 20,
         result: [
-          {newText: "def goodbye\n  [3, 2,\n    1]\nend\n",
+          {newText: "puts \"bye\"\n",
            range: {
              start: {line: 0, character: 0},
-             end: {line: 6, character: 0}
+             end: {line: 1, character: 0}
            }}
         ],
         jsonrpc: "2.0"
@@ -368,6 +368,124 @@ class Standard::Runners::LspTest < UnitTest
       },
       jsonrpc: "2.0"
     }, msgs.last)
+  end
+
+  def test_did_open_on_ignored_path
+    msgs, err = run_server_on_requests({
+      method: "textDocument/didOpen",
+      jsonrpc: "2.0",
+      params: {
+        textDocument: {
+          languageId: "ruby",
+          text: "puts 'neat'",
+          # Depends on this project's .standard.yml ignoring `tmp/**/*`
+          uri: "file://#{Dir.pwd}/tmp/foo/bar.rb",
+          version: 0
+        }
+      }
+    })
+
+    assert_equal 1, msgs.count
+    assert_equal({
+      method: "textDocument/publishDiagnostics",
+      params: {
+        diagnostics: [],
+        uri: "file://#{Dir.pwd}/tmp/foo/bar.rb"
+      },
+      jsonrpc: "2.0"
+    }, msgs.first)
+    assert_equal "[server] Ignoring file, per configuration: #{Dir.pwd}/tmp/foo/bar.rb", err.string.chomp
+  end
+
+  def test_formatting_via_execute_command_on_ignored_path
+    msgs, err = run_server_on_requests(
+      {
+        method: "textDocument/didOpen",
+        jsonrpc: "2.0",
+        params: {
+          textDocument: {
+            languageId: "ruby",
+            text: "puts 'hi'",
+            # Depends on this project's .standard.yml ignoring `tmp/**/*`
+            uri: "file://#{Dir.pwd}/tmp/baz.rb",
+            version: 0
+          }
+        }
+      },
+      {
+        method: "workspace/executeCommand",
+        id: 99,
+        jsonrpc: "2.0",
+        params: {
+          command: "standardRuby.formatAutoFixes",
+          arguments: [{uri: "file://#{Dir.pwd}/tmp/baz.rb"}]
+        }
+      }
+    )
+
+    assert_equal({
+      id: 99,
+      method: "workspace/applyEdit",
+      params: {
+        label: "Format with Standard Ruby auto-fixes",
+        edit: {
+          changes: {
+            "file://#{Dir.pwd}/tmp/baz.rb": []
+          }
+        }
+      },
+      jsonrpc: "2.0"
+    }, msgs.last)
+    assert_equal "[server] Ignoring file, per configuration: #{Dir.pwd}/tmp/baz.rb", err.string.chomp
+  end
+
+  def test_formatting_via_formatting_path_on_ignored_path
+    msgs, err = run_server_on_requests(
+      {
+        method: "textDocument/didOpen",
+        jsonrpc: "2.0",
+        params: {
+          textDocument: {
+            languageId: "ruby",
+            text: "puts 'hi'",
+            # Depends on this project's .standard.yml ignoring `tmp/**/*`
+            uri: "file://#{Dir.pwd}/tmp/zzz.rb",
+            version: 0
+          }
+        }
+      },
+      {
+        method: "textDocument/didChange",
+        jsonrpc: "2.0",
+        params: {
+          contentChanges: [{text: "puts 'bye'"}],
+          textDocument: {
+            uri: "file://#{Dir.pwd}/tmp/zzz.rb",
+            version: 10
+          }
+        }
+      },
+      {
+        method: "textDocument/formatting",
+        id: 20,
+        jsonrpc: "2.0",
+        params: {
+          options: {insertSpaces: true, tabSize: 2},
+          textDocument: {uri: "file://#{Dir.pwd}/tmp/zzz.rb"}
+        }
+      }
+    )
+
+    format_result = msgs.last
+    assert_equal(
+      {
+        id: 20,
+        result: [],
+        jsonrpc: "2.0"
+      },
+      format_result
+    )
+    assert_equal "[server] Ignoring file, per configuration: #{Dir.pwd}/tmp/zzz.rb", err.string.chomp
   end
 
   private

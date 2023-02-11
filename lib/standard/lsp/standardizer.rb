@@ -1,49 +1,65 @@
 require_relative "../runners/rubocop"
-require "tempfile"
 
 module Standard
   module Lsp
     class Standardizer
-      def initialize(config)
-        @template_options = config
-        @runner = Standard::Runners::Rubocop.new
+      def initialize(config, logger)
+        @config = config
+        @logger = logger
+        @rubocop_runner = Standard::Runners::Rubocop.new
       end
 
-      def format(text)
-        run_standard(text, format: true)
+      # This abuses the --stdin option of rubocop and reads the formatted text
+      # from the options[:stdin] that rubocop mutates. This depends on
+      # parallel: false as well as the fact that rubocop doesn't otherwise dup
+      # or reassign that options object. Risky business!
+      #
+      # Reassigning options[:stdin] is done here:
+      #   https://github.com/rubocop/rubocop/blob/master/lib/rubocop/cop/team.rb#L131
+      # Printing options[:stdin]
+      #   https://github.com/rubocop/rubocop/blob/master/lib/rubocop/cli/command/execute_runner.rb#L95
+      # Setting `parallel: true` would break this here:
+      #   https://github.com/rubocop/rubocop/blob/master/lib/rubocop/runner.rb#L72
+      def format(path, text)
+        ad_hoc_config = fork_config(path, text, format: true)
+        capture_rubocop_stdout(ad_hoc_config)
+        ad_hoc_config.rubocop_options[:stdin]
       end
 
-      def offenses(text)
-        results = run_standard(text, format: false)
-        JSON.parse(results, symbolize_names: true).dig(:files, 0, :offenses)
+      def offenses(path, text)
+        results = JSON.parse(
+          capture_rubocop_stdout(fork_config(path, text, format: false)),
+          symbolize_names: true
+        )
+        if results[:files].empty?
+          @logger.puts_once "Ignoring file, per configuration: #{path}"
+          []
+        else
+          results.dig(:files, 0, :offenses)
+        end
       end
 
       private
 
-      BASENAME = ["source", ".rb"].freeze
-      def run_standard(text, format:)
-        Tempfile.open(BASENAME) do |temp|
-          temp.write(text)
-          temp.flush
-          stdout = capture_rubocop_stdout(make_config(temp.path, format))
-          format ? File.read(temp.path) : stdout
-        end
-      end
-
-      def make_config(file, format)
-        # Can't make frozen versions of this hash because RuboCop mutates it
-        o = if format
-          {autocorrect: true, formatters: [["Standard::Formatter", nil]], parallel: true, todo_file: nil, todo_ignore_files: [], safe_autocorrect: true}
+      BASE_OPTIONS = {
+        force_exclusion: true,
+        parallel: false,
+        todo_file: nil,
+        todo_ignore_files: []
+      }
+      def fork_config(path, text, format:)
+        options = if format
+          {stdin: text, autocorrect: true, formatters: [], safe_autocorrect: true}
         else
-          {autocorrect: false, formatters: [["json"]], parallel: true, todo_file: nil, todo_ignore_files: [], format: "json"}
+          {stdin: text, autocorrect: false, formatters: [["json"]], format: "json"}
         end
-        Standard::Config.new(@template_options.runner, [file], o, @template_options.rubocop_config_store)
+        Standard::Config.new(@config.runner, [path], BASE_OPTIONS.merge(options), @config.rubocop_config_store)
       end
 
       def capture_rubocop_stdout(config)
         redir = StringIO.new
         $stdout = redir
-        @runner.call(config)
+        @rubocop_runner.call(config)
         redir.string
       ensure
         $stdout = STDOUT

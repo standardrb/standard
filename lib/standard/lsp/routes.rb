@@ -130,13 +130,17 @@ module Standard
 
       private
 
+      def uri_to_path(uri)
+        uri.sub(%r{^file://}, "")
+      end
+
       def format_file(file_uri)
         text = @text_cache[file_uri]
         if text.nil?
           @logger.puts "Format request arrived before text synchonized; skipping: `#{file_uri}'"
           []
         else
-          new_text = @standardizer.format(text)
+          new_text = @standardizer.format(uri_to_path(file_uri), text)
           if new_text == text
             []
           else
@@ -153,7 +157,7 @@ module Standard
 
       def diagnostic(file_uri, text)
         @text_cache[file_uri] = text
-        offenses = @standardizer.offenses(text)
+        offenses = @standardizer.offenses(uri_to_path(file_uri), text)
 
         lsp_diagnostics = offenses.map { |o|
           code = o[:cop_name]

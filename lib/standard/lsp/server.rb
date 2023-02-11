@@ -9,15 +9,11 @@ module Standard
     SEV = Proto::Constant::DiagnosticSeverity
 
     class Server
-      def self.start(standardizer)
-        new(standardizer).start
-      end
-
-      def initialize(standardizer)
-        @standardizer = standardizer
+      def initialize(config)
         @writer = Proto::Transport::Io::Writer.new($stdout)
         @reader = Proto::Transport::Io::Reader.new($stdin)
         @logger = Logger.new
+        @standardizer = Standard::Lsp::Standardizer.new(config, @logger)
         @routes = Routes.new(@writer, @logger, @standardizer)
       end
 
