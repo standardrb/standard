@@ -3,8 +3,9 @@ require_relative "../runners/rubocop"
 module Standard
   module Lsp
     class Standardizer
-      def initialize(config)
+      def initialize(config, logger)
         @config = config
+        @logger = logger
         @rubocop_runner = Standard::Runners::Rubocop.new
       end
 
@@ -26,20 +27,33 @@ module Standard
       end
 
       def offenses(path, text)
-        results = capture_rubocop_stdout(fork_config(path, text, format: false))
-        JSON.parse(results, symbolize_names: true).dig(:files, 0, :offenses)
+        results = JSON.parse(
+          capture_rubocop_stdout(fork_config(path, text, format: false)),
+          symbolize_names: true
+        )
+        if results[:files].empty?
+          @logger.puts "Ignoring file, per configuration: #{path}"
+          []
+        else
+          results.dig(:files, 0, :offenses)
+        end
       end
 
       private
 
-      # Can't make frozen versions of this hash because RuboCop mutates it
+      BASE_OPTIONS = {
+        force_exclusion: true,
+        parallel: false,
+        todo_file: nil,
+        todo_ignore_files: []
+      }
       def fork_config(path, text, format:)
-        o = if format
-          {stdin: text, autocorrect: true, formatters: [["Standard::Formatter", nil]], parallel: false, todo_file: nil, todo_ignore_files: [], safe_autocorrect: true}
+        options = if format
+          {stdin: text, autocorrect: true, formatters: [], safe_autocorrect: true}
         else
-          {stdin: text, autocorrect: false, formatters: [["json"]], parallel: false, todo_file: nil, todo_ignore_files: [], format: "json"}
+          {stdin: text, autocorrect: false, formatters: [["json"]], format: "json"}
         end
-        Standard::Config.new(@config.runner, [path], o, @config.rubocop_config_store)
+        Standard::Config.new(@config.runner, [path], BASE_OPTIONS.merge(options), @config.rubocop_config_store)
       end
 
       def capture_rubocop_stdout(config)

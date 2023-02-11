@@ -131,8 +131,7 @@ module Standard
       private
 
       def uri_to_path(uri)
-        # TODO: make this real
-        uri.sub(%r{^file:///}, "")
+        uri.sub(%r{^file://}, "")
       end
 
       def format_file(file_uri)
