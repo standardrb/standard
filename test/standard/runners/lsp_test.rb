@@ -485,7 +485,7 @@ class Standard::Runners::LspTest < UnitTest
       },
       format_result
     )
-    assert_match "[server] Ignoring file, per configuration: #{Dir.pwd}/tmp/zzz.rb", err.string
+    assert_equal "[server] Ignoring file, per configuration: #{Dir.pwd}/tmp/zzz.rb", err.string.chomp
   end
 
   private

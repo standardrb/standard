@@ -32,7 +32,7 @@ module Standard
           symbolize_names: true
         )
         if results[:files].empty?
-          @logger.puts "Ignoring file, per configuration: #{path}"
+          @logger.puts_once "Ignoring file, per configuration: #{path}"
           []
         else
           results.dig(:files, 0, :offenses)
