@@ -117,7 +117,7 @@ class Standard::Runners::LspTest < UnitTest
         params: {
           textDocument: {
             languageId: "ruby",
-            text: "def hi\n  [1, 2,\n   3  ]\nend\n",
+            text: "puts 'hi'",
             uri: "file:///path/to/file.rb",
             version: 0
           }
@@ -127,7 +127,7 @@ class Standard::Runners::LspTest < UnitTest
         method: "textDocument/didChange",
         jsonrpc: "2.0",
         params: {
-          contentChanges: [{text: "def goodbye\n  [3, 2,\n   1  ]\n\nend\n"}],
+          contentChanges: [{text: "puts 'bye'"}],
           textDocument: {
             uri: "file:///path/to/file.rb",
             version: 10
@@ -151,10 +151,10 @@ class Standard::Runners::LspTest < UnitTest
       {
         id: 20,
         result: [
-          {newText: "def goodbye\n  [3, 2,\n    1]\nend\n",
+          {newText: "puts \"bye\"\n",
            range: {
              start: {line: 0, character: 0},
-             end: {line: 6, character: 0}
+             end: {line: 1, character: 0}
            }}
         ],
         jsonrpc: "2.0"
