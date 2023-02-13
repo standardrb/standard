@@ -3,7 +3,7 @@ PATH
   specs:
     standard (1.24.3)
       language_server-protocol (~> 3.17.0.2)
-      rubocop (= 1.44.1)
+      rubocop (= 1.45.1)
       rubocop-performance (= 1.15.2)
 
 GEM
@@ -30,7 +30,7 @@ GEM
     rake (13.0.6)
     regexp_parser (2.7.0)
     rexml (3.2.5)
-    rubocop (1.44.1)
+    rubocop (1.45.1)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.2.0.0)
