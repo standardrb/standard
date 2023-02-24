@@ -200,19 +200,6 @@ community conventions higher than personal style. This might not make sense for
 place for newbies. Setting up clear, automated contributor expectations makes a
 project healthier.
 
-## Usage via RuboCop
-
-If you only want to use Standard's rules while continuing to use RuboCop's CLI
-(for example, to continue using your favorite IDE/tooling/workflow with RuboCop
-support), you can configure this in your `.rubocop.yml`:
-
-```yaml
-require: standard
-
-inherit_gem:
-  standard: config/base.yml
-```
-
 ## Who uses Ruby Standard Style?
 
 Here are a few examples of Ruby Standard-compliant teams & projects:
@@ -475,10 +462,24 @@ Standard (like `TargetRubyVersion`) or prevent Standard's own rules from running
 `extend_config`, note that their resulting RuboCop configurations will be merged
 in order (i.e.  last-in-wins).
 
-If you find that Standard's `extend_config` feature doesn't meet your needs,
-Evil Martians also maintains [a regularly updated
+### Usage via RuboCop
+
+If you find that Standard's `extend_config` feature doesn't meet your needs or
+if you only want to use Standard's rules while continuing to use RuboCop's CLI
+(e.g., to continue using your favorite IDE/tooling/workflow with RuboCop
+support) Evil Martians also maintains [a regularly updated
 guide](https://evilmartians.com/chronicles/rubocoping-with-legacy-bring-your-ruby-code-up-to-standard)
 on how to configure RuboCop to load and execute Standard's ruleset.
+
+In short, you can configure this in your `.rubocop.yml` to load Standard's
+ruleset like any other gem:
+
+```yaml
+require: standard
+
+inherit_gem:
+  standard: config/base.yml
+```
 
 ## How do I change the output?
 
