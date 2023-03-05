@@ -16,7 +16,7 @@ class Standard::Runners::LspTest < UnitTest
     assert_equal msgs.first, {
       id: 2,
       result: {capabilities: {
-        textDocumentSync: {change: 1},
+        textDocumentSync: {openClose: true, change: 1},
         documentFormattingProvider: true,
         diagnosticProvider: true,
         executeCommandProvider: true
