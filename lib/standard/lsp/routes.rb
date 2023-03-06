@@ -30,7 +30,8 @@ module Standard
             diagnostic_provider: true,
             execute_command_provider: true,
             text_document_sync: Proto::Interface::TextDocumentSyncOptions.new(
-              change: Proto::Constant::TextDocumentSyncKind::FULL
+              change: Proto::Constant::TextDocumentSyncKind::FULL,
+              open_close: true
             )
           )
         ))
