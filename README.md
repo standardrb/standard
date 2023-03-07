@@ -417,7 +417,7 @@ and `rake standard` will also execute the default configuration of the
 `rubocop-rails` gem without needing to invoke `rubocop` separately.
 
 For a slightly more complex example, we could add the
-[https://github.com/Betterment/betterlint] gem from our friends at
+[betterlint](https://github.com/Betterment/betterlint) gem from our friends at
 [Betterment](https://www.betterment.com), first by telling Standard where our
 configuration file is:
 
