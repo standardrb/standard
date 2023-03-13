@@ -229,6 +229,7 @@ Here are a few examples of Ruby Standard-compliant teams & projects:
 * [Rebase Interactive](https://www.rebaseinteractive.com/)
 * [Renuo](https://www.renuo.ch/)
 * [RubyCI](https://ruby.ci)
+* [Teamtailor](https://www.teamtailor.com/)
 * [thoughtbot](https://thoughtbot.com/)
 
 Does your team use Standard? [Add your name to the list](https://github.com/testdouble/standard/edit/main/README.md)!
