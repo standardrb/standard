@@ -5,3 +5,6 @@ AllCops:
 
 Style/ComparableClamp:
   Enabled: false
+
+Style/DirEmpty:
+  Enabled: false

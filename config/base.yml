@@ -855,6 +855,9 @@ Metrics/BlockNesting:
 Metrics/ClassLength:
   Enabled: false
 
+Metrics/CollectionLiteralLength:
+  Enabled: false
+
 Metrics/CyclomaticComplexity:
   Enabled: false
 
@@ -1246,6 +1249,9 @@ Style/DefWithParentheses:
 Style/Dir:
   Enabled: true
 
+Style/DirEmpty:
+  Enabled: true
+
 Style/DisableCopsWithinSourceCodeDirective:
   Enabled: false
 
@@ -1323,6 +1329,9 @@ Style/ExponentialNotation:
   Enabled: false
 
 Style/FetchEnvVar:
+  Enabled: false
+
+Style/FileEmpty:
   Enabled: false
 
 Style/FileRead:
@@ -1690,6 +1699,9 @@ Style/RedundantFileExtensionInRequire:
   Enabled: true
 
 Style/RedundantFreeze:
+  Enabled: true
+
+Style/RedundantHeredocDelimiterQuotes:
   Enabled: true
 
 Style/RedundantInitialize:
