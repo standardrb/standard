@@ -1,9 +1,11 @@
 # Changelog
 
-## Unreleased
+## 1.25.0
 
 * Update rubocop-performance from 1.15.2 to [1.16.0](https://github.com/rubocop/rubocop-performance/releases/tag/v1.16.0)
 * Update rubocop from 1.44.1 to [1.48.1](https://github.com/rubocop/rubocop/releases/tag/v1.48.1)
+  * Enabled [Style/DirEmpty](https://docs.rubocop.org/rubocop/cops_style.html#styledirempty)
+  * Enabled [Style/RedundantHeredocDelimiterQuotes](https://docs.rubocop.org/rubocop/cops_style.html#styleredundantheredocdelimiterquotes)
 
 ## 1.24.3
 
