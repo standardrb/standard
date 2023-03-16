@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+* Update rubocop-performance from 1.15.2 to [1.16.0](https://github.com/rubocop/rubocop-performance/releases/tag/v1.16.0)
+* Update rubocop from 1.44.1 to [1.48.1](https://github.com/rubocop/rubocop/releases/tag/v1.48.1)
+
 ## 1.24.3
 
 * _Further_ _further_ _further_ improve `--lsp` server to ignore files correctly
