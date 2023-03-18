@@ -75,6 +75,7 @@ class Standard::Runners::RubocopTest < UnitTest
   def test_print_corrected_output_on_stdin_with_corrections_on_stderr
     fake_out, fake_err = do_with_fake_io do
       @subject.call(create_config(
+        parallel: true, # should be removed dynamically by us to prevent RuboCop from breaking
         autocorrect: true,
         stderr: true,
         stdin: "def Foo;'hi'end\n"
