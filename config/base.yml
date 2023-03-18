@@ -78,7 +78,6 @@ Layout/AssignmentIndentation:
 Layout/BeginEndAlignment:
   Enabled: true
   EnforcedStyleAlignWith: start_of_line
-  AutoCorrect: true
   Severity: warning
 
 Layout/BlockAlignment:
@@ -110,7 +109,6 @@ Layout/ConditionPosition:
 Layout/DefEndAlignment:
   Enabled: true
   EnforcedStyleAlignWith: start_of_line
-  AutoCorrect: true
   Severity: warning
 
 Layout/DotPosition:
@@ -174,7 +172,6 @@ Layout/EmptyLinesAroundModuleBody:
 
 Layout/EndAlignment:
   Enabled: true
-  AutoCorrect: true
   EnforcedStyleAlignWith: variable
   Severity: warning
 
@@ -447,6 +444,8 @@ Lint/AmbiguousRegexpLiteral:
 Lint/AssignmentInCondition:
   Enabled: true
   AllowSafeAssignment: true
+  # Intentionally disable autocorrect to force us to intentionally decide
+  # whether assignment is intended as opposed to comparison
   AutoCorrect: false
 
 Lint/BigDecimalNew:
@@ -529,7 +528,6 @@ Lint/EmptyConditionalBody:
 
 Lint/EmptyEnsure:
   Enabled: true
-  AutoCorrect: true
 
 Lint/EmptyExpression:
   Enabled: true
@@ -695,7 +693,6 @@ Lint/RedundantWithObject:
 
 Lint/RefinementImportMethods:
   Enabled: true
-  SafeAutoCorrect: false
 
 Lint/RegexpAsCondition:
   Enabled: true
@@ -1003,7 +1000,6 @@ Performance/FlatMap:
 
 Performance/InefficientHashSearch:
   Enabled: true
-  Safe: false
 
 Performance/IoReadlines:
   Enabled: false
@@ -1019,7 +1015,6 @@ Performance/OpenStruct:
 
 Performance/RangeInclude:
   Enabled: true
-  Safe: false
 
 Performance/RedundantBlockCall:
   Enabled: false
@@ -1096,23 +1091,18 @@ Security/Eval:
 
 Security/IoMethods:
   Enabled: false
-  Safe: false
 
 Security/JSONLoad:
   Enabled: true
-  AutoCorrect: false
-  SafeAutoCorrect: false
 
 Security/MarshalLoad:
   Enabled: false
 
 Security/Open:
   Enabled: true
-  Safe: false
 
 Security/YAMLLoad:
   Enabled: true
-  SafeAutoCorrect: false
 
 Standard/BlockSingleLineBraces:
   Enabled: true
@@ -1305,7 +1295,6 @@ Style/Encoding:
 
 Style/EndBlock:
   Enabled: true
-  AutoCorrect: true
 
 Style/EndlessMethod:
   Enabled: false
@@ -1443,7 +1432,6 @@ Style/LambdaCall:
 
 Style/LineEndConcatenation:
   Enabled: true
-  SafeAutoCorrect: false
 
 Style/MagicCommentFormat:
   Enabled: false
