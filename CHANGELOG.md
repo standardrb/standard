@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.25.1
+
+* When in `stdin` mode, don't invoke the RuboCop runner with `parallel: true` to
+  avoid an interaction that breaks auto-fixing
+  [#530](https://github.com/testdouble/standard/issues/530),
+  [#536](https://github.com/testdouble/standard/issues/536)
+
 ## 1.25.0
 
 * Update rubocop-performance from 1.15.2 to [1.16.0](https://github.com/rubocop/rubocop-performance/releases/tag/v1.16.0)
