@@ -1693,7 +1693,7 @@ Style/RedundantException:
   Enabled: true
 
 Style/RedundantFetchBlock:
-  Enabled: true
+  Enabled: false
 
 Style/RedundantFileExtensionInRequire:
   Enabled: true
