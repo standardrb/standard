@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.25.2
+
+* Disable Style/RedundantFetchBlock due to concerns the performance benefit
+  isn't worth the inconsistency it causes and the fact it is incompatible with
+  ActiveSupport [#527](https://github.com/testdouble/standard/issues/527)
+
 ## 1.25.1
 
 * When in `stdin` mode, don't invoke the RuboCop runner with `parallel: true` to
