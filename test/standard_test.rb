@@ -8,31 +8,41 @@ class StandardTest < UnitTest
     assert_instance_of Gem::Version, ::Standard::VERSION
   end
 
-  def test_configured_all_cops
-    base = "config/base.yml"
-
-    # see if everything is configured
-    allowed = Standard::BuildsConfig.new.call([])
+  BASE_CONFIG = "config/base.yml"
+  INHERITED_OPTIONS = %w[
+    Description
+    Reference
+    Safe
+    SafeAutoCorrect
+    StyleGuide
+    VersionAdded
+    VersionChanged
+  ].freeze
+  def test_configures_all_rubocop_and_performance_cops
+    expected = Standard::BuildsConfig.new.call([])
       .rubocop_config_store
       .instance_variable_get(:@options_config)
       .instance_variable_get(:@hash)
-      .keys
-    configured = YAML.load_file(base).keys
-    missing = (allowed - configured).grep(/\//) # ignore groups like "Layout"
-    extra = (configured - allowed).grep(/\AA-Z/) # ignore "require"
-    return if missing == [] && extra == []
-
-    if missing.any? && !ENV["CI"]
-      # rewrite file to add missing sections
-      separator = "\n\n"
-      sections = File.read(base).strip.split(separator)
-      sections += missing.map { |key| "#{key}:\n  Enabled: false" }
-      sections = sections.first(1) + sections[1..].sort # keep require in the front
-      File.write(base, sections.join(separator) + "\n")
-      flunk "#{base} has been rewritten to add missing cops, review and commit it"
+      .sort.to_h
+    actual = YAML.load_file(BASE_CONFIG)
+    missing = (expected.keys - actual.keys).grep(/\//) # ignore groups like "Layout"
+    extra = actual.keys - expected.keys - ["require"]
+    if missing.any?
+      puts "These cops need to be configured in `#{BASE_CONFIG}'. Defaults:"
+      missing.each do |(name)|
+        puts "\n#{name}:\n" + to_indented_yaml(expected[name], INHERITED_OPTIONS)
+      end
     end
 
-    assert_equal missing, [], "Configure these cops as either Enabled: true or Enabled: false in #{base}"
-    assert_equal extra, [], "These cops do not exist and should not be configured in #{base}"
+    assert_equal missing, [], "Configure these cops as either Enabled: true or Enabled: false in #{BASE_CONFIG}"
+    assert_equal extra, [], "These cops do not exist and should not be configured in #{BASE_CONFIG}"
+  end
+
+  private
+
+  def to_indented_yaml(cop_hash, without_keys = [])
+    cop_hash.reject { |(k, v)|
+      without_keys.include?(k)
+    }.to_h.to_yaml.gsub(/^---\n/, "").gsub(/^/, "  ")
   end
 end
