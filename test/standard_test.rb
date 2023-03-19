@@ -38,6 +38,13 @@ class StandardTest < UnitTest
     assert_equal extra, [], "These cops do not exist and should not be configured in #{BASE_CONFIG}"
   end
 
+  def test_alphabetized_config
+    actual = YAML.load_file(BASE_CONFIG).keys - ["require"]
+    expected = actual.sort
+
+    assert_equal actual, expected, "Cop names should be alphabetized! (See this script to do it for you: https://github.com/testdouble/standard/pull/222#issue-744335213 )"
+  end
+
   private
 
   def to_indented_yaml(cop_hash, without_keys = [])
