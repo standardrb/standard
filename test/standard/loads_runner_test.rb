@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "../test_helper"
 
 class Standard::LoadsRunnerTest < UnitTest
   def setup
@@ -15,6 +15,24 @@ class Standard::LoadsRunnerTest < UnitTest
     result = @subject.call(:version)
 
     assert_instance_of ::Standard::Runners::Version, result
+  end
+
+  def test_verbose_version
+    result = @subject.call(:verbose_version)
+
+    assert_instance_of ::Standard::Runners::VerboseVersion, result
+  end
+
+  def test_lsp
+    result = @subject.call(:lsp)
+
+    assert_instance_of ::Standard::Runners::Lsp, result
+  end
+
+  def test_genignore
+    result = @subject.call(:genignore)
+
+    assert_instance_of ::Standard::Runners::Genignore, result
   end
 
   def test_help

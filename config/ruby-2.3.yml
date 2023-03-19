@@ -1,0 +1,10 @@
+inherit_from: ./ruby-2.4.yml
+
+AllCops:
+  TargetRubyVersion: 2.3
+
+Style/ComparableClamp:
+  Enabled: false
+
+Style/DirEmpty:
+  Enabled: false

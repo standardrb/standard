@@ -4,22 +4,34 @@ require_relative "detects_fixability"
 
 module Standard
   class Formatter < RuboCop::Formatter::BaseFormatter
-    CALL_TO_ACTION_MESSAGE = <<-CALL_TO_ACTION.gsub(/^ {6}/, "")
-      Notice: Disagree with these rules? While StandardRB is pre-1.0.0, feel free to submit suggestions to:
-        https://github.com/testdouble/standard/issues/new
-    CALL_TO_ACTION
+    STANDARD_GREETING = <<-MSG.gsub(/^ {6}/, "")
+      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+    MSG
+
+    def self.fixable_error_message(command)
+      <<-MSG.gsub(/^ {8}/, "")
+        standard: Run `#{command}` to automatically fix some problems.
+      MSG
+    end
 
     def initialize(*args)
       super
       @detects_fixability = DetectsFixability.new
       @header_printed_already = false
       @fix_suggestion_printed_already = false
-      @any_uncorrected_offenses = false
+      @offenses_encountered = false
+    end
+
+    def started(_target_files)
+      print_todo_warning
     end
 
     def file_finished(file, offenses)
-      return unless (uncorrected_offenses = offenses.reject(&:corrected?)).any?
-      @any_uncorrected_offenses = true
+      uncorrected_offenses = offenses.reject(&:corrected?)
+
+      return unless uncorrected_offenses.any?
+
+      @offenses_encountered = true
 
       print_header_once
       print_fix_suggestion_once(uncorrected_offenses)
@@ -29,9 +41,8 @@ module Standard
       end
     end
 
-    def finished(_)
-      print_todo_warning
-      print_call_for_feedback if @any_uncorrected_offenses
+    def finished(_inspected_files)
+      print_todo_congratulations
     end
 
     private
@@ -39,9 +50,7 @@ module Standard
     def print_header_once
       return if @header_printed_already
 
-      output.print <<-HEADER.gsub(/^ {8}/, "")
-        standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-      HEADER
+      output.print STANDARD_GREETING
 
       @header_printed_already = true
     end
@@ -54,9 +63,7 @@ module Standard
           "standardrb --fix"
         end
 
-        output.print <<-HEADER.gsub(/^ {10}/, "")
-          standard: Run `#{command}` to automatically fix some problems.
-        HEADER
+        output.print self.class.fixable_error_message(command)
         @fix_suggestion_printed_already = true
       end
     end
@@ -66,7 +73,7 @@ module Standard
       return unless todo_file
 
       todo_ignore_files = options[:todo_ignore_files]
-      return unless todo_ignore_files
+      return unless todo_ignore_files&.any?
 
       output.print <<-HEADER.gsub(/^ {8}/, "")
         WARNING: this project is being migrated to standard gradually via `#{todo_file}` and is ignoring these files:
@@ -77,17 +84,26 @@ module Standard
       end
     end
 
+    def print_todo_congratulations
+      return if @offenses_encountered
+
+      todo_file = options[:todo_file]
+      return unless todo_file
+
+      todo_ignore_files = options[:todo_ignore_files]
+      return if todo_ignore_files&.any?
+
+      output.print <<-HEADER.gsub(/^ {8}/, "")
+        Congratulations, you've successfully migrated this project to Standard! Delete `#{todo_file}` in celebration.
+      HEADER
+    end
+
     def path_to(file)
       Pathname.new(file).relative_path_from(Pathname.new(Dir.pwd))
     end
 
-    def print_call_for_feedback
-      output.print "\n"
-      output.print CALL_TO_ACTION_MESSAGE
-    end
-
     def auto_correct_option_provided?
-      options[:auto_correct] || options[:safe_auto_correct]
+      options[:autocorrect]
     end
 
     def should_suggest_fix?(offenses)

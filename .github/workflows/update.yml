@@ -1,0 +1,54 @@
+name: Update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 */100,1-7 * 1'
+      # https://blog.healthchecks.io/2022/09/schedule-cron-job-the-funky-way/
+      # In case you want to know how that cron job works to get the first Monday of each month.
+
+jobs:
+  update:
+    name: Check for updates
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+          bundler-cache: true
+      - name: Unset bundler deployment
+        run: bundle config unset deployment
+      - name: Get Outdated
+        id: outdated
+        run: |
+          eval "$(bundle outdated rubocop rubocop-performance |
+          grep rubocop |
+          awk '{print "echo \"::set-output name="$1"_OLD::"$2"\"; echo \"::set-output name="$1"_NEW::"$3"\";"}' - )";
+      - name: Update Changelog
+        run: |
+          eval "$(bundle outdated rubocop rubocop-performance |
+          grep rubocop |
+          awk '{print "sed -i \"2i* Update "$1" from "$2" to ["$3"](https://github.com/rubocop/"$1"/releases/tag/v"$3")\" CHANGELOG.md"}' - )";
+          sed -i '2i\\n## Unreleased\n' CHANGELOG.md;
+      - name: Update Gemspec
+        run: |
+          eval "$(bundle outdated rubocop rubocop-performance |
+          grep rubocop |
+          awk '{print "sed -i /\"" $1 "\"/s/" $2 "/" $3 "/ standard.gemspec"}' - )"
+      - name: Update Gemfile
+        run: bundle update
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          reviewers: camilopayan
+          commit-message: '[ ${{ steps.date.outputs.date }} ] - Update dependencies'
+          title: '[ ${{ steps.date.outputs.date }} ] - Update dependencies'
+          delete-branch: true
+          branch: update-deps-${{ steps.date.outputs.date }}

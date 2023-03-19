@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "test_helper"
 require "open3"
 
 class StandardrbTest < UnitTest
@@ -7,12 +7,10 @@ class StandardrbTest < UnitTest
 
     refute status.success?
     assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+      #{standard_greeting}
         lib/foo/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/foo/tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
-
-      #{call_to_action_message}
     MSG
   end
 
@@ -28,11 +26,27 @@ class StandardrbTest < UnitTest
 
     refute status.success?
     assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+      #{standard_greeting}
         do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
+    MSG
+  end
 
-      #{call_to_action_message}
+  def test_quoted_symbols_are_enforced
+    stdout, status = run_standardrb("test/fixture/quoted_symbols")
+    refute status.success?, stdout
+    assert_equal stdout.scan(/.*\.rb.*/), [
+      "  test.rb:2:5: Style/QuotedSymbols: Prefer double-quoted symbols unless you need single quotes to avoid extra backslashes for escaping."
+    ]
+  end
+
+  def test_extend_config_option
+    stdout, status = run_standardrb("test/fixture/extend_config/project")
+
+    refute status.success?
+    assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
+      #{standard_greeting}
+        oranges.rb:1:1: Bananas/BananasOnly: Bananas only! No oranges.
     MSG
   end
 
@@ -48,9 +62,5 @@ class StandardrbTest < UnitTest
 
   def assert_same_lines(expected, actual)
     assert_equal expected.split("\n").sort, actual.split("\n").sort
-  end
-
-  def call_to_action_message
-    Standard::Formatter::CALL_TO_ACTION_MESSAGE.chomp
   end
 end

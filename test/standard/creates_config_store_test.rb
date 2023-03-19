@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "../test_helper"
 
 class Standard::CreatesConfigStore
   class Test < UnitTest
@@ -6,6 +6,7 @@ class Standard::CreatesConfigStore
       @assigns_rubocop_yaml = gimme_next(AssignsRubocopYaml)
       @sets_target_ruby_version = gimme_next(SetsTargetRubyVersion)
       @configures_ignored_paths = gimme_next(ConfiguresIgnoredPaths)
+      @merges_user_config_extensions = gimme_next(MergesUserConfigExtensions)
 
       @subject = Standard::CreatesConfigStore.new
     end
@@ -19,6 +20,7 @@ class Standard::CreatesConfigStore
 
       verify(@sets_target_ruby_version).call(options_config, standard_config)
       verify(@configures_ignored_paths).call(options_config, standard_config)
+      verify(@merges_user_config_extensions).call(options_config, standard_config)
     end
   end
 end

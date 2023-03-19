@@ -1,0 +1,2 @@
+oranges = "🍊🍊🍊"
+puts oranges

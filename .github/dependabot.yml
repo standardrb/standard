@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "bundler"
+    directory: "/"
+    allow:
+      - dependency-name: "rubocop"
+      - dependency-name: "rubocop-performance"
+    schedule:
+      interval: "weekly"
+      day: monday

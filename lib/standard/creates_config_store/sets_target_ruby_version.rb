@@ -1,23 +1,36 @@
 class Standard::CreatesConfigStore
   class SetsTargetRubyVersion
+    # This is minimum version that Rubocop can parse, not the minimum
+    # version it can run on (e.g. TargetRubyVersion).  See the following
+    # for more details:
+    #
+    # https://docs.rubocop.org/rubocop/configuration.html#setting-the-target-ruby-version
+    #
+    # https://github.com/rubocop/rubocop/blob/master/lib/rubocop/target_ruby.rb
+    MIN_TARGET_RUBY_VERSION = "2.0"
+
     def call(options_config, standard_config)
-      options_config["AllCops"]["TargetRubyVersion"] = floatify_version(
-        max_rubocop_supported_version(standard_config[:ruby_version])
+      options_config["AllCops"]["TargetRubyVersion"] = normalize_version(
+        min_target_ruby_version_supported(standard_config[:ruby_version])
       )
     end
 
     private
 
-    def max_rubocop_supported_version(desired_version)
-      rubocop_supported_version = Gem::Version.new("2.4")
-      if desired_version < rubocop_supported_version
-        rubocop_supported_version
+    def min_target_ruby_version_supported(desired_target_ruby_version)
+      return desired_target_ruby_version unless Gem::Version.correct?(desired_target_ruby_version)
+
+      min_target_ruby_version = Gem::Version.new(MIN_TARGET_RUBY_VERSION)
+      if desired_target_ruby_version < min_target_ruby_version
+        min_target_ruby_version
       else
-        desired_version
+        desired_target_ruby_version
       end
     end
 
-    def floatify_version(version)
+    def normalize_version(version)
+      return version unless Gem::Version.correct?(version)
+
       major, minor = version.segments
       "#{major}.#{minor}".to_f # lol
     end

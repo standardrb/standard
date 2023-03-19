@@ -1,9 +1,13 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
-require "simplecov"
-SimpleCov.start
-SimpleCov.start do
-  add_filter "vendor"
+begin
+  require "simplecov"
+  SimpleCov.start do
+    add_filter "vendor"
+  end
+rescue LoadError
 end
+
+$LOAD_PATH << "test"
 
 require "standard"
 require "gimme"
@@ -17,19 +21,6 @@ class UnitTest < Minitest::Test
     Pathname.new(Dir.pwd).join(relative).to_s
   end
 
-  def setup
-    # Rubocop will cache and reuse the current working directory, which can
-    # be different the actual working directory.  This can mess up tests that
-    # use the quite/simple formatter as they can write out either relative or
-    # absolute paths.  This is not in the Rubocop documentation but can be
-    # found in this PR:
-    #
-    # https://github.com/rubocop-hq/rubocop/pull/262#issuecomment-19265766
-    #
-    # This forces RuboCop to use current working directory.
-    RuboCop::PathUtil.reset_pwd
-  end
-
   def teardown
     Gimme.reset
   end
@@ -40,16 +31,24 @@ class UnitTest < Minitest::Test
     self.class.path(relative)
   end
 
-  def do_with_fake_io
-    og_stdout, og_stderr = $stdout, $stderr
+  def do_with_fake_io(fake_in = $stdin)
+    og_stdin, og_stdout, og_stderr = $stdin, $stdout, $stderr
     fake_out, fake_err = StringIO.new, StringIO.new
 
-    $stdout, $stderr = fake_out, fake_err
+    $stdin, $stdout, $stderr = fake_in, fake_out, fake_err
     result = yield
-    $stdout, $stderr = og_stdout, og_stderr
+    $stdin, $stdout, $stderr = og_stdin, og_stdout, og_stderr
 
     [fake_out, fake_err, result]
   ensure
-    $stdout, $stderr = og_stdout, og_stderr
+    $stdin, $stdout, $stderr = og_stdin, og_stdout, og_stderr
+  end
+
+  def standard_greeting
+    Standard::Formatter::STANDARD_GREETING.chomp
+  end
+
+  def fixable_error_message(command = "standardrb --fix")
+    Standard::Formatter.fixable_error_message(command).chomp
   end
 end

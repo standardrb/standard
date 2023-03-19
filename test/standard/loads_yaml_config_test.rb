@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "../test_helper"
 
 class Standard::LoadsYamlConfigTest < UnitTest
   DEFAULT_STANDARD_CONFIG = {
@@ -10,7 +10,8 @@ class Standard::LoadsYamlConfigTest < UnitTest
     default_ignores: true,
     config_root: nil,
     todo_file: nil,
-    todo_ignore_files: []
+    todo_ignore_files: [],
+    extend_config: []
   }.freeze
 
   def setup

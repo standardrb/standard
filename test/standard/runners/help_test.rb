@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "../../test_helper"
 
 require "standard/runners/help"
 
@@ -12,15 +12,18 @@ class Standard::Runners::HelpTest < UnitTest
       @subject.call(nil)
     }
 
-    expected = <<-MESSAGE.gsub(/^ {6}/, "")
-      Usage: standardrb [--fix] [-vh] [--format <name>] [--] [FILE]...
+    expected = <<~MESSAGE
+      Usage: standardrb [--fix] [--lsp] [-vh] [--format <name>] [--] [FILE]...
 
       Options:
 
         --fix             Automatically fix failures where possible
         --no-fix          Do not automatically fix failures
         --format <name>   Format output with any RuboCop formatter (e.g. "json")
+        --generate-todo   Create a .standard_todo.yml that lists all the files that contain errors
+        --lsp             Start a LSP server listening on STDIN
         -v, --version     Print the version of Standard
+        -V, --verbose-version   Print the version of Standard and its dependencies.
         -h, --help        Print this message
         FILE              Files to lint [default: ./]
 

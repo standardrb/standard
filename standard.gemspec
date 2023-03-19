@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version = Standard::VERSION
   spec.authors = ["Justin Searls"]
   spec.email = ["searls@gmail.com"]
-  spec.required_ruby_version = ">= 2.4.0"
+  spec.required_ruby_version = ">= 2.6.0"
 
   spec.summary = "Ruby Style Guide, with linter & automatic code fixer"
   spec.homepage = "https://github.com/testdouble/standard"
@@ -19,13 +19,9 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rubocop", "~> 0.83.0"
-  spec.add_dependency "rubocop-performance", "~> 1.5.2"
+  spec.add_dependency "rubocop", "1.48.1"
+  spec.add_dependency "rubocop-performance", "1.16.0"
 
-  spec.add_development_dependency "bundler"
-  spec.add_development_dependency "minitest", "~> 5.0"
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "simplecov"
-  spec.add_development_dependency "gimme"
+  # not semver: first three are lsp protocol version, last is patch
+  spec.add_dependency "language_server-protocol", "~> 3.17.0.2"
 end

@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "../test_helper"
 
 class Standard::MergesSettingsTest < UnitTest
   def setup
@@ -29,28 +29,24 @@ class Standard::MergesSettingsTest < UnitTest
     assert_equal :genignore, @subject.call(["--generate-todo"], {}).runner
   end
 
-  def test_fix_flag_sets_auto_correct_options
+  def test_fix_flag_sets_autocorrect_options
     options = @subject.call(["--fix"], {}).options
 
-    assert_equal options[:auto_correct], true
-    assert_equal options[:safe_auto_correct], true
+    assert_equal options[:autocorrect], true
   end
 
-  def test_no_fix_flag_inverts_auto_correct_options
+  def test_no_fix_flag_inverts_autocorrect_options
     options = @subject.call(["--no-fix"], {}).options
 
-    assert_equal options[:auto_correct], false
-    assert_equal options[:safe_auto_correct], false
+    assert_equal options[:autocorrect], false
   end
 
   def test_last_fix_flag_wins
     fix_options = @subject.call(["--no-fix", "--fix"], {}).options
     no_fix_options = @subject.call(["--fix", "--no-fix"], {}).options
 
-    assert_equal fix_options[:auto_correct], true
-    assert_equal fix_options[:safe_auto_correct], true
-    assert_equal no_fix_options[:auto_correct], false
-    assert_equal no_fix_options[:safe_auto_correct], false
+    assert_equal fix_options[:autocorrect], true
+    assert_equal no_fix_options[:autocorrect], false
   end
 
   def test_todo_file_option

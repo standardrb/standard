@@ -4,32 +4,28 @@ module Standard
   module Runners
     class Rubocop
       def call(config)
-        rubocop_runner = RuboCop::Runner.new(
-          config.rubocop_options,
-          config.rubocop_config_store
+        rubocop_runner = RuboCop::CLI::Command::ExecuteRunner.new(
+          RuboCop::CLI::Environment.new(
+            without_parallelizing_in_stdin_mode(config.rubocop_options),
+            config.rubocop_config_store,
+            config.paths
+          )
         )
 
-        rubocop_runner.run(config.paths).tap do |success|
-          print_errors_and_warnings(success, rubocop_runner)
-          print_corrected_code_if_fixing_stdin(config.rubocop_options)
-        end
+        rubocop_runner.run
       end
 
       private
 
-      def print_errors_and_warnings(success, rubocop_runner)
-        return unless success
-
-        (rubocop_runner.warnings + rubocop_runner.errors).each do |message|
-          warn message
+      # This is a workaround for an issue with how `parallel` and `stdin`
+      # interact when invoked in this way. See:
+      #   https://github.com/testdouble/standard/issues/536
+      def without_parallelizing_in_stdin_mode(options)
+        if options[:stdin]
+          options.delete(:parallel)
         end
-      end
 
-      def print_corrected_code_if_fixing_stdin(rubocop_options)
-        return unless rubocop_options[:stdin] && rubocop_options[:auto_correct]
-
-        puts "=" * 20
-        print rubocop_options[:stdin]
+        options
       end
     end
   end

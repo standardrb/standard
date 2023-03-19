@@ -15,7 +15,12 @@ THINGS = {
 class Something
 
 
-    def do_stuff( a,b,c )
+
+    alias do_more_stuff do_stuff
+
+  attr_reader :foo,
+
+    def do_stuff( a:,b:,c: )
 	maths_and_stuff = 4 +
                           5 +
 			  6
@@ -34,12 +39,29 @@ class Something
           end
         }
 
+        test = 'hi'
+        test2 = 'hi'
+        test3 = test.object_id == test2.object_id
+        if test3
+          32 + 3
+        end
         THINGS.keys.each { |key|
-            if ( plus_stuff.reduce(:+) > 1 )
-                THINGS[key] = plus_stuff[i]
-            end
+            THINGS[key] = plus_stuff[i]
         }
     end
+
+  def do_even_more_stuff
+    foo = begin
+do_stuff(
+              a: 1,
+                     b: 2,
+                     c: 3
+                    )
+                          rescue StandardError
+                   nil
+end
+    foo
+  end
 
 end
 
@@ -76,3 +98,20 @@ class AlignyStuff
 
 end
 
+def bad_function(test: true, a:, b:)
+  if test
+    /[xyx]/ =~ a
+  else
+    b
+  end
+end
+
+def count_carbs(food)
+  carbs = case food
+          when :pancakes
+            23
+          when :mushrooms
+            4
+          end
+  carbs + 1
+end

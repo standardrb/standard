@@ -1,0 +1,4 @@
+ignore:
+  - todo_file_one.rb:
+      - Lint/AssignmentInCondition
+  - todo_file_two.rb
