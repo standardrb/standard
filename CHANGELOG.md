@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.25.3
+
+* Relax the version specifier on `rubocop` and `rubocop-performance` to allow
+  patch-level updates
+
 ## 1.25.2
 
 * Disable Style/RedundantFetchBlock due to concerns the performance benefit
