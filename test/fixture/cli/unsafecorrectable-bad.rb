@@ -1,0 +1,2 @@
+val = :true
+puts val

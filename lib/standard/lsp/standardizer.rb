@@ -42,6 +42,7 @@ module Standard
       private
 
       BASE_OPTIONS = {
+        autocorrect: false,
         force_exclusion: true,
         parallel: false,
         todo_file: nil,
@@ -49,9 +50,9 @@ module Standard
       }
       def fork_config(path, text, format:)
         options = if format
-          {stdin: text, autocorrect: true, formatters: [], safe_autocorrect: true}
+          {stdin: text, safe_autocorrect: true, formatters: []}
         else
-          {stdin: text, autocorrect: false, formatters: [["json"]], format: "json"}
+          {stdin: text, safe_autocorrect: false, formatters: [["json"]], format: "json"}
         end
         Standard::Config.new(@config.runner, [path], BASE_OPTIONS.merge(options), @config.rubocop_config_store)
       end

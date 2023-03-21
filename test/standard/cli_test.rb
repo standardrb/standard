@@ -27,6 +27,18 @@ class Standard::CliTest < UnitTest
     OUTPUT
   end
 
+  def test_unsafely_fixable_is_not_fixed_unsafely
+    fake_out, fake_err, exit_code = do_with_fake_io {
+      Standard::Cli.new(["test/fixture/cli/unsafecorrectable-bad.rb", "--fix"]).run
+    }
+    refute_equal 0, exit_code
+    assert_empty fake_err.string
+    assert_equal <<-OUTPUT.gsub(/^ {6}/, ""), fake_out.string
+      #{standard_greeting}
+        test/fixture/cli/unsafecorrectable-bad.rb:1:7: Lint/BooleanSymbol: Symbol with a boolean name - you probably meant to use `true`.
+    OUTPUT
+  end
+
   def test_unfixable_manually_fixed
     fake_out, fake_err, exit_code = do_with_fake_io {
       Standard::Cli.new(["test/fixture/cli/unfixable-good.rb", "--fix"]).run

@@ -63,7 +63,7 @@ class Standard::Runners::RubocopTest < UnitTest
   def test_print_corrected_output_on_stdin
     fake_out, fake_err = do_with_fake_io do
       @subject.call(create_config(
-        autocorrect: true,
+        safe_autocorrect: true,
         stdin: "def Foo;'hi'end\n"
       ))
     end
@@ -76,7 +76,7 @@ class Standard::Runners::RubocopTest < UnitTest
     fake_out, fake_err = do_with_fake_io do
       @subject.call(create_config(
         parallel: true, # should be removed dynamically by us to prevent RuboCop from breaking
-        autocorrect: true,
+        safe_autocorrect: true,
         stderr: true,
         stdin: "def Foo;'hi'end\n"
       ))

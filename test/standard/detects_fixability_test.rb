@@ -19,6 +19,12 @@ class Standard::DetectsFixabilityTest < UnitTest
     assert_equal(true, result)
   end
 
+  def test_returns_false_when_offense_autocorrection_is_unsafe
+    result = @subject.call([Offense.new("Lint/BooleanSymbol")])
+
+    assert_equal(false, result)
+  end
+
   def test_can_find_a_config_option_for_everything_we_prescribe_with_asploding
     our_cop_names = YAML.load_file("config/base.yml").keys - ["AllCops", "require"]
 
