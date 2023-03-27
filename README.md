@@ -229,6 +229,7 @@ Here are a few examples of Ruby Standard-compliant teams & projects:
 * [Rebase Interactive](https://www.rebaseinteractive.com/)
 * [Renuo](https://www.renuo.ch/)
 * [RubyCI](https://ruby.ci)
+* [Spinal](https://spinalcms.com/)
 * [Teamtailor](https://www.teamtailor.com/)
 * [thoughtbot](https://thoughtbot.com/)
 
