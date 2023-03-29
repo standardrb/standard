@@ -17,28 +17,35 @@ module Standard
     def initialize(*args)
       super
       @detects_fixability = DetectsFixability.new
-      @header_printed_already = false
-      @fix_suggestion_printed_already = false
-      @offenses_encountered = false
     end
 
     def started(_target_files)
+      @header_printed_already = false
+      @fix_suggestion_printed_already = false
+      @total_correction_count = 0
+      @total_correctable_count = 0
+      @total_uncorrected_count = 0
       print_todo_warning
     end
 
     def file_finished(file, offenses)
-      uncorrected_offenses = offenses.reject(&:corrected?)
+      track_stats(offenses)
 
-      return unless uncorrected_offenses.any?
+      if (uncorrected_offenses = offenses.reject(&:corrected?)).any?
+        print_header_once
+        print_fix_suggestion_once(uncorrected_offenses)
 
-      @offenses_encountered = true
-
-      print_header_once
-      print_fix_suggestion_once(uncorrected_offenses)
-
-      uncorrected_offenses.each do |o|
-        output.printf("  %s:%d:%d: %s\n", path_to(file), o.line, o.real_column, o.message.tr("\n", " "))
+        uncorrected_offenses.each do |o|
+          output.printf("  %s:%d:%d: %s\n", path_to(file), o.line, o.real_column, o.message.tr("\n", " "))
+        end
       end
+    end
+
+    def track_stats(offenses)
+      corrected = offenses.count(&:corrected?)
+      @total_correction_count += corrected
+      @total_correctable_count += offenses.count(&:correctable?) - corrected
+      @total_uncorrected_count += offenses.count - corrected
     end
 
     def finished(_inspected_files)
@@ -85,17 +92,13 @@ module Standard
     end
 
     def print_todo_congratulations
-      return if @offenses_encountered
-
-      todo_file = options[:todo_file]
-      return unless todo_file
-
-      todo_ignore_files = options[:todo_ignore_files]
-      return if todo_ignore_files&.any?
-
-      output.print <<-HEADER.gsub(/^ {8}/, "")
-        Congratulations, you've successfully migrated this project to Standard! Delete `#{todo_file}` in celebration.
-      HEADER
+      if @total_uncorrected_count == 0 &&
+          options[:todo_file] &&
+          options[:todo_ignore_files]&.none?
+        output.print <<-HEADER.gsub(/^ {10}/, "")
+          Congratulations, you've successfully migrated this project to Standard! Delete `#{options[:todo_file]}` in celebration.
+        HEADER
+      end
     end
 
     def path_to(file)
