@@ -1,6 +1,5 @@
 require "yaml"
 require "rubocop"
-require_relative "detects_fixability"
 
 module Standard
   class Formatter < RuboCop::Formatter::BaseFormatter
@@ -12,11 +11,6 @@ module Standard
       <<-MSG.gsub(/^ {8}/, "")
         standard: Run `#{command}` to automatically fix some problems.
       MSG
-    end
-
-    def initialize(*args)
-      super
-      @detects_fixability = DetectsFixability.new
     end
 
     def started(_target_files)
@@ -110,7 +104,7 @@ module Standard
     end
 
     def should_suggest_fix?(offenses)
-      !auto_correct_option_provided? && @detects_fixability.call(offenses)
+      !auto_correct_option_provided? && @total_correctable_count > 0
     end
   end
 end

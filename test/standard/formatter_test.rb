@@ -38,7 +38,7 @@ class Standard::FormatterTest < UnitTest
   def test_does_not_print_congratulations_if_offenses_were_detected
     @subject = Standard::Formatter.new(@io, todo_file: ".standard_todo.yml", todo_ignore_files: [])
 
-    simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource")])
+    simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
       #{standard_greeting}
@@ -50,7 +50,7 @@ class Standard::FormatterTest < UnitTest
   def test_does_not_print_fix_command_if_run_with_fix
     @subject = Standard::Formatter.new(@io, autocorrect: true, safe_autocorrect: true)
 
-    simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource")])
+    simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
       #{standard_greeting}
@@ -59,7 +59,7 @@ class Standard::FormatterTest < UnitTest
   end
 
   def test_prints_uncorrected_offenses
-    simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource")])
+    simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
       #{standard_greeting}
@@ -70,10 +70,10 @@ class Standard::FormatterTest < UnitTest
 
   def test_prints_header_and_fix_suggestion_exactly_once
     @subject.started([@some_path])
-    @subject.file_finished(@some_path, [Offense.new(false, 42, 12, "Yuck", "Lint/UselessAssignment")])
+    @subject.file_finished(@some_path, [Offense.new(false, 42, 12, "Yuck", "Lint/UselessAssignment", false)])
     @subject.file_finished(@some_path, [])
-    @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource")])
-    @subject.file_finished(@some_path, [Offense.new(false, 43, 14, "Super", "Bundler/InsecureProtocolSource")])
+    @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
+    @subject.file_finished(@some_path, [Offense.new(false, 43, 14, "Super", "Bundler/InsecureProtocolSource", true)])
     @subject.finished([@some_path])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
@@ -89,7 +89,7 @@ class Standard::FormatterTest < UnitTest
     og_name = $PROGRAM_NAME
     $PROGRAM_NAME = "/usr/bin/rake"
 
-    simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource")])
+    simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
       #{standard_greeting}
@@ -102,8 +102,8 @@ class Standard::FormatterTest < UnitTest
 
   def test_prints_call_for_feedback
     @subject.started([@some_path])
-    @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource")])
-    @subject.file_finished(@some_path, [Offense.new(false, 43, 14, "Super", "Bundler/InsecureProtocolSource")])
+    @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
+    @subject.file_finished(@some_path, [Offense.new(false, 43, 14, "Super", "Bundler/InsecureProtocolSource", true)])
     @subject.finished([@some_path])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
