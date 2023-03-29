@@ -27,8 +27,10 @@ module Standard
     def parse_standard_argv(argv)
       argv.each_with_object({}) do |arg, cli_flags|
         if arg == "--fix"
+          cli_flags[:autocorrect] = true
           cli_flags[:safe_autocorrect] = true
         elsif arg == "--no-fix"
+          cli_flags[:autocorrect] = false
           cli_flags[:safe_autocorrect] = false
         end
       end
@@ -52,7 +54,7 @@ module Standard
 
     def merge(standard_yaml, standard_cli_flags, rubocop_cli_flags)
       {
-        autocorrect: false,
+        autocorrect: standard_yaml[:fix],
         safe_autocorrect: standard_yaml[:fix],
         formatters: [[standard_yaml[:format] || "Standard::Formatter", nil]],
         parallel: standard_yaml[:parallel],

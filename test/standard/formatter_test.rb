@@ -48,7 +48,7 @@ class Standard::FormatterTest < UnitTest
   end
 
   def test_does_not_print_fix_command_if_run_with_fix
-    @subject = Standard::Formatter.new(@io, safe_autocorrect: true)
+    @subject = Standard::Formatter.new(@io, autocorrect: true, safe_autocorrect: true)
     @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource")])
     @subject.finished([@some_path])
 

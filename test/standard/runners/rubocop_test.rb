@@ -10,21 +10,18 @@ class Standard::Runners::RubocopTest < UnitTest
 
   EXPECTED_REPORT = <<~REPORT
     == test/fixture/runner/agreeable.rb ==
-    C:  1:  1: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+    C:  1:  1: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
     C:  1:  1: [Corrected] Style/SingleLineMethods: Avoid single-line method definitions.
+    C:  1:  5: Naming/MethodName: Use snake_case for method names.
     C:  1:  8: [Corrected] Layout/SpaceAfterSemicolon: Space missing after semicolon.
-    C:  2:  1: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
-    C:  2:  8: [Corrected] Style/Semicolon: Do not use semicolons to terminate expressions.
-    C:  2:  9: [Corrected] Layout/TrailingWhitespace: Trailing whitespace detected.
-    C:  3:  5: Naming/MethodName: Use snake_case for method names.
+    C:  1:  8: [Corrected] Style/Semicolon: Do not use semicolons to terminate expressions.
+    C:  1:  9: [Corrected] Layout/TrailingWhitespace: Trailing whitespace detected.
 
-    1 file inspected, 7 offenses detected, 6 offenses corrected
+    1 file inspected, 6 offenses detected, 4 offenses corrected, 1 more offense can be corrected with `rubocop -A`
     ====================
   REPORT
 
   EXPECTED_FIXED = <<~OUT
-    # frozen_string_literal: true
-
     def Foo
       'hi'
     end
@@ -63,6 +60,7 @@ class Standard::Runners::RubocopTest < UnitTest
   def test_print_corrected_output_on_stdin
     fake_out, fake_err = do_with_fake_io do
       @subject.call(create_config(
+        autocorrect: true,
         safe_autocorrect: true,
         stdin: "def Foo;'hi'end\n"
       ))
@@ -76,6 +74,7 @@ class Standard::Runners::RubocopTest < UnitTest
     fake_out, fake_err = do_with_fake_io do
       @subject.call(create_config(
         parallel: true, # should be removed dynamically by us to prevent RuboCop from breaking
+        autocorrect: true,
         safe_autocorrect: true,
         stderr: true,
         stdin: "def Foo;'hi'end\n"

@@ -20,6 +20,11 @@ class Standard::DetectsFixabilityTest < UnitTest
   end
 
   def test_returns_false_when_offense_autocorrection_is_unsafe
+    if Gem::Version.new(RuboCop::Version::STRING) > Gem::Version.new("1.48.1")
+      fail "remove this guard clause"
+    else
+      skip
+    end
     result = @subject.call([Offense.new("Lint/BooleanSymbol")])
 
     assert_equal(false, result)

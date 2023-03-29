@@ -26,6 +26,7 @@ class Standard::BuildsConfigTest < UnitTest
     result = @subject.call(["--only", "Standard/SemanticBlocks", "--fix", "--parallel"])
 
     assert_equal DEFAULT_OPTIONS.merge(
+      autocorrect: true,
       safe_autocorrect: true,
       parallel: true,
       only: ["Standard/SemanticBlocks"]
@@ -43,6 +44,7 @@ class Standard::BuildsConfigTest < UnitTest
     result = @subject.call([], path("test/fixture/config/y"))
 
     assert_equal DEFAULT_OPTIONS.merge(
+      autocorrect: true,
       safe_autocorrect: true,
       parallel: true,
       formatters: [["progress", nil]]
@@ -80,6 +82,7 @@ class Standard::BuildsConfigTest < UnitTest
     result = @subject.call(["--config", "test/fixture/lol.standard.yml"], path("test/fixture/config/z"))
 
     assert_equal DEFAULT_OPTIONS.merge(
+      autocorrect: true,
       safe_autocorrect: true
     ), result.rubocop_options
     assert_equal config_store("test/fixture"), result.rubocop_config_store.for("").to_h
