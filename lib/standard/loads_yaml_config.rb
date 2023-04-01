@@ -26,6 +26,7 @@ module Standard
       {
         ruby_version: normalized_ruby_version(standard_yaml["ruby_version"]),
         fix: !!standard_yaml["fix"],
+        fix_unsafely: !!standard_yaml["fix_unsafely"],
         format: standard_yaml["format"],
         parallel: !!standard_yaml["parallel"],
         ignore: expand_ignore_config(standard_yaml["ignore"]) + expand_ignore_config(todo_yaml["ignore"]),

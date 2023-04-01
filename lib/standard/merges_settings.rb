@@ -20,7 +20,7 @@ module Standard
 
     def separate_argv(argv)
       argv.partition do |flag|
-        ["--generate-todo", "--fix", "--no-fix", "--version", "-v", "--verbose-version", "-V", "--help", "-h", "--lsp"].include?(flag)
+        ["--generate-todo", "--fix", "--fix-unsafely", "--no-fix", "--version", "-v", "--verbose-version", "-V", "--help", "-h", "--lsp"].include?(flag)
       end
     end
 
@@ -29,6 +29,9 @@ module Standard
         if arg == "--fix"
           cli_flags[:autocorrect] = true
           cli_flags[:safe_autocorrect] = true
+        if arg == "--fix-unsafely"
+          cli_flags[:autocorrect] = true
+          cli_flags[:safe_autocorrect] = false
         elsif arg == "--no-fix"
           cli_flags[:autocorrect] = false
           cli_flags[:safe_autocorrect] = false
@@ -55,7 +58,7 @@ module Standard
     def merge(standard_yaml, standard_cli_flags, rubocop_cli_flags)
       {
         autocorrect: standard_yaml[:fix],
-        safe_autocorrect: standard_yaml[:fix],
+        safe_autocorrect: !standard_yaml[:fix_unsafely],
         formatters: [[standard_yaml[:format] || "Standard::Formatter", nil]],
         parallel: standard_yaml[:parallel],
         todo_file: standard_yaml[:todo_file],

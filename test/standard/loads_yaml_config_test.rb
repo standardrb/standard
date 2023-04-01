@@ -4,6 +4,7 @@ class Standard::LoadsYamlConfigTest < UnitTest
   DEFAULT_STANDARD_CONFIG = {
     ruby_version: Gem::Version.new(RUBY_VERSION),
     fix: false,
+    fix_unsafely: false,
     format: nil,
     parallel: false,
     ignore: [],
