@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.25.4
+
+* Bring the LSP Server's executeCommand capabilities in line with the spec
+  [#543](https://github.com/testdouble/standard/pull/543)
+
 ## 1.25.3
 
 * Relax the version specifier on `rubocop` and `rubocop-performance` to allow

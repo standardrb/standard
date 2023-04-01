@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    standard (1.25.3)
+    standard (1.25.4)
       language_server-protocol (~> 3.17.0.2)
       rubocop (~> 1.48.1)
       rubocop-performance (~> 1.16.0)
@@ -21,7 +21,7 @@ GEM
     method_source (1.0.0)
     minitest (5.18.0)
     parallel (1.22.1)
-    parser (3.2.1.1)
+    parser (3.2.2.0)
       ast (~> 2.4.1)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -40,7 +40,7 @@ GEM
       rubocop-ast (>= 1.26.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.27.0)
+    rubocop-ast (1.28.0)
       parser (>= 3.2.1.0)
     rubocop-performance (1.16.0)
       rubocop (>= 1.7.0, < 2.0)
