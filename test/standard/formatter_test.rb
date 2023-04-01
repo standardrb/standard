@@ -112,6 +112,22 @@ class Standard::FormatterTest < UnitTest
     $PROGRAM_NAME = og_name
   end
 
+  def test_prints_rake_message_for_fix
+    og_name = $PROGRAM_NAME
+    $PROGRAM_NAME = "/usr/bin/rake"
+    @subject.instance_variable_set(:@options, {autocorrect: true, safe_autocorrect: true})
+
+    simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
+
+    assert_equal <<~MESSAGE, @io.string
+      #{standard_greeting}
+      #{fixable_error_message(command: "rake standard:fix_unsafely")}
+        Gemfile:42:13: Neat
+    MESSAGE
+
+    $PROGRAM_NAME = og_name
+  end
+
   def test_prints_call_for_feedback
     @subject.started([@some_path])
     @subject.file_finished(@some_path, [Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
