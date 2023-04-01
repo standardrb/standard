@@ -77,7 +77,7 @@ files in the current working directory:
 $ bundle exec standardrb
 standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
 standard: Run `standardrb --fix` to automatically fix some problems.
-  /Users/code/cli.rb:31:23: Style/Semicolon: Do not use semicolons to terminate expressions.
+  /Users/jill/code/cli.rb:31:23: Style/Semicolon: Do not use semicolons to terminate expressions.
 ```
 
 You can optionally pass in a directory (or directories) using a glob pattern.
