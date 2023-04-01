@@ -40,6 +40,18 @@ class Standard::CliTest < UnitTest
     OUTPUT
   end
 
+  def test_unsafely_fixable_is_fixed_unsafely
+    FileUtils.rm_rf("tmp/cli_test")
+    FileUtils.mkdir_p("tmp/cli_test")
+
+    FileUtils.cp("test/fixture/cli/unsafecorrectable-bad.rb", "tmp/cli_test/subject.rb")
+
+    exit_code = Standard::Cli.new(["tmp/cli_test/subject.rb", "--fix-unsafely"]).run
+
+    assert_equal 0, exit_code
+    assert_equal File.read("test/fixture/cli/unsafecorrectable-good.rb"), File.read("tmp/cli_test/subject.rb")
+  end
+
   def test_unfixable_manually_fixed
     fake_out, fake_err, exit_code = do_with_fake_io {
       Standard::Cli.new(["test/fixture/cli/unfixable-good.rb", "--fix"]).run
