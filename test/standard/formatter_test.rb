@@ -54,7 +54,7 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      #{fixable_error_message("standardrb --fix-unsafely")}
+      #{fixable_error_message(command: "standardrb --fix-unsafely")}
         Gemfile:42:13: Neat
     MESSAGE
   end
@@ -105,7 +105,7 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      #{fixable_error_message("rake standard:fix")}
+      #{fixable_error_message(command: "rake standard:fix")}
         Gemfile:42:13: Neat
     MESSAGE
 
