@@ -29,7 +29,7 @@ module Standard
         if arg == "--fix"
           cli_flags[:autocorrect] = true
           cli_flags[:safe_autocorrect] = true
-        if arg == "--fix-unsafely"
+        elsif arg == "--fix-unsafely"
           cli_flags[:autocorrect] = true
           cli_flags[:safe_autocorrect] = false
         elsif arg == "--no-fix"
@@ -57,7 +57,7 @@ module Standard
 
     def merge(standard_yaml, standard_cli_flags, rubocop_cli_flags)
       {
-        autocorrect: standard_yaml[:fix],
+        autocorrect: standard_yaml[:fix] || standard_yaml[:fix_unsafely],
         safe_autocorrect: !standard_yaml[:fix_unsafely],
         formatters: [[standard_yaml[:format] || "Standard::Formatter", nil]],
         parallel: standard_yaml[:parallel],
