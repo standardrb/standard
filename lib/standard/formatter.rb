@@ -7,12 +7,6 @@ module Standard
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
     MSG
 
-    def self.fixable_error_message(command)
-      <<~MSG
-        standard: Run `#{command}` to automatically fix some problems.
-      MSG
-    end
-
     def started(_target_files)
       @header_printed_already = false
       @fix_suggestion_printed_already = false
@@ -67,7 +61,7 @@ module Standard
           "standardrb --#{fix_mode.to_s.tr("_", "-")}"
         end
 
-        output.print self.class.fixable_error_message(command)
+        output.print fixable_error_message(command)
         @fix_suggestion_printed_already = true
       end
     end
@@ -118,6 +112,12 @@ module Standard
       else
         :cli
       end
+    end
+
+    def fixable_error_message(command)
+      <<~MSG
+        standard: Run `#{command}` to automatically fix some problems.
+      MSG
     end
   end
 end
