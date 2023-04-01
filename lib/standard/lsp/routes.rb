@@ -28,9 +28,6 @@ module Standard
           capabilities: Proto::Interface::ServerCapabilities.new(
             document_formatting_provider: true,
             diagnostic_provider: true,
-            execute_command_provider: Proto::Interface::ExecuteCommandOptions.new(
-              commands: ["standardRuby.formatAutoFixes"]
-            ),
             text_document_sync: Proto::Interface::TextDocumentSyncOptions.new(
               change: Proto::Constant::TextDocumentSyncKind::FULL,
               open_close: true
