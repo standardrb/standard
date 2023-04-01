@@ -57,11 +57,14 @@ module Standard
     end
 
     def print_fix_suggestion_once(offenses)
-      if !@fix_suggestion_printed_already && should_suggest_fix?(offenses)
-        command = if File.split($PROGRAM_NAME).last == "rake"
-          "rake standard:fix"
+      return if @fix_suggestion_printed_already
+      if (fix_mode = potential_fix_mode(offenses))
+        run_mode = determine_run_mode
+
+        command = if run_mode == :rake
+          "rake standard:#{fix_mode}"
         else
-          "standardrb --fix"
+          "standardrb --#{fix_mode.to_s.tr("_", "-")}"
         end
 
         output.print self.class.fixable_error_message(command)
@@ -99,12 +102,22 @@ module Standard
       Pathname.new(file).relative_path_from(Pathname.new(Dir.pwd))
     end
 
-    def auto_correct_option_provided?
-      options[:autocorrect]
+    def potential_fix_mode(offenses)
+      return nil unless @total_correctable_count > 0
+
+      if !options[:autocorrect]
+        :fix
+      elsif options[:safe_autocorrect]
+        :fix_unsafely
+      end
     end
 
-    def should_suggest_fix?(offenses)
-      !auto_correct_option_provided? && @total_correctable_count > 0
+    def determine_run_mode
+      if File.split($PROGRAM_NAME).last == "rake"
+        :rake
+      else
+        :cli
+      end
     end
   end
 end

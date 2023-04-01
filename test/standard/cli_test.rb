@@ -35,6 +35,7 @@ class Standard::CliTest < UnitTest
     assert_empty fake_err.string
     assert_equal <<-OUTPUT.gsub(/^ {6}/, ""), fake_out.string
       #{standard_greeting}
+      #{fixable_error_message("standardrb --fix-unsafely")}
         test/fixture/cli/unsafecorrectable-bad.rb:1:7: Lint/BooleanSymbol: Symbol with a boolean name - you probably meant to use `true`.
     OUTPUT
   end

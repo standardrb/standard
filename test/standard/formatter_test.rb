@@ -47,10 +47,22 @@ class Standard::FormatterTest < UnitTest
     MESSAGE
   end
 
-  def test_does_not_print_fix_command_if_run_with_fix
+  def test_suggests_unsafe_fix_when_correctable_and_safe_autocorrect_is_true
     @subject = Standard::Formatter.new(@io, autocorrect: true, safe_autocorrect: true)
 
     simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
+
+    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+      #{standard_greeting}
+      #{fixable_error_message("standardrb --fix-unsafely")}
+        Gemfile:42:13: Neat
+    MESSAGE
+  end
+
+  def test_does_not_print_fix_command_if_run_with_fix_unsafely
+    @subject = Standard::Formatter.new(@io, autocorrect: true, safe_autocorrect: false)
+
+    simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/SuperUnsafeIGuessBecauseThisShouldntBePossible", true)])
 
     assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
       #{standard_greeting}
