@@ -26,8 +26,8 @@ task :"standard:fix" do
 end
 
 desc "Lint and automatically make fixes (even unsafe ones!) with the Standard Ruby style guide"
-task :"standard:fix" do
+task :"standard:fix_unsafely" do
   require "standard"
-  exit_code = Standard::Cli.new(Standard::RakeSupport.argvify + ["--fix-unsafe"]).run
+  exit_code = Standard::Cli.new(Standard::RakeSupport.argvify + ["--fix-unsafely"]).run
   fail unless exit_code == 0
 end
