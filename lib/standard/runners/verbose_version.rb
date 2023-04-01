@@ -4,7 +4,7 @@ module Standard
   module Runners
     class VerboseVersion
       def call(config)
-        puts <<-MSG.gsub(/^ {10}/, "")
+        puts <<~MSG
           Standard version: #{Standard::VERSION}
           RuboCop version:  #{RuboCop::Version.version(debug: true)}
         MSG

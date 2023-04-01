@@ -21,7 +21,7 @@ class Standard::CliTest < UnitTest
 
     refute_equal 0, exit_code
     assert_empty fake_err.string
-    assert_equal <<-OUTPUT.gsub(/^ {6}/, ""), fake_out.string
+    assert_equal <<~OUTPUT, fake_out.string
       #{standard_greeting}
         test/fixture/cli/unfixable-bad.rb:3:12: Lint/AssignmentInCondition: Wrap assignment in parentheses if intentional
     OUTPUT
@@ -33,7 +33,7 @@ class Standard::CliTest < UnitTest
     }
     refute_equal 0, exit_code
     assert_empty fake_err.string
-    assert_equal <<-OUTPUT.gsub(/^ {6}/, ""), fake_out.string
+    assert_equal <<~OUTPUT, fake_out.string
       #{standard_greeting}
       #{fixable_error_message("standardrb --fix-unsafely")}
         test/fixture/cli/unsafecorrectable-bad.rb:1:7: Lint/BooleanSymbol: Symbol with a boolean name - you probably meant to use `true`.

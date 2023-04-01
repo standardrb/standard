@@ -30,7 +30,7 @@ class Standard::FormatterTest < UnitTest
     @subject.file_finished("main.rb", [Offense.new(true)])
     @subject.finished([@some_path, "main.rb"])
 
-    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+    assert_equal <<~MESSAGE, @io.string
       Congratulations, you've successfully migrated this project to Standard! Delete `.standard_todo.yml` in celebration.
     MESSAGE
   end
@@ -40,7 +40,7 @@ class Standard::FormatterTest < UnitTest
 
     simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
 
-    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+    assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
       #{fixable_error_message}
         Gemfile:42:13: Neat
@@ -52,7 +52,7 @@ class Standard::FormatterTest < UnitTest
 
     simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
 
-    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+    assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
       #{fixable_error_message("standardrb --fix-unsafely")}
         Gemfile:42:13: Neat
@@ -64,7 +64,7 @@ class Standard::FormatterTest < UnitTest
 
     simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/SuperUnsafeIGuessBecauseThisShouldntBePossible", true)])
 
-    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+    assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
         Gemfile:42:13: Neat
     MESSAGE
@@ -73,7 +73,7 @@ class Standard::FormatterTest < UnitTest
   def test_prints_uncorrected_offenses
     simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
 
-    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+    assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
       #{fixable_error_message}
         Gemfile:42:13: Neat
@@ -88,7 +88,7 @@ class Standard::FormatterTest < UnitTest
     @subject.file_finished(@some_path, [Offense.new(false, 43, 14, "Super", "Bundler/InsecureProtocolSource", true)])
     @subject.finished([@some_path])
 
-    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+    assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
         Gemfile:42:12: Yuck
       #{fixable_error_message}
@@ -103,7 +103,7 @@ class Standard::FormatterTest < UnitTest
 
     simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
 
-    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+    assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
       #{fixable_error_message("rake standard:fix")}
         Gemfile:42:13: Neat
@@ -118,7 +118,7 @@ class Standard::FormatterTest < UnitTest
     @subject.file_finished(@some_path, [Offense.new(false, 43, 14, "Super", "Bundler/InsecureProtocolSource", true)])
     @subject.finished([@some_path])
 
-    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+    assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
       #{fixable_error_message}
         Gemfile:42:13: Neat
@@ -136,7 +136,7 @@ class Standard::FormatterTest < UnitTest
   def test_does_not_print_fix_command_if_offense_not_autocorrectable
     simulate_run([Offense.new(false, 42, 13, "Neat", "Lint/FlipFlop")])
 
-    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+    assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
         Gemfile:42:13: Neat
     MESSAGE
@@ -147,7 +147,7 @@ class Standard::FormatterTest < UnitTest
 
     @subject.started([@some_path])
 
-    assert_equal <<-MESSAGE.gsub(/^ {6}/, ""), @io.string
+    assert_equal <<~MESSAGE, @io.string
       WARNING: this project is being migrated to standard gradually via `.standard_todo.yml` and is ignoring these files:
         file1.rb
         file2.rb

@@ -3,12 +3,12 @@ require "rubocop"
 
 module Standard
   class Formatter < RuboCop::Formatter::BaseFormatter
-    STANDARD_GREETING = <<-MSG.gsub(/^ {6}/, "")
+    STANDARD_GREETING = <<~MSG
       standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
     MSG
 
     def self.fixable_error_message(command)
-      <<-MSG.gsub(/^ {8}/, "")
+      <<~MSG
         standard: Run `#{command}` to automatically fix some problems.
       MSG
     end
@@ -79,7 +79,7 @@ module Standard
       todo_ignore_files = options[:todo_ignore_files]
       return unless todo_ignore_files&.any?
 
-      output.print <<-HEADER.gsub(/^ {8}/, "")
+      output.print <<~HEADER
         WARNING: this project is being migrated to standard gradually via `#{todo_file}` and is ignoring these files:
       HEADER
 
@@ -92,7 +92,7 @@ module Standard
       if @total_uncorrected_count == 0 &&
           options[:todo_file] &&
           options[:todo_ignore_files]&.none?
-        output.print <<-HEADER.gsub(/^ {10}/, "")
+        output.print <<~HEADER
           Congratulations, you've successfully migrated this project to Standard! Delete `#{options[:todo_file]}` in celebration.
         HEADER
       end
