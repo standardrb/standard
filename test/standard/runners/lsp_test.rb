@@ -18,8 +18,7 @@ class Standard::Runners::LspTest < UnitTest
       result: {capabilities: {
         textDocumentSync: {openClose: true, change: 1},
         documentFormattingProvider: true,
-        diagnosticProvider: true,
-        executeCommandProvider: {commands: ["standardRuby.formatAutoFixes"]}
+        diagnosticProvider: true
       }},
       jsonrpc: "2.0"
     }
