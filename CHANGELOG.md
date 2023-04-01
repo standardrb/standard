@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.25.5
+
+* Temporarily disable registration of `executeCommand` to prevent conflict with
+  the VS Code extension's client-side registration of the same name
+  [#544](https://github.com/testdouble/standard/pull/544)
+
 ## 1.25.4
 
 * Bring the LSP Server's executeCommand capabilities in line with the spec
