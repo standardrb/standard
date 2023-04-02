@@ -57,8 +57,8 @@ module Standard
 
     def merge(standard_yaml, standard_cli_flags, rubocop_cli_flags)
       {
-        autocorrect: standard_yaml[:fix] || standard_yaml[:fix_unsafely],
-        safe_autocorrect: !standard_yaml[:fix_unsafely],
+        autocorrect: standard_yaml[:fix],
+        safe_autocorrect: true,
         formatters: [[standard_yaml[:format] || "Standard::Formatter", nil]],
         parallel: standard_yaml[:parallel],
         todo_file: standard_yaml[:todo_file],

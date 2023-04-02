@@ -88,16 +88,6 @@ class Standard::BuildsConfigTest < UnitTest
     assert_equal config_store("test/fixture"), result.rubocop_config_store.for("").to_h
   end
 
-  def test_fix_unsafely_via_yaml
-    result = @subject.call([], path("test/fixture/config/s"))
-
-    assert_equal DEFAULT_OPTIONS.merge(
-      autocorrect: true,
-      safe_autocorrect: false
-    ), result.rubocop_options
-    assert_equal config_store("test/fixture/config/s"), result.rubocop_config_store.for("").to_h
-  end
-
   def test_specified_standard_yaml_raises
     err = assert_raises(StandardError) do
       @subject.call(["--config", "fake.file"], path("test/fixture/config/z"))
