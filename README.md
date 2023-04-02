@@ -76,7 +76,7 @@ files in the current working directory:
 ```bash
 $ bundle exec standardrb
 standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-standard: Run `standardrb --fix` to automatically fix some problems.
+standard: Run `standardrb --fix` to potentially fix one problem.
   /Users/jill/code/cli.rb:31:23: Style/Semicolon: Do not use semicolons to terminate expressions.
 ```
 
@@ -121,6 +121,7 @@ Here are the tasks bundled with Standard:
 ```
 $ rake standard     # equivalent to running `standardrb`
 $ rake standard:fix # equivalent to running `standardrb --fix`
+$ rake standard:fix_unsafely # equivalent to running `standardrb --fix-unsafely`
 ```
 
 You may also pass command line options to Standard's Rake tasks by embedding
@@ -267,6 +268,11 @@ Yes! You can use `standardrb --fix` to fix most issues automatically.
 
 `standardrb --fix` is built into `standardrb` for maximum convenience. Most
 problems are fixable, but some errors must be fixed manually.
+
+If you're feeling sinister, you can also use `standardrb --fix-unsafely`, which
+will also perform fixes, even if they run the risk of altering program behavior.
+If you read your git diffs closely and have good tests, this is often okay, but
+YMMV… it's called unsafe for a reason!
 
 ## Can I override the `fix: true` config setting?
 

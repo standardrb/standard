@@ -9,7 +9,6 @@ module Standard
 
     def started(_target_files)
       @header_printed_already = false
-      @fix_suggestion_printed_already = false
       @total_correction_count = 0
       @total_correctable_count = 0
       @total_uncorrected_count = 0
@@ -21,7 +20,6 @@ module Standard
 
       if (uncorrected_offenses = offenses.reject(&:corrected?)).any?
         print_header_once
-        print_fix_suggestion_once(uncorrected_offenses)
 
         uncorrected_offenses.each do |o|
           output.printf("  %s:%d:%d: %s\n", path_to(file), o.line, o.real_column, o.message.tr("\n", " "))
@@ -37,6 +35,7 @@ module Standard
     end
 
     def finished(_inspected_files)
+      print_fix_suggestion
       print_todo_congratulations
     end
 
@@ -50,9 +49,8 @@ module Standard
       @header_printed_already = true
     end
 
-    def print_fix_suggestion_once(offenses)
-      return if @fix_suggestion_printed_already
-      if (fix_mode = potential_fix_mode(offenses))
+    def print_fix_suggestion
+      if (fix_mode = potential_fix_mode)
         run_mode = determine_run_mode
 
         command = if run_mode == :rake
@@ -62,7 +60,6 @@ module Standard
         end
 
         output.print fixable_error_message(command)
-        @fix_suggestion_printed_already = true
       end
     end
 
@@ -96,12 +93,12 @@ module Standard
       Pathname.new(file).relative_path_from(Pathname.new(Dir.pwd))
     end
 
-    def potential_fix_mode(offenses)
+    def potential_fix_mode
       return nil unless @total_correctable_count > 0
 
       if !options[:autocorrect]
         :fix
-      elsif options[:safe_autocorrect]
+      elsif options[:autocorrect] && options[:safe_autocorrect]
         :fix_unsafely
       end
     end
@@ -115,16 +112,18 @@ module Standard
     end
 
     def fixable_error_message(command)
-      sales_pitch = if options[:safe_autocorrect]
+      sales_pitch = if !options[:autocorrect]
         if @total_correctable_count > 1
           "fix up to #{@total_correctable_count} problems"
         else
           "potentially fix one problem"
         end
-      elsif @total_correctable_count > 1
-        "DANGEROUSLY fix #{@total_correctable_count} problems"
-      else
-        "DANGEROUSLY fix one problem"
+      elsif options[:autocorrect] && options[:safe_autocorrect]
+        if @total_correctable_count > 1
+          "DANGEROUSLY fix #{@total_correctable_count} problems"
+        else
+          "DANGEROUSLY fix one problem"
+        end
       end
 
       <<~MSG

@@ -44,8 +44,8 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      standard: Run `standardrb --fix` to potentially fix one problem.
         Gemfile:42:13: Neat
+      standard: Run `standardrb --fix` to potentially fix one problem.
     MESSAGE
   end
 
@@ -56,8 +56,8 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      #{fixable_error_message(command: "standardrb --fix-unsafely")}
         Gemfile:42:13: Neat
+      standard: Run `standardrb --fix-unsafely` to DANGEROUSLY fix one problem.
     MESSAGE
   end
 
@@ -77,8 +77,8 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      standard: Run `standardrb --fix` to potentially fix one problem.
         Gemfile:42:13: Neat
+      standard: Run `standardrb --fix` to potentially fix one problem.
     MESSAGE
   end
 
@@ -93,9 +93,9 @@ class Standard::FormatterTest < UnitTest
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
         Gemfile:42:12: Yuck
-      standard: Run `standardrb --fix` to potentially fix one problem.
         Gemfile:42:13: Neat
         Gemfile:43:14: Super
+      standard: Run `standardrb --fix` to fix up to 2 problems.
     MESSAGE
   end
 
@@ -107,8 +107,8 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      standard: Run `rake standard:fix` to potentially fix one problem.
         Gemfile:42:13: Neat
+      standard: Run `rake standard:fix` to potentially fix one problem.
     MESSAGE
 
     $PROGRAM_NAME = og_name
@@ -119,12 +119,16 @@ class Standard::FormatterTest < UnitTest
     $PROGRAM_NAME = "/usr/bin/rake"
     @subject.instance_variable_set(:@options, {autocorrect: true, safe_autocorrect: true})
 
-    simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
+    simulate_run([
+      Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true),
+      Offense.new(false, 12, 23, "Cool", "Stuff/Things", true)
+    ])
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      standard: Run `rake standard:fix_unsafely` to potentially fix one problem.
         Gemfile:42:13: Neat
+        Gemfile:12:23: Cool
+      standard: Run `rake standard:fix_unsafely` to DANGEROUSLY fix 2 problems.
     MESSAGE
 
     $PROGRAM_NAME = og_name
@@ -138,9 +142,9 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      standard: Run `standardrb --fix` to potentially fix one problem.
         Gemfile:42:13: Neat
         Gemfile:43:14: Super
+      standard: Run `standardrb --fix` to fix up to 2 problems.
     MESSAGE
   end
 

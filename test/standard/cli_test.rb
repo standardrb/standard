@@ -35,8 +35,8 @@ class Standard::CliTest < UnitTest
     assert_empty fake_err.string
     assert_equal <<~OUTPUT, fake_out.string
       #{standard_greeting}
-      standard: Run `standardrb --fix-unsafely` to potentially fix one problem.
         test/fixture/cli/unsafecorrectable-bad.rb:1:7: Lint/BooleanSymbol: Symbol with a boolean name - you probably meant to use `true`.
+      standard: Run `standardrb --fix-unsafely` to DANGEROUSLY fix one problem.
     OUTPUT
   end
 
