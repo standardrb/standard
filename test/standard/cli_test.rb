@@ -21,10 +21,35 @@ class Standard::CliTest < UnitTest
 
     refute_equal 0, exit_code
     assert_empty fake_err.string
-    assert_equal <<-OUTPUT.gsub(/^ {6}/, ""), fake_out.string
+    assert_equal <<~OUTPUT, fake_out.string
       #{standard_greeting}
         test/fixture/cli/unfixable-bad.rb:3:12: Lint/AssignmentInCondition: Wrap assignment in parentheses if intentional
     OUTPUT
+  end
+
+  def test_unsafely_fixable_is_not_fixed_unsafely
+    fake_out, fake_err, exit_code = do_with_fake_io {
+      Standard::Cli.new(["test/fixture/cli/unsafecorrectable-bad.rb", "--fix"]).run
+    }
+    refute_equal 0, exit_code
+    assert_empty fake_err.string
+    assert_equal <<~OUTPUT, fake_out.string
+      #{standard_greeting}
+        test/fixture/cli/unsafecorrectable-bad.rb:1:7: Lint/BooleanSymbol: Symbol with a boolean name - you probably meant to use `true`.
+      standard: Run `standardrb --fix-unsafely` to DANGEROUSLY fix one problem.
+    OUTPUT
+  end
+
+  def test_unsafely_fixable_is_fixed_unsafely
+    FileUtils.rm_rf("tmp/cli_test")
+    FileUtils.mkdir_p("tmp/cli_test")
+
+    FileUtils.cp("test/fixture/cli/unsafecorrectable-bad.rb", "tmp/cli_test/subject.rb")
+
+    exit_code = Standard::Cli.new(["tmp/cli_test/subject.rb", "--fix-unsafely"]).run
+
+    assert_equal 0, exit_code
+    assert_equal File.read("test/fixture/cli/unsafecorrectable-good.rb"), File.read("tmp/cli_test/subject.rb")
   end
 
   def test_unfixable_manually_fixed

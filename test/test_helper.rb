@@ -47,8 +47,4 @@ class UnitTest < Minitest::Test
   def standard_greeting
     Standard::Formatter::STANDARD_GREETING.chomp
   end
-
-  def fixable_error_message(command = "standardrb --fix")
-    Standard::Formatter.fixable_error_message(command).chomp
-  end
 end

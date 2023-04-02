@@ -12,7 +12,7 @@ class Standard::Runners::VerboseVersionTest < UnitTest
       @subject.call(nil)
     }
 
-    expect = <<-EXPECT.gsub(/^ {6}/, "")
+    expect = <<~EXPECT
       Standard version: #{Standard::VERSION}
       RuboCop version:  #{RuboCop::Version.version(debug: true)}
     EXPECT

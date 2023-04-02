@@ -1,8 +1,14 @@
 require "pathname"
 
 module Standard
-  class ParsesCliOption
-    def call(argv, option_name)
+  class ResolvesYamlOption
+    def call(argv, search_path, option_name, default_file)
+      search_argv(argv, option_name) || FileFinder.new.call(default_file, search_path)
+    end
+
+    private
+
+    def search_argv(argv, option_name)
       return unless (config_file = argv_value_for(argv, option_name))
 
       resolved_config = Pathname.new(config_file)

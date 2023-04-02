@@ -6,7 +6,7 @@ class StandardrbTest < UnitTest
     stdout, status = run_standardrb("test/fixture/project/a")
 
     refute status.success?
-    assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
+    assert_same_lines <<~MSG, stdout
       #{standard_greeting}
         lib/foo/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/foo/tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
@@ -25,7 +25,7 @@ class StandardrbTest < UnitTest
     stdout, status = run_standardrb("test/fixture/project/a/lib/foo")
 
     refute status.success?
-    assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
+    assert_same_lines <<~MSG, stdout
       #{standard_greeting}
         do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
@@ -44,7 +44,7 @@ class StandardrbTest < UnitTest
     stdout, status = run_standardrb("test/fixture/extend_config/project")
 
     refute status.success?
-    assert_same_lines <<-MSG.gsub(/^ {6}/, ""), stdout
+    assert_same_lines <<~MSG, stdout
       #{standard_greeting}
         oranges.rb:1:1: Bananas/BananasOnly: Bananas only! No oranges.
     MSG

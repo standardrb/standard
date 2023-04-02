@@ -49,9 +49,9 @@ module Standard
       }
       def fork_config(path, text, format:)
         options = if format
-          {stdin: text, autocorrect: true, formatters: [], safe_autocorrect: true}
+          {stdin: text, autocorrect: true, safe_autocorrect: true, formatters: []}
         else
-          {stdin: text, autocorrect: false, formatters: [["json"]], format: "json"}
+          {stdin: text, autocorrect: false, safe_autocorrect: false, formatters: [["json"]], format: "json"}
         end
         Standard::Config.new(@config.runner, [path], BASE_OPTIONS.merge(options), @config.rubocop_config_store)
       end

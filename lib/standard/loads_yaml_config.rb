@@ -1,7 +1,7 @@
 require "yaml"
 require "pathname"
 require_relative "file_finder"
-require_relative "parses_cli_option"
+require_relative "resolves_yaml_option"
 
 module Standard
   class LoadsYamlConfig
