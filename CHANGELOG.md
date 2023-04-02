@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.26.0
+
+* Introduce `--fix-unsafely` and `rake standard:fix_unsafely` for running
+  unsafe corrections. Improve output about fix suggestions, as well
+  [#545](https://github.com/testdouble/standard/pull/545)
+
 ## 1.25.5
 
 * Temporarily disable registration of `executeCommand` to prevent conflict with
