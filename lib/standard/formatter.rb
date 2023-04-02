@@ -115,8 +115,20 @@ module Standard
     end
 
     def fixable_error_message(command)
+      sales_pitch = if options[:safe_autocorrect]
+        if @total_correctable_count > 1
+          "fix up to #{@total_correctable_count} problems"
+        else
+          "potentially fix one problem"
+        end
+      elsif @total_correctable_count > 1
+        "DANGEROUSLY fix #{@total_correctable_count} problems"
+      else
+        "DANGEROUSLY fix one problem"
+      end
+
       <<~MSG
-        standard: Run `#{command}` to automatically fix some problems.
+        standard: Run `#{command}` to #{sales_pitch}.
       MSG
     end
   end

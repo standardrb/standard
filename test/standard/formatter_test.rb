@@ -8,6 +8,7 @@ class Standard::FormatterTest < UnitTest
 
     @io = StringIO.new
     @subject = Standard::Formatter.new(@io)
+    @subject.instance_variable_set(:@options, {safe_autocorrect: true})
   end
 
   def test_no_offenses_prints_nothing
@@ -37,12 +38,13 @@ class Standard::FormatterTest < UnitTest
 
   def test_does_not_print_congratulations_if_offenses_were_detected
     @subject = Standard::Formatter.new(@io, todo_file: ".standard_todo.yml", todo_ignore_files: [])
+    @subject.instance_variable_set(:@options, {safe_autocorrect: true})
 
     simulate_run([Offense.new(false, 42, 13, "Neat", "Bundler/InsecureProtocolSource", true)])
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      #{fixable_error_message}
+      standard: Run `standardrb --fix` to potentially fix one problem.
         Gemfile:42:13: Neat
     MESSAGE
   end
@@ -75,7 +77,7 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      #{fixable_error_message}
+      standard: Run `standardrb --fix` to potentially fix one problem.
         Gemfile:42:13: Neat
     MESSAGE
   end
@@ -91,7 +93,7 @@ class Standard::FormatterTest < UnitTest
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
         Gemfile:42:12: Yuck
-      #{fixable_error_message}
+      standard: Run `standardrb --fix` to potentially fix one problem.
         Gemfile:42:13: Neat
         Gemfile:43:14: Super
     MESSAGE
@@ -105,7 +107,7 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      #{fixable_error_message(command: "rake standard:fix")}
+      standard: Run `rake standard:fix` to potentially fix one problem.
         Gemfile:42:13: Neat
     MESSAGE
 
@@ -121,7 +123,7 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      #{fixable_error_message(command: "rake standard:fix_unsafely")}
+      standard: Run `rake standard:fix_unsafely` to potentially fix one problem.
         Gemfile:42:13: Neat
     MESSAGE
 
@@ -136,7 +138,7 @@ class Standard::FormatterTest < UnitTest
 
     assert_equal <<~MESSAGE, @io.string
       #{standard_greeting}
-      #{fixable_error_message}
+      standard: Run `standardrb --fix` to potentially fix one problem.
         Gemfile:42:13: Neat
         Gemfile:43:14: Super
     MESSAGE
