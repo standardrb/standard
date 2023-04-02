@@ -9,7 +9,7 @@ module Standard
 
           Options:
 
-            --fix             Apply automatic fixes that we're confident they won't break your code
+            --fix             Apply automatic fixes that we're confident won't break your code
             --fix-unsafely    Apply even more fixes, including some that may change code behavior
             --no-fix          Do not automatically fix failures
             --format <name>   Format output with any RuboCop formatter (e.g. "json")
