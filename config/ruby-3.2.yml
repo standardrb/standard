@@ -1,0 +1,10 @@
+inherit_from: ./base.yml
+
+AllCops:
+  TargetRubyVersion: 3.2
+
+Naming/BlockForwarding:
+  Enabled: false
+
+Style/NestedFileDirname:
+  Enabled: false
