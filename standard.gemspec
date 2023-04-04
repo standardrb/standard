@@ -1,6 +1,7 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "standard/version"
+require "standard/prints_big_hairy_version_warning.rb"
 
 Gem::Specification.new do |spec|
   spec.name          = "standard"
@@ -18,7 +19,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "rubocop", ">= 0.63"
+  spec.add_dependency "rubocop", "> 0.63"
+
+  spec.post_install_message = Standard::PrintsBigHairyVersionWarning::WARNING
 
   spec.add_development_dependency "bundler", "~> 1.17"
   spec.add_development_dependency "minitest", "~> 5.0"

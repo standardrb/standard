@@ -1,5 +1,6 @@
 require_relative "builds_config"
 require_relative "loads_runner"
+require_relative "prints_big_hairy_version_warning"
 
 module Standard
   class Cli
@@ -13,11 +14,8 @@ module Standard
     end
 
     def run
-      config = @builds_config.call(@argv)
-
-      success = @loads_runner.call(config.runner).call(config)
-
-      success ? SUCCESS_STATUS_CODE : FAILURE_STATUS_CODE
+      PrintsBigHairyVersionWarning.new.call
+      exit 1
     end
   end
 end
