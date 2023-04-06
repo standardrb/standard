@@ -11,6 +11,8 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Ruby Style Guide, with linter & automatic code fixer"
   spec.homepage = "https://github.com/testdouble/standard"
+  spec.metadata["source_code_uri"] = spec.homepage
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/main/CHANGELOG.md"
 
   spec.files = Dir.chdir(File.expand_path("..", __FILE__)) do
     `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
