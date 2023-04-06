@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = "Ruby Style Guide, with linter & automatic code fixer"
   spec.homepage = "https://github.com/testdouble/standard"
+  spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
   spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/main/CHANGELOG.md"
 
