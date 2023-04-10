@@ -1,0 +1,8 @@
+AllCops:
+  # Prevent RuboCop from exploding when it finds an older-than-2.6 .ruby-version
+  TargetRubyVersion: 2.6
+  Exclude: []
+  DisabledByDefault: true
+
+Standard/BlockSingleLineBraces:
+  Enabled: true

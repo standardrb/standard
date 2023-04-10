@@ -1,10 +1,31 @@
 PATH
+  remote: ../lint_roller
+  specs:
+    lint_roller (1.0.0)
+
+PATH
+  remote: ../standard-base
+  specs:
+    standard-base (1.0.0)
+      lint_roller (~> 1.0)
+      rubocop (~> 1.50.2)
+
+PATH
+  remote: ../standard-performance
+  specs:
+    standard-performance (1.0.0)
+      lint_roller (~> 1.0)
+      rubocop-performance (~> 1.16.0)
+
+PATH
   remote: .
   specs:
     standard (1.27.0)
       language_server-protocol (~> 3.17.0.2)
+      lint_roller (~> 1.0)
       rubocop (~> 1.50.2)
-      rubocop-performance (~> 1.16.0)
+      standard-base (~> 1.0.0)
+      standard-performance (~> 1.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -61,12 +82,15 @@ PLATFORMS
 DEPENDENCIES
   bundler
   gimme
+  lint_roller!
   m
   minitest (~> 5.0)
   pry
   rake (~> 13.0)
   simplecov
   standard!
+  standard-base!
+  standard-performance!
 
 BUNDLED WITH
    2.3.26
