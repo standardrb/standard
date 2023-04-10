@@ -33,6 +33,7 @@ module Standard
         config_root: yaml_path ? Pathname.new(yaml_path).dirname.to_s : nil,
         todo_file: todo_path,
         todo_ignore_files: Array(todo_yaml["ignore"]).map { |f| (Hash === f) ? f.keys.first : f },
+        plugins: Array(standard_yaml["plugins"]),
         extend_config: Array(standard_yaml["extend_config"])
       }
     end
