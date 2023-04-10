@@ -147,7 +147,7 @@ Here's an example yaml file with every option set:
 fix: true               # default: false
 parallel: true          # default: false
 format: progress        # default: Standard::Formatter
-ruby_version: 2.3.3     # default: RUBY_VERSION
+ruby_version: 2.3     # default: RUBY_VERSION
 default_ignores: false  # default: true
 
 ignore:                 # default: []
@@ -375,7 +375,7 @@ of Ruby (by inspecting `RUBY_VERSION` at runtime. But if you want to lock it
 down, you can specify `ruby_version` in `.standard.yml`.
 
 ```
-ruby_version: 1.8.7
+ruby_version: 1.8
 ```
 
 See
