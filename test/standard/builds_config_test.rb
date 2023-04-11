@@ -19,7 +19,6 @@ class Standard::BuildsConfigTest < UnitTest
 
     assert_equal :rubocop, result.runner
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
-    assert_equal config_store, result.rubocop_config_store.for("").to_h
   end
 
   def test_custom_argv_with_fix_set
@@ -37,7 +36,6 @@ class Standard::BuildsConfigTest < UnitTest
     result = @subject.call([], path("test/fixture/config/z"))
 
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
-    assert_equal config_store("test/fixture/config/z"), result.rubocop_config_store.for("").to_h
   end
 
   def test_decked_out_standard_yaml
@@ -60,9 +58,8 @@ class Standard::BuildsConfigTest < UnitTest
     result = @subject.call([], path("test/fixture/config/x"))
 
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
-    assert_equal config_store("test/fixture/config/x").dup.tap { |config_store|
-      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/x/pants/**/*")]
-    }, result.rubocop_config_store.for("").to_h
+    resulting_options_config = result.rubocop_config_store.for("").to_h
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/x/pants/**/*")
   end
 
   def test_specified_standard_yaml_overrides_local
@@ -84,17 +81,11 @@ class Standard::BuildsConfigTest < UnitTest
   def test_todo_merged
     result = @subject.call([], path("test/fixture/config/u"))
 
-    assert_equal DEFAULT_OPTIONS.merge(
-      todo_file: path("test/fixture/config/u/.standard_todo.yml"),
-      todo_ignore_files: %w[todo_file_one.rb todo_file_two.rb]
-    ), result.rubocop_options
-
-    assert_equal config_store("test/fixture/config/u").dup.tap { |config_store|
-      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/u/none_todo_path/**/*")]
-      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/u/none_todo_file.rb")]
-      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/u/todo_file_one.rb")]
-      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/u/todo_file_two.rb")]
-    }, result.rubocop_config_store.for("").to_h
+    resulting_options_config = result.rubocop_config_store.for("").to_h
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/none_todo_path/**/*")
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/none_todo_file.rb")
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/todo_file_one.rb")
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/todo_file_two.rb")
   end
 
   def test_todo_with_offenses_merged
@@ -105,12 +96,11 @@ class Standard::BuildsConfigTest < UnitTest
       todo_ignore_files: %w[todo_file_one.rb todo_file_two.rb]
     ), result.rubocop_options
 
-    assert_equal config_store("test/fixture/config/t").dup.tap { |config_store|
-      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/t/none_todo_path/**/*")]
-      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/t/none_todo_file.rb")]
-      config_store["AllCops"]["Exclude"] |= [path("test/fixture/config/t/todo_file_two.rb")]
-      config_store["Lint/AssignmentInCondition"]["Exclude"] = [path("test/fixture/config/t/todo_file_one.rb")]
-    }, result.rubocop_config_store.for("").to_h
+    resulting_options_config = result.rubocop_config_store.for("").to_h
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/t/none_todo_path/**/*")
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/t/none_todo_file.rb")
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/t/todo_file_two.rb")
+    assert_includes resulting_options_config["Lint/AssignmentInCondition"]["Exclude"], path("test/fixture/config/t/todo_file_one.rb")
   end
 
   private

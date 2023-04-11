@@ -1,7 +1,7 @@
 fix: true
 parallel: true
 format: progress
-ruby_version: 1.8.7
+ruby_version: 2.6
 default_ignores: false
 ignore:
   - monkey/**/*
