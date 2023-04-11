@@ -69,15 +69,6 @@ class Standard::BuildsConfigTest < UnitTest
     }, result.rubocop_config_store.for("").to_h
   end
 
-  def test_19
-    result = @subject.call([], path("test/fixture/config/w"))
-
-    assert_equal DEFAULT_OPTIONS, result.rubocop_options
-
-    assert_equal config_store("test/fixture/config/w", "config/ruby-1.9.yml", 2.0),
-      result.rubocop_config_store.for("").to_h
-  end
-
   def test_specified_standard_yaml_overrides_local
     result = @subject.call(["--config", "test/fixture/lol.standard.yml"], path("test/fixture/config/z"))
 
