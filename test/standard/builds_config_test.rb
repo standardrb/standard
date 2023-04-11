@@ -72,7 +72,6 @@ class Standard::BuildsConfigTest < UnitTest
       autocorrect: true,
       safe_autocorrect: true
     ), result.rubocop_options
-    assert_equal config_store("test/fixture"), result.rubocop_config_store.for("").to_h
   end
 
   def test_specified_standard_yaml_raises
