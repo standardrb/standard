@@ -66,9 +66,10 @@ module Standard
       end
 
       # Blank configuration object to merge extensions into, with all known
-      # AllCops keys set to avoid warnings about unknown properties
+      #   - AllCops keys set to avoid warnings about unknown properties
+      #   - Lint/Syntax must be set to avoid a nil error when verifying inherited configs
       def blank_rubocop_config(example_config)
-        RuboCop::Config.new(example_config.to_h.slice("AllCops"), "")
+        RuboCop::Config.new(example_config.to_h.slice("AllCops", "Lint/Syntax"), "")
       end
 
       def except(hash_or_config, keys)
