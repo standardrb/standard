@@ -22,7 +22,6 @@ class Standard::CreatesConfigStore
     end
 
     def initialize
-      @creates_runner_context = Standard::Plugin::CreatesRunnerContext.new
       @merges_plugins_into_rubocop_config = Standard::Plugin::MergesPluginsIntoRubocopConfig.new
     end
 
@@ -32,7 +31,7 @@ class Standard::CreatesConfigStore
       plugins = standard_config[:extend_config].map { |path|
         ExtendConfigPlugin.new(path)
       }
-      @merges_plugins_into_rubocop_config.call(options_config, standard_config, plugins)
+      @merges_plugins_into_rubocop_config.call(options_config, standard_config, plugins, permit_merging: false)
     end
   end
 end
