@@ -5,8 +5,6 @@ require "standard/runners/rubocop"
 
 class Standard::Runners::GenignoreTest < UnitTest
   def setup
-    super
-
     @subject = Standard::Runners::Genignore.new
   end
 
@@ -21,7 +19,10 @@ class Standard::Runners::GenignoreTest < UnitTest
 
     assert File.exist?("tmp/genignore_test/.standard_todo.yml")
 
-    expected_yaml = {"ignore" => [{"errors_one.rb" => ["Lint/AssignmentInCondition"]}, {"errors_two.rb" => ["Lint/UselessAssignment"]}]}
+    expected_yaml = {"ignore" => [
+      {"errors_one.rb" => ["Style/Documentation", "Style/FrozenStringLiteralComment", "Lint/AssignmentInCondition"]},
+      {"errors_two.rb" => ["Lint/UselessAssignment", "Style/FrozenStringLiteralComment", "Style/StringLiterals"]}
+    ]}
     assert_equal expected_yaml, YAML.load_file("tmp/genignore_test/.standard_todo.yml")
   end
 
