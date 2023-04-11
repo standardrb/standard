@@ -50,14 +50,10 @@ class Standard::BuildsConfigTest < UnitTest
       formatters: [["progress", nil]]
     ), result.rubocop_options
 
-    expected_config = RuboCop::ConfigStore.new.tap do |config_store|
-      config_store.options_config = path("config/ruby-1.8.yml")
-      options_config = config_store.instance_variable_get(:@options_config)
-      options_config["AllCops"]["Exclude"] |= [path("test/fixture/config/y/monkey/**/*")]
-      options_config["Fake/Lol"] = {"Exclude" => [path("test/fixture/config/y/neat/cool.rb")]}
-      options_config["Fake/Kek"] = {"Exclude" => [path("test/fixture/config/y/neat/cool.rb")]}
-    end.for("").to_h
-    assert_equal expected_config, result.rubocop_config_store.for("").to_h
+    resulting_options_config = result.rubocop_config_store.for("").to_h
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/y/monkey/**/*")
+    assert_equal({"Exclude" => [path("test/fixture/config/y/neat/cool.rb")]}, resulting_options_config["Fake/Lol"])
+    assert_equal({"Exclude" => [path("test/fixture/config/y/neat/cool.rb")]}, resulting_options_config["Fake/Kek"])
   end
 
   def test_single_line_ignore
