@@ -115,3 +115,6 @@ def count_carbs(food)
           end
   carbs + 1
 end
+
+# make sure performance rules are being loaded
+Object.instance_method(:to_s).bind(Object.new).call
