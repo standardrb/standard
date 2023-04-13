@@ -12,7 +12,6 @@ $LOAD_PATH << "test"
 require "standard"
 require "gimme"
 require "minitest/autorun"
-require "pry"
 
 class UnitTest < Minitest::Test
   make_my_diffs_pretty!
