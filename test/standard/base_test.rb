@@ -1,6 +1,6 @@
 require_relative "../test_helper"
 
-class Standard::BaseTest < Minitest::Test
+class Standard::BaseTest < UnitTest
   BASE_CONFIG = "config/base.yml"
   INHERITED_OPTIONS = %w[
     Description

@@ -2,7 +2,7 @@ require "test_helper"
 
 module Standard
   module Plugin
-    class StandardizesConfiguredPluginsTest < Minitest::Test
+    class StandardizesConfiguredPluginsTest < UnitTest
       def setup
         @subject = StandardizesConfiguredPlugins.new
       end

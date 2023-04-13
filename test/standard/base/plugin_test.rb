@@ -1,7 +1,7 @@
 require_relative "../../test_helper"
 
 module Standard::Base
-  class PluginTest < Minitest::Test
+  class PluginTest < UnitTest
     def setup
       @subject = Plugin.new({})
     end

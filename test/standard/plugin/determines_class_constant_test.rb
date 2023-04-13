@@ -2,7 +2,7 @@ require "test_helper"
 
 module Standard
   module Plugin
-    class DeterminesClassConstantTest < Minitest::Test
+    class DeterminesClassConstantTest < UnitTest
       def setup
         @subject = DeterminesClassConstant.new
       end
