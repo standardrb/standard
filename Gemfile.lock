@@ -4,11 +4,10 @@ PATH
     lint_roller (1.0.0)
 
 PATH
-  remote: ../standard-base
+  remote: ../standard-custom
   specs:
-    standard-base (1.0.0)
+    standard-custom (1.0.0)
       lint_roller (~> 1.0)
-      rubocop (~> 1.50.2)
 
 PATH
   remote: ../standard-performance
@@ -24,7 +23,7 @@ PATH
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
       rubocop (~> 1.50.2)
-      standard-base (~> 1.0.0)
+      standard-custom (~> 1.0.0)
       standard-performance (~> 1.0.0)
 
 GEM
@@ -84,7 +83,7 @@ DEPENDENCIES
   rake (~> 13.0)
   simplecov
   standard!
-  standard-base!
+  standard-custom!
   standard-performance!
 
 BUNDLED WITH

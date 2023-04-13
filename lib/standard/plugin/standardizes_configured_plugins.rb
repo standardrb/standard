@@ -1,7 +1,7 @@
 module Standard
   module Plugin
     class StandardizesConfiguredPlugins
-      BUILT_INS = [Standard::Base::Plugin, "standard-performance"].freeze
+      BUILT_INS = [Standard::Base::Plugin, "standard-custom", "standard-performance"].freeze
       DEFAULT_PLUGIN_CONFIG = {
         "enabled" => true,
         "plugin_class_name" => nil

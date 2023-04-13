@@ -9,7 +9,7 @@ gem "gimme"
 gem "m"
 
 gem "lint_roller", path: "../lint_roller"
-gem "standard-base", path: "../standard-base"
+gem "standard-custom", path: "../standard-custom"
 gem "standard-performance", path: "../standard-performance"
 
 if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.5")

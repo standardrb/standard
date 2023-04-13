@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rubocop", "~> 1.50.2"
 
   spec.add_dependency "lint_roller", "~> 1.0"
-  spec.add_dependency "standard-base", "~> 1.0.0"
+  spec.add_dependency "standard-custom", "~> 1.0.0"
   spec.add_dependency "standard-performance", "~> 1.0.0"
 
   # not semver: first three are lsp protocol version, last is patch

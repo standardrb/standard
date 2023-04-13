@@ -6,6 +6,3 @@ AllCops:
 
 Lint/Syntax:
   Enabled: true
-
-Standard/BlockSingleLineBraces:
-  Enabled: true

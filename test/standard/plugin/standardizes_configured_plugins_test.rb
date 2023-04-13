@@ -12,6 +12,7 @@ module Standard
 
         assert_equal({
           Standard::Base::Plugin => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
+          "standard-custom" => {"enabled" => true, "plugin_class_name" => nil},
           "standard-performance" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
           "foo" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG
         }.to_a, result.to_a) # We are relying on insertion order here
@@ -22,6 +23,7 @@ module Standard
 
         assert_equal({
           Standard::Base::Plugin => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
+          "standard-custom" => {"enabled" => true, "plugin_class_name" => nil},
           "foo" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
           "standard-performance" => {"enabled" => false, "plugin_class_name" => nil, "other" => "stuff"}
         }.to_a, result.to_a) # We are relying on insertion order here

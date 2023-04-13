@@ -25,9 +25,9 @@ module Standard
       end
 
       def test_gem_metadata_is_used
-        result = @subject.call("standard-base", {})
+        result = @subject.call("standard-performance", {})
 
-        assert_equal Standard::Base::Plugin, result
+        assert_equal Standard::Performance::Plugin, result
       end
 
       def test_gem_metadata_lookup_failure_cases
