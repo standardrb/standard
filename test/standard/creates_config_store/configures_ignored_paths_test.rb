@@ -16,12 +16,8 @@ class Standard::CreatesConfigStore::ConfiguresIgnoredPathsTest < UnitTest
     assert_equal({
       "AllCops" => {
         "Exclude" => [
-          ".git/**/*",
-          "node_modules/**/*",
-          "vendor/**/*",
           "bin/*",
-          "db/schema.rb",
-          "tmp/**/*"
+          "db/schema.rb"
         ].map { |path| File.expand_path(File.join(Dir.pwd, path)) }
       }
     }, options_config)
@@ -39,12 +35,8 @@ class Standard::CreatesConfigStore::ConfiguresIgnoredPathsTest < UnitTest
     assert_equal({
       "AllCops" => {
         "Exclude" => [
-          "/hi/project/.git/**/*",
-          "/hi/project/node_modules/**/*",
-          "/hi/project/vendor/**/*",
           "/hi/project/bin/*",
-          "/hi/project/db/schema.rb",
-          "/hi/project/tmp/**/*"
+          "/hi/project/db/schema.rb"
         ]
       }
     }, options_config)
