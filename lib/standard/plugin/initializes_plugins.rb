@@ -8,9 +8,13 @@ module Standard
 
       def call(plugins)
         plugin_configs = @standardizes_configured_plugins.call(plugins)
-        plugin_configs.map { |name, user_config|
+        plugin_configs.map { |name_or_class, user_config|
           if user_config["enabled"]
-            @determines_class_constants.call(name, user_config).new(user_config)
+            if name_or_class.is_a?(String) || name_or_class.is_a?(Symbol)
+              @determines_class_constants.call(name_or_class, user_config).new(user_config)
+            else
+              name_or_class.new(user_config)
+            end
           end
         }
       end

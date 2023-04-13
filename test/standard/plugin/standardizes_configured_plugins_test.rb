@@ -11,7 +11,7 @@ module Standard
         result = @subject.call(["foo"])
 
         assert_equal({
-          "standard-base" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
+          Standard::Base::Plugin => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
           "standard-performance" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
           "foo" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG
         }.to_a, result.to_a) # We are relying on insertion order here
@@ -21,7 +21,7 @@ module Standard
         result = @subject.call(["foo", {"standard-performance" => {"enabled" => false, "other" => "stuff"}}])
 
         assert_equal({
-          "standard-base" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
+          Standard::Base::Plugin => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
           "foo" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
           "standard-performance" => {"enabled" => false, "plugin_class_name" => nil, "other" => "stuff"}
         }.to_a, result.to_a) # We are relying on insertion order here
