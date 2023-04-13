@@ -6,6 +6,8 @@ module Standard
         "Exclude",
         "StyleGuideCopsOnly",
         "TargetRubyVersion",
+        "EnabledByDefault",
+        "DisabledByDefault",
 
         # The AllCops[Enabled] key is an unused artifact of #merge_with_default.
         # See: https://github.com/rubocop/rubocop/blob/master/lib/rubocop/config_loader_resolver.rb#L81-L85

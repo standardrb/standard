@@ -1,5 +1,12 @@
 # Changelog
 
+* Enable `DisabledByDefault: true`. This shouldn't impact anyone, but might
+  change the behavior of some `extend_config` users. Because Standard specifies
+  every rule in rubocop and rubocop-performance, this configuration's absence
+  wasn't felt until we went to the plugin system, where it makes much more sense
+  for plugins to _opt-in_ to the cops they want to configure, as opposed to just
+  running every single one that they happen to load/require
+
 ## 1.27.0
 
 * Update rubocop from 1.48.1 to [1.50.2](https://github.com/rubocop/rubocop/releases/tag/v1.50.2)

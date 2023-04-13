@@ -108,3 +108,6 @@ end
 
 # make sure performance rules are being loaded
 Object.instance_method(:to_s).bind_call(Object.new)
+
+# make sure custom rules are being loaded
+[:a].each { |sym| puts "#{sym}_neat" }

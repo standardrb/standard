@@ -24,7 +24,7 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
       "AllCops" => {
         "TargetRubyVersion" => "2.6",
         "StyleGuideCopsOnly" => false,
-        "DisabledByDefault" => false,
+        "DisabledByDefault" => true,
         "StyleGuideBaseURL" => "https://standardrb.example.com"
       }
     }, "")
@@ -39,9 +39,10 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
         "TargetRubyVersion" => "2.6",
         # Ignored b/c DISALLOWED_ALLCOPS_KEYS
         "StyleGuideCopsOnly" => false,
+        # Ignored b/c DISALLOWED_ALLCOPS_KEYS
+        "DisabledByDefault" => true,
 
         # Allowed to overwrite
-        "DisabledByDefault" => true,
         "StyleGuideBaseURL" => "https://all_cops.yml"
       }
     }, options_config.to_h)
@@ -66,9 +67,9 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
 
     assert_equal({
       "AllCops" => {
+        "DisabledByDefault" => false, # ignored b/c DISALLOWED_ALLCOPS_KEYS
         "TargetRubyVersion" => nil,
         "StyleGuideCopsOnly" => false,
-        "DisabledByDefault" => true,
         # Last-in wins
         "StyleGuideBaseURL" => "https://betterlint.yml"
       },
@@ -100,9 +101,9 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
 
     assert_equal({
       "AllCops" => {
+        "DisabledByDefault" => false, # Ignored b/c DISALLOWED_ALLCOPS_KEYS
         "TargetRubyVersion" => nil,
         "StyleGuideCopsOnly" => false,
-        "DisabledByDefault" => true,
         "StyleGuideBaseURL" => "https://betterlint.yml"
       },
 

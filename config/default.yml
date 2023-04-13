@@ -4,5 +4,8 @@ AllCops:
   Exclude: []
   DisabledByDefault: true
 
+Lint/Syntax:
+  Enabled: true
+
 Standard/BlockSingleLineBraces:
   Enabled: true
