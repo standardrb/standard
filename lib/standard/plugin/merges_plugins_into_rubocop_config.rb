@@ -1,9 +1,16 @@
 module Standard
   module Plugin
     class MergesPluginsIntoRubocopConfig
+      # Blank configuration object to merge plugins into, with only the following spared:
+      #   - AllCops keys set to avoid warnings about unknown properties
+      #   - Lint/Syntax must be set to avoid a nil error when verifying inherited configs
+      MANDATORY_RUBOCOP_CONFIG_KEYS = ["AllCops", "Lint/Syntax"].freeze
+
+      # AllCops keys that standard does not allow to be set by plugins
       DISALLOWED_ALLCOPS_KEYS = [
         "Include",
         "Exclude",
+        "StyleGuideBaseURL",
         "StyleGuideCopsOnly",
         "TargetRubyVersion",
         "EnabledByDefault",
@@ -20,33 +27,56 @@ module Standard
 
       def call(options_config, standard_config, plugins, permit_merging: false)
         runner_context = @creates_runner_context.call(standard_config)
-        extended_config = load_and_merge_extended_rubocop_configs(options_config, runner_context, plugins).to_h
-        merge_standard_and_user_all_cops!(options_config, extended_config)
-        merge_extended_rules_into_standard!(options_config, extended_config, permit_merging: permit_merging)
+        plugin_config = combine_rubocop_configs(options_config, runner_context, plugins).to_h
+        merge_config_into_all_cops!(options_config, plugin_config)
+        merge_config_into_standard!(options_config, plugin_config, permit_merging: permit_merging)
       end
 
       private
 
-      def load_and_merge_extended_rubocop_configs(options_config, runner_context, plugins)
+      def combine_rubocop_configs(options_config, runner_context, plugins)
         fake_out_rubocop_default_configuration(options_config) do |fake_config|
-          plugins.reduce(fake_config) do |config, plugin|
-            RuboCop::ConfigLoader.instance_variable_set(:@default_configuration, config)
+          all_cop_keys_configured_by_plugins = []
+
+          plugins.reduce(fake_config) do |combined_config, plugin|
+            RuboCop::ConfigLoader.instance_variable_set(:@default_configuration, combined_config)
             rules = plugin.rules(runner_context)
-            extension = RuboCop::ConfigLoader.load_file(rules.value)
-            RuboCop::ConfigLoader.merge_with_default(extension, rules.value)
+            next_config, path = if rules.type == :path
+              [RuboCop::ConfigLoader.load_file(rules.value), rules.value]
+            elsif rules.type == :object
+              [RuboCop::Config.new(rules.value), nil]
+            elsif rules.type == :error
+              raise "Plugin `#{plugin.about.name}' failed to load with error: #{rules.value.respond_to?(:message) ? rules.value.message : rules.value}"
+            end
+
+            # This is ho we ensure "first-in wins", among both AllCops settings as well as rule definitions,
+            # by deleting any already-defined keys from the next config before merging
+            delete_already_configured_keys!(all_cop_keys_configured_by_plugins, next_config["AllCops"])
+            all_cop_keys_configured_by_plugins |= next_config["AllCops"].keys if next_config["AllCops"].is_a?(Hash)
+            delete_already_configured_keys!(combined_config.keys, next_config, dont_delete_keys: MANDATORY_RUBOCOP_CONFIG_KEYS)
+
+            RuboCop::ConfigLoader.merge_with_default(next_config, path)
           end
         end
       end
 
-      def merge_standard_and_user_all_cops!(options_config, extended_config)
+      def delete_already_configured_keys!(configured_keys, next_config, dont_delete_keys: [])
+        duplicate_keys = configured_keys & Array(next_config&.keys)
+
+        (duplicate_keys - dont_delete_keys).each do |key|
+          next_config.delete(key)
+        end
+      end
+
+      def merge_config_into_all_cops!(options_config, plugin_config)
         options_config["AllCops"].merge!(
-          except(extended_config["AllCops"], DISALLOWED_ALLCOPS_KEYS)
+          except(plugin_config["AllCops"], DISALLOWED_ALLCOPS_KEYS)
         )
       end
 
-      def merge_extended_rules_into_standard!(options_config, extended_config, permit_merging:)
+      def merge_config_into_standard!(options_config, plugin_config, permit_merging:)
         if permit_merging
-          extended_config.each do |key, value|
+          plugin_config.each do |key, value|
             options_config[key] = if options_config[key].is_a?(Hash)
               merge(options_config[key], value)
             else
@@ -54,7 +84,7 @@ module Standard
             end
           end
         else
-          except(extended_config, options_config.keys).each do |key, value|
+          except(plugin_config, options_config.keys).each do |key, value|
             options_config[key] = value
           end
         end
@@ -67,11 +97,8 @@ module Standard
         result
       end
 
-      # Blank configuration object to merge extensions into, with all known
-      #   - AllCops keys set to avoid warnings about unknown properties
-      #   - Lint/Syntax must be set to avoid a nil error when verifying inherited configs
       def blank_rubocop_config(example_config)
-        RuboCop::Config.new(example_config.to_h.slice("AllCops", "Lint/Syntax"), "")
+        RuboCop::Config.new(example_config.to_h.slice(*MANDATORY_RUBOCOP_CONFIG_KEYS), "")
       end
 
       def except(hash_or_config, keys)
@@ -79,7 +106,7 @@ module Standard
       end
 
       # Always deletes nil entries, always overwrites arrays
-      # Simplified version of rubocop's ConfigLoader#merge:
+      # This is a simplified version of rubocop's ConfigLoader#merge:
       # https://github.com/rubocop/rubocop/blob/v1.48.1/lib/rubocop/config_loader_resolver.rb#L98
       def merge(old_hash, new_hash)
         result = old_hash.merge(new_hash)

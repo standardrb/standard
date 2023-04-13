@@ -1,5 +1,10 @@
 # Changelog
 
+* Standard's behavior when merging multiple `extend_config` that change the same
+  set of rules has been fixed to be first-in-wins, as opposed to last-in-wins.
+  This ensures a consistent behavior across plugins and extended configurations,
+  namely that the first thing to configure a given rule effectively locks it
+  from subsequent changes
 * Enable `DisabledByDefault: true`. This shouldn't impact anyone, but might
   change the behavior of some `extend_config` users. Because Standard specifies
   every rule in rubocop and rubocop-performance, this configuration's absence

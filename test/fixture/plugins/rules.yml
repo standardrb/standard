@@ -1,0 +1,7 @@
+Fake/Stuff:
+  Enabled: true
+  Plumbus: schleem
+
+Fake/Things:
+  Enabled: false
+  Dingus: always
