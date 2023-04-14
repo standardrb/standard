@@ -102,35 +102,4 @@ class Standard::BuildsConfigTest < UnitTest
     assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/t/todo_file_two.rb")
     assert_includes resulting_options_config["Lint/AssignmentInCondition"]["Exclude"], path("test/fixture/config/t/todo_file_one.rb")
   end
-
-  private
-
-  def config_store(config_root = nil, rubocop_yml = highest_compatible_yml_version, ruby_version = RUBY_VERSION)
-    RuboCop::ConfigStore.new.tap do |config_store|
-      config_store.options_config = path(rubocop_yml)
-      options_config = config_store.instance_variable_get(:@options_config)
-      options_config["AllCops"]["TargetRubyVersion"] = ruby_version.to_f
-      options_config["AllCops"]["Exclude"] |= standard_default_ignores(config_root)
-    end.for("").to_h
-  end
-
-  def highest_compatible_yml_version
-    current_ruby = RUBY_VERSION.split(".")[0, 2].join(".") # We only want major/minor
-    non_latest_ruby = Dir["config/*.yml"]
-      .map { |n| n.match(/ruby-(.*)\.yml/) }.compact
-      .map { |m| Gem::Version.new(m[1]) }.sort.reverse
-      .find { |v| v == Gem::Version.new(current_ruby) }
-
-    if non_latest_ruby
-      "config/ruby-#{non_latest_ruby}.yml"
-    else
-      "config/base.yml"
-    end
-  end
-
-  def standard_default_ignores(config_root)
-    Standard::CreatesConfigStore::ConfiguresIgnoredPaths::DEFAULT_IGNORES.map do |(path, _)|
-      File.expand_path(File.join(config_root || Dir.pwd, path))
-    end
-  end
 end
