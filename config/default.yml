@@ -3,6 +3,7 @@ AllCops:
   TargetRubyVersion: 2.6
   Exclude: []
   DisabledByDefault: true
+  StyleGuideBaseURL: https://github.com/standardrb/standard
 
 Lint/Syntax:
   Enabled: true
