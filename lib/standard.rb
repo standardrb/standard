@@ -7,7 +7,6 @@ end
 require "standard/rubocop/ext"
 
 require "standard/version"
-require "standard/base"
 require "standard/cli"
 require "standard/railtie" if defined?(Rails) && defined?(Rails::Railtie)
 

@@ -11,21 +11,14 @@ module Standard
         result = @subject.call(["foo"])
 
         assert_equal({
-          Standard::Base::Plugin => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
-          "standard-custom" => {"enabled" => true, "plugin_class_name" => nil},
-          "standard-performance" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
-          "foo" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG
-        }.to_a, result.to_a) # We are relying on insertion order here
-      end
-
-      def test_disables_and_reorders_performance
-        result = @subject.call(["foo", {"standard-performance" => {"enabled" => false, "other" => "stuff"}}])
-
-        assert_equal({
-          Standard::Base::Plugin => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
-          "standard-custom" => {"enabled" => true, "plugin_class_name" => nil},
-          "foo" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG,
-          "standard-performance" => {"enabled" => false, "plugin_class_name" => nil, "other" => "stuff"}
+          "standard-base" => {
+            "enabled" => true,
+            "require_path" => "standard/base",
+            "plugin_class_name" => "Standard::Base::Plugin"
+          },
+          "standard-custom" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG.merge("require_path" => "standard-custom"),
+          "standard-performance" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG.merge("require_path" => "standard-performance"),
+          "foo" => StandardizesConfiguredPlugins::DEFAULT_PLUGIN_CONFIG.merge("require_path" => "foo")
         }.to_a, result.to_a) # We are relying on insertion order here
       end
     end

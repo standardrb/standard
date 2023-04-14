@@ -2,6 +2,8 @@ module Standard
   module Plugin
     class DeterminesClassConstant
       def call(plugin_name, user_config)
+        require user_config["require_path"] unless user_config["require_path"].nil?
+
         if (constant_name = user_config["plugin_class_name"])
           begin
             Kernel.const_get(constant_name)
@@ -10,10 +12,25 @@ module Standard
           end
         else
           begin
-            require plugin_name
             Kernel.const_get(Gem.loaded_specs[plugin_name].metadata["default_lint_roller_plugin"])
-          rescue LoadError, StandardError => e
-            raise "Failed while configuring plugin `#{plugin_name}'. #{e.class}: #{e.message}"
+          rescue LoadError, StandardError
+            raise <<~MSG
+              Failed loading plugin `#{plugin_name}' because we couldn't determine
+              the corresponding plugin class to instantiate.
+
+              Standard plugin class names must either be:
+
+                - If the plugin is a gem, defined in the gemspec as `default_lint_roller_plugin'
+
+                  spec.metadata["default_lint_roller_plugin"] = "MyModule::Plugin"
+
+                - Set in YAML as `plugin_class_name'; example:
+
+                  plugins:
+                    - incomplete:
+                        require_path: my_module/plugin
+                        plugin_class_name: "MyModule::Plugin"
+            MSG
           end
         end
       end
