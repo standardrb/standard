@@ -50,6 +50,16 @@ class StandardrbTest < UnitTest
     MSG
   end
 
+  def test_plugins_options
+    stdout, status = run_standardrb("test/fixture/plugins/project")
+
+    refute status.success?
+    assert_same_lines <<~MSG, stdout
+      #{standard_greeting}
+        olives.rb:1:1: Bananas/BananasOnly: Bananas only! No olives.
+    MSG
+  end
+
   private
 
   def run_standardrb(cwd, args = [])

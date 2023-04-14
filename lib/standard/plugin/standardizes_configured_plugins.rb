@@ -25,7 +25,8 @@ module Standard
       def normalize_config_shape(plugins)
         plugins.map { |plugin|
           if plugin.is_a?(Hash)
-            [plugin.keys.first, DEFAULT_PLUGIN_CONFIG.merge(plugin.values.first)]
+            plugin_name = plugin.keys.first
+            [plugin_name, DEFAULT_PLUGIN_CONFIG.merge({"require_path" => plugin_name}, plugin.values.first)]
           else
             [plugin, DEFAULT_PLUGIN_CONFIG.merge("require_path" => plugin)]
           end

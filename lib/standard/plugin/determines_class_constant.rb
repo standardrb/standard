@@ -2,7 +2,7 @@ module Standard
   module Plugin
     class DeterminesClassConstant
       def call(plugin_name, user_config)
-        require user_config["require_path"] unless user_config["require_path"].nil?
+        require_plugin(user_config["require_path"])
 
         if (constant_name = user_config["plugin_class_name"])
           begin
@@ -32,6 +32,23 @@ module Standard
                         plugin_class_name: "MyModule::Plugin"
             MSG
           end
+
+        end
+      end
+
+      private
+
+      def require_plugin(require_path)
+        return if require_path.nil?
+
+        begin
+          require require_path
+        rescue LoadError
+          # If require_path isn't on the load_path (and it may be hard to get it
+          # on there since standardrb is a cli), let's give folks a break and
+          # also try to load it via the current working directory. This is
+          # tested in test/standardrb_test.rb #test_plugins_options
+          require Pathname.new(Dir.pwd).join(require_path)
         end
       end
     end

@@ -1,0 +1,3 @@
+plugins:
+  - lib/banana/plugin:
+      plugin_class_name: "Banana::Plugin"
