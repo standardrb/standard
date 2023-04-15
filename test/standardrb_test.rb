@@ -56,7 +56,7 @@ class StandardrbTest < UnitTest
     refute status.success?
     assert_same_lines <<~MSG, stdout
       #{standard_greeting}
-        olives.rb:1:1: Bananas/BananasOnly: Bananas only! No olives.
+        olives.rb:1:1: Bananas/BananasOnly: Bananas only! No steak or apples or shenanigans.
     MSG
   end
 

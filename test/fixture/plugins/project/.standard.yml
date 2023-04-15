@@ -1,3 +1,7 @@
 plugins:
   - lib/banana/plugin:
       plugin_class_name: "Banana::Plugin"
+      preferred_banana_replacement:
+        - steak
+        - apples
+        - shenanigans

@@ -7,7 +7,8 @@ module RuboCop
           name, = *node # standard:disable Bananas/BananasOnly
 
           if name != :bananas
-            add_offense(node, message: "Bananas only! No olives.")
+            bananas = Array(cop_config["PreferredBananaReplacement"] || "olives").join(" or ")
+            add_offense(node, message: "Bananas only! No #{bananas}.")
           end
         end
       end
