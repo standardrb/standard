@@ -119,7 +119,44 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     MSG
   end
 
-  def test_that_first_person_to_set_an_allcop_setting_wins_it_butnot_disallowed_ones
+  def test_that_first_person_to_set_a_rule_cant_have_the_nested_attributes_overridden
+    options_config = RuboCop::Config.new({
+      "AllCops" => {},
+      "Breakfast/Eggs" => {
+        "Enabled" => false,
+        "EnforcedStyle" => "over_easy"
+      }
+    }, "")
+
+    @subject.call(options_config, {}, [
+      ObjectyPlugin.new(
+        "Breakfast/Eggs" => {
+          "Enabled" => true,
+          "EnforcedStyle" => "scrambled"
+        }
+      ),
+      ObjectyPlugin.new(
+        "Breakfast/Eggs" => {
+          "EnforcedStyle" => "poached"
+        }
+      ),
+      ObjectyPlugin.new(
+        "Breakfast/Eggs" => {
+          "Salt" => true
+        }
+      )
+    ], permit_merging: true)
+
+    assert_equal({
+      "AllCops" => {},
+      "Breakfast/Eggs" => {
+        "Enabled" => true,
+        "EnforcedStyle" => "scrambled"
+      }
+    }, options_config.to_h)
+  end
+
+  def test_that_first_person_to_set_an_allcop_setting_wins_it_but_not_disallowed_ones
     options_config = RuboCop::Config.new({
       "AllCops" => {
         "A" => "a",
