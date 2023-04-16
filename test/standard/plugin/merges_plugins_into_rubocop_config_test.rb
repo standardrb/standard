@@ -72,7 +72,7 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
       "AllCops" => {}
     }, "")
 
-    @subject.call(options_config, {}, [])
+    @subject.call(options_config, {}, [], permit_merging: true)
 
     assert_equal({
       "AllCops" => {}
@@ -88,7 +88,7 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
       PathyPlugin.new("test/fixture/plugins/rules.yml"),
       ObjectyPlugin.new("Fake/Things" => {"Enabled" => true, "Dingus" => "never", "Really" => false}, "Fake/Junk" => {"Enabled" => false}),
       ObjectyPlugin.new("Fake/Crap" => {"Enabled" => true})
-    ])
+    ], permit_merging: true)
 
     assert_equal({
       "AllCops" => {},
@@ -101,7 +101,7 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
 
   def test_handles_plugin_errors
     error = assert_raises do
-      @subject.call(RuboCop::Config.new({}), {}, [ErroryPlugin.new(StandardError.new("I'm a bad plugin"))])
+      @subject.call(RuboCop::Config.new({}), {}, [ErroryPlugin.new(StandardError.new("I'm a bad plugin"))], permit_merging: true)
     end
 
     assert_equal <<~MSG.chomp, error.message
@@ -111,7 +111,7 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
 
   def test_handles_plugin_error_strings_too
     error = assert_raises do
-      @subject.call(RuboCop::Config.new({}), {}, [ErroryPlugin.new("I'm worse")])
+      @subject.call(RuboCop::Config.new({}), {}, [ErroryPlugin.new("I'm worse")], permit_merging: true)
     end
 
     assert_equal <<~MSG.chomp, error.message
@@ -167,11 +167,41 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     @subject.call(options_config, {}, [
       ObjectyPlugin.new("AllCops" => {"A" => "a1", "B" => "b1", "C" => "c1"}),
       ObjectyPlugin.new("AllCops" => {"A" => "a2", "B" => "b2", "C" => "c2", "D" => "d2"}),
-      ObjectyPlugin.new("AllCops" => {"Include" => ["Not allowed!"], "E" => "e3"})
-    ])
+      ObjectyPlugin.new("AllCops" => {"E" => "e3"})
+    ], permit_merging: true)
 
     assert_equal({
       "AllCops" => {"A" => "a1", "B" => "b1", "C" => "c1", "D" => "d2", "E" => "e3"}
+    }, options_config.to_h)
+  end
+
+  def test_that_all_cops_arrays_are_concated_but_rule_arrays_are_overwritten
+    options_config = RuboCop::Config.new({
+      "AllCops" => {
+        "fruits" => ["apple"]
+      },
+      "Some/Rule" => {
+        "candies" => ["chocolate"]
+      }
+    }, "")
+
+    @subject.call(options_config, {}, [
+      ObjectyPlugin.new("AllCops" => {"fruits" => ["banana"]}),
+      ObjectyPlugin.new("AllCops" => {"nuts" => []}),
+      ObjectyPlugin.new("AllCops" => {"fruits" => []}, "Some/Rule" => {"candies" => ["lollipop"]}),
+      ObjectyPlugin.new("AllCops" => {"fruits" => ["tomato", "orange"]}),
+      ObjectyPlugin.new("AllCops" => {"nuts" => ["cashew"]}, "Some/Rule" => {"candies" => ["suckers", "gum"]}),
+      ObjectyPlugin.new("AllCops" => {"nuts" => ["peanut", "cashew"]})
+    ], permit_merging: true)
+
+    assert_equal({
+      "AllCops" => {
+        "fruits" => ["apple", "banana", "tomato", "orange"],
+        "nuts" => ["cashew", "peanut"]
+      },
+      "Some/Rule" => {
+        "candies" => ["lollipop"]
+      }
     }, options_config.to_h)
   end
 end

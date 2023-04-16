@@ -25,7 +25,7 @@ module Standard
         @creates_runner_context = Standard::Plugin::CreatesRunnerContext.new
       end
 
-      def call(options_config, standard_config, plugins, permit_merging: false)
+      def call(options_config, standard_config, plugins, permit_merging:)
         runner_context = @creates_runner_context.call(standard_config)
         plugin_config = combine_rubocop_configs(options_config, runner_context, plugins).to_h
         merge_config_into_all_cops!(options_config, plugin_config)
@@ -40,24 +40,57 @@ module Standard
 
           plugins.reduce(fake_config) do |combined_config, plugin|
             RuboCop::ConfigLoader.instance_variable_set(:@default_configuration, combined_config)
-            rules = plugin.rules(runner_context)
-            next_config, path = if rules.type == :path
-              [RuboCop::ConfigLoader.load_file(rules.value), rules.value]
-            elsif rules.type == :object
-              [RuboCop::Config.new(rules.value), nil]
-            elsif rules.type == :error
-              raise "Plugin `#{plugin.about.name}' failed to load with error: #{rules.value.respond_to?(:message) ? rules.value.message : rules.value}"
-            end
+            next_config, path = config_for_plugin(plugin, runner_context)
 
-            # This is ho we ensure "first-in wins", among both AllCops settings as well as rule definitions,
-            # by deleting any already-defined keys from the next config before merging
-            delete_already_configured_keys!(all_cop_keys_configured_by_plugins, next_config["AllCops"])
-            all_cop_keys_configured_by_plugins |= next_config["AllCops"].keys if next_config["AllCops"].is_a?(Hash)
-            delete_already_configured_keys!(combined_config.keys, next_config, dont_delete_keys: MANDATORY_RUBOCOP_CONFIG_KEYS)
+            next_config["AllCops"], all_cop_keys_configured_by_plugins = merge_all_cop_settings(
+              combined_config["AllCops"],
+              next_config["AllCops"],
+              all_cop_keys_configured_by_plugins
+            )
+            delete_already_configured_keys!(combined_config.keys, next_config, dont_delete_keys: ["AllCops"])
 
             RuboCop::ConfigLoader.merge_with_default(next_config, path)
           end
         end
+      end
+
+      def config_for_plugin(plugin, runner_context)
+        rules = plugin.rules(runner_context)
+
+        if rules.type == :path
+          [RuboCop::ConfigLoader.load_file(rules.value), rules.value]
+        elsif rules.type == :object
+          [RuboCop::Config.new(rules.value), nil]
+        elsif rules.type == :error
+          raise "Plugin `#{plugin.about&.name || plugin.inspect}' failed to load with error: #{rules.value.respond_to?(:message) ? rules.value.message : rules.value}"
+        end
+      end
+
+      # This is ho we ensure "first-in wins": plugins can override AllCops settings that are
+      # set by RuboCop's default configuration, but once a plugin sets an AllCop setting, they
+      # have exclusive first-in-wins rights to that setting.
+      #
+      # The one exception to this are array fields, because we don't want to
+      # overwrite the AllCops defaults but rather munge the arrays (`existing |
+      # new`) to allow plugins to add to the array, for example Include and
+      # Exclude paths and patterns.
+      def merge_all_cop_settings(existing_all_cops, new_all_cops, already_configured_keys)
+        return [existing_all_cops, already_configured_keys] unless new_all_cops.is_a?(Hash)
+
+        combined_all_cops = existing_all_cops.dup
+        combined_configured_keys = already_configured_keys.dup
+
+        new_all_cops.each do |key, value|
+          if combined_all_cops[key].is_a?(Array) && value.is_a?(Array)
+            combined_all_cops[key] |= value
+            combined_configured_keys |= [key]
+          elsif !combined_configured_keys.include?(key)
+            combined_all_cops[key] = value
+            combined_configured_keys << key
+          end
+        end
+
+        [combined_all_cops, combined_configured_keys]
       end
 
       def delete_already_configured_keys!(configured_keys, next_config, dont_delete_keys: [])
