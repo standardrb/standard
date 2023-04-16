@@ -3,7 +3,7 @@ require_relative "../../test_helper"
 module Standard::Base
   class PluginTest < UnitTest
     def setup
-      require "standard/base/plugin" #<-- This is actually loaded during plugin configuration
+      require "standard/base/plugin" # <-- This is actually loaded during plugin configuration
       @subject = Plugin.new({})
     end
 
