@@ -28,6 +28,7 @@ module Standard::Base
     private
 
     def determine_yaml_path(desired_version)
+      desired_version = Gem::Version.new(desired_version) unless desired_version.is_a?(Gem::Version)
       default = "base.yml"
 
       file_name = if !Gem::Version.correct?(desired_version)
