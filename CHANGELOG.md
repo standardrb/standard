@@ -1,7 +1,9 @@
 # Changelog
 
-## Unreleased
+## 1.27.0
 
+* Update rubocop from 1.48.1 to [1.50.2](https://github.com/rubocop/rubocop/releases/tag/v1.50.2)
+  * Enabled [Style/RedundantLineContinuation](https://docs.rubocop.org/rubocop/cops_style.html#styleredundantlinecontinuation)
 
 ## 1.26.0
 
