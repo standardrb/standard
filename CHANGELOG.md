@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+
+
 ## 1.26.0
 
 * Introduce `--fix-unsafely` and `rake standard:fix_unsafely` for running

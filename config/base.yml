@@ -499,6 +499,9 @@ Lint/DuplicateHashKey:
 Lint/DuplicateMagicComment:
   Enabled: true
 
+Lint/DuplicateMatchPattern:
+  Enabled: false
+
 Lint/DuplicateMethods:
   Enabled: true
 
@@ -1230,6 +1233,9 @@ Style/ConstantVisibility:
 Style/Copyright:
   Enabled: false
 
+Style/DataInheritance:
+  Enabled: false
+
 Style/DateTime:
   Enabled: false
 
@@ -1696,6 +1702,9 @@ Style/RedundantInitialize:
   Enabled: true
 
 Style/RedundantInterpolation:
+  Enabled: true
+
+Style/RedundantLineContinuation:
   Enabled: true
 
 Style/RedundantParentheses:

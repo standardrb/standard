@@ -8,3 +8,6 @@ Style/NumberedParameters:
 
 Style/NumberedParametersLimit:
   Enabled: false
+
+Lint/DuplicateMatchPattern:
+  Enabled: false

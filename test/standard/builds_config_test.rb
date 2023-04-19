@@ -29,7 +29,7 @@ class Standard::BuildsConfigTest < UnitTest
       autocorrect: true,
       safe_autocorrect: true,
       parallel: true,
-      only: ["Standard/SemanticBlocks"]
+      only: ["Lint/Syntax", "Standard/SemanticBlocks"]
     ), result.rubocop_options
   end
 
