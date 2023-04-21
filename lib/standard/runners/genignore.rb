@@ -12,6 +12,7 @@ module Standard
           # Run Rubocop to generate the files with errors into the temp file.
           config.rubocop_options[:formatters] = [["json", temp_file.path]]
           config.rubocop_options[:out] = temp_file.path
+          remove_project_files_from_ignore_list(config)
           exit_code = Runners::Rubocop.new.call(config)
 
           result = JSON.parse(temp_file.read)
@@ -38,6 +39,14 @@ module Standard
           temp_file.close
           temp_file.unlink
         end
+      end
+
+      # FIXME: This will also remove files which are in
+      # `Standard::CreatesConfigStore::ConfiguresIgnoredPaths::DEFAULT_IGNORES`.
+      def remove_project_files_from_ignore_list(config)
+        options_config = config.rubocop_config_store.instance_variable_get("@options_config")
+        options_config["AllCops"] ||= []
+        options_config["AllCops"]["Exclude"] = []
       end
     end
   end
