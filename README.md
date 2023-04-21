@@ -63,9 +63,7 @@ task default: [:test, "standard:fix"]
 
 If you're familiar with [RuboCop](https://github.com/rubocop-hq/rubocop), you
 can look at Standard's current base configuration in
-[config/base.yml](/config/base.yml). In lieu of a separate changelog file,
-significant changes to the configuration will be documented as [GitHub release
-notes](https://github.com/testdouble/standard/releases).
+[config/base.yml](/config/base.yml).
 
 ## Usage
 
