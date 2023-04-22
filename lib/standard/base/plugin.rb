@@ -8,7 +8,7 @@ module Standard::Base
       LintRoller::About.new(
         name: "standard-base",
         version: VERSION,
-        homepage: "https://github.com/testdouble/standard-base",
+        homepage: "https://github.com/standardrb/standard",
         description: "Configuration for RuboCop's built-in rules"
       )
     end

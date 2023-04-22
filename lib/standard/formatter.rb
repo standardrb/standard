@@ -4,7 +4,7 @@ require "rubocop"
 module Standard
   class Formatter < RuboCop::Formatter::BaseFormatter
     STANDARD_GREETING = <<~MSG
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+      standard: Use Ruby Standard Style (https://github.com/standardrb/standard)
     MSG
 
     def started(_target_files)

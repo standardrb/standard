@@ -35,7 +35,7 @@ class Standard::Runners::HelpTest < UnitTest
       While Standard only offers a few configuration options, most can be set in
       a `.standard.yml` file. For full documentation, please visit:
 
-        https://github.com/testdouble/standard
+        https://github.com/standardrb/standard
 
       Having trouble? Here's some diagnostic information:
 
@@ -47,7 +47,7 @@ class Standard::Runners::HelpTest < UnitTest
 
       Please report any problems (and include the above information) at the URL below:
 
-        https://github.com/testdouble/standard/issues/new
+        https://github.com/standardrb/standard/issues/new
 
     MESSAGE
     assert_equal expected, fake_out.string

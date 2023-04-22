@@ -19,7 +19,7 @@ module Standard
 
       # This is a workaround for an issue with how `parallel` and `stdin`
       # interact when invoked in this way. See:
-      #   https://github.com/testdouble/standard/issues/536
+      #   https://github.com/standardrb/standard/issues/536
       def without_parallelizing_in_stdin_mode(options)
         if options[:stdin]
           options.delete(:parallel)

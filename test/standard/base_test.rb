@@ -31,7 +31,7 @@ class Standard::BaseTest < UnitTest
     actual = YAML.load_file(BASE_CONFIG).keys - ["require"]
     expected = actual.sort
 
-    assert_equal actual, expected, "Cop names should be alphabetized! (See this script to do it for you: https://github.com/testdouble/standard/pull/222#issue-744335213 )"
+    assert_equal actual, expected, "Cop names should be alphabetized! (See this script to do it for you: https://github.com/standardrb/standard/pull/222#issue-744335213 )"
   end
 
   private
