@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.28.0
+
+* Refactor Standard into 3 gems and convert all built-in configuration into
+  [lint_roller](https://github.com/standardrb/lint_roller) plugins. See:
+  * [standard-performance](https://github.com/standardrb/standard-performance)
+  * [standard-custom](https://github.com/standardrb/standard-custom)
 * Standard's behavior when merging multiple `extend_config` that change the same
   set of rules has been fixed to be first-in-wins, as opposed to last-in-wins.
   This ensures a consistent behavior across plugins and extended configurations,
