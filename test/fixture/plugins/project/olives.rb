@@ -1,0 +1,2 @@
+olives = "🫒🫒🫒"
+puts olives

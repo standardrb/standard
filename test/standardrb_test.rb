@@ -9,7 +9,7 @@ class StandardrbTest < UnitTest
     assert_same_lines <<~MSG, stdout
       #{standard_greeting}
         lib/foo/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
-        lib/foo/tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
+        lib/foo/meh/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
     MSG
   end
@@ -28,7 +28,7 @@ class StandardrbTest < UnitTest
     assert_same_lines <<~MSG, stdout
       #{standard_greeting}
         do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
-        tmp/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
+        meh/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
     MSG
   end
 
@@ -47,6 +47,16 @@ class StandardrbTest < UnitTest
     assert_same_lines <<~MSG, stdout
       #{standard_greeting}
         oranges.rb:1:1: Bananas/BananasOnly: Bananas only! No oranges.
+    MSG
+  end
+
+  def test_plugins_options
+    stdout, status = run_standardrb("test/fixture/plugins/project")
+
+    refute status.success?
+    assert_same_lines <<~MSG, stdout
+      #{standard_greeting}
+        olives.rb:1:1: Bananas/BananasOnly: Bananas only! No steak or apples or shenanigans.
     MSG
   end
 

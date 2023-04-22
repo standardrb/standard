@@ -10,7 +10,7 @@ class Standard::CommentDirectiveTest < UnitTest
     refute_equal 0, exit_code
     assert_empty fake_err.string
     assert_equal <<~OUTPUT, fake_out.string
-      standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
+      standard: Use Ruby Standard Style (https://github.com/standardrb/standard)
         test/fixture/comment_directive_test/disabled.rb:11:1: Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
       standard: Run `standardrb --fix` to potentially fix one problem.
     OUTPUT

@@ -3,3 +3,4 @@ AllCops:
   StyleGuideBaseURL: https://all_cops.yml
   DisabledByDefault: true
   StyleGuideCopsOnly: true
+  MaxFilesInCache: 33

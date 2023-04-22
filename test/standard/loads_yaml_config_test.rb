@@ -11,6 +11,7 @@ class Standard::LoadsYamlConfigTest < UnitTest
     config_root: nil,
     todo_file: nil,
     todo_ignore_files: [],
+    plugins: [],
     extend_config: []
   }.freeze
 

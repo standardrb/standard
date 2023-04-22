@@ -9,8 +9,5 @@ AllCops:
 Layout/HeredocIndentation:
   Enabled: false
 
-Performance/ConcurrentMonotonicTime:
-  Enabled: false
-
 Style/SafeNavigation:
   Enabled: false

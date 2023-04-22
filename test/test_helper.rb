@@ -12,13 +12,16 @@ $LOAD_PATH << "test"
 require "standard"
 require "gimme"
 require "minitest/autorun"
-require "pry"
 
 class UnitTest < Minitest::Test
   make_my_diffs_pretty!
 
   def self.path(relative)
     Pathname.new(Dir.pwd).join(relative).to_s
+  end
+
+  def before_setup
+    RuboCop::ConfigLoader.instance_variable_set(:@default_configuration, nil)
   end
 
   def teardown

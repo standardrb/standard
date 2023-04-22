@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.summary = "Ruby Style Guide, with linter & automatic code fixer"
-  spec.homepage = "https://github.com/testdouble/standard"
+  spec.homepage = "https://github.com/standardrb/standard"
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
   spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/main/CHANGELOG.md"
@@ -24,7 +24,10 @@ Gem::Specification.new do |spec|
   spec.metadata["rubygems_mfa_required"] = "true"
 
   spec.add_dependency "rubocop", "~> 1.50.2"
-  spec.add_dependency "rubocop-performance", "~> 1.16.0"
+
+  spec.add_dependency "lint_roller", "~> 1.0"
+  spec.add_dependency "standard-custom", "~> 1.0.0"
+  spec.add_dependency "standard-performance", "~> 1.0.1"
 
   # not semver: first three are lsp protocol version, last is patch
   spec.add_dependency "language_server-protocol", "~> 3.17.0.2"

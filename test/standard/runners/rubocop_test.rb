@@ -28,8 +28,6 @@ class Standard::Runners::RubocopTest < UnitTest
   OUT
 
   def setup
-    super
-
     @subject = Standard::Runners::Rubocop.new
   end
 

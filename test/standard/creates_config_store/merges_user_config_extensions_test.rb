@@ -24,8 +24,9 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
       "AllCops" => {
         "TargetRubyVersion" => "2.6",
         "StyleGuideCopsOnly" => false,
-        "DisabledByDefault" => false,
-        "StyleGuideBaseURL" => "https://standardrb.example.com"
+        "DisabledByDefault" => true,
+        "StyleGuideBaseURL" => "https://standardrb.example.com",
+        "MaxFilesInCache" => 10_000
       }
     }, "")
 
@@ -37,12 +38,12 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
       "AllCops" => {
         # Ignored b/c DISALLOWED_ALLCOPS_KEYS
         "TargetRubyVersion" => "2.6",
-        # Ignored b/c DISALLOWED_ALLCOPS_KEYS
         "StyleGuideCopsOnly" => false,
+        "DisabledByDefault" => true,
+        "StyleGuideBaseURL" => "https://standardrb.example.com",
 
         # Allowed to overwrite
-        "DisabledByDefault" => true,
-        "StyleGuideBaseURL" => "https://all_cops.yml"
+        "MaxFilesInCache" => 33
       }
     }, options_config.to_h)
   end
@@ -53,7 +54,8 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
         "TargetRubyVersion" => nil,
         "StyleGuideCopsOnly" => false,
         "DisabledByDefault" => false,
-        "StyleGuideBaseURL" => "https://standardrb.example.com"
+        "StyleGuideBaseURL" => "https://standardrb.example.com",
+        "MaxFilesInCache" => 10_000
       }
     }, "")
 
@@ -66,11 +68,11 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
 
     assert_equal({
       "AllCops" => {
+        "DisabledByDefault" => false, # ignored b/c DISALLOWED_ALLCOPS_KEYS
         "TargetRubyVersion" => nil,
         "StyleGuideCopsOnly" => false,
-        "DisabledByDefault" => true,
-        # Last-in wins
-        "StyleGuideBaseURL" => "https://betterlint.yml"
+        "StyleGuideBaseURL" => "https://standardrb.example.com",
+        "MaxFilesInCache" => 33
       },
       "Betterment/UnscopedFind" => {
         "Enabled" => true,
@@ -85,7 +87,8 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
         "TargetRubyVersion" => nil,
         "StyleGuideCopsOnly" => false,
         "DisabledByDefault" => false,
-        "StyleGuideBaseURL" => "https://standardrb.example.com"
+        "StyleGuideBaseURL" => "https://standardrb.example.com",
+        "MaxFilesInCache" => 10_000
       },
       "Naming/VariableName" => {"Enabled" => true}
     }, "")
@@ -98,17 +101,18 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
       ]
     })
 
-    assert_equal({
+    expected = {
       "AllCops" => {
+        "DisabledByDefault" => false, # Ignored b/c DISALLOWED_ALLCOPS_KEYS
         "TargetRubyVersion" => nil,
         "StyleGuideCopsOnly" => false,
-        "DisabledByDefault" => true,
-        "StyleGuideBaseURL" => "https://betterlint.yml"
+        "StyleGuideBaseURL" => "https://standardrb.example.com",
+        "MaxFilesInCache" => 33
       },
 
-      # Last-in wins, deep merge for nested hashes
+      # First-in wins, deep merge for nested hashes
       "Betterment/UnscopedFind" => {
-        "Enabled" => false,
+        "Enabled" => true,
         "unauthenticated_models" => ["SystemConfiguration"]
       },
 
@@ -116,6 +120,7 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
       "Naming/VariableName" => {
         "Enabled" => true
       }
-    }, options_config.to_h)
+    }
+    assert_equal(expected, options_config.to_h)
   end
 end

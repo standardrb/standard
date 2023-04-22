@@ -6,4 +6,5 @@
 /pkg/
 /spec/reports/
 /tmp/
+/dont_call_it_tmp/
 /vendor/

@@ -1,7 +1,7 @@
 require "pathname"
 
 module Standard
-  class Railtie < Rails::Railtie
+  class Railtie < ::Rails::Railtie
     railtie_name :standard
 
     rake_tasks do
