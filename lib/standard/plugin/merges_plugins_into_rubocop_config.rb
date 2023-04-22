@@ -66,7 +66,7 @@ module Standard
         end
       end
 
-      # This is ho we ensure "first-in wins": plugins can override AllCops settings that are
+      # This is how we ensure "first-in wins": plugins can override AllCops settings that are
       # set by RuboCop's default configuration, but once a plugin sets an AllCop setting, they
       # have exclusive first-in-wins rights to that setting.
       #
