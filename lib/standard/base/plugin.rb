@@ -53,6 +53,8 @@ module Standard::Base
         "ruby-2.7.yml"
       elsif desired_version < Gem::Version.new("3.1")
         "ruby-3.0.yml"
+      elsif desired_version < Gem::Version.new("3.2")
+        "ruby-3.1.yml"
       else
         default
       end
