@@ -37,7 +37,7 @@ ever agree on what all the rules and format should be.**
 
 This has resulted in innumerable teams arguing how to configure their linters
 and formatters over literal decades. Some teams routinely divert time and energy
-from whatever they're building to reach concensus on where commas should go.
+from whatever they're building to reach consensus on where commas should go.
 Other teams have an overzealous tech lead who sets up everything _his favorite
 way_ and then imposes his will on others. It's not uncommon to witness
 passive-aggressive programmers change a contentious rule back-and-forth,
@@ -63,9 +63,9 @@ for most of the ways people use Ruby, most of the time.
 
 If you adopt Standard Ruby, what's in it for you? Time saved that would've been
 spent arguing over how to set things up. Also, seamless upgrades: we stay on top
-of each new RuboCop rule ship an updated configuration  on a monthly release
+of each new RuboCop rule and update our configuration on a monthly release
 cadence. But the best part of adopting Standard as your linter and formatter?
-You'll spend a whole lot less time thinking about linters and formatters.
+**You'll spend a whole lot less time thinking about linters and formatters.**
 
 So please, give Standard Ruby a try. If you're like [these
 folks](#who-uses-standard-ruby), you'll soon realize that the value of a linter
