@@ -241,8 +241,8 @@ your project's `.standard.yml` file:
 
 ```yaml
 ignore:
-  - 'db/schema.rb'
-  - 'vendor/**/*'
+  - 'some/file/in/particular.rb'
+  - 'a/whole/directory/**/*'
 ```
 
 ### Ignoring specific rules in files and globs
@@ -336,6 +336,23 @@ plugins:                # default: []
 
 extend_config:                # default: []
   - .standard_ext.yml
+```
+
+#### Configuring ruby_version
+
+One notable YAML setting is `ruby_version`, which allows you to set the **oldest
+version of Ruby the project needs to support** [RuboCop's `TargetRubyVersion`
+setting](https://docs.rubocop.org/rubocop/configuration.html#setting-the-target-ruby-version)
+explicitly. Because this value is inferred from any `.ruby-version`,
+`.tool-versions`, `Gemfile.lock`, and `*.gemspec` files that might be present,
+most applications won't need to set this.
+
+However, gems and libraries that support older versions of Ruby will want
+to lock the `ruby-version:` explicitly in their `.standard.yml` file to ensure
+new rules don't break old rubies:
+
+```yaml
+ruby_version: 2.7
 ```
 
 ## Extending Standard
