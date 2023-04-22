@@ -15,7 +15,7 @@ supports plugins built with
 
 Standard Ruby was created and is maintained by the team at [Test
 Double](https://testdouble.com), because we appreciate the importance of
-balancing predictably consistent code with preserving developers' autonomy. 💚
+balancing predictable, consistent code with preserving developer autonomy. 💚
 
 Topics covered in this README:
 
