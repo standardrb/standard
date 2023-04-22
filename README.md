@@ -13,7 +13,17 @@ supports plugins built with
 [lint_roller](https://github.com/standardrb/lint_roller), like
 [standard-rails](https://github.com/standardrb/standard-rails).
 
-### Wait, did you say unconfigurable configuration?
+Contents:
+
+* [Wait, what?](#wait-did-you-say-unconfigurable-configuration)
+* [Basic usage](#usage)
+* [Editor & CI integrations](#integrating-standard-into-your-workflow)
+* [Ignoring errors](#ignoring-errors)
+* [Configuration options](#configuring-standard)
+* [Plugins and extensions](#extending-standard)
+* [Community](#who-uses-standard-ruby)
+
+## Wait, did you say unconfigurable configuration?
 
 Yes, Standard is unconfigurable. See, pretty much every developer can agree that
 automatically identifying and fixing slow, insecure, and error-prone code is a
@@ -50,7 +60,7 @@ You'll spend a whole lot less time thinking about linters and formatters.
 
 So please, give Standard Ruby a try. If you're like [these
 folks](#who-uses-standard-ruby), you'll soon realize that the value of a linter
-is using one at all and much less the particulars of how it's configured.
+is in using one at all and not in the particulars of how it's configured.
 
 ## Usage
 
@@ -456,10 +466,10 @@ Does your team use Standard? [Add your name to the list](https://github.com/stan
 
 If you really want to show off, you can also add a badge to your project's README, like this one:
 
-[![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standardrb/standard)
+[![Ruby Code Style](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standardrb/standard)
 
 ```md
-[![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standardrb/standard)
+[![Ruby Code Style](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standardrb/standard)
 ```
 
 ## Code of Conduct
