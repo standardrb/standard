@@ -13,6 +13,10 @@ supports plugins built with
 [lint_roller](https://github.com/standardrb/lint_roller), like
 [standard-rails](https://github.com/standardrb/standard-rails).
 
+Standard Ruby was created and is maintained by the team at [Test
+Double](https://testdouble.com), because we appreciate the need for balance
+between developer autonomy and predictably consistent code. 💚
+
 Contents:
 
 * [Wait, what?](#wait-did-you-say-unconfigurable-configuration)
