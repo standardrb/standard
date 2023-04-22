@@ -1,205 +1,400 @@
-## Standard - Ruby style guide, linter, and formatter
+<img src="https://user-images.githubusercontent.com/79303/233717126-9fd13e6d-9a66-4f1c-b40c-fe875cb1d1b4.png" style="width: 100%"/>
 
-[![Tests](https://github.com/testdouble/standard/workflows/Tests/badge.svg)](https://github.com/testdouble/standard/actions?query=workflow%3ATests)
-[![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
+[![Tests](https://github.com/standardrb/standard/actions/workflows/test.yml/badge.svg)](https://github.com/standardrb/standard/actions/workflows/test.yml)
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standardrb/standard)
 [![Gem Version](https://badge.fury.io/rb/standard.svg)](https://rubygems.org/gems/standard)
 
-This gem is a spiritual port of [StandardJS](https://standardjs.com) and aims
-to save you (and others!) time in the same three ways:
+The `standard` gem brings the ethos of [StandardJS](https://standardjs.com) to
+Ruby. It's a linter & formatter built on
+[RuboCop](https://github.com/rubocop/rubocop) and provides an **unconfigurable
+configuration** to all of RuboCop's built-in rules as well as those included in
+[rubocop-performance](https://github.com/rubocop/rubocop-performance). It also
+supports plugins built with
+[lint_roller](https://github.com/standardrb/lint_roller), like
+[standard-rails](https://github.com/standardrb/standard-rails).
 
-* **No configuration.** The easiest way to enforce consistent style in your
-  project. Just drop it in.
-* **Automatically format code.** Just run `standardrb --fix` and say goodbye to
-  messy or inconsistent code.
-* **Catch style issues & programmer errors early.** Save precious code review
-  time by eliminating back-and-forth between reviewer & contributor.
+### Wait, did you say unconfigurable configuration?
 
-No decisions to make. It just works. Here's a [⚡ lightning talk
-⚡](https://www.youtube.com/watch?v=uLyV5hOqGQ8) about it.
+Yes, Standard is unconfigurable. See, pretty much every developer can agree that
+automatically identifying and fixing slow, insecure, and error-prone code is a
+good idea. People also agree it's easier to work in codebases that exhibit a
+consistent style and format. So, what's the problem? **No two developers will
+ever agree on what all the rules and format should be.**
 
-Install Standard by adding it to your Gemfile and running `bundle install`:
+This has resulted in innumerable teams arguing how to configure their linters
+and formatters over literal decades. Some teams routinely divert time and energy
+from whatever they're building to reach concensus on where commas should go.
+Other teams have an overzealous tech lead who sets up everything _his favorite
+way_ and then imposes his will on others. It's not uncommon to witness
+passive-aggressive programmers change a contentious rule back-and-forth,
+resulting in both acrimony and git churn (and acrimony _about_ git churn).
+Still, most developers give way to whoever cares more, often resulting in an
+inconsistent configuration that nobody understands and isn't kept up-to-date
+with changes to their linter and its target language. Whatever the approach,
+time spent
+[bikeshedding](https://blog.testdouble.com/posts/2019-09-17-bike-shed-history/)
+is time wasted.
+
+**But you can't configure Standard Ruby.** You can take it or leave it. If this
+seems presumptive, constraining, and brusque: you're right, it usually does feel
+that way at first. But since 2018, the Ruby community has debated Standard
+Ruby's ruleset, ultimately landing us on a sensible set of defaults that—_while
+no one person's favorite way to format Ruby_—seems to be good enough for most of
+the ways people use Ruby, most of the time.
+
+If you adopt Standard Ruby, what's in it for you? Time saved that would've been
+spent arguing over how to set things up. Also, seamless upgrades: we stay on top
+of each new RuboCop rule ship an updated configuration  on a monthly release
+cadence. But the best part of adopting Standard as your linter and formatter?
+You'll spend a whole lot less time thinking about linters and formatters.
+
+So please, give Standard Ruby a try. If you're like [these
+folks](#who-uses-standard-ruby), you'll soon realize that the value of a linter
+is using one at all and much less the particulars of how it's configured.
+
+## Usage
+
+### Install
+
+Getting started is as easy as `gem install standard` or throwing it in your
+project's Gemfile:
 
 ```ruby
 gem "standard", group: [:development, :test]
 ```
 
-You can then run Standard from the command line with:
+### Running Standard
+
+Once installed, you can either run it as a CLI or as a Rake task.
+
+The CLI is called `standardrb` to distinguish it from
+[StandardJS](https://github.com/standard/standard):
+
+```
+$ standardrb
+```
+
+And the Rake task can be run if your Rakefile includes `require
+"standard/rake"`.  This will load the `standard` task, allowing you to run:
+
+```
+$ rake standard
+```
+
+Either way, Standard will inspect any Ruby files found in the current directory
+tree. If any errors are found, it'll report them. If your code is
+standard-compliant, it will get out of your way by quietly exiting code 0.
+
+### Fixing errors
+
+A majority of Standard's rules can be safely fixed automatically.
+
+```
+# CLI
+$ standard --fix
+
+# Rake
+$ rake standard:fix
+```
+
+Because we're confident Standard's fixes won't change the behavior of our code,
+we typically run with fix enabled _all the time_ because it saves us from having
+to look at and think about problems the computer can solve for us.
+
+### Applying unsafe fixes
+
+There are a number of other rules that can be automatically remedied, but not
+without the risk of changing your code's behavior. While we wouldn't recommend
+running it all the time, if the CLI suggests that additional errors can be fixed
+_unsafely_, here's how to do that:
+
+```
+# CLI
+$ standardrb --fix-unsafely
+
+# Rake
+$ rake standard:fix_unsafely
+```
+
+So long as your code is checked into source control, there's no mortal harm in
+running with unsafe fixes enabled. If the changes look good to you and your
+tests pass, then it's probably less error prone than manually editing everything
+by hand.
+
+## Integrating Standard into your workflow
+
+Because code formatting is so integral to programming productivity and linter
+violations risk becoming bugs if released into production, tools like
+Standard Ruby are only as useful as their integration into code editors and
+continuous integration systems.
+
+### Editor support
+
+We've added a number of editing guides for getting started:
+
+- [VS Code](https://github.com/standardrb/vscode-standard-ruby)
+- [vim](https://github.com/standardrb/standard/wiki/IDE:-vim)
+- [neovim](https://github.com/standardrb/standard/wiki/IDE:-neovim)
+- [RubyMine](https://www.jetbrains.com/help/ruby/rubocop.html#disable_rubocop)
+- [emacs](https://github.com/julianrubisch/flycheck-standardrb)
+- [Atom](https://github.com/standardrb/standard/wiki/IDE:-Atom)
+
+If you'd like to help by creating a guide, please draft one [in an
+issue](https://github.com/standardrb/standard/issues/new) and we'll get it
+added!
+
+#### Language Server Protocol support
+
+If you don't see your preferred editor above, Standard Ruby also ships with a
+built-in [language
+server](https://microsoft.github.io/language-server-protocol/) that many modern
+editors can support natively, even without a Standard-specific plugin.
+
+You can run the server by supplying the `--lsp` flag:
+
+```
+standard --lsp
+```
+
+If your editor offers LSP support, it probably has a place to configure the
+above command and will subsequently manage the server process for you.
+
+### CI support
+
+Various continuous integration and quality-checking tools have been made to
+support Standard Ruby, as well.
+
+* [Github Actions](https://github.com/andrewmcodes/standardrb-action)
+* [Code Climate](https://github.com/standardrb/standard/wiki/CI:-Code-Climate)
+* [Pronto](https://github.com/julianrubisch/pronto-standardrb)
+* [Danger](https://github.com/ashfurrow/danger-rubocop/)
+
+Of course, no special plugin is necessary to run Standard Ruby in a CI
+environment, as `standardrb` and `rake standard` work just fine on their own!
+
+### Other tools
+
+These tool integrations are also available:
+
+* [Guard](https://github.com/JodyVanden/guard-standardrb)
+* [Spring](https://github.com/lakim/spring-commands-standard)
+
+## Ignoring errors
+
+While Standard is very strict in how each formatting and linting rule is configured,
+it's mercifully flexible when you need to ignore a violation to focus on a higher
+priority (like, say, keeping the build running). There are a number of ways to
+ignore any errors, with the right answer depending on the situation.
+
+### Ignoring a line with a comment
+
+Individual lines can be ignored with a comment directive at the end of the line.
+As an example, the line `text = 'hi'` violates two rules,
+[Lint/UselessAssignment](https://docs.rubocop.org/rubocop/cops_lint.html#lintuselessassignment)
+and
+[Style/StringLiterals](https://docs.rubocop.org/rubocop/cops_style.html#stylestringliterals).
+
+You could ignore one, both, or all errors with the following comments:
 
 ```ruby
-$ bundle exec standardrb
+# Disable one error but keep Lint/UselessAssignment
+text = 'hi' # standard:disable Style/StringLiterals
+
+# Disable both errors explicitly
+text = 'hi' # standard:disable Style/StringLiterals, Lint/UselessAssignment
+
+# Disable all errors on the line with "all"
+text = "hi" # standard:disable all
 ```
 
-And if you'd like, Standard can autocorrect your code by tacking on a `--fix`
-flag.
+### Ignoring multiple lines with comments
 
-If your project uses Rake, adding `require "standard/rake"` adds two tasks:
-`standard` and `standard:fix`. In most new projects, we tend to add the fixer
-variant to our default `rake` task after our test command, similar to this:
+Similarly to individual lines, you can also disable multiple lines by wrapping
+them in comments that disable and re-enable them:
 
 ```ruby
-task default: [:test, "standard:fix"]
+# standard:disable Style/StringLiterals, Lint/UselessAssignment
+text = "hi"
+puts 'bye'
+# standard:enable Style/StringLiterals, Lint/UselessAssignment
 ```
 
-## StandardRB — The Rules
+### Ignoring entire files and globs
 
-- **2 spaces** – for indentation
-- **Double quotes for string literals** - because pre-committing to whether
-  you'll need interpolation in a string slows people down
-- **1.9 hash syntax** - When all the keys in a hash literal are symbols,
-  Standard enforces Ruby 1.9's `{hash: syntax}`
-- **Braces for single-line blocks** - Require `{`/`}` for one-line blocks, but
-  allow either braces or `do`/`end` for multiline blocks. Like using `do`/`end`
-  for multiline blocks? Prefer `{`/`}` when chaining? A fan of expressing intent
-  with Jim Weirich's [semantic
-  block](http://www.virtuouscode.com/2011/07/26/the-procedurefunction-block-convention-in-ruby/)
-  approach? Standard lets you do you!
-- **Leading dots on multi-line method chains** - chosen for
-  [these](https://github.com/testdouble/standard/issues/75) reasons.
-- **Spaces inside blocks, but not hash literals** - In Ruby, the `{` and `}`
-  characters do a lot of heavy lifting. To visually distinguish hash literals
-  from blocks, Standard enforces that (like arrays), no leading or trailing
-  spaces be added to pad hashes
-- **And a good deal more**
+You can ignore entire files and file patterns by adding them to `ignore:` in
+your project's `.standard.yml` file:
 
-If you're familiar with [RuboCop](https://github.com/rubocop-hq/rubocop), you
-can look at Standard's current base configuration in
-[config/base.yml](/config/base.yml).
-
-## Usage
-
-Once you've installed Standard, you should be able to use the `standardrb`
-program. The simplest use case would be checking the style of all Ruby
-files in the current working directory:
-
-```bash
-$ bundle exec standardrb
-standard: Use Ruby Standard Style (https://github.com/testdouble/standard)
-standard: Run `standardrb --fix` to potentially fix one problem.
-  /Users/jill/code/cli.rb:31:23: Style/Semicolon: Do not use semicolons to terminate expressions.
+```yaml
+ignore:
+  - 'db/schema.rb'
+  - 'vendor/**/*'
 ```
 
-You can optionally pass in a directory (or directories) using a glob pattern.
-Be sure to quote paths containing glob patterns so that they are expanded by
-`standardrb` instead of your shell:
+### Ignoring specific rules in files and globs
 
-```bash
-$ bundle exec standardrb "lib/**/*.rb" test
+For a given file or glob, you can even ignore only specific rules by nesting an
+array of the rules you'd like to ignore:
+
+```yaml
+ignore:
+  - 'test/**/*':
+    - Layout/AlignHash
 ```
 
-**Note:** by default, StandardRB will look for all `*.rb` files (and some other
-files typically associated with Ruby like `*.gemspec` and `Gemfile`)
+### Ignoring every violation and converting them into a todo list
 
-If you want to add Standard to an existing project, but don't want to stop all
-development until you've fixed every violation in every file, you can create a
-backlog of to-be-converted files by generating a TODO file:
+If you're adopting Standard in a large codebase and you don't want to convert
+everything all at once, you can work incrementally by generating a "todo" file
+which will cause Standard to ignore every violation present in each file of the
+codebase.
 
-```bash
-$ bundle exec standardrb --generate-todo
-```
+This way, you can gradually work through the todo list, removing ignore
+directives and fixing any associated errors, while also being alerted to any
+regressions if they're introduced into the project.
 
-This will create a `.standard_todo.yml` that lists all the files that contain
-errors. When you run Standard in the future, it will ignore these files as if
-they were listed under the `ignore` section in the `.standard.yml` file.
-
-As you refactor your existing project you can remove files from the list. You
-can also regenerate the TODO file at any time by re-running the above command.
-
-### Using with Rake
-
-Standard also ships with Rake tasks. If you're using Rails, these should
-autoload and be available after installing Standard. Otherwise, just require the
-tasks in your `Rakefile`:
-
-```ruby
-require "standard/rake"
-```
-
-Here are the tasks bundled with Standard:
+Here are the commands you might run to get started:
 
 ```
-$ rake standard     # equivalent to running `standardrb`
-$ rake standard:fix # equivalent to running `standardrb --fix`
-$ rake standard:fix_unsafely # equivalent to running `standardrb --fix-unsafely`
+# Start by clearing any auto-fixable errors:
+$ standardrb --fix
+
+# Generate a `.standard_todo.yml' to work from
+$ standardrb --generate-todo
 ```
 
-You may also pass command line options to Standard's Rake tasks by embedding
-them in a `STANDARDOPTS` environment variable (similar to how the Minitest Rake
-task accepts CLI options in `TESTOPTS`).
+## Configuring Standard
+
+While the rules aren't configurable, Standard offers a number of options that
+can be configured as CLI flags and YAML properties.
+
+### CLI flags
+
+The easiest way to summarize the available CLI flags is to invoke `standardrb -h`:
 
 ```
-# equivalent to `standardrb --format progress`:
+Usage: standardrb [--fix] [--lsp] [-vh] [--format <name>] [--] [FILE]...
+
+Options:
+
+  --fix             Apply automatic fixes that we're confident won't break your code
+  --fix-unsafely    Apply even more fixes, including some that may change code behavior
+  --no-fix          Do not automatically fix failures
+  --format <name>   Format output with any RuboCop formatter (e.g. "json")
+  --generate-todo   Create a .standard_todo.yml that lists all the files that contain errors
+  --lsp             Start a LSP server listening on STDIN
+  -v, --version     Print the version of Standard
+  -V, --verbose-version   Print the version of Standard and its dependencies.
+  -h, --help        Print this message
+  FILE              Files to lint [default: ./]
+
+Standard also forwards most CLI arguments to RuboCop. To see them, run:
+
+  $ rubocop --help
+```
+
+If you run Standard via Rake, you can specify your CLI flags in an environment
+variable named `STANDARDOPTS` like so:
+
+```
 $ rake standard STANDARDOPTS="--format progress"
-
-# equivalent to `standardrb lib "app/**/*"`, to lint just certain paths:
-$ rake standard STANDARDOPTS="lib \"app/**/*\""
 ```
 
-## What you might do if you're clever
+### YAML options
 
-If you want or need to configure Standard, there are a _handful_ of options
-available by creating a `.standard.yml` file in the root of your project.
-
-Here's an example yaml file with every option set:
+In addition to CLI flags, Standard will search for a `.standard.yml` file
+(ascending to parent directories if the current working directory doesn't
+contain one). If you find yourself repeatedly running Standard with the same
+CLI options, it probably makes more sense to set it once in a YAML file:
 
 ```yaml
 fix: true               # default: false
 parallel: true          # default: false
 format: progress        # default: Standard::Formatter
-ruby_version: 2.3       # default: RUBY_VERSION
+ruby_version: 3.0       # default: RUBY_VERSION
 default_ignores: false  # default: true
 
 ignore:                 # default: []
-  - 'db/schema.rb'
   - 'vendor/**/*'
-  - 'test/**/*':
-    - Layout/AlignHash
+
+plugins:                # default: []
+  - standard-rails
+
+extend_config:                # default: []
+  - .standard_ext.yml
 ```
 
-Note: If you're running Standard in a context where your `.standard.yml` file
-cannot be found by ascending the current working directory (i.e., against a
-temporary file buffer in your editor), you can specify the config location with
-`--config path/to/.standard.yml`. (Similarly, for the `.standard_todo.yml` file,
-you can specify `--todo path/to/.standard_todo.yml`.)
+## Extending Standard
 
-## What you might do if you're REALLY clever
+Standard includes two extension mechanisms: plugins and configuration
+extensions. While neither can _change_ the rules configured out-of-the-box by
+Standard, they can define, require, and configure _additional_ RuboCop rules.
 
-Because StandardRB is essentially a wrapper on top of
-[RuboCop](https://github.com/rubocop-hq/rubocop), it will actually forward the
-vast majority of CLI and ENV arguments to RuboCop.
+Both are "first-in-wins", meaning once a rule is configured by a plugin or
+extension, it can't be changed or reconfigured by a later plugin or extension.
+This way, each Standard plugin you add becomes a de facto "standard" of its
+own. Plugins have precedence over extensions as they are loaded first.
 
-You can see a list of
-[RuboCop](https://docs.rubocop.org/rubocop/usage/basic_usage.html#command-line-flags)'s
-CLI flags here.
+### Plugins
 
-## Why should I use Ruby Standard Style?
+Adding a plugin to your project is as easy as adding it to your Gemfile and
+specifying it in `.standard.yml` in the root of your project. For example, after
+installing [standard-rails](https://github.com/standardrb/standard-rails), you
+can configure it by adding it to `plugins`:
 
-(This section will [look
-familiar](https://github.com/standard/standard#why-should-i-use-javascript-standard-style)
-if you've used StandardJS.)
+```yaml
+plugins:
+  - standard-rails
+```
 
-The beauty of Ruby Standard Style is that it's simple. No one wants to
-maintain multiple hundred-line style configuration files for every module/project
-they work on. Enough of this madness!
+Each plugin can be passed configuration options by specifying them in a nested
+hash. For example, `standard-rails` allows you to configure its rules for
+a particular version of Rails (though this will usually be detected for you
+automatically):
 
-This gem saves you (and others!) time in four ways:
+```yaml
+plugins:
+  - standard-rails:
+      target_rails_version: 7.0
+```
 
-- **No configuration.** The easiest way to enforce consistent style in your
-  project. Just drop it in.
-- **Automatically format code.** Just run `standardrb --fix` and say goodbye to
-  messy or inconsistent code.
-- **Catch style issues & programmer errors early.** Save precious code review
-  time by eliminating back-and-forth between reviewer & contributor.
-- **Deliberate pace.** We strive to take the hassle of upgrading Rubocop out of each
-  individual team's hands and shoulder it ourselves. We enable about ~20% of new
-  cops and generally choose conservative configurations for them.
+You can develop your own plugins, too! Check out the
+[lint_roller](https://github.com/standardrb/lint_roller) gem to learn how. For a
+simple example, you can look at
+[standard-custom](https://github.com/standardrb/standard-custom), which is one
+of the default plugins included by Standard.
 
-Adopting Standard style means ranking the importance of code clarity and
-community conventions higher than personal style. This might not make sense for
-100% of projects and development cultures, however open source can be a hostile
-place for newbies. Setting up clear, automated contributor expectations makes a
-project healthier.
+### Extended config files
 
-## Who uses Ruby Standard Style?
+Of course, you may want to add more rules without going to the trouble
+of packaging them in a plugin gem. For cases like this, you can define one or
+more [RuboCop configuration
+files](https://docs.rubocop.org/rubocop/configuration.html) and then list them
+in your `.standard.yml` file under `extend_config`.
+
+For example, after installing the
+[betterlint](https://github.com/Betterment/betterlint) gem from our friends at
+[Betterment](https://www.betterment.com), we could create a RuboCop config
+file named `.betterlint.yml`:
+
+```yaml
+require:
+  - rubocop/cop/betterment.rb
+
+Betterment/UnscopedFind:
+  Enabled: true
+
+  unauthenticated_models:
+    - SystemConfiguration
+```
+
+And then reference it in our `.standard.yml`:
+
+```yml
+extend_config:
+  - .betterlint.yml
+```
+
+## Who uses Standard Ruby?
 
 Here are a few examples of Ruby Standard-compliant teams & projects:
 
@@ -234,378 +429,14 @@ Here are a few examples of Ruby Standard-compliant teams & projects:
 * [Teamtailor](https://www.teamtailor.com/)
 * [thoughtbot](https://thoughtbot.com/)
 
-Does your team use Standard? [Add your name to the list](https://github.com/testdouble/standard/edit/main/README.md)!
+Does your team use Standard? [Add your name to the list](https://github.com/standardrb/standard/edit/main/README.md)!
 
-## Is there a readme badge?
+If you really want to show off, you can also add a badge to your project's README, like this one:
 
-Yes! If you use Standard in your project, you can include one of these
-badges in your readme to let people know that your code is using the StandardRB
-style.
-
-[![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standardrb/standard)
 
 ```md
-[![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
-```
-
-## I disagree with rule X, can you change it?
-
-No. The whole point of Standard is to save you time by avoiding
-[bikeshedding](https://www.freebsd.org/doc/en/books/faq/misc.html#bikeshed-painting)
-about code style. There are lots of debates online about tabs vs. spaces, etc.
-that will never be resolved. These debates just distract from getting stuff
-done. At the end of the day you have to 'just pick something', and that's the
-whole philosophy of Standard -- it's a bunch of sensible 'just pick something'
-opinions. Hopefully, users see the value in that over defending their own
-opinions.
-
-Pro tip: Just use Standard and move on. There are actual real problems that
-you could spend your time solving! :P
-
-## Is there an automatic formatter?
-
-Yes! You can use `standardrb --fix` to fix most issues automatically.
-
-`standardrb --fix` is built into `standardrb` for maximum convenience. Most
-problems are fixable, but some errors must be fixed manually.
-
-If you're feeling sinister, you can also use `standardrb --fix-unsafely`, which
-will also perform fixes, even if they run the risk of altering program behavior.
-If you read your git diffs closely and have good tests, this is often okay, but
-YMMV… it's called unsafe for a reason!
-
-## Can I override the `fix: true` config setting?
-
-Also yes! You can use `standardrb --no-fix`. Not `fix`ing is the default
-behavior, but this flag will override the `fix: true` setting in your
-[`.standard.yml` config](#what-you-might-do-if-youre-clever).
-This is especially useful for checking your project's compliance with
-`standardrb` in CI environments while keeping the `fix: true` option enabled
-locally.
-
-## How do I ignore files?
-
-Sometimes you need to ignore additional folders or specific minified files. To
-do that, add a `.standard.yml` file to the root of your project and specify a
-list of files and globs that should be excluded:
-
-```yaml
-ignore:
-  - 'some/file/in/particular.rb'
-  - 'a/whole/directory/**/*'
-```
-
-You can see the files Standard ignores by default
-[here](https://github.com/testdouble/standard/blob/main/lib/standard/creates_config_store/configures_ignored_paths.rb#L3-L13)
-
-## How do I hide a certain warning?
-
-In rare cases, you'll need to break a rule and hide the warning generated by
-Standard.
-
-Ruby Standard Style uses [RuboCop](https://github.com/rubocop-hq/rubocop)
-under-the-hood and you can hide warnings as you normally would if you used
-RuboCop directly.
-
-To ignore only certain rules from certain globs (not recommended, but maybe your
-test suite uses a non-standardable DSL, you can specify an array of RuboCop
-rules to ignore for a particular glob:
-
-```yaml
-ignore:
-  - 'test/**/*':
-    - Layout/EndAlignment
-```
-
-## How do I disable a warning within my source code?
-
-You can also use special comments to disable all or certain rules within your
-source code.
-
-Given this source listing `foo.rb`:
-
-```ruby
-baz = 42
-```
-
-Running `standard foo.rb` would fail:
-
-```
-foo.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `baz`.
-```
-
-If we wanted to make an exception, we could add the following comment:
-
-```ruby
-baz = 42 # standard:disable Lint/UselessAssignment
-```
-
-The comment directives (both `standard:disable` and `rubocop:disable`) will
-suppress the error and Standard would succeed.
-
-If, however, you needed to disable standard for multiple lines, you could use
-open and closing directives like this:
-
-```ruby
-# standard:disable Layout/IndentationWidth
-def foo
-    123
-end
-# standard:enable Layout/IndentationWidth
-```
-
-And if you don't know or care which rule is being violated, you can also
-substitute its name for "all". This line actually triggers three different
-violations, so we can suppress them like this:
-
-```ruby
-baz = ['a'].each do end # standard:disable all
-```
-
-## How do I specify a Ruby version? What is supported?
-
-Because Standard wraps RuboCop, they share the same [runtime
-requirements](https://github.com/rubocop-hq/rubocop#compatibility)—currently,
-that's MRI 2.3 and newer. While Standard can't avoid this runtime requirement,
-it does allow you to lint codebases that target Ruby versions older than 2.3 by
-narrowing the ruleset somewhat.
-
-Standard will default to telling RuboCop to target the currently running version
-of Ruby (by inspecting `RUBY_VERSION` at runtime. But if you want to lock it
-down, you can specify `ruby_version` in `.standard.yml`.
-
-```
-ruby_version: 1.8
-```
-
-See
-[testdouble/suture](https://github.com/testdouble/suture/blob/main/.standard.yml)
-for an example.
-
-It's a little confusing to consider, but the targeted Ruby version for linting
-may or may not match the version of the runtime (suppose you're on Ruby 2.5.1,
-but your library supports Ruby 2.3.0). In this case, specify `ruby_version` and
-you should be okay. However, note that if you target a _newer_ Ruby version than
-the runtime, RuboCop may behave in surprising or inconsistent ways.
-
-If you are targeting a Ruby older than 2.3 and run into an issue, check out
-Standard's [version-specific RuboCop
-configurations](https://github.com/testdouble/standard/tree/main/config) and
-consider helping out by submitting a pull request if you find a rule that won't
-work for older Rubies.
-
-## How do I use Standard with RuboCop extensions or custom rules?
-
-If you want to use Standard in conjunction with RuboCop extensions or custom
-cops, you can specify them in your own [RuboCop configuration
-YAML](https://docs.rubocop.org/rubocop/configuration.html) files and
-`.standard.yml` using the "extend_config` setting.
-
-For a simple example, you could include [rubocop-rails](https://github.com/rubocop/rubocop-rails)
-when Standard runs by first specifying a file in `.standard.yml`:
-
-```yaml
-# .standard.yml
-
-extend_config:
-  - .standard_rubocop_extensions.yml
-```
-
-And a minimal RuboCop configuration file:
-
-```yaml
-# .standard_rubocop_extensions.yml
-
-require:
-  - rubocop-rails
-```
-
-That's it! Now, in addition to all of Standard's built-in rules, `standardrb`
-and `rake standard` will also execute the default configuration of the
-`rubocop-rails` gem without needing to invoke `rubocop` separately.
-
-For a slightly more complex example, we could add the
-[betterlint](https://github.com/Betterment/betterlint) gem from our friends at
-[Betterment](https://www.betterment.com), first by telling Standard where our
-configuration file is:
-
-```yml
-# .standard.yml
-
-extend_config:
-  - .betterlint.yml
-```
-
-But if we only wanted to enable a particular rule, we could configure it more
-narrowly, like this:
-
-```yml
-# .betterlint.yml
-
-require:
-  - rubocop/cop/betterment.rb
-
-AllCops:
-  DisabledByDefault: true
-
-Betterment/UnscopedFind:
-  Enabled: true
-
-  unauthenticated_models:
-    - SystemConfiguration
-```
-
-This same approach works for more than just gems! Just require a Ruby file that
-defines or loads your [custom RuboCop
-implementation](https://docs.rubocop.org/rubocop/development.html) and configure
-it using `extend_config`.
-
-When Standard encounters an `extend_config` property, it will merge your
-configuration files with Standard's base ruleset. To prevent Standard's built-in
-rules from being modified, any configuration of rules includued in the `rubocop`
-or `rubocop-performance` gems will be ignored. Most settings under `AllCops:`
-can be configured, however, unless they'd conflict with a setting used by
-Standard (like `TargetRubyVersion`) or prevent Standard's own rules from running
-(like `StyleGuideCopsOnly`). If you specify multiple YAML files under
-`extend_config`, note that their resulting RuboCop configurations will be merged
-in order (i.e.  last-in-wins).
-
-### Usage via RuboCop
-
-If you find that Standard's `extend_config` feature doesn't meet your needs or
-if you only want to use Standard's rules while continuing to use RuboCop's CLI
-(e.g., to continue using your favorite IDE/tooling/workflow with RuboCop
-support) Evil Martians also maintains [a regularly updated
-guide](https://evilmartians.com/chronicles/rubocoping-with-legacy-bring-your-ruby-code-up-to-standard)
-on how to configure RuboCop to load and execute Standard's ruleset.
-
-In short, you can configure this in your `.rubocop.yml` to load Standard's
-ruleset like any other gem:
-
-```yaml
-require: standard
-
-inherit_gem:
-  standard: config/base.yml
-```
-
-## How do I change the output?
-
-Standard's built-in formatter is intentionally minimal, printing only unfixed
-failures or (when successful) printing nothing at all. If you'd like to use a
-different formatter, you can specify any of RuboCop's built-in formatters or
-write your own.
-
-For example, if you'd like to see colorful progress dots, you can either run
-Standard with:
-
-```
-$ bundle exec standardrb --format progress
-Inspecting 15 files
-...............
-
-15 files inspected, no offenses detected
-```
-
-Or, in your project's `.standard.yml` file, specify:
-
-```yaml
-format: progress
-```
-
-Refer to RuboCop's [documentation on
-formatters](https://rubocop.readthedocs.io/en/latest/formatters/) for more
-information.
-
-## How do I run Standard in my editor?
-
-It can be very handy to know about failures while editing to shorten the
-feedback loop.
-
-### Language Server Protocol support
-
-To provide immediate feedback of Standard violations and support autofixing
-of your code while avoiding the performance cost of starting and stopping the
-`standardrb` binary repeatedly, Standard Ruby ships with a built-in [Language
-Server Protocol](https://microsoft.github.io/language-server-protocol/) server,
-which is powered by the [language_server-protocol
-gem](https://github.com/mtsmfm/language_server-protocol-ruby) and can be
-activated from the command line with the `--lsp` flag.
-
-Most likely, you'd instantiate this server indirectly in your editor's
-configuration, as can be demonstrated easily with
-[neovim](https://github.com/testdouble/standard/wiki/IDE:-neovim).
-Theoretically, this feature could be leveraged by a purpose-built editor plugin
-to performantly format and fix your code. (If you're looking for a project, we'd
-love to see one created for VS Code!)
-
-### Editor-specific guides
-
-- [Atom](https://github.com/testdouble/standard/wiki/IDE:-Atom)
-- [emacs (via flycheck)](https://github.com/julianrubisch/flycheck-standardrb)
-- [RubyMine](https://www.jetbrains.com/help/ruby/rubocop.html#disable_rubocop)
-- [vim (via ALE)](https://github.com/testdouble/standard/wiki/IDE:-vim)
-- [neovim (via LSP)](https://github.com/testdouble/standard/wiki/IDE:-neovim)
-- [VS Code](https://github.com/testdouble/standard/wiki/IDE:-vscode)
-
-## Why aren't `frozen_string_literal: true` magic comments enforced?
-
-Standard does not take a stance on whether you should plaster a
-[frozen_string_literal magic
-comment](https://docs.ruby-lang.org/en/3.0/doc/syntax/comments_rdoc.html#label-Magic+Comments)
-directive at the top of every file. Enforcing use of the comment became popular
-when it was believed that string literals would be frozen by default in a future
-version of Ruby, but [according to
-Matz](https://bugs.ruby-lang.org/issues/11473#note-53) there are no (longer any)
-such plans.
-
-Aside from one's personal opinion on the degree to which the comment is an
-eyesore, the decision to include the magic comment at the top of every file
-listing ought to be made based on the performance characteristics of each
-project (e.g. whether it defines a significant number of string literals,
-whether the commensurate memory usage is a material constraint, whether the code
-is run as a one-off command or a long-lived server application). These tend to
-indicate whether the magic comment might lead to meaningful reductions in memory
-usage.
-
-Because Standard is intended to be used as a default for every kind of Ruby
-file—from shell scripts to Rails apps—it wouldn't be appropriate for Standard to
-either enforce or preclude the magic comment. Instead, you might consider
-either:
-
-* Measuring memory performance by enabling frozen string literals as
-  the default at runtime (with `RUBYOPT=--enable-frozen-string-literal`)
-* Introducing the
-  [magic_frozen_string_literal](https://github.com/Invoca/magic_frozen_string_literal)
-  gem to your build, which will automatically ensure that the comment is
-  prepended for every applicable file in your project
-
-## How often is Standard updated?
-
-We aim to update Standard once a month, in the first week of the month. In between releases, we'll be considering RuboCop updates, RuboCop Performance updates, and community contributions.
-
-## Does Standard work with [Insert other tool name here]?
-
-Maybe! Start by searching the repository to see if there's an existing issue
-open for the tool you're interested in. That aside, here are other known
-integrations aside from editor plugins:
-
-* [Code Climate](https://github.com/testdouble/standard/wiki/CI:-Code-Climate)
-* [Pronto](https://github.com/julianrubisch/pronto-standardrb)
-* [Spring](https://github.com/lakim/spring-commands-standard)
-* [Guard](https://github.com/JodyVanden/guard-standardrb)
-* [Danger](https://github.com/ashfurrow/danger-rubocop/)
-
-## Contributing
-
-Follow the steps below to setup standard locally:
-
-```bash
-$ git clone https://github.com/testdouble/standard
-$ cd standard
-$ gem install bundler # if working with ruby version below 2.6.0
-$ bundle install
-$ bundle exec rake # to run test suite
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standardrb/standard)
 ```
 
 ## Code of Conduct
