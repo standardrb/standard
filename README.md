@@ -47,10 +47,15 @@ is time wasted.
 
 **But you can't configure Standard Ruby.** You can take it or leave it. If this
 seems presumptive, constraining, and brusque: you're right, it usually does feel
-that way at first. But since 2018, the Ruby community has debated Standard
-Ruby's ruleset, ultimately landing us on a sensible set of defaults that—_while
-no one person's favorite way to format Ruby_—seems to be good enough for most of
-the ways people use Ruby, most of the time.
+that way at first. But [since
+2018](https://www.youtube.com/watch?v=uLyV5hOqGQ8), the Ruby community has
+debated Standard Ruby's ruleset, ultimately landing us on a
+[sensible](/config/base.yml)
+[set](https://github.com/standardrb/standard-performance/blob/main/config/base.yml)
+of
+[defaults](https://github.com/standardrb/standard-custom/blob/main/config/base.yml)
+that—_while no one person's favorite way to format Ruby_—seems to be good enough
+for most of the ways people use Ruby, most of the time.
 
 If you adopt Standard Ruby, what's in it for you? Time saved that would've been
 spent arguing over how to set things up. Also, seamless upgrades: we stay on top
