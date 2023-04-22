@@ -6,7 +6,7 @@ PATH
       lint_roller (~> 1.0)
       rubocop (~> 1.50.2)
       standard-custom (~> 1.0.0)
-      standard-performance (~> 1.0.0)
+      standard-performance (~> 1.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -53,7 +53,7 @@ GEM
     simplecov_json_formatter (0.1.4)
     standard-custom (1.0.0)
       lint_roller (~> 1.0)
-    standard-performance (1.0.0)
+    standard-performance (1.0.1)
       lint_roller (~> 1.0)
       rubocop-performance (~> 1.16.0)
     unicode-display_width (2.4.2)
