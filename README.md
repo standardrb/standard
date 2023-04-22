@@ -14,12 +14,12 @@ supports plugins built with
 [standard-rails](https://github.com/standardrb/standard-rails).
 
 Standard Ruby was created and is maintained by the team at [Test
-Double](https://testdouble.com), because we appreciate the need for balance
-between developer autonomy and predictably consistent code. 💚
+Double](https://testdouble.com), because we appreciate the importance of
+balancing predictably consistent code with preserving developers' autonomy. 💚
 
-Contents:
+Topics covered in this README:
 
-* [Wait, what?](#wait-did-you-say-unconfigurable-configuration)
+* [Wait, what?!](#wait-did-you-say-unconfigurable-configuration)
 * [Basic usage](#usage)
 * [Editor & CI integrations](#integrating-standard-into-your-workflow)
 * [Ignoring errors](#ignoring-errors)
