@@ -394,6 +394,29 @@ extend_config:
   - .betterlint.yml
 ```
 
+### Running Standard's rules via RuboCop
+
+If you find that neither plugins or configuration extensions meet your needs or
+if you have some other reason to run Standard's rules with RuboCop's CLI (e.g.,
+to continue using your favorite IDE/tooling/workflow with RuboCop support) Evil
+Martians also maintains [a regularly updated
+guide](https://evilmartians.com/chronicles/rubocoping-with-legacy-bring-your-ruby-code-up-to-standard)
+on how to configure RuboCop to load and execute Standard's ruleset.
+
+In short, you can configure this in your `.rubocop.yml` to load Standard's three
+default rulesets, just as you would any other gem:
+
+```yaml
+require:
+  - standard
+  - rubocop-performance
+
+inherit_gem:
+  standard: config/base.yml
+  standard-performance: config/base.yml
+  standard-custom: config/base.yml
+```
+
 ## Who uses Standard Ruby?
 
 Here are a few examples of Ruby Standard-compliant teams & projects:
