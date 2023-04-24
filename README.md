@@ -110,7 +110,7 @@ A majority of Standard's rules can be safely fixed automatically.
 
 ```
 # CLI
-$ standard --fix
+$ standardrb --fix
 
 # Rake
 $ rake standard:fix
