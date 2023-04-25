@@ -75,6 +75,10 @@ module Standard
         @writer.write({id: request[:id], result: format_file(uri)})
       end
 
+      handle "workspace/didChangeConfiguration" do |_request|
+        @logger.puts "Ignoring workspace/didChangeConfiguration"
+      end
+
       handle "workspace/didChangeWatchedFiles" do |request|
         if request[:params][:changes].any? { |change| change[:uri].end_with?(".standard.yml") }
           @logger.puts "Configuration file changed; restart required"
