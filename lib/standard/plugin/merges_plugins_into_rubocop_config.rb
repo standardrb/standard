@@ -137,6 +137,8 @@ module Standard
       #
       # See: https://github.com/rubocop/rubocop/pull/11833
       def set_target_rails_version_on_all_cops_because_its_technically_not_allowed!(options_config)
+        return unless options_config.key?("AllCops")
+
         options_config["AllCops"]["TargetRailsVersion"] = "~"
       end
 
