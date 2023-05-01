@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.28.2
+
+* Attempts to fix the not-actually fixed plugin behavior in 1.28.1
+
 ## 1.28.1
 
 * Fixes plugin behavior caused by setting `DisabledByDefault: true` in `AllCops`
