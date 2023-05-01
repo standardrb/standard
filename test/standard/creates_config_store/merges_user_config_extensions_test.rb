@@ -44,7 +44,7 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
 
         # Allowed to overwrite
         "MaxFilesInCache" => 33,
-        "TargetRailsVersion" => "~"
+        "TargetRailsVersion" => nil
       }
     }, options_config.to_h)
   end
@@ -74,7 +74,7 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
         "StyleGuideCopsOnly" => false,
         "StyleGuideBaseURL" => "https://standardrb.example.com",
         "MaxFilesInCache" => 33,
-        "TargetRailsVersion" => "~"
+        "TargetRailsVersion" => nil
       },
       "Betterment/UnscopedFind" => {
         "Enabled" => true,
@@ -110,7 +110,7 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
         "StyleGuideCopsOnly" => false,
         "StyleGuideBaseURL" => "https://standardrb.example.com",
         "MaxFilesInCache" => 33,
-        "TargetRailsVersion" => "~"
+        "TargetRailsVersion" => nil
       },
 
       # First-in wins, deep merge for nested hashes

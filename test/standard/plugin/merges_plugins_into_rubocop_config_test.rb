@@ -75,7 +75,7 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     @subject.call(options_config, {}, [], permit_merging: true)
 
     assert_equal({
-      "AllCops" => {"TargetRailsVersion" => "~"}
+      "AllCops" => {}
     }, options_config.to_h)
   end
 
@@ -91,7 +91,7 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     ], permit_merging: true)
 
     assert_equal({
-      "AllCops" => {"TargetRailsVersion" => "~"},
+      "AllCops" => {},
       "Fake/Stuff" => {"Enabled" => true, "Plumbus" => "schleem"},
       "Fake/Things" => {"Enabled" => false, "Dingus" => "always"},
       "Fake/Junk" => {"Enabled" => false},
@@ -155,7 +155,7 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     ], permit_merging: true)
 
     assert_equal({
-      "AllCops" => {"TargetRailsVersion" => "~"},
+      "AllCops" => {},
       "Breakfast/Eggs" => {
         "Enabled" => true,
         "EnforcedStyle" => "scrambled"
@@ -178,7 +178,7 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     ], permit_merging: true)
 
     assert_equal({
-      "AllCops" => {"A" => "a1", "B" => "b1", "C" => "c1", "D" => "d2", "E" => "e3", "TargetRailsVersion" => "~"}
+      "AllCops" => {"A" => "a1", "B" => "b1", "C" => "c1", "D" => "d2", "E" => "e3"}
     }, options_config.to_h)
   end
 
@@ -211,8 +211,7 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     assert_equal({
       "AllCops" => {
         "fruits" => ["apple", "banana", "tomato", "orange"],
-        "nuts" => ["cashew", "peanut"],
-        "TargetRailsVersion" => "~"
+        "nuts" => ["cashew", "peanut"]
       },
       "Some/Rule" => {
         "candies" => ["lollipop"]

@@ -27,17 +27,16 @@ module Standard
 
       def call(options_config, standard_config, plugins, permit_merging:)
         runner_context = @creates_runner_context.call(standard_config)
-        plugin_config = combine_rubocop_configs(options_config, runner_context, plugins).to_h
+        plugin_config = combine_rubocop_configs(options_config, runner_context, plugins, permit_merging: permit_merging).to_h
         merge_config_into_all_cops!(options_config, plugin_config)
         merge_config_into_standard!(options_config, plugin_config, permit_merging: permit_merging)
       end
 
       private
 
-      def combine_rubocop_configs(options_config, runner_context, plugins)
+      def combine_rubocop_configs(options_config, runner_context, plugins, permit_merging:)
+        all_cop_keys_configured_by_plugins = all_cop_keys_previously_configured_by_plugins(options_config, permit_merging: permit_merging)
         fake_out_rubocop_default_configuration(options_config) do |fake_config|
-          all_cop_keys_configured_by_plugins = []
-
           plugins.reduce(fake_config) do |combined_config, plugin|
             RuboCop::ConfigLoader.instance_variable_set(:@default_configuration, combined_config)
             next_config, path = config_for_plugin(plugin, runner_context)
@@ -49,7 +48,7 @@ module Standard
             )
             delete_already_configured_keys!(combined_config.keys, next_config, dont_delete_keys: ["AllCops"])
 
-            RuboCop::ConfigLoader.merge_with_default(next_config, path)
+            RuboCop::ConfigLoader.merge_with_default(next_config, path, unset_nil: false)
           end
         end
       end
@@ -61,7 +60,7 @@ module Standard
           [RuboCop::ConfigLoader.load_file(rules.value), rules.value]
         elsif rules.type == :object
           path = plugin.method(:rules).source_location[0]
-          [RuboCop::Config.create(rules.value, path), path]
+          [RuboCop::Config.create(rules.value, path, check: true), path]
         elsif rules.type == :error
           raise "Plugin `#{plugin.about&.name || plugin.inspect}' failed to load with error: #{rules.value.respond_to?(:message) ? rules.value.message : rules.value}"
         end
@@ -124,8 +123,16 @@ module Standard
         end
       end
 
+      def all_cop_keys_previously_configured_by_plugins(options_config, permit_merging:)
+        if permit_merging
+          []
+        else
+          Array(options_config["AllCops"]&.keys) - RuboCop::ConfigLoader.default_configuration["AllCops"].keys
+        end
+      end
+
       def fake_out_rubocop_default_configuration(options_config)
-        og_default_config = RuboCop::ConfigLoader.instance_variable_get(:@default_configuration)
+        og_default_config = RuboCop::ConfigLoader.default_configuration
         set_target_rails_version_on_all_cops_because_its_technically_not_allowed!(options_config)
         result = yield blank_rubocop_config(options_config)
         RuboCop::ConfigLoader.instance_variable_set(:@default_configuration, og_default_config)
@@ -137,9 +144,9 @@ module Standard
       #
       # See: https://github.com/rubocop/rubocop/pull/11833
       def set_target_rails_version_on_all_cops_because_its_technically_not_allowed!(options_config)
-        return unless options_config.key?("AllCops")
+        return if !options_config.key?("AllCops") || options_config["AllCops"].key?("TargetRailsVersion")
 
-        options_config["AllCops"]["TargetRailsVersion"] = "~"
+        options_config["AllCops"]["TargetRailsVersion"] = nil
       end
 
       def blank_rubocop_config(example_config)
