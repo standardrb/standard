@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.28.1
+
+* Fixes plugin behavior caused by setting `DisabledByDefault: true` in `AllCops`
+  Effectively, a single lint_roller plugin whose `rules` were of type `:object`
+  would inadvertently mark all previously-defined rules as invalid.
+  [#557](https://github.com/standardrb/standard/pull/557)
+
 ## 1.28.0
 
 * Refactor Standard into 3 gems and convert all built-in configuration into
