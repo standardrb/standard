@@ -60,7 +60,8 @@ module Standard
         if rules.type == :path
           [RuboCop::ConfigLoader.load_file(rules.value), rules.value]
         elsif rules.type == :object
-          [RuboCop::Config.new(rules.value), nil]
+          path = plugin.method(:rules).source_location[0]
+          [RuboCop::Config.create(rules.value, path), path]
         elsif rules.type == :error
           raise "Plugin `#{plugin.about&.name || plugin.inspect}' failed to load with error: #{rules.value.respond_to?(:message) ? rules.value.message : rules.value}"
         end
@@ -125,9 +126,18 @@ module Standard
 
       def fake_out_rubocop_default_configuration(options_config)
         og_default_config = RuboCop::ConfigLoader.instance_variable_get(:@default_configuration)
+        set_target_rails_version_on_all_cops_because_its_technically_not_allowed!(options_config)
         result = yield blank_rubocop_config(options_config)
         RuboCop::ConfigLoader.instance_variable_set(:@default_configuration, og_default_config)
         result
+      end
+
+      # Avoid a warning that would otherwise be emitted by any plugin that set TargetRailsVersion
+      # because it's not a default AllCops key specified in RuboCop's embedded default config.
+      #
+      # See: https://github.com/rubocop/rubocop/pull/11833
+      def set_target_rails_version_on_all_cops_because_its_technically_not_allowed!(options_config)
+        options_config["AllCops"]["TargetRailsVersion"] = "~"
       end
 
       def blank_rubocop_config(example_config)
