@@ -56,6 +56,8 @@ class StandardrbTest < UnitTest
     refute status.success?
     assert_same_lines <<~MSG, stdout
       #{standard_greeting}
+      standard: Run `standardrb --fix` to potentially fix one problem.
+        olives.rb:1:10: Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping.
         olives.rb:1:1: Bananas/BananasOnly: Bananas only! No steak or apples or shenanigans.
     MSG
   end

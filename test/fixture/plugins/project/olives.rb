@@ -1,2 +1,2 @@
-olives = "🫒🫒🫒"
+olives = '🫒🫒🫒'
 puts olives

@@ -75,7 +75,7 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     @subject.call(options_config, {}, [], permit_merging: true)
 
     assert_equal({
-      "AllCops" => {}
+      "AllCops" => {"TargetRailsVersion" => "~"}
     }, options_config.to_h)
   end
 
@@ -91,7 +91,7 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     ], permit_merging: true)
 
     assert_equal({
-      "AllCops" => {},
+      "AllCops" => {"TargetRailsVersion" => "~"},
       "Fake/Stuff" => {"Enabled" => true, "Plumbus" => "schleem"},
       "Fake/Things" => {"Enabled" => false, "Dingus" => "always"},
       "Fake/Junk" => {"Enabled" => false},
@@ -117,6 +117,13 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     assert_equal <<~MSG.chomp, error.message
       Plugin `Broken Plugin' failed to load with error: I'm worse
     MSG
+  end
+
+  module RuboCop::Cop
+    module Breakfast
+      class Eggs < RuboCop::Cop::Base
+      end
+    end
   end
 
   def test_that_first_person_to_set_a_rule_cant_have_the_nested_attributes_overridden
@@ -148,7 +155,7 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     ], permit_merging: true)
 
     assert_equal({
-      "AllCops" => {},
+      "AllCops" => {"TargetRailsVersion" => "~"},
       "Breakfast/Eggs" => {
         "Enabled" => true,
         "EnforcedStyle" => "scrambled"
@@ -171,8 +178,15 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     ], permit_merging: true)
 
     assert_equal({
-      "AllCops" => {"A" => "a1", "B" => "b1", "C" => "c1", "D" => "d2", "E" => "e3"}
+      "AllCops" => {"A" => "a1", "B" => "b1", "C" => "c1", "D" => "d2", "E" => "e3", "TargetRailsVersion" => "~"}
     }, options_config.to_h)
+  end
+
+  module RuboCop::Cop
+    module Some
+      class Rule < RuboCop::Cop::Base
+      end
+    end
   end
 
   def test_that_all_cops_arrays_are_concated_but_rule_arrays_are_overwritten
@@ -197,7 +211,8 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
     assert_equal({
       "AllCops" => {
         "fruits" => ["apple", "banana", "tomato", "orange"],
-        "nuts" => ["cashew", "peanut"]
+        "nuts" => ["cashew", "peanut"],
+        "TargetRailsVersion" => "~"
       },
       "Some/Rule" => {
         "candies" => ["lollipop"]
