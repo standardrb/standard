@@ -1,4 +1,4 @@
-inherit_from: ./base.yml
+inherit_from: ./ruby-3.2.yml
 
 AllCops:
   TargetRubyVersion: 3.1
