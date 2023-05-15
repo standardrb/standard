@@ -432,6 +432,11 @@ extend_config:
 
 ### Running Standard's rules via RuboCop
 
+**Please note that the following usage is not supported and may break at any
+time. Use at your own risk and please refrain from opening GitHub issues with
+respect to loading Standard or its plugins' YAML configurations for use by
+the `rubocop` CLI.**
+
 If you find that neither plugins or configuration extensions meet your needs or
 if you have some other reason to run Standard's rules with RuboCop's CLI (e.g.,
 to continue using your favorite IDE/tooling/workflow with RuboCop support) Evil
