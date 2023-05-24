@@ -11,3 +11,6 @@ Style/FileWrite:
 
 Style/FileRead:
   Enabled: false
+
+Layout/DotPosition:
+  Enabled: false
