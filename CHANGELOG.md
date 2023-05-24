@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.28.3
 
 * Older ruby support fixes from [@pboling](https://github.com/pboling):
     - [#559](https://github.com/standardrb/standard/issues/559)
