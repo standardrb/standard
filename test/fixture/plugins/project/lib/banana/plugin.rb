@@ -1,5 +1,6 @@
 require "lint_roller"
 require_relative "bananas"
+require_relative "banana_bomb"
 
 module Banana
   class Plugin < LintRoller::Plugin
@@ -14,6 +15,9 @@ module Banana
           "Bananas/BananasOnly" => {
             "Enabled" => true,
             "PreferredBananaReplacement" => @config["preferred_banana_replacement"]
+          },
+          "Bananas/BananaBomb" => {
+            "Enabled" => true
           }
         }
       )

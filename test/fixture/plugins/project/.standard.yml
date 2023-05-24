@@ -5,3 +5,6 @@ plugins:
         - steak
         - apples
         - shenanigans
+ignore:
+  - '**/*.rb':
+      - Bananas/BananaBomb
