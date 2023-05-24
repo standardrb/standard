@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+* Older ruby support fixes from [@pboling](https://github.com/pboling):
+    - [#559](https://github.com/standardrb/standard/issues/559)
+    - [#561](https://github.com/standardrb/standard/issues/560)
+    - [#561](https://github.com/standardrb/standard/issues/561)
+
 ## 1.28.2
 
 * Attempts to fix the not-actually fixed plugin behavior in 1.28.1
