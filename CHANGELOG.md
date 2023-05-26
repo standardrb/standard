@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.28.4
+
+* Fix [standard-rails#7](https://github.com/standardrb/standard-rails/issues/7#issuecomment-1563505365)
+
 ## 1.28.3
 
 * Older ruby support fixes from [@pboling](https://github.com/pboling):
