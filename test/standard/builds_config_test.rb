@@ -86,6 +86,12 @@ class Standard::BuildsConfigTest < UnitTest
     assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/none_todo_file.rb")
     assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/todo_file_one.rb")
     assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/todo_file_two.rb")
+    assert_includes resulting_options_config["Lint/Style"]["Exclude"], path("test/fixture/config/u/thing.rb")
+    assert_includes resulting_options_config["Lint/Style"]["Exclude"], path("test/fixture/config/u/stuff.rb")
+    assert_includes resulting_options_config["Lint/UselessAssignment"]["Exclude"], path("test/fixture/config/u/thing.rb")
+    refute_includes resulting_options_config["Lint/UselessAssignment"]["Exclude"], path("test/fixture/config/u/stuff.rb")
+    refute_includes resulting_options_config["Metric/LineLength"]["Exclude"], path("test/fixture/config/u/thing.rb")
+    assert_includes resulting_options_config["Metric/LineLength"]["Exclude"], path("test/fixture/config/u/stuff.rb")
   end
 
   def test_todo_with_offenses_merged
