@@ -87,6 +87,8 @@ class Standard::Runners::RubocopTest < UnitTest
 
   def create_config(options = {}, path = "test/fixture/runner/agreeable.rb")
     Standard::Config.new(nil, [path], DEFAULT_OPTIONS.merge(options),
-      RuboCop::ConfigStore.new)
+      RuboCop::ConfigStore.new.tap do |config_store|
+        config_store.options_config = Pathname.new(__dir__).join("../../fixture/config/rubocop_runner/.rubocop.yml")
+      end)
   end
 end
