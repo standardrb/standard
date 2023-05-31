@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.28.5
+
+* Make LSP behave more nicely with nvim-lspconfig [#564](https://github.com/standardrb/standard/pull/564)
+
 ## 1.28.4
 
 * Fix [standard-rails#7](https://github.com/standardrb/standard-rails/issues/7#issuecomment-1563505365)
