@@ -5,3 +5,7 @@ Style/Encoding:
 
 Style/HashConversion:
   Enabled: false
+
+# Percent delimiters are not supported until Ruby 2.0
+Style/PercentLiteralDelimiters:
+  Enabled: false
