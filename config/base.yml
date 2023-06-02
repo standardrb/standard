@@ -1153,6 +1153,8 @@ Style/EvalWithLocation:
 Style/EvenOdd:
   Enabled: false
 
+Style/ExactRegexpMatch:
+    Enabled: true
 Style/ExpandPathArguments:
   Enabled: false
 
@@ -1498,6 +1500,9 @@ Style/RandomWithOffset:
 Style/RedundantArgument:
   Enabled: false
 
+Style/RedundantArrayConstructor:
+  Enabled: true
+
 Style/RedundantAssignment:
   Enabled: true
 
@@ -1531,6 +1536,9 @@ Style/RedundantFetchBlock:
 Style/RedundantFileExtensionInRequire:
   Enabled: true
 
+Style/RedundantFilterChain:
+  Enabled: false
+
 Style/RedundantFreeze:
   Enabled: true
 
@@ -1553,6 +1561,9 @@ Style/RedundantPercentQ:
   Enabled: true
 
 Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpConstructor:
   Enabled: true
 
 Style/RedundantRegexpEscape:
