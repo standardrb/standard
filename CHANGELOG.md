@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+* Updates standard-performance to [1.1.0](https://github.com/standardrb/standard-performacne/releases/tag/v1.1.0)
+* Updates rubocop to [1.52.0](https://github.com/rubocop/rubocop/releases/tag/v1.52.0)
+  * Enables Style/ExactRegexpMatch, Style/RedundantArrayConstructor, Style/RedundantFilterChain, Style/RedundantRegexpConstructor
+
 ## 1.28.5
 
 * Make LSP behave more nicely with nvim-lspconfig [#564](https://github.com/standardrb/standard/pull/564)
