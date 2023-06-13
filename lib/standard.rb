@@ -11,6 +11,5 @@ require "standard/cli"
 require "standard/railtie" if defined?(Rails) && defined?(Rails::Railtie)
 
 require "standard/formatter"
-require "standard/cop/block_single_line_braces"
 
 require "standard/plugin"
