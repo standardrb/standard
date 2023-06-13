@@ -36,7 +36,8 @@ class Standard::CliTest < UnitTest
     assert_equal <<~OUTPUT, fake_out.string
       #{standard_greeting}
         test/fixture/cli/unsafecorrectable-bad.rb:1:7: Lint/BooleanSymbol: Symbol with a boolean name - you probably meant to use `true`.
-      standard: Run `standardrb --fix-unsafely` to DANGEROUSLY fix one problem.
+        test/fixture/cli/unsafecorrectable-bad.rb:6:24: Performance/Count: Use `count` instead of `select...count`.
+      standard: Run `standardrb --fix-unsafely` to DANGEROUSLY fix 2 problems.
     OUTPUT
   end
 
