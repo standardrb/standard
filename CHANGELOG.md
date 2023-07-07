@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.30.1
+
+* Just kidding about about `Standard::PluginSupport`. Moving it to `LintRoller::Support`
+to avoid circular dependencies between Standard Ruby and its plugins
+
 ## 1.30.0
 
 * Add `Standard::PluginSupport` module of classes designed to make it a little
