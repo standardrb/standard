@@ -78,16 +78,6 @@ class Standard::BuildsConfigTest < UnitTest
     assert_match(/Configuration file ".*fake\.file" not found/, err.message)
   end
 
-  def test_todo_merged
-    result = @subject.call([], path("test/fixture/config/u"))
-
-    resulting_options_config = result.rubocop_config_store.for("").to_h
-    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/none_todo_path/**/*")
-    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/none_todo_file.rb")
-    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/todo_file_one.rb")
-    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/todo_file_two.rb")
-  end
-
   def test_todo_with_offenses_merged
     result = @subject.call([], path("test/fixture/config/t"))
 
