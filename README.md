@@ -450,12 +450,14 @@ default rulesets, just as you would any other gem:
 ```yaml
 require:
   - standard
+  - standard-custom
+  - standard-performance
   - rubocop-performance
 
 inherit_gem:
   standard: config/base.yml
-  standard-performance: config/base.yml
   standard-custom: config/base.yml
+  standard-performance: config/base.yml
 ```
 
 ## Who uses Standard Ruby?
