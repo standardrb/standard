@@ -81,10 +81,7 @@ class Standard::BuildsConfigTest < UnitTest
   def test_todo_file_not_loaded_when_generating_todo_file
     result = @subject.call(["--generate-todo"], path("test/fixture/config/t"))
 
-    assert_equal DEFAULT_OPTIONS.merge(
-      todo_file: nil,
-      todo_ignore_files: []
-    ), result.rubocop_options
+    assert_equal DEFAULT_OPTIONS, result.rubocop_options
   end
 
   def test_todo_with_offenses_merged

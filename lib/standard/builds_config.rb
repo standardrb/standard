@@ -18,7 +18,7 @@ module Standard
 
       # Don't load the existing todo file when generating a new todo file.  Otherwise the
       # new todo file won't have the ignore rules in the existing file.
-      todo_yaml_path = if (argv & ["--generate-todo"]).empty?
+      todo_yaml_path = unless argv.include?("--generate-todo")
         @resolves_yaml_option.call(argv, search_path, "--todo", ".standard_todo.yml")
       end
 
