@@ -14,6 +14,23 @@ class StandardrbTest < UnitTest
     MSG
   end
 
+  def test_generate_todo
+    FileUtils.rm_rf("tmp/standardrb_generate_todo_test")
+    FileUtils.mkdir_p("tmp/standardrb_generate_todo_test")
+
+    FileUtils.cp("test/fixture/standardrb/generate_todo/useless_assignment.rb", "tmp/standardrb_generate_todo_test/")
+
+    stdout, status = run_standardrb("tmp/standardrb_generate_todo_test", %w[--generate-todo --config ../../config/base.yml])
+
+    # The generate todo returns the Rubocop result which is non-zero
+    # if any linting errors where found.
+    refute status.success?
+    assert stdout.empty?
+
+    assert File.exist?("tmp/standardrb_generate_todo_test/.standard_todo.yml")
+    assert_equal File.read("test/fixture/standardrb/generate_todo/.standard_todo_expected.yml"), File.read("tmp/standardrb_generate_todo_test/.standard_todo.yml")
+  end
+
   def test_project_a_forwards_rubocop_options
     stdout, status = run_standardrb("test/fixture/project/a", %w[--only Style/TrivialAccessors])
 
@@ -65,6 +82,7 @@ class StandardrbTest < UnitTest
   private
 
   def run_standardrb(cwd, args = [])
+    # REM: Refactor to chdir block?
     og_pwd = Dir.pwd
     Dir.chdir(cwd)
     Open3.capture2(File.join(__dir__, "../exe/standardrb"), *args)
