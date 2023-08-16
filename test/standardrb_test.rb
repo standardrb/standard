@@ -31,6 +31,25 @@ class StandardrbTest < UnitTest
     assert_equal File.read("test/fixture/standardrb/generate_todo/.standard_todo_expected.yml"), File.read("tmp/standardrb_generate_todo_test/.standard_todo.yml")
   end
 
+  def test_generate_todo_existing
+    config_file = "./.standard.yml"
+
+    FileUtils.rm_rf("tmp/tests/standardrb/generate_todo_existing")
+    FileUtils.mkdir_p("tmp/tests/standardrb")
+
+    FileUtils.cp_r(File.join("test/fixture/standardrb/generate_todo_existing", "."), "tmp/tests/standardrb/generate_todo_existing")
+
+    stdout, status = run_standardrb("tmp/tests/standardrb/generate_todo_existing", ["--generate-todo", "--config", config_file])
+
+    # The generate todo returns the Rubocop result which is non-zero
+    # if any linting errors where found.
+    refute status.success?
+    assert_equal "", stdout
+
+    assert File.exist?(File.join("tmp/tests/standardrb/generate_todo_existing", ".standard_todo.yml"))
+    assert_equal File.read(File.join("tmp/tests/standardrb/generate_todo_existing", ".standard_todo_expected.yml")), File.read(File.join("tmp/tests/standardrb/generate_todo_existing", ".standard_todo.yml"))
+  end
+
   def test_project_a_forwards_rubocop_options
     stdout, status = run_standardrb("test/fixture/project/a", %w[--only Style/TrivialAccessors])
 

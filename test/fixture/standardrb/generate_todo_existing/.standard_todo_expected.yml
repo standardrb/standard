@@ -1,0 +1,8 @@
+# Auto generated files with errors to ignore.
+# Remove from this list as you refactor files.
+---
+ignore:
+- assignment_in_condition.rb:
+  - Lint/AssignmentInCondition
+- useless_assignment.rb:
+  - Lint/UselessAssignment
