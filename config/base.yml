@@ -5,6 +5,9 @@ Bundler/DuplicatedGem:
     - '**/Gemfile'
     - '**/gems.rb'
 
+Bundler/DuplicatedGroup:
+  Enabled: false
+
 Bundler/GemComment:
   Enabled: false
 
@@ -602,6 +605,9 @@ Lint/MissingCopEnableDirective:
 Lint/MissingSuper:
   Enabled: false
 
+Lint/MixedCaseRange:
+  Enabled: true
+
 Lint/MixedRegexpCaptureTypes:
   Enabled: true
 
@@ -667,6 +673,9 @@ Lint/RedundantCopEnableDirective:
 
 Lint/RedundantDirGlobSort:
   Enabled: false
+
+Lint/RedundantRegexpQuantifiers:
+  Enabled: true
 
 Lint/RedundantRequireStatement:
   Enabled: true
@@ -964,7 +973,6 @@ Style/AndOr:
 
 Style/ArgumentsForwarding:
   Enabled: true
-  AllowOnlyRestArgument: true
 
 Style/ArrayCoercion:
   Enabled: false
@@ -1521,6 +1529,9 @@ Style/RedundantConditional:
 Style/RedundantConstantBase:
   Enabled: false
 
+Style/RedundantCurrentDirectoryInPath:
+  Enabled: true
+
 Style/RedundantDoubleSplatHashBraces:
   Enabled: true
 
@@ -1558,6 +1569,9 @@ Style/RedundantParentheses:
   Enabled: true
 
 Style/RedundantPercentQ:
+  Enabled: true
+
+Style/RedundantRegexpArgument:
   Enabled: true
 
 Style/RedundantRegexpCharacterClass:
@@ -1605,6 +1619,9 @@ Style/RescueStandardError:
   EnforcedStyle: implicit
 
 Style/ReturnNil:
+  Enabled: false
+
+Style/ReturnNilInPredicateMethodDefinition:
   Enabled: false
 
 Style/SafeNavigation:
@@ -1790,6 +1807,9 @@ Style/WhileUntilModifier:
 
 Style/WordArray:
   Enabled: false
+
+Style/YAMLFileRead:
+  Enabled: true
 
 Style/YodaCondition:
   Enabled: true

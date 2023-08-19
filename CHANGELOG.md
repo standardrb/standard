@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+* Updates standard-performance to [v1.2.0](https://github.com/standardrb/standard-performance/releases/tag/v1.2.0)
+* Updates rubocop to [1.56.0](https://github.com/rubocop/rubocop/releases/tag/v1.56.0)
+
 ## 1.30.1
 
 * Just kidding about about `Standard::PluginSupport`. Moving it to `LintRoller::Support`
