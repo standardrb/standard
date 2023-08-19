@@ -506,6 +506,38 @@ If you really want to show off, you can also add a badge to your project's READM
 [![Ruby Code Style](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standardrb/standard)
 ```
 
+## Help, I'm seeing an install error!
+
+This section is really only here to feed Google, but if you see an error like
+any of the following:
+
+```
+ERROR:  Could not find a valid gem 'standard' (= 0.0.36) in any repository
+```
+
+```
+Could not find gem 'standard (= 0.0.36)' in rubygems repository https://rubygems.org/ or installed locally.
+```
+
+```
+Your bundle is locked to standard (0.0.36) from rubygems repository https://rubygems.org/ or installed locally, but that version can no longer be found in that source. That means the author of standard (0.0.36) has removed it. You'll need to update your bundle to a version other than standard (0.0.36) that hasn't been removed in order to install.
+```
+
+This is because on August 18th, 2023, we yanked versions 0.0.1~0.0.36.1 from
+[RubyGems.org](https://rubygems.org) for the reasons discussed in [this
+issue](https://github.com/standardrb/standard/issues/340). Because these
+versions are now over four years old and no longer track supported versions of
+Ruby or RuboCop, the correct fix for any of the above errors is probably to
+**upgrade to the latest version of Standard Ruby**.
+
+If for whatever reason you need to install one of these versions, you can
+change your Gemfile to point to the corresponding git tag from the source
+repository:
+
+```ruby
+gem "standard", git: "https://github.com/testdouble/standard.git", tag: "v0.0.36"
+```
+
 ## Code of Conduct
 
 This project follows Test Double's [code of
