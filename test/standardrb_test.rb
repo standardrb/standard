@@ -2,6 +2,15 @@ require_relative "test_helper"
 require "open3"
 
 class StandardrbTest < UnitTest
+  TEST_ROOT_FOLDER = "tmp/tests/standardrb"
+
+  def before_setup
+    super
+
+    FileUtils.rm_rf(TEST_ROOT_FOLDER)
+    FileUtils.mkdir_p(TEST_ROOT_FOLDER)
+  end
+
   def test_project_a_failure_output
     stdout, status = run_standardrb("test/fixture/project/a")
 
@@ -33,21 +42,20 @@ class StandardrbTest < UnitTest
 
   def test_generate_todo_existing
     config_file = "./.standard.yml"
+    test_folder = File.join(TEST_ROOT_FOLDER, "generate_todo_existing")
+    fixture_folder = "test/fixture/standardrb/generate_todo_existing"
 
-    FileUtils.rm_rf("tmp/tests/standardrb/generate_todo_existing")
-    FileUtils.mkdir_p("tmp/tests/standardrb")
+    FileUtils.cp_r(File.join(fixture_folder, "."), test_folder)
 
-    FileUtils.cp_r(File.join("test/fixture/standardrb/generate_todo_existing", "."), "tmp/tests/standardrb/generate_todo_existing")
-
-    stdout, status = run_standardrb("tmp/tests/standardrb/generate_todo_existing", ["--generate-todo", "--config", config_file])
+    stdout, status = run_standardrb(test_folder, ["--generate-todo", "--config", config_file])
 
     # The generate todo returns the Rubocop result which is non-zero
     # if any linting errors where found.
     refute status.success?
     assert_equal "", stdout
 
-    assert File.exist?(File.join("tmp/tests/standardrb/generate_todo_existing", ".standard_todo.yml"))
-    assert_equal File.read(File.join("tmp/tests/standardrb/generate_todo_existing", ".standard_todo_expected.yml")), File.read(File.join("tmp/tests/standardrb/generate_todo_existing", ".standard_todo.yml"))
+    assert File.exist?(File.join(test_folder, ".standard_todo.yml"))
+    assert_equal File.read(File.join(test_folder, ".standard_todo_expected.yml")), File.read(File.join(test_folder, ".standard_todo.yml"))
   end
 
   def test_project_a_forwards_rubocop_options
