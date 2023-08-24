@@ -1788,7 +1788,8 @@ Style/UnlessElse:
   Enabled: true
 
 Style/UnlessLogicalOperators:
-  Enabled: false
+  Enabled: true
+  EnforcedStyle: forbid_mixed_logical_operators
 
 Style/UnpackFirst:
   Enabled: true
