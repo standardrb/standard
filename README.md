@@ -465,10 +465,12 @@ inherit_gem:
 Here are a few examples of Ruby Standard-compliant teams & projects:
 
 * [Test Double](https://testdouble.com/agency)
+* [AlchemyCMS](https://alchemy-cms.com)
 * [Amazon Web Services](https://aws.amazon.com/)
 * [Arrows](https://arrows.to/)
 * [Avo Admin](https://avohq.io/)
 * [Babylist](https://www.babylist.com/)
+* [BLISH](https://blish.cloud)
 * [Brand New Box](https://brandnewbox.com)
 * [Brave Software](https://github.com/brave-intl/publishers)
 * [Collective Idea](https://collectiveidea.com/)
