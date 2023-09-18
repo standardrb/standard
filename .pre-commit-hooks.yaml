@@ -1,0 +1,6 @@
+- id: standardrb
+  name: Standard Ruby
+  entry: standardrb
+  language: ruby
+  types: ["ruby"]
+  args: ["--fix"]
