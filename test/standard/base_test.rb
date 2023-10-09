@@ -23,15 +23,15 @@ class Standard::BaseTest < UnitTest
       end
     end
 
-    assert_equal missing, [], "Configure these cops as either Enabled: true or Enabled: false in #{BASE_CONFIG}"
-    assert_equal extra, [], "These cops do not exist and should not be configured in #{BASE_CONFIG}"
+    assert_equal [], missing, "Configure these cops as either Enabled: true or Enabled: false in #{BASE_CONFIG}"
+    assert_equal [], extra, "These cops do not exist and should not be configured in #{BASE_CONFIG}"
   end
 
   def test_alphabetized_config
     actual = YAML.load_file(BASE_CONFIG).keys - ["require"]
     expected = actual.sort
 
-    assert_equal actual, expected, "Cop names should be alphabetized! (See this script to do it for you: https://github.com/standardrb/standard/pull/222#issue-744335213 )"
+    assert_equal expected, actual, "Cop names should be alphabetized! (See this script to do it for you: https://github.com/standardrb/standard/pull/222#issue-744335213 )"
   end
 
   private
