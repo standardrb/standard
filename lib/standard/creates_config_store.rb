@@ -19,9 +19,9 @@ module Standard
       RuboCop::ConfigStore.new.tap do |config_store|
         options_config = @assigns_rubocop_yaml.call(config_store, standard_config)
         @sets_target_ruby_version.call(options_config, standard_config)
-        @configures_ignored_paths.call(options_config, standard_config)
         @combines_plugin_configs.call(options_config, standard_config)
         @merges_user_config_extensions.call(options_config, standard_config)
+        @configures_ignored_paths.call(options_config, standard_config)
       end
     end
   end

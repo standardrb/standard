@@ -17,6 +17,7 @@ module Banana
             "PreferredBananaReplacement" => @config["preferred_banana_replacement"]
           },
           "Bananas/BananaBomb" => {
+            "Exclude" => ["nothinglolwtf"],
             "Enabled" => true
           }
         }

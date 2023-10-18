@@ -1,5 +1,48 @@
 # Changelog
 
+## 1.31.2
+
+* Updates rubocop to [1.52.4](https://github.com/rubocop/rubocop/releases/tag/v1.52.4)
+* Updates standard-performance to [v1.2.1](https://github.com/standardrb/standard-performance/releases/tag/v1.2.1)
+
+## 1.31.1
+
+* Updates rubocop to [1.52.2](https://github.com/rubocop/rubocop/releases/tag/v1.52.2)
+
+## 1.31.0
+
+* Updates standard-performance to [v1.2.0](https://github.com/standardrb/standard-performance/releases/tag/v1.2.0)
+* Updates rubocop to [1.56.0](https://github.com/rubocop/rubocop/releases/tag/v1.56.0)
+
+## 1.30.1
+
+* Just kidding about about `Standard::PluginSupport`. Moving it to `LintRoller::Support`
+to avoid circular dependencies between Standard Ruby and its plugins
+
+## 1.30.0
+
+* Add `Standard::PluginSupport` module of classes designed to make it a little
+easier to author plugins. `MergesUpstreamMetadata#merge` will allow a minimal
+YAML config (say, `standard-sorbet`'s, which only contains `Enabled` values for
+each rule) to merge in any other defaults from a source YAML (e.g.
+`rubocop-sorbet`'s which includes `Description`, `VersionAdded`, and so on).
+This way that metadata is neither absent at runtime nor duplicated in a standard
+plugin that mirrors a rubocop extension
+
+## 1.29.0
+
+* Updates standard-performance to [1.1.0](https://github.com/standardrb/standard-performance/releases/tag/v1.1.0)
+* Updates rubocop to [1.52.0](https://github.com/rubocop/rubocop/releases/tag/v1.52.0)
+  * Enables Style/ExactRegexpMatch, Style/RedundantArrayConstructor, Style/RedundantFilterChain, Style/RedundantRegexpConstructor
+
+## 1.28.5
+
+* Make LSP behave more nicely with nvim-lspconfig [#564](https://github.com/standardrb/standard/pull/564)
+
+## 1.28.4
+
+* Fix [standard-rails#7](https://github.com/standardrb/standard-rails/issues/7#issuecomment-1563505365)
+
 ## 1.28.3
 
 * Older ruby support fixes from [@pboling](https://github.com/pboling):

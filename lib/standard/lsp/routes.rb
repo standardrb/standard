@@ -27,7 +27,10 @@ module Standard
         @writer.write(id: request[:id], result: Proto::Interface::InitializeResult.new(
           capabilities: Proto::Interface::ServerCapabilities.new(
             document_formatting_provider: true,
-            diagnostic_provider: true,
+            diagnostic_provider: LanguageServer::Protocol::Interface::DiagnosticOptions.new(
+              inter_file_dependencies: false,
+              workspace_diagnostics: false
+            ),
             text_document_sync: Proto::Interface::TextDocumentSyncOptions.new(
               change: Proto::Constant::TextDocumentSyncKind::FULL,
               open_close: true
@@ -73,6 +76,10 @@ module Standard
       handle "textDocument/formatting" do |request|
         uri = request[:params][:textDocument][:uri]
         @writer.write({id: request[:id], result: format_file(uri)})
+      end
+
+      handle "workspace/didChangeConfiguration" do |_request|
+        @logger.puts "Ignoring workspace/didChangeConfiguration"
       end
 
       handle "workspace/didChangeWatchedFiles" do |request|

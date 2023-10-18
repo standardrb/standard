@@ -19,6 +19,7 @@ class StandardrbTest < UnitTest
         lib/foo/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/foo/meh/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         lib/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
+      standard: Run `standardrb --fix` to fix up to 3 problems.
     MSG
   end
 
@@ -45,6 +46,7 @@ class StandardrbTest < UnitTest
       #{standard_greeting}
         do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
         meh/do_lint.rb:1:1: Lint/UselessAssignment: Useless assignment to variable - `useless_assignment`.
+      standard: Run `standardrb --fix` to fix up to 2 problems.
     MSG
   end
 

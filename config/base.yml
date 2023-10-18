@@ -5,6 +5,9 @@ Bundler/DuplicatedGem:
     - '**/Gemfile'
     - '**/gems.rb'
 
+Bundler/DuplicatedGroup:
+  Enabled: false
+
 Bundler/GemComment:
   Enabled: false
 
@@ -602,6 +605,9 @@ Lint/MissingCopEnableDirective:
 Lint/MissingSuper:
   Enabled: false
 
+Lint/MixedCaseRange:
+  Enabled: true
+
 Lint/MixedRegexpCaptureTypes:
   Enabled: true
 
@@ -667,6 +673,9 @@ Lint/RedundantCopEnableDirective:
 
 Lint/RedundantDirGlobSort:
   Enabled: false
+
+Lint/RedundantRegexpQuantifiers:
+  Enabled: true
 
 Lint/RedundantRequireStatement:
   Enabled: true
@@ -964,7 +973,6 @@ Style/AndOr:
 
 Style/ArgumentsForwarding:
   Enabled: true
-  AllowOnlyRestArgument: true
 
 Style/ArrayCoercion:
   Enabled: false
@@ -1153,6 +1161,8 @@ Style/EvalWithLocation:
 Style/EvenOdd:
   Enabled: false
 
+Style/ExactRegexpMatch:
+    Enabled: true
 Style/ExpandPathArguments:
   Enabled: false
 
@@ -1498,6 +1508,9 @@ Style/RandomWithOffset:
 Style/RedundantArgument:
   Enabled: false
 
+Style/RedundantArrayConstructor:
+  Enabled: true
+
 Style/RedundantAssignment:
   Enabled: true
 
@@ -1516,6 +1529,9 @@ Style/RedundantConditional:
 Style/RedundantConstantBase:
   Enabled: false
 
+Style/RedundantCurrentDirectoryInPath:
+  Enabled: true
+
 Style/RedundantDoubleSplatHashBraces:
   Enabled: true
 
@@ -1530,6 +1546,9 @@ Style/RedundantFetchBlock:
 
 Style/RedundantFileExtensionInRequire:
   Enabled: true
+
+Style/RedundantFilterChain:
+  Enabled: false
 
 Style/RedundantFreeze:
   Enabled: true
@@ -1552,7 +1571,13 @@ Style/RedundantParentheses:
 Style/RedundantPercentQ:
   Enabled: true
 
+Style/RedundantRegexpArgument:
+  Enabled: true
+
 Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpConstructor:
   Enabled: true
 
 Style/RedundantRegexpEscape:
@@ -1594,6 +1619,9 @@ Style/RescueStandardError:
   EnforcedStyle: implicit
 
 Style/ReturnNil:
+  Enabled: false
+
+Style/ReturnNilInPredicateMethodDefinition:
   Enabled: false
 
 Style/SafeNavigation:
@@ -1760,7 +1788,8 @@ Style/UnlessElse:
   Enabled: true
 
 Style/UnlessLogicalOperators:
-  Enabled: false
+  Enabled: true
+  EnforcedStyle: forbid_mixed_logical_operators
 
 Style/UnpackFirst:
   Enabled: true
@@ -1779,6 +1808,9 @@ Style/WhileUntilModifier:
 
 Style/WordArray:
   Enabled: false
+
+Style/YAMLFileRead:
+  Enabled: true
 
 Style/YodaCondition:
   Enabled: true

@@ -5,3 +5,7 @@ AllCops:
 
 Style/DataInheritance:
   Enabled: false
+
+Style/ArgumentsForwarding:
+  Enabled: true
+  AllowOnlyRestArgument: true

@@ -8,7 +8,9 @@ buried.
 Starting with version 1.28.0, Standard Ruby introduced plugin support and
 refactored how it loads its own rules from one large YAML file into several
 plugins. As a result, what was a single `standard` gem is now spread across 3
-gems.  Here's how it's all organized:
+gems.
+
+Here's how it's all organized:
 
 * [standard](https://github.com/standardrb/standard) - The main gem. The one
 people install and think of. Because `standard` has a hard dependency on `rubocop`,
