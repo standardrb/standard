@@ -84,11 +84,13 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
       "AllCops" => {}
     }, "")
 
-    @subject.call(options_config, {}, [
-      PathyPlugin.new("test/fixture/plugins/rules.yml"),
-      ObjectyPlugin.new("Fake/Things" => {"Enabled" => true, "Dingus" => "never", "Really" => false}, "Fake/Junk" => {"Enabled" => false}),
-      ObjectyPlugin.new("Fake/Crap" => {"Enabled" => true})
-    ], permit_merging: true)
+    capture_io do
+      @subject.call(options_config, {}, [
+        PathyPlugin.new("test/fixture/plugins/rules.yml"),
+        ObjectyPlugin.new("Fake/Things" => {"Enabled" => true, "Dingus" => "never", "Really" => false}, "Fake/Junk" => {"Enabled" => false}),
+        ObjectyPlugin.new("Fake/Crap" => {"Enabled" => true})
+      ], permit_merging: true)
+    end
 
     assert_equal({
       "AllCops" => {},
@@ -135,24 +137,26 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
       }
     }, "")
 
-    @subject.call(options_config, {}, [
-      ObjectyPlugin.new(
-        "Breakfast/Eggs" => {
-          "Enabled" => true,
-          "EnforcedStyle" => "scrambled"
-        }
-      ),
-      ObjectyPlugin.new(
-        "Breakfast/Eggs" => {
-          "EnforcedStyle" => "poached"
-        }
-      ),
-      ObjectyPlugin.new(
-        "Breakfast/Eggs" => {
-          "Salt" => true
-        }
-      )
-    ], permit_merging: true)
+    capture_io do
+      @subject.call(options_config, {}, [
+        ObjectyPlugin.new(
+          "Breakfast/Eggs" => {
+            "Enabled" => true,
+            "EnforcedStyle" => "scrambled"
+          }
+        ),
+        ObjectyPlugin.new(
+          "Breakfast/Eggs" => {
+            "EnforcedStyle" => "poached"
+          }
+        ),
+        ObjectyPlugin.new(
+          "Breakfast/Eggs" => {
+            "Salt" => true
+          }
+        )
+      ], permit_merging: true)
+    end
 
     assert_equal({
       "AllCops" => {},
@@ -171,11 +175,13 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
       }
     }, "")
 
-    @subject.call(options_config, {}, [
-      ObjectyPlugin.new("AllCops" => {"A" => "a1", "B" => "b1", "C" => "c1"}),
-      ObjectyPlugin.new("AllCops" => {"A" => "a2", "B" => "b2", "C" => "c2", "D" => "d2"}),
-      ObjectyPlugin.new("AllCops" => {"E" => "e3"})
-    ], permit_merging: true)
+    capture_io do
+      @subject.call(options_config, {}, [
+        ObjectyPlugin.new("AllCops" => {"A" => "a1", "B" => "b1", "C" => "c1"}),
+        ObjectyPlugin.new("AllCops" => {"A" => "a2", "B" => "b2", "C" => "c2", "D" => "d2"}),
+        ObjectyPlugin.new("AllCops" => {"E" => "e3"})
+      ], permit_merging: true)
+    end
 
     assert_equal({
       "AllCops" => {"A" => "a1", "B" => "b1", "C" => "c1", "D" => "d2", "E" => "e3"}
@@ -199,14 +205,16 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
       }
     }, "")
 
-    @subject.call(options_config, {}, [
-      ObjectyPlugin.new("AllCops" => {"fruits" => ["banana"]}),
-      ObjectyPlugin.new("AllCops" => {"nuts" => []}),
-      ObjectyPlugin.new("AllCops" => {"fruits" => []}, "Some/Rule" => {"candies" => ["lollipop"]}),
-      ObjectyPlugin.new("AllCops" => {"fruits" => ["tomato", "orange"]}),
-      ObjectyPlugin.new("AllCops" => {"nuts" => ["cashew"]}, "Some/Rule" => {"candies" => ["suckers", "gum"]}),
-      ObjectyPlugin.new("AllCops" => {"nuts" => ["peanut", "cashew"]})
-    ], permit_merging: true)
+    capture_io do
+      @subject.call(options_config, {}, [
+        ObjectyPlugin.new("AllCops" => {"fruits" => ["banana"]}),
+        ObjectyPlugin.new("AllCops" => {"nuts" => []}),
+        ObjectyPlugin.new("AllCops" => {"fruits" => []}, "Some/Rule" => {"candies" => ["lollipop"]}),
+        ObjectyPlugin.new("AllCops" => {"fruits" => ["tomato", "orange"]}),
+        ObjectyPlugin.new("AllCops" => {"nuts" => ["cashew"]}, "Some/Rule" => {"candies" => ["suckers", "gum"]}),
+        ObjectyPlugin.new("AllCops" => {"nuts" => ["peanut", "cashew"]})
+      ], permit_merging: true)
+    end
 
     assert_equal({
       "AllCops" => {
