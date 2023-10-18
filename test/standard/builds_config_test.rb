@@ -84,18 +84,19 @@ class Standard::BuildsConfigTest < UnitTest
     assert_equal DEFAULT_OPTIONS, result.rubocop_options
   end
 
-  def test_todo_with_offenses_merged
-    result = @subject.call([], path("test/fixture/config/t"))
-
-    assert_equal DEFAULT_OPTIONS.merge(
-      todo_file: path("test/fixture/config/t/.standard_todo.yml"),
-      todo_ignore_files: %w[todo_file_one.rb todo_file_two.rb]
-    ), result.rubocop_options
+  def test_todo_merged
+    result = @subject.call([], path("test/fixture/config/u"))
 
     resulting_options_config = result.rubocop_config_store.for("").to_h
-    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/t/none_todo_path/**/*")
-    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/t/none_todo_file.rb")
-    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/t/todo_file_two.rb")
-    assert_includes resulting_options_config["Lint/AssignmentInCondition"]["Exclude"], path("test/fixture/config/t/todo_file_one.rb")
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/none_todo_path/**/*")
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/none_todo_file.rb")
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/todo_file_one.rb")
+    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/u/todo_file_two.rb")
+    assert_includes resulting_options_config["Lint/Style"]["Exclude"], path("test/fixture/config/u/thing.rb")
+    assert_includes resulting_options_config["Lint/Style"]["Exclude"], path("test/fixture/config/u/stuff.rb")
+    assert_includes resulting_options_config["Lint/UselessAssignment"]["Exclude"], path("test/fixture/config/u/thing.rb")
+    refute_includes resulting_options_config["Lint/UselessAssignment"]["Exclude"], path("test/fixture/config/u/stuff.rb")
+    refute_includes resulting_options_config["Metric/LineLength"]["Exclude"], path("test/fixture/config/u/thing.rb")
+    assert_includes resulting_options_config["Metric/LineLength"]["Exclude"], path("test/fixture/config/u/stuff.rb")
   end
 end

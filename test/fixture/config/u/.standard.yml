@@ -1,0 +1,9 @@
+ignore:
+  - none_todo_path/**/*
+  - none_todo_file.rb
+  - thing.rb:
+      - Lint/Style
+      - Lint/UselessAssignment
+  - stuff.rb:
+      - Lint/Style
+      - Metric/LineLength
