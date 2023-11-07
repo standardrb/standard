@@ -1659,6 +1659,9 @@ Style/SingleArgumentDig:
 Style/SingleLineBlockParams:
   Enabled: false
 
+Style/SingleLineDoEndBlock:
+  Enabled: false
+
 Style/SingleLineMethods:
   Enabled: true
   AllowIfMethodIsEmpty: false
