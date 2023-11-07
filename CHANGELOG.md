@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Updates rubocop to [1.57.2](https://github.com/rubocop/rubocop/releases/tag/v1.57.2)
+
 ## 1.31.2
 
 * Updates rubocop to [1.52.4](https://github.com/rubocop/rubocop/releases/tag/v1.52.4)
