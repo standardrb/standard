@@ -78,6 +78,12 @@ class Standard::BuildsConfigTest < UnitTest
     assert_match(/Configuration file ".*fake\.file" not found/, err.message)
   end
 
+  def test_todo_file_not_loaded_when_generating_todo_file
+    result = @subject.call(["--generate-todo"], path("test/fixture/config/t"))
+
+    assert_equal DEFAULT_OPTIONS, result.rubocop_options
+  end
+
   def test_todo_merged
     result = @subject.call([], path("test/fixture/config/u"))
 
@@ -92,20 +98,5 @@ class Standard::BuildsConfigTest < UnitTest
     refute_includes resulting_options_config["Lint/UselessAssignment"]["Exclude"], path("test/fixture/config/u/stuff.rb")
     refute_includes resulting_options_config["Metric/LineLength"]["Exclude"], path("test/fixture/config/u/thing.rb")
     assert_includes resulting_options_config["Metric/LineLength"]["Exclude"], path("test/fixture/config/u/stuff.rb")
-  end
-
-  def test_todo_with_offenses_merged
-    result = @subject.call([], path("test/fixture/config/t"))
-
-    assert_equal DEFAULT_OPTIONS.merge(
-      todo_file: path("test/fixture/config/t/.standard_todo.yml"),
-      todo_ignore_files: %w[todo_file_one.rb todo_file_two.rb]
-    ), result.rubocop_options
-
-    resulting_options_config = result.rubocop_config_store.for("").to_h
-    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/t/none_todo_path/**/*")
-    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/t/none_todo_file.rb")
-    assert_includes resulting_options_config["AllCops"]["Exclude"], path("test/fixture/config/t/todo_file_two.rb")
-    assert_includes resulting_options_config["Lint/AssignmentInCondition"]["Exclude"], path("test/fixture/config/t/todo_file_one.rb")
   end
 end
