@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.32.1
+
+* Fixes regeneration of TODO files ot avoid missing already-ignored rules [#587](https://github.com/standardrb/standard/pull/587)
+
 ## 1.32.0
 
 * Updates rubocop to [1.57.2](https://github.com/rubocop/rubocop/releases/tag/v1.57.2)
