@@ -498,6 +498,7 @@ Here are a few examples of Ruby Standard-compliant teams & projects:
 * [Spinal](https://spinalcms.com/)
 * [Teamtailor](https://www.teamtailor.com/)
 * [thoughtbot](https://thoughtbot.com/)
+* [University of Wisconsin-Eau Claire](https://www.uwec.edu/)
 
 Does your team use Standard? [Add your name to the list](https://github.com/standardrb/standard/edit/main/README.md)!
 
