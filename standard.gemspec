@@ -23,11 +23,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.metadata["rubygems_mfa_required"] = "true"
 
-  spec.add_dependency "rubocop", "~> 1.57.2"
+  spec.add_dependency "rubocop", "~> 1.59.0"
 
   spec.add_dependency "lint_roller", "~> 1.0"
   spec.add_dependency "standard-custom", "~> 1.0.0"
-  spec.add_dependency "standard-performance", "~> 1.2"
+  spec.add_dependency "standard-performance", "~> 1.3"
 
   # not semver: first three are lsp protocol version, last is patch
   spec.add_dependency "language_server-protocol", "~> 3.17.0.2"
