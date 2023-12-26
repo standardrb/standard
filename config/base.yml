@@ -586,10 +586,16 @@ Lint/InheritException:
 Lint/InterpolationCheck:
   Enabled: true
 
+Lint/ItWithoutArgumentsInBlock:
+  Enabled: true
+
 Lint/LambdaWithoutLiteralBlock:
   Enabled: false
 
 Lint/LiteralAsCondition:
+  Enabled: true
+
+Lint/LiteralAssignmentInCondition:
   Enabled: true
 
 Lint/LiteralInInterpolation:
@@ -975,6 +981,9 @@ Style/ArgumentsForwarding:
   Enabled: true
 
 Style/ArrayCoercion:
+  Enabled: false
+
+Style/ArrayFirstLast:
   Enabled: false
 
 Style/ArrayIntersect:
@@ -1711,6 +1720,9 @@ Style/Strip:
 
 Style/StructInheritance:
   Enabled: false
+
+Style/SuperWithArgsParentheses:
+  Enabled: true
 
 Style/SwapValues:
   Enabled: false
