@@ -156,6 +156,7 @@ We've added a number of editing guides for getting started:
 - [neovim](https://github.com/standardrb/standard/wiki/IDE:-neovim)
 - [RubyMine](https://www.jetbrains.com/help/ruby/rubocop.html#disable_rubocop)
 - [emacs](https://www.flycheck.org/en/latest/languages.html#syntax-checker-ruby-standard)
+- [Helix](https://github.com/helix-editor/helix/wiki/External-formatter-configuration#standardrb)
 - [Atom](https://github.com/standardrb/standard/wiki/IDE:-Atom)
 
 If you'd like to help by creating a guide, please draft one [in an
