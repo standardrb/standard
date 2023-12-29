@@ -173,7 +173,7 @@ editors can support natively, even without a Standard-specific plugin.
 You can run the server by supplying the `--lsp` flag:
 
 ```
-standard --lsp
+standardrb --lsp
 ```
 
 If your editor offers LSP support, it probably has a place to configure the
