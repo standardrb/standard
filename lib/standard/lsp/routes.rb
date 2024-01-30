@@ -13,7 +13,7 @@ module Standard
       end
 
       def self.handle(name, &block)
-        define_method("handle_#{name}", &block)
+        define_method(:"handle_#{name}", &block)
       end
 
       def for(name)
@@ -51,10 +51,8 @@ module Standard
         end
       end
 
-      handle "textDocument/diagnostic" do |request|
-        doc = request[:params][:textDocument]
-        result = diagnostic(doc[:uri], doc[:text])
-        @writer.write(result)
+      handle "textDocument/diagnostic" do |_request|
+        # no op, diagnostics are handled in textDocument/didChange
       end
 
       handle "textDocument/didChange" do |request|
