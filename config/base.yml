@@ -1566,7 +1566,7 @@ Style/RedundantHeredocDelimiterQuotes:
   Enabled: true
 
 Style/RedundantInitialize:
-  Enabled: true
+  Enabled: false
 
 Style/RedundantInterpolation:
   Enabled: true
