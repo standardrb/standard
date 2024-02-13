@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Updates rubocop to [1.60.2](https://github.com/rubocop/rubocop/releases/tag/v1.60.2)
+
 ## 1.33.0
 
 * Updates rubocop to [1.59.0](https://github.com/rubocop/rubocop/releases/tag/v1.59.0)
@@ -59,9 +63,9 @@ plugin that mirrors a rubocop extension
 ## 1.28.3
 
 * Older ruby support fixes from [@pboling](https://github.com/pboling):
-    - [#559](https://github.com/standardrb/standard/issues/559)
-    - [#561](https://github.com/standardrb/standard/issues/560)
-    - [#561](https://github.com/standardrb/standard/issues/561)
+  * [#559](https://github.com/standardrb/standard/issues/559)
+  * [#561](https://github.com/standardrb/standard/issues/560)
+  * [#561](https://github.com/standardrb/standard/issues/561)
 
 ## 1.28.2
 
@@ -546,7 +550,6 @@ mutations to RuboCop's default configuration)
   * [Performance/DeletePrefix](https://github.com/rubocop-hq/rubocop-performance/pull/105)
   * [Performance/DeleteSuffix](https://github.com/rubocop-hq/rubocop-performance/pull/105)
 
-
 ## 0.4.6
 
 * Disable `Naming/BinaryOperatorParameterName` because (when non-ascii method
@@ -577,7 +580,6 @@ mutations to RuboCop's default configuration)
   * Disable auto-correct for a cop that changed `:true` to `true`, as that's not
     safe
   * Allow comments in empty `when` blocks
-
 
 ## 0.4.1
 
