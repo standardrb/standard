@@ -13,7 +13,7 @@ module Standard
       end
 
       def self.handle(name, &block)
-        define_method("handle_#{name}", &block)
+        define_method(:"handle_#{name}", &block)
       end
 
       def for(name)
