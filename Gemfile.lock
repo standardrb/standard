@@ -13,7 +13,6 @@ GEM
   specs:
     ast (2.4.2)
     docile (1.4.0)
-    gimme (0.5.0)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
     lint_roller (1.1.0)
@@ -68,7 +67,6 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
-  gimme
   m
   minitest (~> 5.0)
   rake (~> 13.0)

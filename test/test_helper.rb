@@ -10,7 +10,6 @@ end
 $LOAD_PATH << "test"
 
 require "standard"
-require "gimme"
 require "minitest/autorun"
 
 class UnitTest < Minitest::Test
@@ -22,10 +21,6 @@ class UnitTest < Minitest::Test
 
   def before_setup
     RuboCop::ConfigLoader.instance_variable_set(:@default_configuration, nil)
-  end
-
-  def teardown
-    Gimme.reset
   end
 
   protected
