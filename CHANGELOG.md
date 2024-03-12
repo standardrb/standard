@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.35.1
+
+* Corrects rubocop constraint to the patch version, not minor version.
+
 ## 1.35.0
 
 * Updates rubocop to [1.62](https://github.com/rubocop/rubocop/releases/tag/v1.62.1)
