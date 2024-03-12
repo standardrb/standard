@@ -1,6 +1,7 @@
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "standard/version"
+require "standard/prints_big_hairy_version_warning"
 
 Gem::Specification.new do |spec|
   spec.name = "standard"
@@ -23,11 +24,13 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.metadata["rubygems_mfa_required"] = "true"
 
-  spec.add_dependency "rubocop", "~> 1.62.0"
+  spec.add_dependency "rubocop", "~> 1.60"
 
   spec.add_dependency "lint_roller", "~> 1.0"
   spec.add_dependency "standard-custom", "~> 1.0.0"
   spec.add_dependency "standard-performance", "~> 1.3"
+
+  spec.post_install_message = Standard::PrintsBigHairyVersionWarning::WARNING
 
   # not semver: first three are lsp protocol version, last is patch
   spec.add_dependency "language_server-protocol", "~> 3.17.0.2"
