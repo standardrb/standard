@@ -184,7 +184,7 @@ above command and will subsequently manage the server process for you.
 Various continuous integration and quality-checking tools have been made to
 support Standard Ruby, as well.
 
-* [Github Actions](https://github.com/andrewmcodes/standardrb-action)
+* [Github Actions](https://github.com/kmcphillips/standardrb-action) [(Marketplace)](https://github.com/marketplace/actions/standardrb-linter)
 * [Code Climate](https://github.com/standardrb/standard/wiki/CI:-Code-Climate)
 * [Pronto](https://github.com/julianrubisch/pronto-standardrb)
 * [Danger](https://github.com/ashfurrow/danger-rubocop/)
