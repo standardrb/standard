@@ -466,6 +466,7 @@ inherit_gem:
 Here are a few examples of Ruby Standard-compliant teams & projects:
 
 * [Test Double](https://testdouble.com/agency)
+* [AdBarker](https://adbarker.com)
 * [AlchemyCMS](https://alchemy-cms.com)
 * [Amazon Web Services](https://aws.amazon.com/)
 * [Arrows](https://arrows.to/)
@@ -499,6 +500,7 @@ Here are a few examples of Ruby Standard-compliant teams & projects:
 * [Spinal](https://spinalcms.com/)
 * [Teamtailor](https://www.teamtailor.com/)
 * [thoughtbot](https://thoughtbot.com/)
+* [Topkey](https://topkey.io)
 * [University of Wisconsin-Eau Claire](https://www.uwec.edu/)
 
 Does your team use Standard? [Add your name to the list](https://github.com/standardrb/standard/edit/main/README.md)!
