@@ -1007,7 +1007,7 @@ Style/PercentLiteralDelimiters:
     default: ()
     '%i': '[]'
     '%I': '[]'
-    '%r': '{}'
+    '%r': "''"
     '%w': '[]'
     '%W': '[]'
 
