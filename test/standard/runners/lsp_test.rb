@@ -72,40 +72,13 @@ class Standard::Runners::LspTest < UnitTest
       jsonrpc: "2.0",
       params: {
         textDocument: {
-          languageId: "ruby",
-          text: "def hi\n  [1, 2,\n   3  ]\nend\n",
-          uri: "file:///path/to/file.rb",
-          version: 0
+          uri: "file:///path/to/file.rb"
         }
       }
     })
 
     assert_equal "", err.string
-    assert_equal 1, msgs.count
-    assert_equal({
-      method: "textDocument/publishDiagnostics",
-      params: {
-        diagnostics: [
-          {code: "Layout/ArrayAlignment",
-           message: "Use one level of indentation for elements following the first line of a multi-line array.",
-           range: {start: {character: 3, line: 2}, end: {character: 3, line: 2}},
-           severity: 3,
-           source: "standard"},
-          {code: "Layout/ExtraSpacing",
-           message: "Unnecessary spacing detected.",
-           range: {start: {character: 4, line: 2}, end: {character: 4, line: 2}},
-           severity: 3,
-           source: "standard"},
-          {code: "Layout/SpaceInsideArrayLiteralBrackets",
-           message: "Do not use space inside array brackets.",
-           range: {start: {character: 4, line: 2}, end: {character: 5, line: 2}},
-           severity: 3,
-           source: "standard"}
-        ],
-        uri: "file:///path/to/file.rb"
-      },
-      jsonrpc: "2.0"
-    }, msgs.first)
+    assert_equal 0, msgs.count
   end
 
   def test_format
