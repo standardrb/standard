@@ -27,10 +27,6 @@ module Standard
         @writer.write(id: request[:id], result: Proto::Interface::InitializeResult.new(
           capabilities: Proto::Interface::ServerCapabilities.new(
             document_formatting_provider: true,
-            diagnostic_provider: LanguageServer::Protocol::Interface::DiagnosticOptions.new(
-              inter_file_dependencies: false,
-              workspace_diagnostics: false
-            ),
             text_document_sync: Proto::Interface::TextDocumentSyncOptions.new(
               change: Proto::Constant::TextDocumentSyncKind::FULL,
               open_close: true
@@ -49,10 +45,6 @@ module Standard
           @writer.write(id: request[:id], result: nil)
           @logger.puts "Exiting..."
         end
-      end
-
-      handle "textDocument/diagnostic" do |_request|
-        # no op, diagnostics are handled in textDocument/didChange
       end
 
       handle "textDocument/didChange" do |request|

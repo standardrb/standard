@@ -17,8 +17,7 @@ class Standard::Runners::LspTest < UnitTest
       id: 2,
       result: {capabilities: {
         textDocumentSync: {openClose: true, change: 1},
-        documentFormattingProvider: true,
-        diagnosticProvider: {interFileDependencies: false, workspaceDiagnostics: false}
+        documentFormattingProvider: true
       }},
       jsonrpc: "2.0"
     }
@@ -64,21 +63,6 @@ class Standard::Runners::LspTest < UnitTest
       },
       jsonrpc: "2.0"
     }, msgs.first)
-  end
-
-  def test_diagnotic_route
-    msgs, err = run_server_on_requests({
-      method: "textDocument/diagnostic",
-      jsonrpc: "2.0",
-      params: {
-        textDocument: {
-          uri: "file:///path/to/file.rb"
-        }
-      }
-    })
-
-    assert_equal "", err.string
-    assert_equal 0, msgs.count
   end
 
   def test_format
