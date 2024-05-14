@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+* Updates rubocop to [1.63.5](https://github.com/rubocop/rubocop/releases/tag/v1.63.5)
+* Updates standard-performance to [1.4.0](https://github.com/standardrb/standard-performance/releases/tag/v1.4.0)
+
 ## 1.35.1
 
 * Corrects rubocop constraint to the patch version, not minor version.
