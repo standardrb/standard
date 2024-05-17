@@ -21,7 +21,6 @@ module RubyLsp
       end
 
       def run_formatting(uri, document)
-        # TODO: this isn't being triggered by my test
         @standardizer.format(uri_to_path(uri), document.source)
       end
 
@@ -72,7 +71,7 @@ module RubyLsp
 
       # duplicated from: lib/standard/lsp/routes.rb
       def uri_to_path(uri)
-        uri.sub(%r{^file://}, "")
+        uri.to_s.sub(%r{^file://}, "")
       end
 
       # lifted from:
