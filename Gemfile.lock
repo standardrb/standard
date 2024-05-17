@@ -21,10 +21,12 @@ GEM
       rake (>= 0.9.2.2)
     method_source (1.0.0)
     minitest (5.20.0)
+    mutex_m (0.2.0)
     parallel (1.23.0)
     parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
+    prism (0.27.0)
     racc (1.7.1)
     rainbow (3.1.1)
     rake (13.0.6)
@@ -46,6 +48,10 @@ GEM
     rubocop-performance (1.21.0)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
+    ruby-lsp (0.16.6)
+      language_server-protocol (~> 3.17.0)
+      prism (>= 0.23.0, < 0.28)
+      sorbet-runtime (>= 0.5.10782)
     ruby-progressbar (1.13.0)
     simplecov (0.22.0)
       docile (~> 1.1)
@@ -53,6 +59,7 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
+    sorbet-runtime (0.5.11380)
     standard-custom (1.0.2)
       lint_roller (~> 1.0)
       rubocop (~> 1.50)
@@ -69,9 +76,11 @@ DEPENDENCIES
   bundler
   m
   minitest (~> 5.0)
+  mutex_m
   rake (~> 13.0)
+  ruby-lsp
   simplecov
   standard!
 
 BUNDLED WITH
-   2.4.12
+   2.5.7
