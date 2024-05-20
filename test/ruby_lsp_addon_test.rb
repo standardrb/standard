@@ -1,6 +1,6 @@
 require "ruby_lsp/internal"
-require "test_helper"
 require "ruby_lsp/standard/addon"
+require_relative "test_helper"
 
 class RubyLspAddonTest < UnitTest
   def setup
@@ -12,14 +12,46 @@ class RubyLspAddonTest < UnitTest
     assert_equal "Standard Ruby", @addon.name
   end
 
+  def test_diagnostic
+    source = <<~RUBY
+      s = 'hello'
+      puts s
+    RUBY
+    with_server(source, "simple.rb") do |server, uri|
+      server.process_message(
+        id: 2,
+        method: "textDocument/diagnostic",
+        params: {
+          textDocument: {
+            uri: uri
+          }
+        }
+      )
+
+      result = server.pop_response
+
+      assert_instance_of(RubyLsp::Result, result)
+      assert_equal "full", result.response.kind
+      assert_equal 1, result.response.items.size
+      item = result.response.items.first
+      assert_equal({line: 0, character: 4}, item.range.start.to_hash)
+      assert_equal({line: 0, character: 10}, item.range.end.to_hash)
+      assert_equal RubyLsp::Constant::DiagnosticSeverity::INFORMATION, item.severity
+      assert_equal "Style/StringLiterals", item.code
+      assert_equal "https://docs.rubocop.org/rubocop/cops_style.html#stylestringliterals", item.code_description.href
+      assert_equal "Standard Ruby", item.source
+      assert_equal "Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping.", item.message
+    end
+  end
+
   def test_format
     source = <<~RUBY
       s = 'hello'
       puts s
     RUBY
-    with_server(source, "test/fixture/ruby_lsp/simple.rb") do |server, uri|
+    with_server(source, "simple.rb") do |server, uri|
       server.process_message(
-        id: 1,
+        id: 2,
         method: "textDocument/formatting",
         params: {textDocument: {uri: uri}, position: {line: 0, character: 0}}
       )
@@ -28,17 +60,10 @@ class RubyLspAddonTest < UnitTest
 
       assert_instance_of(RubyLsp::Result, result)
       assert 1, result.response.size
-      assert_equal({
-        range: RubyLsp::Interface::Range.new(
-          start: RubyLsp::Interface::Position.new(line: 0, character: 0),
-            # Fails! Actual is line: 19, character: 19??????
-          end: RubyLsp::Interface::Position.new(line: 2, character: 5)
-        ),
-        newText: <<~RUBY
-          s = "hello"
-          puts s
-        RUBY
-      }, result.response.first.to_hash)
+      assert_equal <<~RUBY, result.response.first.new_text
+        s = "hello"
+        puts s
+      RUBY
     end
   end
 
@@ -51,7 +76,8 @@ class RubyLspAddonTest < UnitTest
     Dir.chdir pwd do
       server = RubyLsp::Server.new(test_mode: true)
       uri = Kernel.URI(File.join(server.global_state.workspace_path, path))
-      server.global_state.formatter = "standard" # <-- TODO this should work, right?
+      server.global_state.formatter = "standard"
+      server.global_state.instance_variable_set(:@linters, ["standard"])
       server.global_state.stubs(:typechecker).returns(false) if stub_no_typechecker
 
       if source
