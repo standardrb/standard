@@ -1,5 +1,21 @@
-require "ruby_lsp/internal"
+# All of these requires were needed because `ruby_lsp/internal` mutates rubocop
+# in a way that breaks test/standard/cli_test.rb
+require "sorbet-runtime"
+require "language_server-protocol"
+require "ruby_lsp/base_server"
+require "ruby_lsp/server"
+require "ruby_lsp/requests"
+require "ruby_lsp/addon"
+require "ruby_lsp/utils"
+require "ruby_lsp/store"
+require "ruby_lsp/document"
+require "ruby_lsp/global_state"
+require "core_ext/uri"
+require "ruby_indexer/ruby_indexer"
+require "ruby_lsp/ruby_document"
+require "prism"
 require "ruby_lsp/standard/addon"
+
 require_relative "test_helper"
 
 class RubyLspAddonTest < UnitTest
