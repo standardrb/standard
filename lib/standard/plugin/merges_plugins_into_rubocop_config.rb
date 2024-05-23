@@ -154,7 +154,7 @@ module Standard
       end
 
       def except(hash_or_config, keys)
-        hash_or_config.to_h.reject { |key, _| keys.include?(key) }.to_h
+        hash_or_config.to_h.except(*keys).to_h
       end
 
       # Always deletes nil entries, always overwrites arrays
