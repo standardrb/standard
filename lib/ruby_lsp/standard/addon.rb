@@ -1,3 +1,4 @@
+require "standard"
 require_relative "wraps_built_in_lsp_standardizer"
 
 module RubyLsp

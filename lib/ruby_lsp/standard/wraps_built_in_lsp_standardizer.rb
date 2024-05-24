@@ -1,8 +1,3 @@
-require "lint_roller"
-require_relative "../../standard/builds_config"
-require_relative "../../standard/lsp/standardizer"
-require_relative "../../standard/lsp/logger"
-
 module RubyLsp
   module Standard
     class WrapsBuiltinLspStandardizer
