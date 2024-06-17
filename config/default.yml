@@ -1,5 +1,4 @@
 AllCops:
-  # Prevent RuboCop from exploding when it finds an older .ruby-version
   TargetRubyVersion: 3.0
   Exclude: []
   DisabledByDefault: true
