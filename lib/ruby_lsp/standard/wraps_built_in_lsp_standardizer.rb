@@ -7,7 +7,7 @@ module RubyLsp
       end
 
       def init!
-        @config = ::Standard::BuildsConfig.new.call(ARGV)
+        @config = ::Standard::BuildsConfig.new.call([])
         @standardizer = ::Standard::Lsp::Standardizer.new(
           @config,
           ::Standard::Lsp::Logger.new
