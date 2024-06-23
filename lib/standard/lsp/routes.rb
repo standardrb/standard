@@ -181,7 +181,7 @@ module Standard
             message: msg,
             range: {
               start: {character: loc[:start_column] - 1, line: loc[:start_line] - 1},
-              end: {character: loc[:last_column] - 1, line: loc[:last_line] - 1}
+              end: {character: loc[:last_column], line: loc[:last_line] - 1}
             },
             severity: severity,
             source: "standard"
