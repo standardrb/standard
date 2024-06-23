@@ -13,8 +13,10 @@ module RubyLsp
       end
 
       def activate(global_state, message_queue)
+        warn "Activating Standard Ruby LSP addon v#{::Standard::VERSION}"
         @wraps_built_in_lsp_standardizer = WrapsBuiltinLspStandardizer.new
         global_state.register_formatter("standard", @wraps_built_in_lsp_standardizer)
+        warn "Initialized Standard Ruby LSP addon #{::Standard::VERSION}"
       end
 
       def deactivate
@@ -49,6 +51,7 @@ module RubyLsp
       def workspace_did_change_watched_files(changes)
         if changes.any? { |change| change[:uri].end_with?(".standard.yml") }
           @wraps_built_in_lsp_standardizer.init!
+          warn "Re-initialized Standard Ruby LSP addon #{::Standard::VERSION} due to .standard.yml file change"
         end
       end
     end
