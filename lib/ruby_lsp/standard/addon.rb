@@ -16,6 +16,7 @@ module RubyLsp
         warn "Activating Standard Ruby LSP addon v#{::Standard::VERSION}"
         @wraps_built_in_lsp_standardizer = WrapsBuiltinLspStandardizer.new
         global_state.register_formatter("standard", @wraps_built_in_lsp_standardizer)
+        register_additional_file_watchers(global_state, message_queue)
         warn "Initialized Standard Ruby LSP addon #{::Standard::VERSION}"
       end
 
@@ -32,7 +33,7 @@ module RubyLsp
           params: Interface::RegistrationParams.new(
             registrations: [
               Interface::Registration.new(
-                id: "workspace/didChangeWatchedFilesMyGem",
+                id: "workspace/didChangeWatchedFilesStandard",
                 method: "workspace/didChangeWatchedFiles",
                 register_options: Interface::DidChangeWatchedFilesRegistrationOptions.new(
                   watchers: [
