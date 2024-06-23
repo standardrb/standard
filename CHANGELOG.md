@@ -2,7 +2,16 @@
 
 ## Unreleased
 
+## 1.38.0
+
 * Update minimum Ruby version to 3.0
+* @koic backported a line column bug in our LSP
+  [#635](https://github.com/standardrb/standard/pull/635)
+* Implement a basic [Ruby LSP
+add-on](https://github.com/Shopify/ruby-lsp/blob/main/ADDONS.md), which means
+users would no longer need to install [our custom VS Code
+extension](https://marketplace.visualstudio.com/items?itemName=testdouble.vscode-standard-ruby)
+[#630](https://github.com/standardrb/standard/pull/630)
 
 ## 1.37.0
 
