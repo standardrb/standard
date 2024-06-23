@@ -66,8 +66,13 @@ module RubyLsp
       private
 
       # duplicated from: lib/standard/lsp/routes.rb
+      # modified to incorporate Ruby LSP's to_standardized_path method
       def uri_to_path(uri)
-        uri.to_s.sub(%r{^file://}, "")
+        if uri.respond_to?(:to_standardized_path) && !(standardized_path = uri.to_standardized_path).nil?
+          standardized_path
+        else
+          uri.to_s.sub(%r{^file://}, "")
+        end
       end
 
       # lifted from:
