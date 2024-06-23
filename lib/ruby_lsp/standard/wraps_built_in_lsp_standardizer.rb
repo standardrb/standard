@@ -12,6 +12,7 @@ module RubyLsp
           @config,
           ::Standard::Lsp::Logger.new
         )
+        @rubocop_config = @config.rubocop_config_store.for_pwd
         @cop_registry = RuboCop::Cop::Registry.global.to_h
       end
 
@@ -73,7 +74,7 @@ module RubyLsp
       # https://github.com/Shopify/ruby-lsp/blob/4c1906172add4d5c39c35d3396aa29c768bfb898/lib/ruby_lsp/requests/support/rubocop_diagnostic.rb#L84
       def code_description(cop_name)
         if (cop_class = @cop_registry[cop_name]&.first)
-          if (doc_url = cop_class.documentation_url)
+          if (doc_url = cop_class.documentation_url(@rubocop_config))
             Interface::CodeDescription.new(href: doc_url)
           end
         end
