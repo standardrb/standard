@@ -51,7 +51,7 @@ class RubyLspAddonTest < UnitTest
       assert_equal 1, result.response.items.size
       item = result.response.items.first
       assert_equal({line: 0, character: 4}, item.range.start.to_hash)
-      assert_equal({line: 0, character: 10}, item.range.end.to_hash)
+      assert_equal({line: 0, character: 11}, item.range.end.to_hash)
       assert_equal RubyLsp::Constant::DiagnosticSeverity::INFORMATION, item.severity
       assert_equal "Style/StringLiterals", item.code
       assert_equal "https://docs.rubocop.org/rubocop/cops_style.html#stylestringliterals", item.code_description.href

@@ -51,7 +51,7 @@ module RubyLsp
             severity: severity,
             range: RubyLsp::Interface::Range.new(
               start: RubyLsp::Interface::Position.new(line: loc[:start_line] - 1, character: loc[:start_column] - 1),
-              end: RubyLsp::Interface::Position.new(line: loc[:last_line] - 1, character: loc[:last_column] - 1)
+              end: RubyLsp::Interface::Position.new(line: loc[:last_line] - 1, character: loc[:last_column])
             )
             # TODO: We need to do something like to support quickfixes thru code actions
             # See: https://github.com/Shopify/ruby-lsp/blob/4c1906172add4d5c39c35d3396aa29c768bfb898/lib/ruby_lsp/requests/support/rubocop_diagnostic.rb#L62
