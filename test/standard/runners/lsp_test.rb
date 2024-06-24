@@ -482,7 +482,7 @@ class Standard::Runners::LspTest < UnitTest
   end
 
   def test_did_open_on_ignored_path
-    msgs, err = run_server_on_requests({
+    msgs, _err = run_server_on_requests({
       method: "textDocument/didOpen",
       jsonrpc: "2.0",
       params: {
@@ -508,7 +508,7 @@ class Standard::Runners::LspTest < UnitTest
   end
 
   def test_formatting_via_execute_command_on_ignored_path
-    msgs, err = run_server_on_requests(
+    msgs, _err = run_server_on_requests(
       {
         method: "textDocument/didOpen",
         jsonrpc: "2.0",
@@ -549,7 +549,7 @@ class Standard::Runners::LspTest < UnitTest
   end
 
   def test_formatting_via_formatting_path_on_ignored_path
-    msgs, err = run_server_on_requests(
+    msgs, _err = run_server_on_requests(
       {
         method: "textDocument/didOpen",
         jsonrpc: "2.0",

@@ -13,7 +13,7 @@ module Standard
         @writer = Proto::Transport::Io::Writer.new($stdout)
         @reader = Proto::Transport::Io::Reader.new($stdin)
         @logger = Logger.new
-        @standardizer = Standard::Lsp::Standardizer.new(config, @logger)
+        @standardizer = Standard::Lsp::Standardizer.new(config)
         @routes = Routes.new(@writer, @logger, @standardizer)
       end
 

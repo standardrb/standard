@@ -4,13 +4,11 @@ require_relative "diagnostic"
 module Standard
   module Lsp
     class Standardizer
-      def initialize(config, logger)
+      def initialize(config)
         @diagnostic_runner = ::Standard::Lsp::StdinRubocopRunner.new(config)
         @format_runner = ::Standard::Lsp::StdinRubocopRunner.new(config.dup.tap { |c|
           c.rubocop_options[:autocorrect] = true
         })
-
-        @logger = logger # TODO: delete if no longer needed for anything.
         @cop_registry = RuboCop::Cop::Registry.global.to_h
       end
 

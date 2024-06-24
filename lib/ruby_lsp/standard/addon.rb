@@ -4,21 +4,18 @@ require_relative "wraps_built_in_lsp_standardizer"
 module RubyLsp
   module Standard
     class Addon < ::RubyLsp::Addon
-      def initializer
-        @wraps_built_in_lsp_standardizer = nil
-      end
-
       def name
         "Standard Ruby"
       end
 
       def activate(global_state, message_queue)
-        warn "Activating Standard Ruby LSP addon v#{::Standard::VERSION}"
+        @logger = ::Standard::Lsp::Logger.new(prefix: "[Standard Ruby]")
+        @logger.puts "Activating Standard Ruby LSP addon v#{::Standard::VERSION}"
         RuboCop::LSP.enable
         @wraps_built_in_lsp_standardizer = WrapsBuiltinLspStandardizer.new
         global_state.register_formatter("standard", @wraps_built_in_lsp_standardizer)
         register_additional_file_watchers(global_state, message_queue)
-        warn "Initialized Standard Ruby LSP addon #{::Standard::VERSION}"
+        @logger.puts "Initialized Standard Ruby LSP addon #{::Standard::VERSION}"
       end
 
       def deactivate
@@ -53,7 +50,7 @@ module RubyLsp
       def workspace_did_change_watched_files(changes)
         if changes.any? { |change| change[:uri].end_with?(".standard.yml") }
           @wraps_built_in_lsp_standardizer.init!
-          warn "Re-initialized Standard Ruby LSP addon #{::Standard::VERSION} due to .standard.yml file change"
+          @logger.puts "Re-initialized Standard Ruby LSP addon #{::Standard::VERSION} due to .standard.yml file change"
         end
       end
     end

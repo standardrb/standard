@@ -1,12 +1,13 @@
 module Standard
   module Lsp
     class Logger
-      def initialize
+      def initialize(prefix: "[server]")
+        @prefix = prefix
         @puts_onces = []
       end
 
       def puts(message)
-        warn("[server] #{message}")
+        warn [@prefix, message].compact.join(" ")
       end
 
       def puts_once(message)
