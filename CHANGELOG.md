@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 1.39.0
+
+* Add support for LSP Code Actions / Quick Fix under Ruby LSP [#636](https://github.com/standardrb/standard/pull/636)
+
 ## 1.38.0
 
 * Update minimum Ruby version to 3.0
