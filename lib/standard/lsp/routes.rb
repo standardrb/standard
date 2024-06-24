@@ -154,45 +154,12 @@ module Standard
 
       def diagnostic(file_uri, text)
         @text_cache[file_uri] = text
-        offenses = @standardizer.offenses(uri_to_path(file_uri), text)
-
-        lsp_diagnostics = offenses.map { |o|
-          code = o[:cop_name]
-
-          msg = o[:message].delete_prefix(code)
-          loc = o[:location]
-
-          severity = case o[:severity]
-          when "error", "fatal"
-            SEV::ERROR
-          when "warning"
-            SEV::WARNING
-          when "convention"
-            SEV::INFORMATION
-          when "refactor", "info"
-            SEV::HINT
-          else # the above cases fully cover what RuboCop sends at this time
-            logger.puts "Unknown severity: #{severity.inspect}"
-            SEV::HINT
-          end
-
-          {
-            code: code,
-            message: msg,
-            range: {
-              start: {character: loc[:start_column] - 1, line: loc[:start_line] - 1},
-              end: {character: loc[:last_column], line: loc[:last_line] - 1}
-            },
-            severity: severity,
-            source: "standard"
-          }
-        }
 
         {
           method: "textDocument/publishDiagnostics",
           params: {
             uri: file_uri,
-            diagnostics: lsp_diagnostics
+            diagnostics: @standardizer.offenses(uri_to_path(file_uri), text)
           }
         }
       end

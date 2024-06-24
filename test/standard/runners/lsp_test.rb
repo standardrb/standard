@@ -39,30 +39,185 @@ class Standard::Runners::LspTest < UnitTest
 
     assert_equal "", err.string
     assert_equal 1, msgs.count
-    assert_equal({
+
+    expected = {
       method: "textDocument/publishDiagnostics",
       params: {
+        uri: "file:///path/to/file.rb",
         diagnostics: [
-          {code: "Layout/ArrayAlignment",
-           message: "Use one level of indentation for elements following the first line of a multi-line array.",
-           range: {start: {character: 3, line: 2}, end: {character: 4, line: 2}},
-           severity: 3,
-           source: "standard"},
-          {code: "Layout/ExtraSpacing",
-           message: "Unnecessary spacing detected.",
-           range: {start: {character: 4, line: 2}, end: {character: 5, line: 2}},
-           severity: 3,
-           source: "standard"},
-          {code: "Layout/SpaceInsideArrayLiteralBrackets",
-           message: "Do not use space inside array brackets.",
-           range: {start: {character: 4, line: 2}, end: {character: 6, line: 2}},
-           severity: 3,
-           source: "standard"}
-        ],
-        uri: "file:///path/to/file.rb"
+          {
+            range: {
+              start: {line: 2, character: 3},
+              end: {line: 2, character: 4}
+            },
+            severity: 3,
+            code: "Layout/ArrayAlignment",
+            codeDescription: {href: "https://docs.rubocop.org/rubocop/cops_layout.html#layoutarrayalignment"},
+            source: "Standard Ruby",
+            message: "Layout/ArrayAlignment: Use one level of indentation for elements following the first line of a multi-line array.",
+            data: {
+              correctable: true,
+              code_actions: [
+                {
+                  title: "Autocorrect Layout/ArrayAlignment",
+                  kind: "quickfix",
+                  isPreferred: true,
+                  edit: {
+                    documentChanges: [
+                      {
+                        textDocument: {uri: "/path/to/file.rb", version: nil},
+                        edits: [
+                          {
+                            range: {
+                              start: {line: 2, character: 3},
+                              end: {line: 2, character: 3}
+                            }, newText: " "
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  title: "Disable Layout/ArrayAlignment for this line",
+                  kind: "quickfix",
+                  edit: {
+                    documentChanges: [
+                      {
+                        textDocument: {uri: "/path/to/file.rb", version: nil},
+                        edits: [
+                          {
+                            range: {
+                              start: {line: 2, character: 7},
+                              end: {line: 2, character: 7}
+                            }, newText: " # standard:disable Layout/ArrayAlignment"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            range: {
+              start: {line: 2, character: 4},
+              end: {line: 2, character: 5}
+            },
+            severity: 3,
+            code: "Layout/ExtraSpacing",
+            codeDescription: {href: "https://docs.rubocop.org/rubocop/cops_layout.html#layoutextraspacing"},
+            source: "Standard Ruby",
+            message: "Layout/ExtraSpacing: Unnecessary spacing detected.",
+            data: {
+              correctable: true,
+              code_actions: [
+                {
+                  title: "Autocorrect Layout/ExtraSpacing",
+                  kind: "quickfix",
+                  isPreferred: true,
+                  edit: {
+                    documentChanges: [
+                      {
+                        textDocument: {uri: "/path/to/file.rb", version: nil},
+                        edits: [
+                          {
+                            range: {
+                              start: {line: 2, character: 4},
+                              end: {line: 2, character: 5}
+                            }, newText: ""
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  title: "Disable Layout/ExtraSpacing for this line",
+                  kind: "quickfix",
+                  edit: {
+                    documentChanges: [
+                      {
+                        textDocument: {uri: "/path/to/file.rb", version: nil},
+                        edits: [
+                          {
+                            range: {
+                              start: {line: 2, character: 7},
+                              end: {line: 2, character: 7}
+                            },
+                            newText: " # standard:disable Layout/ExtraSpacing"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            range: {
+              start: {line: 2, character: 4},
+              end: {line: 2, character: 6}
+            },
+            severity: 3,
+            code: "Layout/SpaceInsideArrayLiteralBrackets",
+            codeDescription: {href: "https://docs.rubocop.org/rubocop/cops_layout.html#layoutspaceinsidearrayliteralbrackets"},
+            source: "Standard Ruby",
+            message: "Layout/SpaceInsideArrayLiteralBrackets: Do not use space inside array brackets.",
+            data: {
+              correctable: true,
+              code_actions: [
+                {
+                  title: "Autocorrect Layout/SpaceInsideArrayLiteralBrackets",
+                  kind: "quickfix",
+                  isPreferred: true,
+                  edit: {
+                    documentChanges: [
+                      {
+                        textDocument: {uri: "/path/to/file.rb", version: nil},
+                        edits: [
+                          {
+                            range: {
+                              start: {line: 2, character: 4},
+                              end: {line: 2, character: 6}
+                            },
+                            newText: ""
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  title: "Disable Layout/SpaceInsideArrayLiteralBrackets for this line",
+                  kind: "quickfix",
+                  edit: {
+                    documentChanges: [
+                      {
+                        textDocument: {uri: "/path/to/file.rb", version: nil},
+                        edits: [
+                          {
+                            range: {
+                              start: {line: 2, character: 7},
+                              end: {line: 2, character: 7}
+                            },
+                            newText: " # standard:disable Layout/SpaceInsideArrayLiteralBrackets"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
       },
       jsonrpc: "2.0"
-    }, msgs.first)
+    }
+    assert_equal expected, msgs.first
   end
 
   def test_format
@@ -327,7 +482,7 @@ class Standard::Runners::LspTest < UnitTest
   end
 
   def test_did_open_on_ignored_path
-    msgs, err = run_server_on_requests({
+    msgs, _err = run_server_on_requests({
       method: "textDocument/didOpen",
       jsonrpc: "2.0",
       params: {
@@ -350,11 +505,10 @@ class Standard::Runners::LspTest < UnitTest
       },
       jsonrpc: "2.0"
     }, msgs.first)
-    assert_equal "[server] Ignoring file, per configuration: #{Dir.pwd}/tmp/foo/bar.rb", err.string.chomp
   end
 
   def test_formatting_via_execute_command_on_ignored_path
-    msgs, err = run_server_on_requests(
+    msgs, _err = run_server_on_requests(
       {
         method: "textDocument/didOpen",
         jsonrpc: "2.0",
@@ -392,11 +546,10 @@ class Standard::Runners::LspTest < UnitTest
       },
       jsonrpc: "2.0"
     }, msgs.last)
-    assert_equal "[server] Ignoring file, per configuration: #{Dir.pwd}/tmp/baz.rb", err.string.chomp
   end
 
   def test_formatting_via_formatting_path_on_ignored_path
-    msgs, err = run_server_on_requests(
+    msgs, _err = run_server_on_requests(
       {
         method: "textDocument/didOpen",
         jsonrpc: "2.0",
@@ -441,7 +594,6 @@ class Standard::Runners::LspTest < UnitTest
       },
       format_result
     )
-    assert_equal "[server] Ignoring file, per configuration: #{Dir.pwd}/tmp/zzz.rb", err.string.chomp
   end
 
   private

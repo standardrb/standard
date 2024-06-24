@@ -33,30 +33,32 @@ class RubyLspAddonTest < UnitTest
       s = 'hello'
       puts s
     RUBY
-    with_server(source, "simple.rb") do |server, uri|
-      server.process_message(
-        id: 2,
-        method: "textDocument/diagnostic",
-        params: {
-          textDocument: {
-            uri: uri
+    do_with_fake_io do
+      with_server(source, "simple.rb") do |server, uri|
+        server.process_message(
+          id: 2,
+          method: "textDocument/diagnostic",
+          params: {
+            textDocument: {
+              uri: uri
+            }
           }
-        }
-      )
+        )
 
-      result = server.pop_response
+        result = server.pop_response
 
-      assert_instance_of(RubyLsp::Result, result)
-      assert_equal "full", result.response.kind
-      assert_equal 1, result.response.items.size
-      item = result.response.items.first
-      assert_equal({line: 0, character: 4}, item.range.start.to_hash)
-      assert_equal({line: 0, character: 11}, item.range.end.to_hash)
-      assert_equal RubyLsp::Constant::DiagnosticSeverity::INFORMATION, item.severity
-      assert_equal "Style/StringLiterals", item.code
-      assert_equal "https://docs.rubocop.org/rubocop/cops_style.html#stylestringliterals", item.code_description.href
-      assert_equal "Standard Ruby", item.source
-      assert_equal "Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping.", item.message
+        assert_instance_of(RubyLsp::Result, result)
+        assert_equal "full", result.response.kind
+        assert_equal 1, result.response.items.size
+        item = result.response.items.first
+        assert_equal({line: 0, character: 4}, item.range.start.to_hash)
+        assert_equal({line: 0, character: 11}, item.range.end.to_hash)
+        assert_equal RubyLsp::Constant::DiagnosticSeverity::INFORMATION, item.severity
+        assert_equal "Style/StringLiterals", item.code
+        assert_equal "https://docs.rubocop.org/rubocop/cops_style.html#stylestringliterals", item.code_description.href
+        assert_equal "Standard Ruby", item.source
+        assert_equal "Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping.", item.message
+      end
     end
   end
 
@@ -65,21 +67,23 @@ class RubyLspAddonTest < UnitTest
       s = 'hello'
       puts s
     RUBY
-    with_server(source, "simple.rb") do |server, uri|
-      server.process_message(
-        id: 2,
-        method: "textDocument/formatting",
-        params: {textDocument: {uri: uri}, position: {line: 0, character: 0}}
-      )
+    do_with_fake_io do
+      with_server(source, "simple.rb") do |server, uri|
+        server.process_message(
+          id: 2,
+          method: "textDocument/formatting",
+          params: {textDocument: {uri: uri}, position: {line: 0, character: 0}}
+        )
 
-      result = server.pop_response
+        result = server.pop_response
 
-      assert_instance_of(RubyLsp::Result, result)
-      assert 1, result.response.size
-      assert_equal <<~RUBY, result.response.first.new_text
-        s = "hello"
-        puts s
-      RUBY
+        assert_instance_of(RubyLsp::Result, result)
+        assert 1, result.response.size
+        assert_equal <<~RUBY, result.response.first.new_text
+          s = "hello"
+          puts s
+        RUBY
+      end
     end
   end
 

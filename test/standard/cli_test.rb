@@ -8,9 +8,11 @@ class Standard::CliTest < UnitTest
 
     FileUtils.cp("test/fixture/cli/autocorrectable-bad.rb", "tmp/cli_test/subject.rb")
 
-    exit_code = Standard::Cli.new(["tmp/cli_test/subject.rb", "--fix"]).run
+    do_with_fake_io do
+      exit_code = Standard::Cli.new(["tmp/cli_test/subject.rb", "--fix"]).run
+      assert_equal 0, exit_code
+    end
 
-    assert_equal 0, exit_code
     assert_equal File.read("test/fixture/cli/autocorrectable-good.rb"), File.read("tmp/cli_test/subject.rb")
   end
 

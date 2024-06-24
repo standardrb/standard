@@ -16,6 +16,7 @@ class Something
   alias_method :do_more_stuff, :do_stuff
 
   attr_reader :foo
+
   def do_stuff(a:, b:, c:)
     maths_and_stuff = 4 +
       5 +
