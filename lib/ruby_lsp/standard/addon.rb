@@ -14,6 +14,7 @@ module RubyLsp
 
       def activate(global_state, message_queue)
         warn "Activating Standard Ruby LSP addon v#{::Standard::VERSION}"
+        RuboCop::LSP.enable
         @wraps_built_in_lsp_standardizer = WrapsBuiltinLspStandardizer.new
         global_state.register_formatter("standard", @wraps_built_in_lsp_standardizer)
         register_additional_file_watchers(global_state, message_queue)

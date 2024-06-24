@@ -18,6 +18,7 @@ module Standard
       end
 
       def start
+        RuboCop::LSP.enable
         @reader.read do |request|
           if !request.key?(:method)
             @routes.handle_method_missing(request)

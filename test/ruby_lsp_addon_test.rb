@@ -56,7 +56,7 @@ class RubyLspAddonTest < UnitTest
       assert_equal "Style/StringLiterals", item.code
       assert_equal "https://docs.rubocop.org/rubocop/cops_style.html#stylestringliterals", item.code_description.href
       assert_equal "Standard Ruby", item.source
-      assert_equal "Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping.", item.message
+      assert_equal "Style/StringLiterals: Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping.", item.message
     end
   end
 
