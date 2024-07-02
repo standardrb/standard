@@ -12,7 +12,7 @@ module Standard
       DEFAULT_RUBOCOP_OPTIONS = {
         stderr: true,
         force_exclusion: true,
-        format: "RuboCop::Formatter::BaseFormatter",
+        formatters: ["RuboCop::Formatter::BaseFormatter"],
         raise_cop_error: true
       }.freeze
 
