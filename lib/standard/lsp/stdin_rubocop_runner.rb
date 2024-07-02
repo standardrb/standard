@@ -27,7 +27,7 @@ module Standard
         super(
           config.rubocop_options.merge(DEFAULT_RUBOCOP_OPTIONS),
           config.rubocop_config_store
-          )
+        )
       end
 
       def run(path, contents)
