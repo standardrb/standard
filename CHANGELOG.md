@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 1.39.1
+
+* Fix LSP when `format` is set [#638](https://github.com/standardrb/standard/issues/638)
+* Fix LSP when todo is present (I think) [vscode-standard-ruby#26](https://github.com/standardrb/vscode-standard-ruby/issues/26)
+
 ## 1.39.0
 
 * Add support for LSP Code Actions / Quick Fix under Ruby LSP [#636](https://github.com/standardrb/standard/pull/636)
