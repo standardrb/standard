@@ -36,7 +36,7 @@ module RubyLsp
                 register_options: Interface::DidChangeWatchedFilesRegistrationOptions.new(
                   watchers: [
                     Interface::FileSystemWatcher.new(
-                      glob_pattern: "**/.standard.yml",
+                      glob_pattern: "**/.standard{,_todo}.yml",
                       kind: Constant::WatchKind::CREATE | Constant::WatchKind::CHANGE | Constant::WatchKind::DELETE
                     )
                   ]

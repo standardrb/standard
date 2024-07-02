@@ -72,8 +72,15 @@ module Standard
         @logger.puts "Ignoring workspace/didChangeConfiguration"
       end
 
+      CONFIGURATION_FILE_PATTERNS = [
+        ".standard.yml",
+        ".standard_todo.yml"
+      ].freeze
+
       handle "workspace/didChangeWatchedFiles" do |request|
-        if request[:params][:changes].any? { |change| change[:uri].end_with?(".standard.yml") }
+        if request[:params][:changes].any? { |change|
+          CONFIGURATION_FILE_PATTERNS.any? { |path| change[:uri].end_with?(path) }
+        }
           @logger.puts "Configuration file changed; restart required"
           @kills_server.call
         end
