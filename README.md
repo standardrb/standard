@@ -477,6 +477,7 @@ Here are a few examples of Ruby Standard-compliant teams & projects:
 * [Brave Software](https://github.com/brave-intl/publishers)
 * [Collective Idea](https://collectiveidea.com/)
 * [Culture Foundry](https://www.culturefoundry.com/)
+* [Datadog](https://www.datadoghq.com/)
 * [Donut](https://www.donut.com/)
 * [Elevate Labs](https://elevatelabs.com)
 * [Envoy](https://www.envoy.com)
@@ -503,7 +504,6 @@ Here are a few examples of Ruby Standard-compliant teams & projects:
 * [Topkey](https://topkey.io)
 * [University of Wisconsin-Eau Claire](https://www.uwec.edu/)
 * [Cartwheel](https://www.cartwheel.org)
-* [Datadog](https://www.datadoghq.com/)
 
 Does your team use Standard? [Add your name to the list](https://github.com/standardrb/standard/edit/main/README.md)!
 
