@@ -11,7 +11,8 @@ configuration** to all of RuboCop's built-in rules as well as those included in
 [rubocop-performance](https://github.com/rubocop/rubocop-performance). It also
 supports plugins built with
 [lint_roller](https://github.com/standardrb/lint_roller), like
-[standard-rails](https://github.com/standardrb/standard-rails).
+[standard-rails](https://github.com/standardrb/standard-rails) and
+[standard-sorbet](https://github.com/standardrb/standard-sorbet).
 
 Standard Ruby was created and is maintained by the team at [Test
 Double](https://testdouble.com), because we appreciate the importance of
@@ -35,7 +36,7 @@ good idea. People also agree it's easier to work in codebases that exhibit a
 consistent style and format. So, what's the problem? **No two developers will
 ever agree on what all the rules and format should be.**
 
-This has resulted in innumerable teams arguing how to configure their linters
+This has resulted in innumerable teams arguing about how to configure their linters
 and formatters over literal decades. Some teams routinely divert time and energy
 from whatever they're building to reach consensus on where commas should go.
 Other teams have an overzealous tech lead who sets up everything _his favorite
@@ -76,17 +77,18 @@ is in using one at all and not in the particulars of how it's configured.
 ### Install
 
 Getting started is as easy as `gem install standard` or throwing it in your
-project's Gemfile:
+project's Gemfile and running `bundle install`:
 
 ```ruby
-gem "standard", group: [:development, :test]
+gem "standard"
 ```
 
-### Running Standard
+### Running Standard Ruby
 
-Once installed, you can either run it as a CLI or as a Rake task.
+Once installed, you can run Standard from the command line via its built-in
+executable or as a Rake task.
 
-The CLI is called `standardrb` to distinguish it from
+Standard Ruby's binary is named `standardrb` to distinguish it from
 [StandardJS](https://github.com/standard/standard):
 
 ```
@@ -137,8 +139,8 @@ $ rake standard:fix_unsafely
 
 So long as your code is checked into source control, there's no mortal harm in
 running with unsafe fixes enabled. If the changes look good to you and your
-tests pass, then it's probably less error prone than manually editing everything
-by hand.
+tests pass, then it's probably no more error prone than manually editing
+every change by hand.
 
 ## Integrating Standard into your workflow
 
@@ -151,7 +153,7 @@ continuous integration systems.
 
 We've added a number of editing guides for getting started:
 
-- [VS Code](https://github.com/standardrb/vscode-standard-ruby)
+- [VS Code](https://github.com/standardrb/standard/wiki/IDE:-vscode)
 - [vim](https://github.com/standardrb/standard/wiki/IDE:-vim)
 - [neovim](https://github.com/standardrb/standard/wiki/IDE:-neovim)
 - [RubyMine](https://www.jetbrains.com/help/ruby/rubocop.html#disable_rubocop)
@@ -165,19 +167,32 @@ added!
 
 #### Language Server Protocol support
 
-If you don't see your preferred editor above, Standard Ruby also ships with a
-built-in [language
-server](https://microsoft.github.io/language-server-protocol/) that many modern
-editors can support natively, even without a Standard-specific plugin.
+If you don't see your preferred editor above, Standard Ruby also offers robust
+[language server](https://microsoft.github.io/language-server-protocol/) support,
+in two ways, both included with the `standard` gem:
 
-You can run the server by supplying the `--lsp` flag:
+1. A [Ruby LSP](https://github.com/Shopify/ruby-lsp) add-on, which (if
+the `standard` gem is in your `Gemfile`) will be loaded automatically
+2. A language server executable, which can be run from the command line
+   with `standardrb --lsp`
 
-```
-standardrb --lsp
-```
+| Capability  | Ruby LSP Add-on | Internal Server |
+| ------------- | ------------- | ------------- |
+| Diagnostics (Linting) | ✅ ([Pull](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_pullDiagnostics)) | ✅ ([Push](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_publishDiagnostics)) |
+| [Formatting](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_formatting)  | ✅ | ✅ |
+| [Code Actions](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#textDocument_codeAction) | ✅ | ❌ |
+| Everything else  | ❌  | ❌ |
 
-If your editor offers LSP support, it probably has a place to configure the
-above command and will subsequently manage the server process for you.
+Due to the advantages of Pull diagnostics and its inclusion of Code Actions
+("Quick Fixes" in VS Code parlance), we recommend using Standard's [Ruby LSP
+add-on](https://github.com/standardrb/standard/wiki/IDE:-vscode#using-ruby-lsp)
+where possible.
+
+Regardless of which language server you use, many editors have added LSP
+support, with each bringing their own approach to configuration. Many LSP
+features should "just work", but when in doubt, please consult our [editor
+guides above](#editor-support) as well as your editor's own documentation on how
+to configure LSP formatters and linters.
 
 ### CI support
 
