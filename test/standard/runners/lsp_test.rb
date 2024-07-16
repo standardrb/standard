@@ -65,7 +65,7 @@ class Standard::Runners::LspTest < UnitTest
                   edit: {
                     documentChanges: [
                       {
-                        textDocument: {uri: "/path/to/file.rb", version: nil},
+                        textDocument: {uri: "file:///path/to/file.rb", version: nil},
                         edits: [
                           {
                             range: {
@@ -84,7 +84,7 @@ class Standard::Runners::LspTest < UnitTest
                   edit: {
                     documentChanges: [
                       {
-                        textDocument: {uri: "/path/to/file.rb", version: nil},
+                        textDocument: {uri: "file:///path/to/file.rb", version: nil},
                         edits: [
                           {
                             range: {
@@ -120,7 +120,7 @@ class Standard::Runners::LspTest < UnitTest
                   edit: {
                     documentChanges: [
                       {
-                        textDocument: {uri: "/path/to/file.rb", version: nil},
+                        textDocument: {uri: "file:///path/to/file.rb", version: nil},
                         edits: [
                           {
                             range: {
@@ -139,7 +139,7 @@ class Standard::Runners::LspTest < UnitTest
                   edit: {
                     documentChanges: [
                       {
-                        textDocument: {uri: "/path/to/file.rb", version: nil},
+                        textDocument: {uri: "file:///path/to/file.rb", version: nil},
                         edits: [
                           {
                             range: {
@@ -176,7 +176,7 @@ class Standard::Runners::LspTest < UnitTest
                   edit: {
                     documentChanges: [
                       {
-                        textDocument: {uri: "/path/to/file.rb", version: nil},
+                        textDocument: {uri: "file:///path/to/file.rb", version: nil},
                         edits: [
                           {
                             range: {
@@ -196,7 +196,7 @@ class Standard::Runners::LspTest < UnitTest
                   edit: {
                     documentChanges: [
                       {
-                        textDocument: {uri: "/path/to/file.rb", version: nil},
+                        textDocument: {uri: "file:///path/to/file.rb", version: nil},
                         edits: [
                           {
                             range: {
