@@ -82,7 +82,7 @@ module Standard
             document_changes: [
               Interface::TextDocumentEdit.new(
                 text_document: Interface::OptionalVersionedTextDocumentIdentifier.new(
-                  uri: @uri.to_s,
+                  uri: ensure_uri_scheme(@uri.to_s).to_s,
                   version: nil
                 ),
                 edits: correctable? ? offense_replacements : []
@@ -113,7 +113,7 @@ module Standard
             document_changes: [
               Interface::TextDocumentEdit.new(
                 text_document: Interface::OptionalVersionedTextDocumentIdentifier.new(
-                  uri: @uri.to_s,
+                  uri: ensure_uri_scheme(@uri.to_s).to_s,
                   version: nil
                 ),
                 edits: line_disable_comment
@@ -162,6 +162,12 @@ module Standard
 
       def correctable?
         !@offense.corrector.nil?
+      end
+
+      def ensure_uri_scheme(uri)
+        uri = URI.parse(uri)
+        uri.scheme = "file" if uri.scheme.nil?
+        uri
       end
     end
   end
