@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 1.39.2
+
+* Ensure a URI scheme on file paths from the built-in LSP [#642](https://github.com/standardrb/standard/pull/642).
+
 ## 1.39.1
 
 * Fix LSP when `format` is set [#638](https://github.com/standardrb/standard/issues/638)
