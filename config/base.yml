@@ -27,6 +27,9 @@ Bundler/InsecureProtocolSource:
 Bundler/OrderedGems:
   Enabled: false
 
+Gemspec/AddRuntimeDependency:
+  Enabled: false
+
 Gemspec/DependencyVersion:
   Enabled: false
 
