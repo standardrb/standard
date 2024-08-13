@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Updates rubocop to [1.65.1](https://github.com/rubocop/rubocop/releases/tag/v1.65.1)
+
 ## 1.39.2
 
 * Ensure a URI scheme on file paths from the built-in LSP [#642](https://github.com/standardrb/standard/pull/642).
