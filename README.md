@@ -509,6 +509,7 @@ Here are a few examples of Ruby Standard-compliant teams & projects:
 * [Planet Argon](https://www.planetargon.com/)
 * [PLT4M](https://plt4m.com/)
 * [Podia](https://www.podia.com/)
+* [Privy](https://www.privy.com/)
 * [Rebase Interactive](https://www.rebaseinteractive.com/)
 * [Renuo](https://www.renuo.ch/)
 * [RubyCI](https://ruby.ci)
