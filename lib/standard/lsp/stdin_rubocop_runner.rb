@@ -42,11 +42,19 @@ module Standard
 
         raise Interrupt if aborting?
       rescue ::RuboCop::Runner::InfiniteCorrectionLoop => error
-        raise RubyLsp::Requests::Formatting::Erro, error.message
+        if defined?(::RubyLsp::Requests::Formatting::Error)
+          raise ::RubyLsp::Requests::Formatting::Error, error.message
+        else
+          raise error
+        end
       rescue ::RuboCop::ValidationError => error
         raise ConfigurationError, error.message
       rescue => error
-        raise ::RubyLsp::Requests::Support::InternalRuboCopError, error
+        if defined?(::RubyLsp::Requests::Formatting::Error)
+          raise ::RubyLsp::Requests::Support::InternalRuboCopError, error
+        else
+          raise error
+        end
       end
 
       def formatted_source
