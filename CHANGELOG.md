@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 1.40.1
+
+* Fix error handling in LSP Server 84ee9f4
+
 ## 1.40.0
 
 * Updates rubocop to [1.65.1](https://github.com/rubocop/rubocop/releases/tag/v1.65.1)
