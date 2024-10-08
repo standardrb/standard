@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.41.0
+
 * Updates rubocop to [1.66.1](https://github.com/rubocop/rubocop/releases/tag/v1.66.1)
 * Updates standard-performance to [1.5.0](https://github.com/standardrb/standard-performance/releases/tag/v1.5.0)
 
