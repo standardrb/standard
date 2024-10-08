@@ -837,6 +837,9 @@ Lint/UselessElseWithoutRescue:
 Lint/UselessMethodDefinition:
   Enabled: false
 
+Lint/UselessNumericOperation:
+  Enabled: false
+
 Lint/UselessRescue:
   Enabled: true
 
@@ -1575,6 +1578,9 @@ Style/RedundantInitialize:
   Enabled: false
 
 Style/RedundantInterpolation:
+  Enabled: true
+
+Style/RedundantInterpolationUnfreeze:
   Enabled: true
 
 Style/RedundantLineContinuation:

@@ -5,3 +5,6 @@ AllCops:
 
 Style/HashExcept:
   Enabled: false
+
+Style/RedundantInterpolationUnfreeze:
+  Enabled: false
