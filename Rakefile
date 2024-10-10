@@ -1,6 +1,9 @@
 require "bundler/gem_tasks"
+require "rake/clean"
 require "rake/testtask"
 require_relative "lib/standard/rake"
+
+CLOBBER.include "*.gem"
 
 Rake::TestTask.new(:test) do |t|
   t.warning = false
