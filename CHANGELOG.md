@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 1.41.1
+
+* Adds a stub method to the Ruby LSP add-on to avoid a potential runtime exception
+for range formatting requests [#655](https://github.com/standardrb/standard/pull/655)
+
 ## 1.41.0
 
 * Updates rubocop to [1.66.1](https://github.com/rubocop/rubocop/releases/tag/v1.66.1)
