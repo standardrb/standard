@@ -24,7 +24,7 @@ GEM
     minitest (5.20.0)
     mutex_m (0.2.0)
     parallel (1.23.0)
-    parser (3.3.5.0)
+    parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
     prism (0.30.0)
