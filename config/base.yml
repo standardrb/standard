@@ -1,9 +1,9 @@
 Bundler/DuplicatedGem:
   Enabled: true
   Include:
-    - '**/*.gemfile'
-    - '**/Gemfile'
-    - '**/gems.rb'
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
 
 Bundler/DuplicatedGroup:
   Enabled: false
@@ -20,9 +20,9 @@ Bundler/GemVersion:
 Bundler/InsecureProtocolSource:
   Enabled: true
   Include:
-    - '**/*.gemfile'
-    - '**/Gemfile'
-    - '**/gems.rb'
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
 
 Bundler/OrderedGems:
   Enabled: false
@@ -42,7 +42,7 @@ Gemspec/DevelopmentDependencies:
 Gemspec/DuplicatedAssignment:
   Enabled: true
   Include:
-    - '**/*.gemspec'
+    - "**/*.gemspec"
 
 Gemspec/OrderedDependencies:
   Enabled: false
@@ -243,6 +243,7 @@ Layout/InitialIndentation:
 
 Layout/LeadingCommentSpace:
   Enabled: true
+  AllowRBSInlineAnnotation: true
 
 Layout/LeadingEmptyLines:
   Enabled: true
@@ -510,6 +511,9 @@ Lint/DuplicateRequire:
   Enabled: true
 
 Lint/DuplicateRescueException:
+  Enabled: true
+
+Lint/DuplicateSetElement:
   Enabled: true
 
 Lint/EachWithObjectArgument:
@@ -1177,7 +1181,7 @@ Style/EvenOdd:
   Enabled: false
 
 Style/ExactRegexpMatch:
-    Enabled: true
+  Enabled: true
 Style/ExpandPathArguments:
   Enabled: false
 
@@ -1495,11 +1499,11 @@ Style/PercentLiteralDelimiters:
   Enabled: true
   PreferredDelimiters:
     default: ()
-    '%i': '[]'
-    '%I': '[]'
-    '%r': '{}'
-    '%w': '[]'
-    '%W': '[]'
+    "%i": "[]"
+    "%I": "[]"
+    "%r": "{}"
+    "%w": "[]"
+    "%W": "[]"
 
 Style/PercentQLiterals:
   Enabled: false

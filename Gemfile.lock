@@ -4,7 +4,7 @@ PATH
     standard (1.41.1)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
-      rubocop (~> 1.66.0)
+      rubocop (~> 1.67.0)
       standard-custom (~> 1.0.0)
       standard-performance (~> 1.5)
 
@@ -13,7 +13,7 @@ GEM
   specs:
     ast (2.4.2)
     docile (1.4.0)
-    json (2.6.3)
+    json (2.7.4)
     language_server-protocol (3.17.0.3)
     lint_roller (1.1.0)
     logger (1.6.0)
@@ -23,18 +23,18 @@ GEM
     method_source (1.0.0)
     minitest (5.20.0)
     mutex_m (0.2.0)
-    parallel (1.23.0)
+    parallel (1.26.3)
     parser (3.3.5.0)
       ast (~> 2.4.1)
       racc
     prism (0.30.0)
-    racc (1.7.1)
+    racc (1.8.1)
     rainbow (3.1.1)
     rake (13.0.6)
     rbs (3.5.2)
       logger
-    regexp_parser (2.8.2)
-    rubocop (1.66.1)
+    regexp_parser (2.9.2)
+    rubocop (1.67.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -68,7 +68,7 @@ GEM
     standard-performance (1.5.0)
       lint_roller (~> 1.1)
       rubocop-performance (~> 1.22.0)
-    unicode-display_width (2.5.0)
+    unicode-display_width (2.6.0)
 
 PLATFORMS
   ruby

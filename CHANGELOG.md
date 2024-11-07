@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Updates rubocop to [1.67.0](https://github.com/rubocop/rubocop/releases/tag/v1.67.0)
+
 ## 1.41.1
 
 * Adds a stub method to the Ruby LSP add-on to avoid a potential runtime exception
