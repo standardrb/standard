@@ -1,7 +1,7 @@
 module RuboCop
   module Cop
     module Bananas
-      class BananasOnly < Cop
+      class BananasOnly < Base
         def on_lvasgn(node)
           # cracks me up that we have to disable this cop inside itself
           name, = *node # standard:disable Bananas/BananasOnly

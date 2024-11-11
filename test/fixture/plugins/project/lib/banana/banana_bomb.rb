@@ -2,7 +2,7 @@
 module RuboCop
   module Cop
     module Bananas
-      class BananaBomb < Cop
+      class BananaBomb < Base
         def on_class(node)
           add_offense(node, message: "🍌💣 - Better ignore me!")
         end
