@@ -512,6 +512,9 @@ Lint/DuplicateRequire:
 Lint/DuplicateRescueException:
   Enabled: true
 
+Lint/DuplicateSetElement:
+  Enabled: false
+
 Lint/EachWithObjectArgument:
   Enabled: true
 
@@ -798,6 +801,9 @@ Lint/TripleQuotes:
 Lint/UnderscorePrefixedVariableName:
   Enabled: true
 
+Lint/UnescapedBracketInRegexp:
+  Enabled: false
+
 Lint/UnexpectedBlockArity:
   Enabled: false
 
@@ -980,6 +986,9 @@ Style/Alias:
   Enabled: true
   EnforcedStyle: prefer_alias_method
 
+Style/AmbiguousEndlessMethodDefinition:
+  Enabled: false
+
 Style/AndOr:
   Enabled: true
 
@@ -1015,6 +1024,9 @@ Style/BeginBlock:
   Enabled: true
 
 Style/BisectedAttrAccessor:
+  Enabled: false
+
+Style/BitwisePredicate:
   Enabled: false
 
 Style/BlockComments:
@@ -1062,6 +1074,9 @@ Style/ColonMethodCall:
 
 Style/ColonMethodDefinition:
   Enabled: true
+
+Style/CombinableDefined:
+  Enabled: false
 
 Style/CombinableLoops:
   Enabled: false
@@ -1288,6 +1303,9 @@ Style/InvertibleUnlessCondition:
   Enabled: false
 
 Style/IpAddresses:
+  Enabled: false
+
+Style/KeywordArgumentsMerging:
   Enabled: false
 
 Style/KeywordParametersOrder:
@@ -1654,6 +1672,9 @@ Style/SafeNavigation:
     - presence
     - try
     - try!
+
+Style/SafeNavigationChainLength:
+  Emabled: false
 
 Style/Sample:
   Enabled: true
