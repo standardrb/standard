@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.42.0
+
 * Updates rubocop to [1.68.0]https://github.com/rubocop/rubocop/tree/v1.68.0)
 * Inherit from `RuboCop::Cop::Base` fixing deprecation warnings.
 * Add new cops
