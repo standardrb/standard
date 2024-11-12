@@ -1674,7 +1674,7 @@ Style/SafeNavigation:
     - try!
 
 Style/SafeNavigationChainLength:
-  Emabled: false
+  Enabled: false
 
 Style/Sample:
   Enabled: true
