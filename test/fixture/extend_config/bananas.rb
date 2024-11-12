@@ -1,7 +1,7 @@
 module RuboCop
   module Cop
     module Bananas
-      class BananasOnly < Cop
+      class BananasOnly < Base
         def on_lvasgn(node)
           name, = *node
 

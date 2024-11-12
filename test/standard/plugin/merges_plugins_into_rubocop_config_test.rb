@@ -53,16 +53,16 @@ class Standard::Plugin::MergesPluginsIntoRubocopConfigTest < UnitTest
 
   module RuboCop::Cop
     module Fake
-      class Things < RuboCop::Cop::Cop
+      class Things < RuboCop::Cop::Base
       end
 
-      class Stuff < RuboCop::Cop::Cop
+      class Stuff < RuboCop::Cop::Base
       end
 
-      class Junk < RuboCop::Cop::Cop
+      class Junk < RuboCop::Cop::Base
       end
 
-      class Crap < RuboCop::Cop::Cop
+      class Crap < RuboCop::Cop::Base
       end
     end
   end
