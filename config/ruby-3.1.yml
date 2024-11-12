@@ -7,5 +7,5 @@ Style/DataInheritance:
   Enabled: false
 
 Style/ArgumentsForwarding:
-  Enabled: true
+  Enabled: false
   AllowOnlyRestArgument: true

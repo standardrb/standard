@@ -984,7 +984,7 @@ Style/AndOr:
   Enabled: true
 
 Style/ArgumentsForwarding:
-  Enabled: true
+  Enabled: false
 
 Style/ArrayCoercion:
   Enabled: false
