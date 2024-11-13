@@ -15,13 +15,13 @@ rake install:local    # Build and install standard-x.x.x.gem into system gems wi
 rake release[remote]  # Create tag vx.x.x and build and push standard-0.5.2.gem to rubygems.org
 ```
 
-Most of these commands are depended on (read: run by) `rake release`, which is
+Most of these commands are depended on (read: run by) `./bin/rake release`, which is
 really the only one we'll need for releasing the gem to
 [Rubygems.org](https://rubygems.org/gems/standard).
 
 ## Release steps
 
-1. Make sure git is up to date and `bundle exec rake` exits cleanly
+1. Make sure git is up to date and `./bin/rake` exits cleanly
 1. If you upgraded a Rubocop dependency, be sure to lock it down in
    `standard.gemspec`. To avoid being broken transitively, we stick to exact
    release dependencies (e.g. "0.91.0" instead of "~> 0.91")
@@ -34,9 +34,8 @@ really the only one we'll need for releasing the gem to
 1. Run `bundle` so that Bundler writes this version to `Gemfile.lock`
 1. Commit `lib/standard/version.rb`, `Gemfile.lock`, and `CHANGELOG.md` together
    with the message equal to the new version (e.g. "0.42.1")
-1. Finally, run `bundle exec rake release`, which will hopefully succeed
+1. Finally, run `./bin/rake release`, which will hopefully succeed
 1. Provide your multi-factor-auth token when prompted to finish publishing the
    gem
 1. [Tweet](https://twitter.com) about your awesome new release! (Shameless
    self-promotion is the most important part of open source software)
-
