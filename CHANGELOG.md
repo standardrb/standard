@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 1.42.1
+
+* Fixes a very noisy typo!
+
 ## 1.42.0
 
 * Updates rubocop to [1.68.0](https://github.com/rubocop/rubocop/tree/v1.68.0)
