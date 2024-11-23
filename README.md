@@ -160,6 +160,7 @@ We've added a number of editing guides for getting started:
 - [emacs](https://www.flycheck.org/en/latest/languages.html#syntax-checker-ruby-standard)
 - [Helix](https://github.com/helix-editor/helix/wiki/External-formatter-configuration#standardrb)
 - [Atom](https://github.com/standardrb/standard/wiki/IDE:-Atom)
+- [Nova](https://codeberg.org/edwardloveall/nova-standard)
 
 If you'd like to help by creating a guide, please draft one [in an
 issue](https://github.com/standardrb/standard/issues/new) and we'll get it
