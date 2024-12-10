@@ -570,6 +570,9 @@ Lint/FormatParameterMismatch:
 Lint/HashCompareByIdentity:
   Enabled: false
 
+Lint/HashNewWithKeywordArgumentsAsDefault:
+  Enabled: true
+
 Lint/HeredocMethodCallPosition:
   Enabled: false
 
@@ -652,6 +655,9 @@ Lint/NumberConversion:
 
 Lint/NumberedParameterAssignment:
   Enabled: true
+
+Lint/NumericOperationWithConstantResult:
+  Enabled: false
 
 Lint/OrAssignmentToConstant:
   Enabled: true
@@ -835,6 +841,9 @@ Lint/UselessAccessModifier:
   Enabled: false
 
 Lint/UselessAssignment:
+  Enabled: true
+
+Lint/UselessDefined:
   Enabled: true
 
 Lint/UselessElseWithoutRescue:
@@ -1119,6 +1128,9 @@ Style/DateTime:
 Style/DefWithParentheses:
   Enabled: true
 
+Style/DigChain:
+  Enabled: true
+
 Style/Dir:
   Enabled: true
 
@@ -1208,8 +1220,14 @@ Style/FetchEnvVar:
 Style/FileEmpty:
   Enabled: false
 
+Style/FileNull:
+  Enabled: true
+
 Style/FileRead:
   Enabled: true
+
+Style/FileTouch:
+  Enabled: false
 
 Style/FileWrite:
   Enabled: true
