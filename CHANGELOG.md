@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 1.43.0
+
+* Updates rubocop to [1.69.1](https://github.com/rubocop/rubocop/tree/v1.69.1)
 
 ## 1.42.1
 
