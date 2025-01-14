@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    standard (1.43.0)
+    standard (1.44.0)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
       rubocop (~> 1.70.0)
