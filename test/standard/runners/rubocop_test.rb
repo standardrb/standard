@@ -28,7 +28,12 @@ class Standard::Runners::RubocopTest < UnitTest
   OUT
 
   def setup
+    Warning[:deprecated] = false
     @subject = Standard::Runners::Rubocop.new
+  end
+
+  def teardown
+    Warning[:deprecated] = true
   end
 
   def test_empty_output_on_quiet_success
