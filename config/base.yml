@@ -464,6 +464,9 @@ Lint/ConstantDefinitionInBlock:
 Lint/ConstantOverwrittenInRescue:
   Enabled: true
 
+Lint/ConstantReassignment:
+  Enabled: true
+
 Lint/ConstantResolution:
   Enabled: false
 
@@ -776,6 +779,9 @@ Lint/ShadowedException:
 
 Lint/ShadowingOuterLocalVariable:
   Enabled: false
+
+Lint/SharedMutableDefault:
+  Enabled: true
 
 Lint/StructNewOverride:
   Enabled: false
@@ -1322,6 +1328,9 @@ Style/InvertibleUnlessCondition:
 
 Style/IpAddresses:
   Enabled: false
+
+Style/ItAssignment:
+  Enabled: true
 
 Style/KeywordArgumentsMerging:
   Enabled: false
