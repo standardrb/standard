@@ -5,3 +5,6 @@ AllCops:
 
 Style/RedundantBegin:
   Enabled: false
+
+Style/HashSlice:
+  Enabled: false

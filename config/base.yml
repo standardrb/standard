@@ -439,6 +439,10 @@ Lint/AmbiguousRange:
 Lint/AmbiguousRegexpLiteral:
   Enabled: true
 
+Lint/ArrayLiteralInRegexp:
+  Enabled: true
+  AutoCorrect: false
+
 Lint/AssignmentInCondition:
   Enabled: true
   AllowSafeAssignment: true
@@ -1278,6 +1282,9 @@ Style/HashExcept:
 
 Style/HashLikeCase:
   Enabled: false
+
+Style/HashSlice:
+  Enabled: true
 
 Style/HashSyntax:
   Enabled: true
