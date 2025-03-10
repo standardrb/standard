@@ -474,6 +474,9 @@ Lint/ConstantReassignment:
 Lint/ConstantResolution:
   Enabled: false
 
+Lint/CopDirectiveSyntax:
+  Enabled: false
+
 Lint/Debugger:
   Enabled: true
 
@@ -714,6 +717,9 @@ Lint/RedundantSplatExpansion:
 Lint/RedundantStringCoercion:
   Enabled: true
 
+Lint/RedundantTypeConversion:
+  Enabled: true
+
 Lint/RedundantWithIndex:
   Enabled: true
 
@@ -793,6 +799,9 @@ Lint/StructNewOverride:
 Lint/SuppressedException:
   Enabled: false
 
+Lint/SuppressedExceptionInNumberConversion:
+  Enabled: false
+
 Lint/SymbolConversion:
   Enabled: true
 
@@ -852,6 +861,9 @@ Lint/UselessAccessModifier:
 
 Lint/UselessAssignment:
   Enabled: true
+
+Lint/UselessConstantScoping:
+  Enabled: false
 
 Lint/UselessDefined:
   Enabled: true
@@ -1619,6 +1631,9 @@ Style/RedundantFileExtensionInRequire:
 
 Style/RedundantFilterChain:
   Enabled: false
+
+Style/RedundantFormat:
+  Enabled: true
 
 Style/RedundantFreeze:
   Enabled: true
