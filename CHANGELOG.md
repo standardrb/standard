@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.47.0
 
 * Updates standard performance to 1.7.0
 
