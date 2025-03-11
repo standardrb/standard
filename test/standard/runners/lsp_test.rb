@@ -610,6 +610,7 @@ class Standard::Runners::LspTest < UnitTest
   end
 
   BASE_CONFIG = Standard::BuildsConfig.new.call(["-a", "some_file_name.rb"])
+  private_constant :BASE_CONFIG
 
   def create_config(options = {})
     Standard::Config.new(nil, ["unused_file_name.rb"], options, BASE_CONFIG.rubocop_config_store)
