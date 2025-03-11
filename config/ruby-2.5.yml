@@ -5,3 +5,6 @@ AllCops:
 
 Style/SlicingWithRange:
   Enabled: false
+
+Lint/SuppressedExceptionInNumberConversion:
+  Enabled: false
