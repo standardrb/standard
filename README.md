@@ -503,6 +503,7 @@ Here are a few examples of Ruby Standard-compliant teams & projects:
 * [Honeybadger](https://www.honeybadger.io)
 * [JetThoughts](https://www.jetthoughts.com/)
 * [Level UP Solutions](https://levups.com)
+* [Lobsters](https://github.com/lobsters/lobsters)
 * [Monterail](https://www.monterail.com)
 * [myRent](https://www.myrent.co.nz)
 * [OBLSK](https://oblsk.com/)
