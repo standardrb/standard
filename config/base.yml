@@ -864,7 +864,7 @@ Lint/UselessAssignment:
   Enabled: true
 
 Lint/UselessConstantScoping:
-  Enabled: true
+  Enabled: false
 
 Lint/UselessDefined:
   Enabled: true
