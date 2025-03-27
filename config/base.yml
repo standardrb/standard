@@ -805,6 +805,7 @@ Lint/SuppressedExceptionInNumberConversion:
 
 Lint/SymbolConversion:
   Enabled: true
+  EnforcedStyle: consistent
 
 Lint/Syntax:
   Enabled: true
