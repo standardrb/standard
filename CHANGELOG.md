@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Updates standard performance to 1.8.0
+
 ## 1.48.0
 
 * Updates rubocop to [1.75.2](https://github.com/rubocop/rubocop/tree/v1.75.2)
