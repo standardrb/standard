@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.49.0
 
 * Updates standard performance to 1.8.0
 
