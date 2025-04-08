@@ -99,7 +99,7 @@ class RubyLspAddonTest < UnitTest
       end
 
       server.global_state.index.index_single(
-        RubyIndexer::IndexablePath.new(nil, uri.to_standardized_path),
+        URI::Generic.from_path(path: uri.to_standardized_path),
         source
       )
       server.load_addons if load_addons

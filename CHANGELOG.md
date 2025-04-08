@@ -2,6 +2,10 @@
 
 ## 1.47.0
 
+* Updates rubocop to [1.75.2](https://github.com/rubocop/rubocop/tree/v1.75.2)
+
+## 1.47.0
+
 * Updates standard performance to 1.7.0
 
 ## 1.46.0
