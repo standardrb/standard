@@ -1124,6 +1124,9 @@ Style/CommentAnnotation:
 Style/CommentedKeyword:
   Enabled: false
 
+Style/ComparableBetween:
+  Enabled: true
+
 Style/ComparableClamp:
   Enabled: true
 
@@ -1293,6 +1296,9 @@ Style/HashEachMethods:
 Style/HashExcept:
   Enabled: true
 
+Style/HashFetchChain:
+  Enabled: false
+
 Style/HashLikeCase:
   Enabled: false
 
@@ -1351,6 +1357,10 @@ Style/IpAddresses:
 
 Style/ItAssignment:
   Enabled: true
+
+Style/ItBlockParameter:
+  Enabled: true
+  EnforcedStyle: only_numbered_parameters
 
 Style/KeywordArgumentsMerging:
   Enabled: false

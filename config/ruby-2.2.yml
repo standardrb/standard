@@ -6,6 +6,9 @@ AllCops:
 # The below cops are for features not available until Ruby 2.3 but,
 # as of this writing, the cops don't correctly use the TargetRubyVersion.
 
+Style/HashFetchChain:
+  Enabled: false
+
 Layout/HeredocIndentation:
   Enabled: false
 
