@@ -153,14 +153,15 @@ continuous integration systems.
 
 We've added a number of editing guides for getting started:
 
-- [VS Code](https://github.com/standardrb/standard/wiki/IDE:-vscode)
-- [vim](https://github.com/standardrb/standard/wiki/IDE:-vim)
-- [neovim](https://github.com/standardrb/standard/wiki/IDE:-neovim)
-- [RubyMine](https://www.jetbrains.com/help/ruby/rubocop.html#disable_rubocop)
+- [Atom](https://github.com/standardrb/standard/wiki/IDE:-Atom)
 - [emacs](https://www.flycheck.org/en/latest/languages.html#syntax-checker-ruby-standard)
 - [Helix](https://github.com/helix-editor/helix/wiki/Formatter-configurations#standardrb)
-- [Atom](https://github.com/standardrb/standard/wiki/IDE:-Atom)
+- [neovim](https://github.com/standardrb/standard/wiki/IDE:-neovim)
 - [Nova](https://codeberg.org/edwardloveall/nova-standard)
+- [RubyMine](https://www.jetbrains.com/help/ruby/rubocop.html#disable_rubocop)
+- [vim](https://github.com/standardrb/standard/wiki/IDE:-vim)
+- [VS Code](https://github.com/standardrb/standard/wiki/IDE:-vscode)
+- [Zed](https://zed.dev/docs/languages/ruby#setting-up-ruby-lsp)
 
 If you'd like to help by creating a guide, please draft one [in an
 issue](https://github.com/standardrb/standard/issues/new) and we'll get it
