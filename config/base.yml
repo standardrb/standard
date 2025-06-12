@@ -1,3 +1,7 @@
+# yaml-language-server: $schema=../../rubyschema/dist/rubocop.json
+
+%YAML 1.1
+---
 Bundler/DuplicatedGem:
   Enabled: true
   Include:

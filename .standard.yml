@@ -1,3 +1,7 @@
+# yaml-language-server: $schema=https://www.rubyschema.org/standard.json
+
+%YAML 1.1
+---
 ruby_version: 3.0
 ignore:
   - tmp/**/*
