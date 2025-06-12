@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://www.rubyschema.org/rubocop.json
+
 Bundler/DuplicatedGem:
   Enabled: true
   Include:
@@ -1231,7 +1233,7 @@ Style/EvenOdd:
   Enabled: false
 
 Style/ExactRegexpMatch:
-    Enabled: true
+  Enabled: true
 Style/ExpandPathArguments:
   Enabled: false
 
