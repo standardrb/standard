@@ -6,3 +6,6 @@ updates:
   - package-ecosystem: bundler
     directory: "/"
     schedule: { interval: weekly, day: monday }
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule: { interval: weekly }
