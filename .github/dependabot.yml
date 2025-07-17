@@ -1,10 +1,11 @@
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
 version: 2
 updates:
-  - package-ecosystem: "bundler"
+  - package-ecosystem: bundler
     directory: "/"
-    allow:
-      - dependency-name: "rubocop"
-      - dependency-name: "rubocop-performance"
-    schedule:
-      interval: "weekly"
-      day: monday
+    schedule: { interval: weekly, day: monday }
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule: { interval: weekly }
