@@ -22,7 +22,7 @@ GEM
       rake (>= 0.9.2.2)
     method_source (1.0.0)
     minitest (5.25.1)
-    mutex_m (0.2.0)
+    mutex_m (0.3.0)
     parallel (1.23.0)
     parser (3.3.7.4)
       ast (~> 2.4.1)
