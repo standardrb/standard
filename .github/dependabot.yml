@@ -7,8 +7,12 @@ updates:
     directory: "/"
     schedule: { interval: weekly, day: monday }
     cooldown: { default-days: 15, exclude: ["rubocop*"] }
+    groups:
+      dev-deps: { dependency-type: "development" }
 
   - package-ecosystem: github-actions
     directory: "/"
     schedule: { interval: weekly }
     cooldown: { default-days: 15 }
+    groups:
+      github-actions: { patterns: ["*"] }
