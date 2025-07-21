@@ -6,6 +6,9 @@ updates:
   - package-ecosystem: bundler
     directory: "/"
     schedule: { interval: weekly, day: monday }
+    cooldown: { default-days: 15, exclude: ["rubocop*"] }
+
   - package-ecosystem: github-actions
     directory: "/"
     schedule: { interval: weekly }
+    cooldown: { default-days: 15 }
