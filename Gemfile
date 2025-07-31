@@ -4,7 +4,7 @@ gemspec
 
 gem "bundler"
 gem "minitest", "~> 5.25"
-gem "rake", "~> 13.0"
+gem "rake", "~> 13.3"
 gem "m"
 gem "mutex_m"
 gem "ruby-lsp"
