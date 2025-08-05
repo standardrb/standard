@@ -78,9 +78,9 @@ PLATFORMS
 DEPENDENCIES
   bundler
   m
-  minitest (~> 5.25)
+  minitest
   mutex_m
-  rake (~> 13.3)
+  rake
   ruby-lsp
   simplecov
   standard!
