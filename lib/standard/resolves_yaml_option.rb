@@ -21,6 +21,7 @@ module Standard
 
     def argv_value_for(argv, option_name)
       return unless (index = argv.index(option_name))
+
       argv[index + 1]
     end
   end
