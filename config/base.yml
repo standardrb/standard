@@ -30,6 +30,9 @@ Bundler/OrderedGems:
 Gemspec/AddRuntimeDependency:
   Enabled: false
 
+Gemspec/AttributeAssignment:
+  Enabled: false
+
 Gemspec/DependencyVersion:
   Enabled: false
 
@@ -122,7 +125,7 @@ Layout/EmptyComment:
   AllowMarginComment: true
 
 Layout/EmptyLineAfterGuardClause:
-  Enabled: false
+  Enabled: true
 
 Layout/EmptyLineAfterMagicComment:
   Enabled: true
@@ -136,6 +139,9 @@ Layout/EmptyLineBetweenDefs:
   NumberOfEmptyLines: 1
 
 Layout/EmptyLines:
+  Enabled: true
+
+Layout/EmptyLinesAfterModuleInclusion:
   Enabled: true
 
 Layout/EmptyLinesAroundAccessModifier:
@@ -867,6 +873,9 @@ Lint/UselessAssignment:
 Lint/UselessConstantScoping:
   Enabled: false
 
+Lint/UselessDefaultValueArgument:
+  Enabled: false
+
 Lint/UselessDefined:
   Enabled: true
 
@@ -878,6 +887,9 @@ Lint/UselessMethodDefinition:
 
 Lint/UselessNumericOperation:
   Enabled: false
+
+Lint/UselessOr:
+  Enabled: true
 
 Lint/UselessRescue:
   Enabled: true
@@ -975,7 +987,10 @@ Naming/MethodName:
 Naming/MethodParameterName:
   Enabled: false
 
-Naming/PredicateName:
+Naming/PredicateMethod:
+  Enabled: false
+
+Naming/PredicatePrefix:
   Enabled: false
 
 Naming/RescuedExceptionsVariableName:
@@ -1102,6 +1117,9 @@ Style/CollectionCompact:
 Style/CollectionMethods:
   Enabled: false
 
+Style/CollectionQuerying:
+  Enabled: false
+
 Style/ColonMethodCall:
   Enabled: true
 
@@ -1211,6 +1229,10 @@ Style/EmptyLiteral:
 Style/EmptyMethod:
   Enabled: true
   EnforcedStyle: expanded
+
+Style/EmptyStringInsideInterpolation:
+  Enabled: true
+  EnforcedStyle: trailing_conditional
 
 Style/Encoding:
   Enabled: true
@@ -1603,6 +1625,9 @@ Style/RedundantArgument:
   Enabled: false
 
 Style/RedundantArrayConstructor:
+  Enabled: true
+
+Style/RedundantArrayFlatten:
   Enabled: true
 
 Style/RedundantAssignment:

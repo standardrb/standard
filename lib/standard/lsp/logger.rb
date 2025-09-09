@@ -12,6 +12,7 @@ module Standard
 
       def puts_once(message)
         return if @puts_onces.include?(message)
+
         @puts_onces << message
         puts(message)
       end
