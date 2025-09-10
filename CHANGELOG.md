@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.51.0
+
+* Updates rubocop to [1.81.2](https://github.com/rubocop/rubocop/tree/v1.81.2)
+
 ## 1.50.0
 
 * Updates rubocop to [1.75.5](https://github.com/rubocop/rubocop/tree/v1.75.5)

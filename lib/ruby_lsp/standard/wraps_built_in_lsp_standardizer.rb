@@ -2,6 +2,7 @@ module RubyLsp
   module Standard
     class WrapsBuiltinLspStandardizer
       include RubyLsp::Requests::Support::Formatter
+
       def initialize
         init!
       end
