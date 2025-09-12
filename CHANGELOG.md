@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.51.1
+
+* Fixes Layout/EmptyLineAfterGuardClause back to false after [#750](https://github.com/standardrb/standard/issues/750)
+
 ## 1.51.0
 
 * Updates rubocop to [1.81.2](https://github.com/rubocop/rubocop/tree/v1.81.2)
