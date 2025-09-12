@@ -125,7 +125,7 @@ Layout/EmptyComment:
   AllowMarginComment: true
 
 Layout/EmptyLineAfterGuardClause:
-  Enabled: true
+  Enabled: false
 
 Layout/EmptyLineAfterMagicComment:
   Enabled: true
