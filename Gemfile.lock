@@ -27,7 +27,7 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
-    prism (1.4.0)
+    prism (1.6.0)
     racc (1.8.1)
     rainbow (3.1.1)
     rake (13.3.0)
@@ -52,7 +52,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    ruby-lsp (0.26.1)
+    ruby-lsp (0.26.2)
       language_server-protocol (~> 3.17.0)
       prism (>= 1.2, < 2.0)
       rbs (>= 3, < 5)
