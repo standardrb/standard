@@ -30,7 +30,7 @@ GEM
     prism (1.4.0)
     racc (1.8.1)
     rainbow (3.1.1)
-    rake (13.3.0)
+    rake (13.3.1)
     rbs (3.6.1)
       logger
     regexp_parser (2.11.2)
