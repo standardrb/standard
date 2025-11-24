@@ -142,7 +142,7 @@ Layout/EmptyLines:
   Enabled: true
 
 Layout/EmptyLinesAfterModuleInclusion:
-  Enabled: true
+  Enabled: false
 
 Layout/EmptyLinesAroundAccessModifier:
   Enabled: true
