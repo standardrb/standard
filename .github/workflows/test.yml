@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy: {matrix: {ruby: [ '3.0', 3.1, 3.2, 3.3, 3.4 ]}}
     steps:
-      - uses: step-security/harden-runner@df199fb7be9f65074067a9eb93f12bb4c5547cf2 # v2.13.3
+      - uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
         with: { egress-policy: audit }
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
       - uses: ruby/setup-ruby@a4effe49ee8ee5b8b5091268c473a4628afb5651 # v1.245.0
