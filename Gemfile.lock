@@ -17,10 +17,8 @@ GEM
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     logger (1.7.0)
-    m (1.6.2)
-      method_source (>= 0.6.7)
-      rake (>= 0.9.2.2)
-    method_source (1.0.0)
+    m (1.7.0)
+      rake
     minitest (5.26.1)
     mutex_m (0.3.0)
     parallel (1.27.0)
