@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.metadata["rubygems_mfa_required"] = "true"
 
-  spec.add_dependency "rubocop", "~> 1.81.7"
+  spec.add_dependency "rubocop", ">= 1.81.7", "< 1.83.0"
 
   spec.add_dependency "lint_roller", "~> 1.0"
   spec.add_dependency "standard-custom", "~> 1.0.0"
