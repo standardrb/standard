@@ -1454,6 +1454,9 @@ Style/MixinUsage:
 Style/ModuleFunction:
   Enabled: false
 
+Style/ModuleMemberExistenceCheck:
+  Enabled: true
+
 Style/MultilineBlockChain:
   Enabled: false
 

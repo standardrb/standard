@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+* Updates rubocop to [1.82.0](https://github.com/rubocop/rubocop/releases/tag/v1.82.0)
+* Starts support for Ruby 4.0
+
 ## 1.52.0
 
 * Updates rubocop to [1.81.7](https://github.com/rubocop/rubocop/tree/v1.81.7)
