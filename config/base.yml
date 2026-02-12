@@ -1215,6 +1215,9 @@ Style/EmptyBlockParameter:
 Style/EmptyCaseCondition:
   Enabled: true
 
+Style/EmptyClassDefinition:
+  Enabled: false
+
 Style/EmptyElse:
   Enabled: true
   AllowComments: true
@@ -1326,6 +1329,9 @@ Style/HashFetchChain:
   Enabled: false
 
 Style/HashLikeCase:
+  Enabled: false
+
+Style/HashLookupMethod:
   Enabled: false
 
 Style/HashSlice:
@@ -1498,6 +1504,9 @@ Style/NegatedUnless:
   Enabled: false
 
 Style/NegatedWhile:
+  Enabled: true
+
+Style/NegativeArrayIndex:
   Enabled: true
 
 Style/NestedFileDirname:
@@ -1754,6 +1763,9 @@ Style/ReturnNil:
 
 Style/ReturnNilInPredicateMethodDefinition:
   Enabled: false
+
+Style/ReverseFind:
+  Enabled: true
 
 Style/SafeNavigation:
   Enabled: true
