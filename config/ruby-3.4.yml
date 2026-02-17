@@ -1,0 +1,7 @@
+inherit_from: ./base.yml
+
+AllCops:
+  TargetRubyVersion: 3.4
+
+Style/ReverseFind:
+  Enabled: false
