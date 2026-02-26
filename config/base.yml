@@ -1213,7 +1213,7 @@ Style/EmptyBlockParameter:
   Enabled: true
 
 Style/EmptyCaseCondition:
-  Enabled: true
+  Enabled: false
 
 Style/EmptyClassDefinition:
   Enabled: false
