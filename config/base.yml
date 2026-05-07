@@ -484,6 +484,9 @@ Lint/ConstantResolution:
 Lint/CopDirectiveSyntax:
   Enabled: true
 
+Lint/DataDefineOverride:
+  Enabled: true
+
 Lint/Debugger:
   Enabled: true
 
@@ -851,6 +854,9 @@ Lint/UnreachableCode:
 
 Lint/UnreachableLoop:
   Enabled: false
+
+Lint/UnreachablePatternBranch:
+  Enabled: true
 
 Lint/UnusedBlockArgument:
   Enabled: false
@@ -1278,6 +1284,9 @@ Style/FileEmpty:
 Style/FileNull:
   Enabled: true
 
+Style/FileOpen:
+  Enabled: true
+
 Style/FileRead:
   Enabled: true
 
@@ -1417,6 +1426,9 @@ Style/MapCompactWithConditionalBlock:
   Enabled: true
 
 Style/MapIntoArray:
+  Enabled: false
+
+Style/MapJoin:
   Enabled: false
 
 Style/MapToHash:
@@ -1575,6 +1587,9 @@ Style/NumericPredicate:
 Style/ObjectThen:
   Enabled: false
 
+Style/OneClassPerFile:
+  Enabled: false
+
 Style/OneLineConditional:
   Enabled: true
 
@@ -1604,6 +1619,9 @@ Style/ParenthesesAroundCondition:
   AllowSafeAssignment: true
   AllowInMultilineConditions: false
 
+Style/PartitionInsteadOfDoubleSelect:
+  Enabled: false
+
 Style/PercentLiteralDelimiters:
   Enabled: true
   PreferredDelimiters:
@@ -1620,6 +1638,9 @@ Style/PercentQLiterals:
 Style/PerlBackrefs:
   Enabled: false
 
+Style/PredicateWithKind:
+  Enabled: true
+
 Style/PreferredHashMethods:
   Enabled: false
 
@@ -1635,6 +1656,9 @@ Style/RaiseArgs:
 
 Style/RandomWithOffset:
   Enabled: true
+
+Style/ReduceToHash:
+  Enabled: false
 
 Style/RedundantArgument:
   Enabled: false
@@ -1705,6 +1729,9 @@ Style/RedundantInterpolationUnfreeze:
 Style/RedundantLineContinuation:
   Enabled: true
 
+Style/RedundantMinMaxBy:
+  Enabled: true
+
 Style/RedundantParentheses:
   Enabled: true
 
@@ -1745,6 +1772,9 @@ Style/RedundantSortBy:
 Style/RedundantStringEscape:
   Enabled: true
 
+Style/RedundantStructKeywordInit:
+  Enabled: false
+
 Style/RegexpLiteral:
   Enabled: false
 
@@ -1782,6 +1812,12 @@ Style/SafeNavigationChainLength:
 
 Style/Sample:
   Enabled: true
+
+Style/SelectByKind:
+  Enabled: false
+
+Style/SelectByRange:
+  Enabled: false
 
 Style/SelectByRegexp:
   Enabled: false
@@ -1878,6 +1914,9 @@ Style/SymbolLiteral:
 
 Style/SymbolProc:
   Enabled: false
+
+Style/TallyMethod:
+  Enabled: true
 
 Style/TernaryParentheses:
   Enabled: true
