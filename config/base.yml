@@ -1620,7 +1620,7 @@ Style/ParenthesesAroundCondition:
   AllowInMultilineConditions: false
 
 Style/PartitionInsteadOfDoubleSelect:
-  Enabled: true
+  Enabled: false
 
 Style/PercentLiteralDelimiters:
   Enabled: true

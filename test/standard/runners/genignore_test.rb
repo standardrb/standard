@@ -25,8 +25,10 @@ class Standard::Runners::GenignoreTest < UnitTest
     assert File.exist?("dont_call_it_tmp/genignore_test/.standard_todo.yml")
 
     todo = YAML.load_file("dont_call_it_tmp/genignore_test/.standard_todo.yml")
+    assert todo["ignore"]
     # RuboCop 1.85+ reports paths relative to the process CWD rather than Dir.chdir,
-    # so normalize to basenames for version compatibility
+    # so normalize to basenames for version compatibility.
+    # TODO: remove basename normalization once the rubocop floor is >= 1.85.
     normalized = {"ignore" => todo["ignore"].map { |h| h.transform_keys { |k| File.basename(k) } }}
     expected_yaml = {"ignore" => [
       {"errors_one.rb" => ["Lint/AssignmentInCondition"]},
