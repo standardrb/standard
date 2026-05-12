@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.55.0
+
+* Updates rubocop to [1.86.1](https://github.com/rubocop/rubocop/releases/tag/v1.86.1)
+* Updates standard-performance to [1.9.0](https://github.com/standardrb/standard-performance/releases/tag/v1.9.0)
+
 ## 1.54.0
 
 * Updates rubocop to [1.84.0](https://github.com/rubocop/rubocop/releases/tag/v1.84.2)
