@@ -1,135 +1,85 @@
 ---
 name: rubocop-update
-description: Bump RuboCop (and standard-performance if a new version exists) to their latest released versions and open a pull request for the standard gem. Use this skill whenever someone asks to update, bump, or upgrade RuboCop, or when preparing a monthly standard release that tracks a new RuboCop version. Also use it when someone asks what new cops RuboCop shipped and how standard should handle them.
+description: Bump RuboCop and standard-performance to their latest versions and open a PR. Use this for monthly updates or when tracking new cops.
 ---
 
-# Monthly RuboCop Update
+# RuboCop Update
 
-This skill automates the monthly RuboCop version bump for the `standard` gem. It updates the RuboCop and standard-performance dependencies, discovers new and changed cops, updates the changelog, bumps the standard version, and opens a pull request — leaving yml configuration of new cops as intentional follow-up work.
+This skill automates the RuboCop version bump for `standard`. It uses CLI tools for efficiency and consistency with the project's GitHub Actions.
 
-## Step 1: Determine current and latest versions
+## Step 1: Check for Updates
 
-Read `standard.gemspec` to extract the current version constraints. The relevant lines look like:
-```ruby
-spec.add_dependency "rubocop", "~> 1.84.0"
-spec.add_dependency "standard-performance", "~> 1.8"
+Identify outdated gems and their versions:
+```bash
+bundle outdated rubocop standard-performance
 ```
+Note the **current** and **newest** versions for both gems.
 
-Fetch the latest released versions in parallel from the RubyGems API:
+## Step 2: Update Gemspec and Lockfile
+
+Use `sed` to update `standard.gemspec` for any gem with a new minor/patch version.
+Example for RuboCop:
+```bash
+sed -i '/"rubocop"/s/OLD_VERSION/NEW_VERSION/' standard.gemspec
 ```
-GET https://rubygems.org/api/v1/gems/rubocop.json
-GET https://rubygems.org/api/v1/gems/standard-performance.json
-```
-Parse the `version` field from each response.
+*Note: RuboCop constraint should be `~> MAJOR.MINOR.0`. standard-performance should be `~> MAJOR.MINOR`.*
 
-For rubocop: the current pinned minor is `X.Y` from `~> X.Y.0`. If the latest has the same `X.Y`, this is a patch-only update; otherwise it's a minor bump.
-
-For standard-performance: the current pinned minor is `X.Y` from `~> X.Y`. Compare to the latest.
-
-If neither gem has a newer version, stop and tell the user everything is already up to date.
-
-## Step 2: Update the gemspec
-
-In `standard.gemspec`:
-
-- If rubocop has a new version, change its constraint to `"~> NEW_MAJOR.NEW_MINOR.0"`.  
-  Example: `"~> 1.84.0"` → `"~> 1.85.0"`
-- If standard-performance has a new minor version, change its constraint to `"~> NEW_MAJOR.NEW_MINOR"`.  
-  Example: `"~> 1.8"` → `"~> 1.9"`  
-  If standard-performance only has a patch update within the same minor, no gemspec change is needed — the existing pessimistic constraint already allows it.
-
-## Step 3: Update the lockfile
-
+Then update the lockfile:
 ```bash
 bundle update rubocop standard-performance
 ```
 
-(If only one gem changed, pass only that gem's name to `bundle update`.)
+## Step 4: Parse RuboCop Changelog
 
-## Step 4: Bump the standard version
-
-In `lib/standard/version.rb`, bump the version following this convention:
-- Minor bump in rubocop (or standard-performance) → bump standard's minor version
-- Patch-only bump in both → bump standard's patch version
-
-Example: `1.54.0` → `1.55.0` for a rubocop minor update.
-
-Then run `bundle` so Bundler writes the new gem version to `Gemfile.lock`.
-
-## Step 5: Find new and modified cops from the RuboCop changelog
-
-Fetch the RuboCop CHANGELOG:
-```
-GET https://raw.githubusercontent.com/rubocop/rubocop/main/CHANGELOG.md
+Generate the "New Cops" and "Changed Cops" tables for the PR description:
+```bash
+curl -s https://raw.githubusercontent.com/rubocop/rubocop/main/CHANGELOG.md | \
+  .claude/skills/rubocop-update/scripts/parse_changelog.rb --old OLD_RUBOCOP_VER --new NEW_RUBOCOP_VER > pr_body.md
 ```
 
-Find all sections with headers between `## <new_rubocop_version>` and `## <old_rubocop_version>` (there may be multiple intermediate releases if we skipped a version). Within those sections, look for two categories:
+## Step 5: Evaluate New Rules (Standard Ethos)
 
-**New cops** — lines in `### New features` that introduce a brand-new cop:
-- Pattern: contains "Add new `Cop/Name`" or "new cop `Cop/Name`"
-- Extract: cop name, PR URL, and one-sentence description from the changelog line
+For each cop in the "New cops" table, replace the `{RECOMMENDATION}` and `{RATIONALE}` placeholders with a recommendation and a paragraph explaining the rationale.
 
-**Changed cops** — lines in `### Changes` (not bug fixes) that modify behavior of an existing cop:
-- Extract: cop name, PR URL, and what changed
+**Ethos Guidelines (from Standard Ruby):**
+- **Enable if:** It has a **safe autocorrect**, improves readability, encourages modern Ruby, or reduces errors without being niche.
+- **Ignore/Disable if:** It is purely stylistic (bikeshedding), has an unsafe autocorrect, is overly restrictive, or causes high friction/noise for little gain.
 
-Ignore `### Bug fixes` entries — those don't require configuration decisions.
-
-If standard-performance also bumped, note it in the PR description but no cop-level changelog parsing is needed for it.
+**Recommendation Format:**
+- **Recommendation:** `Enable` or `Ignore`.
+- **Rationale:** A concise paragraph explaining how the rule aligns with or deviates from the Standard ethos.
 
 ## Step 6: Update CHANGELOG.md
 
-Prepend a new entry at the very top of `CHANGELOG.md`, following the existing format exactly:
 
-```markdown
-## X.Y.Z
+Prepend the update note after the `# Changelog` header. Since the standard version is bumped separately, add this under a `## Unreleased` header if it doesn't exist, or at the top of the existing unreleased section:
+```bash
+sed -i '3i\
+\
+## Unreleased\
+\
+* Updates rubocop to [NEW_RUBOCOP_VER](https://github.com/rubocop/rubocop/releases/tag/vNEW_RUBOCOP_VER)\
+* Updates standard-performance to [NEW_PERF_VER](https://github.com/standardrb/standard-performance/releases/tag/vNEW_PERF_VER)' CHANGELOG.md
+```
+*(Adjust the `sed` line number or content if the gem list differs.)*
 
-* Updates rubocop to [A.B.C](https://github.com/rubocop/rubocop/releases/tag/vA.B.C)
-* Updates standard-performance to [D.E.F](https://github.com/standardrb/standard-performance/releases/tag/vD.E.F)
+## Step 5: Create Branch and Commit
 
+```bash
+git checkout -b update-rubocop-NEW_RUBOCOP_VER
+git add standard.gemspec Gemfile.lock CHANGELOG.md
+git commit -m "Update rubocop to NEW_RUBOCOP_VER, standard-performance to NEW_PERF_VER"
 ```
 
-Omit the standard-performance line if it didn't change. Keep every existing line unchanged.
+## Step 6: Open Pull Request
 
-## Step 7: Create a branch, commit, and open a PR
-
-Create a branch named `update-rubocop-A.B.C`.
-
-Stage and commit these files together:
-- `standard.gemspec`
-- `Gemfile.lock`
-- `lib/standard/version.rb`
-- `CHANGELOG.md`
-
-Commit message: `Update rubocop to A.B.C` (include `, standard-performance to D.E.F` if it also changed).
-
-Push the branch and open a PR. Title: **"Update rubocop to A.B.C"** (append `and standard-performance to D.E.F` if applicable).
-
-PR description:
-
-```
-Updates RuboCop from <old> to <new>.
-[If standard-performance changed: Updates standard-performance from <old> to <new>.]
-
-## New cops
-
-These cops were added and need a configuration decision before tests will pass:
-
-| Cop | Description | PR |
-|-----|-------------|-----|
-| `Style/ExampleCop` | One-line description from changelog | [#12345](link) |
-
-## Changed cops
-
-These existing cops had behavioral changes:
-
-| Cop | Change | PR |
-|-----|--------|-----|
-| `Style/ExistingCop` | What changed | [#12346](link) |
-
----
-
-The `config/` YAML files have not been updated for any of the above cops.
-Tests are expected to fail until those configurations are added in a follow-up.
+Prepare the full PR description by prepending the header to `pr_body.md`:
+```bash
+echo -e "Updates RuboCop from OLD_VER to NEW_VER.\nUpdates standard-performance to NEW_PERF_VER.\n\n$(cat pr_body.md)\n\n---\n\nThe \`config/\` YAML files have not been updated for any of the above cops.\nTests are expected to fail until those configurations are added in a follow-up." > pr_full_body.md
 ```
 
-Omit either table if empty. If there were no new or changed cops, note that in the description instead.
+Then create the PR:
+```bash
+gh pr create --title "Update rubocop to NEW_RUBOCOP_VER" --body-file pr_full_body.md
+```
+Delete temporary files: `rm pr_body.md pr_full_body.md`.
