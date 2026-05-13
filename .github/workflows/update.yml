@@ -25,30 +25,83 @@ jobs:
       - name: Get Outdated
         id: outdated
         run: |
-          eval "$(bundle outdated rubocop rubocop-performance |
-          grep rubocop |
-          awk '{print "echo \"::set-output name="$1"_OLD::"$2"\"; echo \"::set-output name="$1"_NEW::"$3"\";"}' - )";
+          # Use bundle outdated and parse versions
+          # Format: gem-name (newest 1.2.3, installed 1.2.2)
+          OUTDATED=$(bundle outdated rubocop standard-performance --strict || true)
+          echo "$OUTDATED"
+
+          RUBOCOP_OLD=$(echo "$OUTDATED" | grep "rubocop " | sed -E 's/.*installed ([0-9.]+).*/\1/')
+          RUBOCOP_NEW=$(echo "$OUTDATED" | grep "rubocop " | sed -E 's/.*newest ([0-9.]+).*/\1/')
+          PERF_OLD=$(echo "$OUTDATED" | grep "standard-performance " | sed -E 's/.*installed ([0-9.]+).*/\1/')
+          PERF_NEW=$(echo "$OUTDATED" | grep "standard-performance " | sed -E 's/.*newest ([0-9.]+).*/\1/')
+
+          echo "rubocop_old=$RUBOCOP_OLD" >> $GITHUB_OUTPUT
+          echo "rubocop_new=$RUBOCOP_NEW" >> $GITHUB_OUTPUT
+          echo "perf_old=$PERF_OLD" >> $GITHUB_OUTPUT
+          echo "perf_new=$PERF_NEW" >> $GITHUB_OUTPUT
       - name: Update Changelog
+        if: steps.outdated.outputs.rubocop_new != '' || steps.outdated.outputs.perf_new != ''
         run: |
-          eval "$(bundle outdated rubocop rubocop-performance |
-          grep rubocop |
-          awk '{print "sed -i \"2i* Update "$1" from "$2" to ["$3"](https://github.com/rubocop/"$1"/releases/tag/v"$3")\" CHANGELOG.md"}' - )";
-          sed -i '2i\\n## Unreleased\n' CHANGELOG.md;
+          if [ -n "${{ steps.outdated.outputs.rubocop_new }}" ]; then
+            sed -i "2i* Update rubocop from ${{ steps.outdated.outputs.rubocop_old }} to [${{ steps.outdated.outputs.rubocop_new }}](https://github.com/rubocop/rubocop/releases/tag/v${{ steps.outdated.outputs.rubocop_new }})" CHANGELOG.md
+          fi
+          if [ -n "${{ steps.outdated.outputs.perf_new }}" ]; then
+            sed -i "2i* Update standard-performance from ${{ steps.outdated.outputs.perf_old }} to [${{ steps.outdated.outputs.perf_new }}](https://github.com/standardrb/standard-performance/releases/tag/v${{ steps.outdated.outputs.perf_new }})" CHANGELOG.md
+          fi
+          sed -i '2i\\n## Unreleased\n' CHANGELOG.md
       - name: Update Gemspec
+        if: steps.outdated.outputs.rubocop_new != '' || steps.outdated.outputs.perf_new != ''
         run: |
-          eval "$(bundle outdated rubocop rubocop-performance |
-          grep rubocop |
-          awk '{print "sed -i /\"" $1 "\"/s/" $2 "/" $3 "/ standard.gemspec"}' - )"
+          if [ -n "${{ steps.outdated.outputs.rubocop_new }}" ]; then
+            # Update rubocop constraint to exactly the new version for patch/minor, but we usually want ~> MAJOR.MINOR.0
+            # standard.gemspec has: spec.add_dependency "rubocop", "~> 1.84.0"
+            NEW_VERSION="${{ steps.outdated.outputs.rubocop_new }}"
+            # Extract MAJOR.MINOR.0
+            BASE_VERSION=$(echo $NEW_VERSION | cut -d. -f1,2).0
+            sed -i "s/\"rubocop\", \"~> [0-9.]*\"/\"rubocop\", \"~> $BASE_VERSION\"/" standard.gemspec
+          fi
+          if [ -n "${{ steps.outdated.outputs.perf_new }}" ]; then
+            NEW_VERSION="${{ steps.outdated.outputs.perf_new }}"
+            # Extract MAJOR.MINOR
+            BASE_VERSION=$(echo $NEW_VERSION | cut -d. -f1,2)
+            sed -i "s/\"standard-performance\", \"~> [0-9.]*\"/\"standard-performance\", \"~> $BASE_VERSION\"/" standard.gemspec
+          fi
       - name: Update Gemfile
-        run: bundle update
+        if: steps.outdated.outputs.rubocop_new != '' || steps.outdated.outputs.perf_new != ''
+        run: bundle update rubocop standard-performance
+      - name: Generate PR Body
+        if: steps.outdated.outputs.rubocop_new != '' || steps.outdated.outputs.perf_new != ''
+        run: |
+          if [ -n "${{ steps.outdated.outputs.rubocop_new }}" ]; then
+            echo "Updates RuboCop from ${{ steps.outdated.outputs.rubocop_old }} to ${{ steps.outdated.outputs.rubocop_new }}." > pr_body.md
+          fi
+          if [ -n "${{ steps.outdated.outputs.perf_new }}" ]; then
+            if [ -f pr_body.md ]; then
+              echo "Updates standard-performance to ${{ steps.outdated.outputs.perf_new }}." >> pr_body.md
+            else
+              echo "Updates standard-performance to ${{ steps.outdated.outputs.perf_new }}." > pr_body.md
+            fi
+          fi
+          echo "" >> pr_body.md
+          
+          if [ -n "${{ steps.outdated.outputs.rubocop_new }}" ]; then
+            curl -s https://raw.githubusercontent.com/rubocop/rubocop/main/CHANGELOG.md | \
+              ruby .claude/skills/rubocop-update/scripts/parse_changelog.rb \
+                --old ${{ steps.outdated.outputs.rubocop_old }} \
+                --new ${{ steps.outdated.outputs.rubocop_new }} \
+                --no-recommendations >> pr_body.md
+          fi
+          
+          echo -e "\n---\n\nThe \`config/\` YAML files have not been updated for any of the above cops.\nTests are expected to fail until those configurations are added in a follow-up." >> pr_body.md
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
           reviewers: camilopayan
           commit-message: '[ ${{ steps.date.outputs.date }} ] - Update dependencies'
           title: '[ ${{ steps.date.outputs.date }} ] - Update dependencies'
+          body-path: pr_body.md
           delete-branch: true
           branch: update-deps-${{ steps.date.outputs.date }}
