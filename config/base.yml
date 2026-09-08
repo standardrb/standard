@@ -446,6 +446,9 @@ Lint/AmbiguousRange:
 Lint/AmbiguousRegexpLiteral:
   Enabled: true
 
+Lint/ArgumentMismatch:
+  Enabled: false
+
 Lint/ArrayLiteralInRegexp:
   Enabled: true
   AutoCorrect: false
@@ -498,6 +501,9 @@ Lint/DeprecatedConstants:
 
 Lint/DeprecatedOpenSSLConstant:
   Enabled: true
+
+Lint/DeprecatedReference:
+  Enabled: false
 
 Lint/DisjunctiveAssignmentInConstructor:
   Enabled: false
@@ -648,6 +654,9 @@ Lint/MixedRegexpCaptureTypes:
 
 Lint/MultipleComparison:
   Enabled: true
+
+Lint/NameTypo:
+  Enabled: false
 
 Lint/NestedMethodDefinition:
   Enabled: true
@@ -806,6 +815,9 @@ Lint/SharedMutableDefault:
 Lint/StructNewOverride:
   Enabled: false
 
+Lint/SuperArgumentMismatch:
+  Enabled: false
+
 Lint/SuppressedException:
   Enabled: false
 
@@ -862,6 +874,9 @@ Lint/UnusedBlockArgument:
   Enabled: false
 
 Lint/UnusedMethodArgument:
+  Enabled: false
+
+Lint/UnusedPrivateMethod:
   Enabled: false
 
 Lint/UriEscapeUnescape:
@@ -1190,6 +1205,9 @@ Style/Dir:
 
 Style/DirEmpty:
   Enabled: true
+
+Style/DirectiveScope:
+  Enabled: false
 
 Style/DisableCopsWithinSourceCodeDirective:
   Enabled: false
@@ -1922,6 +1940,9 @@ Style/TernaryParentheses:
   Enabled: true
   EnforcedStyle: require_parentheses_when_complex
   AllowSafeAssignment: true
+
+Style/TimeNow:
+  Enabled: true
 
 Style/TopLevelMethodDefinition:
   Enabled: false
