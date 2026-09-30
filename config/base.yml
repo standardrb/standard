@@ -639,6 +639,10 @@ Lint/LiteralInInterpolation:
 Lint/Loop:
   Enabled: true
 
+Lint/MisplacedMagicComment:
+  Enabled: true
+  AutoCorrect: false
+
 Lint/MissingCopEnableDirective:
   Enabled: true
   MaxRangeSize: .inf
@@ -1219,9 +1223,6 @@ Style/Documentation:
   Enabled: false
 
 Style/DocumentationMethod:
-  Enabled: false
-
-Style/DoubleCopDisableDirective:
   Enabled: false
 
 Style/DoubleNegation:
