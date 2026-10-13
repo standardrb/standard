@@ -515,6 +515,7 @@ Here are a few examples of Ruby Standard-compliant teams & projects:
 * [Podia](https://www.podia.com/)
 * [Privy](https://www.privy.com/)
 * [Rebase Interactive](https://www.rebaseinteractive.com/)
+* [RenoFi](https://www.renofi.com/)
 * [Renuo](https://www.renuo.ch/)
 * [RubyCI](https://ruby.ci)
 * [SearchApi](https://www.searchapi.io/)
