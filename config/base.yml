@@ -1792,7 +1792,7 @@ Style/RedundantStringEscape:
   Enabled: true
 
 Style/RedundantStructKeywordInit:
-  Enabled: true
+  Enabled: false
 
 Style/RegexpLiteral:
   Enabled: false
