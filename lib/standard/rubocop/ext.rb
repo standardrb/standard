@@ -7,10 +7,11 @@ module RuboCop
   end
 
   class DirectiveComment
-    remove_const :DIRECTIVE_COMMENT_REGEXP
+    # Accept `# standard:` alongside `# rubocop:`, keeping every directive
+    # mode RuboCop supports (e.g. `disable-next`, `push`, `pop`)
+    rubocop_directive_comment_regexp = remove_const(:DIRECTIVE_COMMENT_REGEXP)
     DIRECTIVE_COMMENT_REGEXP = Regexp.new(
-      ('# (?:standard|rubocop) : ((?:disable|enable|todo))\b ' + COPS_PATTERN)
-        .gsub(" ", '\s*')
+      rubocop_directive_comment_regexp.source.sub("rubocop", "(?:standard|rubocop)")
     )
   end
 
