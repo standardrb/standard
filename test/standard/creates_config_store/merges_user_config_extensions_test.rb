@@ -126,4 +126,21 @@ class Standard::CreatesConfigStore::MergesUserConfigExtensionsTest < UnitTest
     }
     assert_equal(expected, options_config.to_h)
   end
+
+  def test_when_extend_config_without_lint_roller_cops
+    options_config = RuboCop::Config.new({
+      "AllCops" => {
+        "TargetRubyVersion" => "3.0"
+      }
+    }, "")
+
+    # Using fixture that doesn't contain lint_roller cops
+    @subject.call(options_config, {
+      extend_config: ["test/fixture/extend_config/all_cops.yml"]
+    })
+
+    # Should not have auto-detected lint_roller plugins (no namespaced cops)
+    namespaced_cops = options_config.to_h.keys.select { |k| k.include?("/") && !k.start_with?("AllCops") }
+    assert_equal [], namespaced_cops, "Should not auto-detect namespaced cops when no plugin cops in extend_config"
+  end
 end
