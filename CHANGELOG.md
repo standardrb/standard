@@ -112,7 +112,7 @@ for range formatting requests [#655](https://github.com/standardrb/standard/pull
 * @koic backported a line column bug in our LSP
   [#635](https://github.com/standardrb/standard/pull/635)
 * Implement a basic [Ruby LSP
-add-on](https://github.com/Shopify/ruby-lsp/blob/main/ADDONS.md), which means
+add-on](https://shopify.github.io/ruby-lsp/add-ons.html), which means
 users would no longer need to install [our custom VS Code
 extension](https://marketplace.visualstudio.com/items?itemName=testdouble.vscode-standard-ruby)
 [#630](https://github.com/standardrb/standard/pull/630)
