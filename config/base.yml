@@ -250,6 +250,7 @@ Layout/InitialIndentation:
 Layout/LeadingCommentSpace:
   Enabled: true
   AllowRBSInlineAnnotation: true
+  AllowSteepAnnotation: true
 
 Layout/LeadingEmptyLines:
   Enabled: true
